@@ -13,6 +13,7 @@ function MainStackNavigator() {
         <Stack.Screen
         name='Launch'
         component={Launch}
+        options={{ headerShown: false }}
         />
     </Stack.Navigator>
     );
