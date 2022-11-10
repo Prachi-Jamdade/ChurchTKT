@@ -12,44 +12,20 @@ import {
 } from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Onboarding from '../onboarding/Onboarding'
+import Login from '../login/Login';
 
 
 let logged = false;
 const Stack = createNativeStackNavigator();
 
-// const { width, height } = Dimensions.get('window');
-// const frameWidth = width;
-// const columnWidth = frameWidth / 3;
-
-class Launch extends React.Component {
-    render() {
-
-        if (!logged){
-            return(
-                <Stack.Navigator>
-                    <Stack.Screen
-                        name='Onboarding'
-                        component={Onboarding}
-                        options={{ headerShown: false }}
-                        />
-                </Stack.Navigator>
-            )
+const Launch = ({navigation}) => {
+    return (
+        <>
+        {
+            !logged ? navigation.navigate('Onboarding') : <Text>You did it Man !!</Text>
         }
-        else {
-            return (
-                <View
-                  style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: 20,
-                  }}>
-                    <Text>You did it Man !!</Text>
-                </View>
-            );
-        }
-    
-    }
+        </>
+    )
 }
 
 export default Launch;

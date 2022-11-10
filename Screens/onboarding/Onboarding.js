@@ -28,6 +28,10 @@ const infos = ['Connect to the divinity of the almighty lord.','A helping hand i
 
 class Onboarding extends React.Component{
 
+  constructor(props) {
+    super(props);
+  }
+
     state = {
       active : 0,
     }
@@ -37,6 +41,9 @@ class Onboarding extends React.Component{
       if (slide !== this.state.active ){
         this.setState({active: slide});
       }
+    }
+    Login = (props) => {
+      props.navigation.navigate('Login');
     }
 
     render(){
@@ -86,6 +93,7 @@ class Onboarding extends React.Component{
               </View>
               <TouchableHighlight
                 style={styles.loginButton}
+                onPress={() => {this.Login(this.props)}}
                 underlayColor='#fff'>
                   <Text style={[styles.submitText]}>Login</Text>
               </TouchableHighlight>
