@@ -6,6 +6,7 @@ import Login from '../Screens/login/Login';
 import Onboarding from '../Screens/onboarding/Onboarding';
 import VerifyOtp from '../Screens/login/VerifyOtp';
 import BottomTabs from '../Screens/fragments/BottomTabs';
+import Registration from '../Screens/login/Registration';
 // import screens
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +23,11 @@ function MainStackNavigator() {
           <Stack.Screen
           name='Onboarding'
           component={Onboarding}
+          options={{ headerShown: false }}
+          />
+          <Stack.Screen
+          name='Registration'
+          component={Registration}
           options={{ headerShown: false }}
           />
           <Stack.Screen

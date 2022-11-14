@@ -46,6 +46,10 @@ class Onboarding extends React.Component{
       props.navigation.navigate('Login');
     }
 
+    SignUp = (props) => {
+      props.navigation.navigate('Registration');
+    }
+
     render(){
         return (
             <View style={styles.main}>
@@ -84,7 +88,7 @@ class Onboarding extends React.Component{
               <View style = {styles.bottomButtons}>
               <TouchableHighlight
                 style={styles.joinusButton}
-                // onPress={() => this.submitSuggestion(this.props)}
+                onPress={() => {this.SignUp(this.props)}}
                 underlayColor='#fff'>
                   <Text style={[styles.submitText]}>Join Us</Text>
               </TouchableHighlight>

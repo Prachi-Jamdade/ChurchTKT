@@ -66,7 +66,7 @@ class Login extends React.Component{
                     <Text style = {styles.signUp}>Sign Up</Text>
                 </View>
                 <TouchableHighlight
-                    style={[styles.submit,{backgroundColor : this.accepted ? '#FFBE18' : 'grey',}]}
+                    style={[styles.submit,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
                     disabled = {!this.accepted}
                     onPress={() => {this.sendOtp(this.props)}}
                     underlayColor='#fff'>
