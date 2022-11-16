@@ -15,7 +15,6 @@ import Home from './Home';
 import Explore from './Explore';
 import Community from './Community';
 import Profile from './profile/Profile';
-
 const TabArr = [
     { route: 'Home', label: 'Home', type: Icons.Ionicons, activeIcon:require('../assests/icons/homeActive.png'), inActiveIcon:require('../assests/icons/homeInactive.png'), component: Home },
     { route: 'Explore', label: 'Explore', type: Icons.MaterialCommunityIcons, activeIcon: require('../assests/icons/exploreActive.png'), inActiveIcon: require('../assests/icons/exploreInactive.png'), component: Explore },
