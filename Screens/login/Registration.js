@@ -56,7 +56,7 @@ class Registration extends React.Component {
                         keyboardType = 'name-phone-pad'
                         placeholderTextColor = "white"
                         autoCapitalize = "none"
-                        onChangeText = {this.handleNumber}/>
+                        onChangeText = {this.handleFirstName}/>
                 </View>
                 <View>
                     <TextInput style = {styles.input}
@@ -65,7 +65,7 @@ class Registration extends React.Component {
                         keyboardType = 'name-phone-pad'
                         placeholderTextColor = "white"
                         autoCapitalize = "none"
-                        onChangeText = {this.handleNumber}/>
+                        onChangeText = {this.handleLastName}/>
                 </View>
                 <View>
                     <TextInput style = {styles.input}
