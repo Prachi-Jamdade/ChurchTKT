@@ -14,13 +14,13 @@ import * as Animatable from 'react-native-animatable';
 import Home from './Home';
 import Explore from './Explore';
 import Community from './Community';
-import Profile from './Profile';
+import Profile from './profile/Profile';
 
 const TabArr = [
-    { route: 'Home', label: 'Home', type: Icons.Ionicons, activeIcon:'home', inActiveIcon:'home-outline', component: Home },
-    { route: 'Explore', label: 'Explore', type: Icons.MaterialCommunityIcons, activeIcon: 'home', inActiveIcon: 'home-outline', component: Explore },
-    { route: 'Community', label: 'Community', type: Icons.MaterialCommunityIcons, activeIcon: 'home', inActiveIcon: 'home-outline', component: Community },
-    { route: 'Profile', label: 'Profile', type: Icons.FontAwesome, activeIcon: 'user-circle', inActiveIcon: 'user-circle-o', component: Profile },
+    { route: 'Home', label: 'Home', type: Icons.Ionicons, activeIcon:require('../assests/icons/homeActive.png'), inActiveIcon:require('../assests/icons/homeInactive.png'), component: Home },
+    { route: 'Explore', label: 'Explore', type: Icons.MaterialCommunityIcons, activeIcon: require('../assests/icons/exploreActive.png'), inActiveIcon: require('../assests/icons/exploreInactive.png'), component: Explore },
+    { route: 'Community', label: 'Community', type: Icons.MaterialCommunityIcons, activeIcon: require('../assests/icons/communityActive.png'), inActiveIcon: require('../assests/icons/communityInactive.png'), component: Community },
+    { route: 'Profile', label: 'Profile', type: Icons.FontAwesome, activeIcon: require('../assests/icons/profileActive.png'), inActiveIcon: require('../assests/icons/profileInactive.png'), component: Profile },
   ];
 
 const Tab = createBottomTabNavigator();
@@ -56,12 +56,12 @@ class BottomTabs extends React.Component{
             onPress={onPress}
             activeOpacity={1}
             style={styles.container}>
-            <Animatable.View
+            {/* <Animatable.View
             //   ref={viewRef}
               duration={1000}
               style={styles.container}>
               <Icon type={item.type} name={focused ? item.activeIcon : item.inActiveIcon}/>
-            </Animatable.View>
+            </Animatable.View> */}
           </TouchableOpacity>
         );
     }
@@ -69,6 +69,7 @@ class BottomTabs extends React.Component{
     render(){
         return (
             <Tab.Navigator
+              initialRouteName='Home'
               screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
@@ -82,6 +83,7 @@ class BottomTabs extends React.Component{
               }}
             >
               {TabArr.map((item, index) => {
+                console.log("Route", item.route)
                 return (
                   <Tab.Screen key={index} name={item.route} component={item.component}
                     options={{
@@ -92,8 +94,8 @@ class BottomTabs extends React.Component{
                         <Image
                           source={
                             focused
-                              ? require('../assests/icons/homeActive.png')
-                              : require('../assests/icons/homeInactive.png')
+                              ? item.activeIcon
+                              : item.inActiveIcon
                           }
                           style={{
                             width: 30,
@@ -101,8 +103,7 @@ class BottomTabs extends React.Component{
                             borderRadius: size,
                           }}
                         />
-                      ),
-                      tabBarButton: (props) => <this.TabButton {...props} item={item} />
+                      )
                     }}
                   />
                 )
