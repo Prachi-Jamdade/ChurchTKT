@@ -7,6 +7,7 @@ import Onboarding from '../Screens/onboarding/Onboarding';
 import VerifyOtp from '../Screens/login/VerifyOtp';
 import BottomTabs from '../Screens/fragments/BottomTabs';
 import Registration from '../Screens/login/Registration';
+import SplashScreen from '../Screens/splashscreen/SplashScreen';
 // import screens
 
 const Stack = createNativeStackNavigator();
@@ -14,7 +15,12 @@ const Stack = createNativeStackNavigator();
 function MainStackNavigator() {
     return (
       <Stack.Navigator
-        initialRouteName='Launch'>
+        initialRouteName='SplashScreenSplashScreenSplashScreen'>
+          <Stack.Screen
+          name='SplashScreen'
+          component={SplashScreen}
+          options={{ headerShown: false }}
+          />
           <Stack.Screen
           name='Launch'
           component={Launch}
