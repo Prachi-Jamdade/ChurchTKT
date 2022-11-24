@@ -24,8 +24,6 @@ const images = [img1,img3,img2];
 const infos = ['Connect to the divinity of the almighty lord.','A helping hand in the darkness of life.','A community of people who care for you.'];
 
 
-
-
 class Onboarding extends React.Component{
 
   constructor(props) {
