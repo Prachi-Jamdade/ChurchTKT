@@ -83,7 +83,7 @@ class BottomTabs extends React.Component{
                   <Tab.Screen key={index} name={item.route} component={item.component}
                     options={{
                       tabBarLabel : item.label,
-                      tabBarActiveTintColor: '#FFBE18',
+                      tabBarActiveTintColor: 'yellow',
                       tabBarShowLabel: true,
                       tabBarInactiveBackgroundColor: 'black',
                       tabBarIcon: ({focused, color, size}) => (
@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     activeIcon:{
-      color:"#FFBE18",
+      color:"yellow",
       backgroundColor:'#2e2d2b',
       padding:10,
       paddingTop:7,
-      borderRadius:5,
+      borderRadius:10,
     },
     bar:{
       height: 75,

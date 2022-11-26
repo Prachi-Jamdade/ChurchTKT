@@ -6,6 +6,7 @@ import {
     Image,
     TouchableHighlight,
     StyleSheet,
+    Switch,
     Dimensions,
 } from 'react-native';
 import Icon,{Icons} from '../fragments/Icons';
@@ -13,21 +14,43 @@ import homeHand from '../assests/icons/homeHand.png';
 import homeImage from '../assests/homeImage.png';
 
 
-const data=[];
+const data=[
+    {
+        day:'Good Friday',
+        description:'We invite everyone to join us at 6:00pm to celebrate Good Friday.',
+        location:'Main Complex',
+        date:'11th Sept',
+        time:'06:00pm',
+    },
+    {
+        day:'Good Friday',
+        description:'We invite everyone to join us at 6:00pm to celebrate Good Friday.',
+        location:'Main Complex',
+        date:'11th Sept',
+        time:'06:00pm',
+    },
+    {
+        day:'Good Friday',
+        description:'We invite everyone to join us at 6:00pm to celebrate Good Friday.',
+        location:'Main Complex',
+        date:'11th Sept',
+        time:'06:00pm',
+    },
+];
 const TopEvents=[
     {
         image:homeImage,
-        data:'29th Sept, 2023',
+        date:'29th Sept, 2023',
         title:'WORSHIP NIGHT'
     },
     {
         image:homeImage,
-        data:'29th Sept, 2023',
+        date:'29th Sept, 2023',
         title:'WORSHIP NIGHT'
     },
     {
         image:homeImage,
-        data:'29th Sept, 2023',
+        date:'29th Sept, 2023',
         title:'WORSHIP NIGHT'
     },
 ]
@@ -66,17 +89,24 @@ const Home = ({navigation}) => {
                     horizontal
                     onScroll={change}
                     showsHorizontalScrollIndicator = {false}
-                    style = {styles.scrollView}
                 >
                     {
                     TopEvents.map((data, index) => (
+                        <View key={index} style={styles.homeTopCard}>
                         <Image
-                        key={index}
                         source = {data.image}
                         style = {styles.images} />
+                        <View style={styles.homeTopCardText}>
+                            <Text style={styles.homeTopCardTextDate}>{data.date}</Text>
+                            <Text style={styles.homeTopCardTextTitle}>{data.title}</Text>
+                        </View>
+                        
+                        </View>
                     ))
                     }
                 </ScrollView>
+
+                </View>
 
                 <View style = {styles.pagination}>
                     {
@@ -85,37 +115,79 @@ const Home = ({navigation}) => {
                     ))
                     }
                 </View>
-                </View>
 
-                <View>
                 <ScrollView>
-                    <View style={styles.list}>
+                <View style={styles.list}>
+                    <View>
+                        <Text style={[styles.headerDark,styles.fullW,{marginBottom:20}]}>
+                        Upcoming Events
+                        </Text>
+                    </View>
                     {
                         data.map((value,index)=>{
                             return <HomeCard key={index} {...value}/>;
                         })
                     }
-                    </View>
-                </ScrollView>
                 </View>
+                </ScrollView>
                 </View>
             </View>
         )
 }
 
 
-const HomeCard = ({navigation}) => {
+const HomeCard = ({navigation,day,description,location,date,time}) => {
+
+    const [isEnabled,setIsEnabled]=useState(false);
 
     return(
+        <View style={styles.cardBox}>
+            <View style={{padding:8,paddingVertical:15}}>
 
-        <TouchableHighlight>
-            <View style={styles.cardBox}>
-                <Text>
-
-               zeel
-                </Text>
+            <Text style={styles.cardTitle}>{day}</Text>
+            <Text style={styles.cardDescription}>{description}</Text>
+            <View style={[styles.rowToggle,{marginHorizontal:5}]}>
+            <Switch
+            trackColor={{ false: "#2e2d2b", true: "yellow" }}
+            thumbColor={isEnabled ? "white" : "yellow"}
+            ios_backgroundColor="#FFBE18"
+            value={isEnabled}
+            onValueChange={()=>{setIsEnabled(!isEnabled)}}
+            style={{ height:20 }}
+            />
+            <Text style={styles.cardText}>Set Reminder</Text>
             </View>
-        </TouchableHighlight>
+            </View>
+            <View style={[styles.row,styles.cardIcons]}>
+                <View style={styles.row}>
+                    <Icon 
+                    type={Icons.Ionicons}
+                    name="location-outline"
+                    size={20}
+                    color='white'
+                    />
+                    <Text style={styles.cardDescriptionIcon}>{location}</Text>
+                </View>
+                <View style={styles.row}>
+                    <Icon 
+                    type={Icons.MaterialIcons}
+                    name="date-range"
+                    size={20}
+                    color='white'
+                    />
+                    <Text style={styles.cardDescriptionIcon}>{date}</Text>
+                </View>
+                <View style={styles.row}>
+                    <Icon 
+                    type={Icons.Ionicons}
+                    name="time-outline"
+                    size={20}
+                    color="white"
+                    />
+                    <Text style={styles.cardDescriptionIcon}>{time}</Text>
+                </View>
+            </View>
+        </View>
     )
 
 }
@@ -132,6 +204,7 @@ const styles = StyleSheet.create({
         width,
         flexDirection:'column',
         alignItems: 'center',
+        flex: 1,
     },
     header : {
         marginTop: 30,
@@ -160,6 +233,49 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     },
+    cardBox:
+    {
+        width:boxWidth,
+        borderRadius:14,
+        color:'white',
+        marginBottom:20,
+        borderWidth:0.8,
+        borderColor:'#3b3b3b',
+    },
+    cardTitle:{
+        fontSize:16,
+        fontWeight: 'bold',
+        color:'white',
+        marginBottom:5,
+    },
+    cardDescription:{
+        marginBottom:5,
+    },
+    cardDescriptionIcon:{
+        marginLeft:5,
+        color:'white',
+    },
+    fullW:{
+        width:boxWidth,
+    },
+    row:{
+        flexDirection:'row',
+        alignItems: 'center'
+    },
+    rowToggle:{
+        flexDirection:'row',
+        alignItems: 'center',
+        width:boxWidth,
+        marginVertical:5,
+    },
+    cardIcons:{
+        justifyContent:'space-between',
+        backgroundColor:'#0F0D0B',
+        borderBottomLeftRadius:14,
+        borderBottomRightRadius:14,
+        paddingVertical:8,
+        paddingHorizontal:10,
+    },
     container: {
         width :boxWidth,
         height:(height/5),
@@ -167,18 +283,43 @@ const styles = StyleSheet.create({
         marginVertical:20,
         borderRadius:14,
     },
-    scrollView :{
+    homeTopCard:{
+        width:boxWidth,
+        position: 'relative',
+        borderRadius:14,
+    },
+    homeTopCardText:{
+        position:'absolute',
+        bottom:10,
+        alignItems: 'center',
+        flexDirection:'column',
+        justifyContent: 'center',
         width :boxWidth,
+    },
+    homeTopCardTextDate:{
+        fontSize:12,
+        fontWeight:'bold',
+        color:'white',
+    },
+    homeTopCardTextTitle:{
+        fontSize:18,
+        fontWeight:'bold',
+        color:'white',
+    },
+    cardText:{
+        marginLeft:5,
     },
     images: {
         width :boxWidth,
         height:(height/5),
         borderRadius:14,
+        position:'absolute',
+        zIndex:-10,
     },
     pagination : {
         flexDirection : 'row',
-        bottom:30,
         alignSelf: 'center',
+        marginBottom:10,
     },
     pagingText : {
         fontSize: (width / 30) ,
@@ -200,9 +341,8 @@ const styles = StyleSheet.create({
     list: { 
         backgroundColor:'#0F0F0F',
         borderRadius: 24,
-        marginTop: 35,
-        marginBottom: 100,
-        paddingTop: 25,
+        marginTop: 5,
+        marginBottom: 60,
         paddingBottom:20,
         width,
         flex:1,
