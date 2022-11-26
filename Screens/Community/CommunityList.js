@@ -4,9 +4,10 @@ import {
     View,
     ScrollView,
     Image,
-    TouchableHighlight
+    TouchableHighlight,
 } from 'react-native';
 import {styles} from '.';
+import Icon,{Icons} from '../fragments/Icons'
 
 import ArrowImage from '../assests/icons/communityCardIcon.png';
 
@@ -18,7 +19,6 @@ const CommunityList = ({navigation,data,setIndex}) => {
                 <Text style= {styles.header}>Community</Text>
                 <View
                     style={[
-                        styles.container,
                         { ['alignItems']: 'center' },
                     ]}
                 >
@@ -40,25 +40,27 @@ const CommunityList = ({navigation,data,setIndex}) => {
 const CommunityCard = ({navigation,image,title,description,about,index,setIndex}) => {
 
     return(
-        <TouchableHighlight onpress={() => setIndex(index)}>
 
-        <View style={styles.cardBox} 
-            >
-            <Image
-                source = {image}
-                style = {styles.cardImage}/>
-            <View style={styles.cardTextBox}>
-                <Text style= {styles.cardTextBoxheader}>{title}</Text>
-                <View style={styles.cardTextBoxDescription}>
-                <Text  style={styles.cardBoxDescriptionText}>{description}</Text>
+        <TouchableHighlight onPress={()=>setIndex(index)}>
+            <View style={styles.cardBox} 
+                >
                 <Image
-                onPress={()=>setIndex(index)}
-                source = {ArrowImage}
-                style = {styles.cardArrowImage}/>
+                    source = {image[0]}
+                    style = {styles.cardImage}/>
+                <View style={styles.cardTextBox}>
+                    <Text style= {styles.cardTextBoxheader}>{title}</Text>
+                    <View style={styles.cardTextBoxDescription}>
+                    <Text  style={styles.cardBoxDescriptionText}>{description}</Text>
+                         <Icon
+                            type={Icons.AntDesign}
+                            size={20}
+                            name="rightcircleo"
+                            color= 'white'
+                         />
+                    </View>
                 </View>
             </View>
-        </View>
-      </TouchableHighlight>
+        </TouchableHighlight>
     )
 
 }

@@ -26,6 +26,7 @@ const infos = ['Connect to the divinity of the almighty lord.','A helping hand i
 
 class Onboarding extends React.Component{
 
+
   constructor(props) {
     super(props);
   }
@@ -73,12 +74,12 @@ class Onboarding extends React.Component{
                 <View style = {styles.pagination}>
                   {
                     images.map((i,k) => (
-                    <Text key={k} style={ k === this.state.active ? styles.pagingActive :  styles.pagingText}>●</Text>
+                    <Text key={k} style={ k === this.state.active ? styles.pagingActive :  styles.pagingText}></Text>
                     ))
                   }
                 </View>
               </View>
-              <View>
+              <View style = {styles.textAll}>
                 {
                   <Text style = {styles.text}>{infos[this.state.active]}</Text>
                 }
@@ -88,7 +89,7 @@ class Onboarding extends React.Component{
                 style={styles.joinusButton}
                 onPress={() => {this.SignUp(this.props)}}
                 underlayColor='#fff'>
-                  <Text style={[styles.submitText]}>Join Us</Text>
+                  <Text style={[styles.submitText,{fontSize:14,fontWeight:'bold'}]}>Join Us</Text>
               </TouchableHighlight>
               <View>
                 <Text style = {styles.or}>----------- or -----------</Text>
@@ -97,7 +98,7 @@ class Onboarding extends React.Component{
                 style={styles.loginButton}
                 onPress={() => {this.Login(this.props)}}
                 underlayColor='#fff'>
-                  <Text style={[styles.submitText]}>Login</Text>
+                  <Text style={[styles.submitText,{fontSize:14,fontWeight:'bold'}]}>Login</Text>
               </TouchableHighlight>
               </View>
           </View>
@@ -115,9 +116,9 @@ const styles = StyleSheet.create({
     },
     scrollView :{width, height},
     images: {width,height,resizeMode: 'cover'},
-    pagination : {flexDirection : 'row', position: 'absolute', bottom:0, alignSelf: 'center' },
-    pagingText : {fontSize: (width / 30) , color: '#888' , margin: 3},
-    pagingActive : {fontSize: (width / 30) , color: '#FFBE18', margin: 3},
+    pagination : {flexDirection : 'row', position: 'absolute', bottom:5, alignSelf: 'center' },
+    pagingText : {fontSize: (width / 30) , backgroundColor: '#888' , margin: 3,width:9,height:9,borderRadius:50},
+    pagingActive : {fontSize: (width / 30) ,width:20,height:9, backgroundColor: '#FFBE18', margin: 3,borderRadius:50,transitionDuration:10},
     text : {fontSize: (width / 25) , color : 'white',alignSelf : 'center', marginTop: 6, marginHorizontal: 16},
     contentContainer: {flex: 1},
     or : {alignSelf: 'center', color: '#888'},
@@ -144,6 +145,9 @@ const styles = StyleSheet.create({
     submitText: {
       color: '#fff',
       textAlign: 'center',
+    },
+    textAll:{
+      marginTop:5,
     }
   });
 
