@@ -86,7 +86,7 @@ class Registration extends React.Component {
                             this.props.navigation.navigate('Login');
                         }}
                         >Login</Text>
-                        </TouchableHighlight>
+                        </TouchableHighlight>+
                 </View>
                 <TouchableHighlight
                     style={[styles.submit,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}

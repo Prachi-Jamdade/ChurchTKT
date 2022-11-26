@@ -14,7 +14,7 @@ import * as Animatable from 'react-native-animatable';
 
 
 
-import Home from './Home';
+import Home from '../home';
 import Explore from './Explore';
 import Community from '../Community';
 import Profile from './profile/Profile';

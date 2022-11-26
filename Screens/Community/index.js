@@ -90,8 +90,8 @@ const Community = ({navigation}) => {
 
 
 
-
 const {width} = Dimensions.get('window');
+const boxWidth=width*0.9;
 const height = width * 100 / 40;
 
 const styles = StyleSheet.create({
@@ -102,6 +102,11 @@ const styles = StyleSheet.create({
         marginTop:(height/5),
         borderRadius: 24,
         paddingVertical:10,
+        flexDirection:'column',
+        alignItems: 'center'
+    },
+    box:{
+        width,
         flexDirection:'column',
         alignItems: 'center'
     },
@@ -163,11 +168,11 @@ const styles = StyleSheet.create({
     list: { 
         backgroundColor:'#0F0F0F',
         borderRadius: 24,
-        marginTop: 35,
+        marginTop: 10,
         marginBottom: 100,
         paddingTop: 25,
         paddingBottom:20,
-        width,
+        width:boxWidth,
         flex:1,
         flexDirection:'column',
         justifyContent: 'center',
@@ -176,17 +181,21 @@ const styles = StyleSheet.create({
     cardBox: {
         position:'relative',
         height:width/1.7,
-        width:((width/9)*8),
+        width:boxWidth,
         borderRadius: 24,
         padding:20,
         displayflexDirection:'column',
         justifyContent: 'flex-end',
         marginBottom:25,
-        marginLeft:15
+    },
+    cardTextBox:{
+        width:boxWidth*0.85
+        ,
     },
     cardImage:{
         position:'absolute',
         height:width/1.7,
+        width:boxWidth,
         borderRadius: 24,
         zIndex:-1
     },
@@ -203,7 +212,6 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         justifyContent: 'space-between',
-        paddingRight: 15
     },
     DescriptionText:{
         fontSize: 15,
@@ -227,4 +235,5 @@ const styles = StyleSheet.create({
 });
 
 export {styles};
+
 export default Community;

@@ -9,6 +9,7 @@ import BottomTabs from '../Screens/fragments/BottomTabs';
 import Registration from '../Screens/login/Registration';
 import SplashScreen from '../Screens/splashscreen/SplashScreen';
 import Community from '../Screens/Community';
+import Home from '../Screens/home'
 // import screens
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +56,11 @@ function MainStackNavigator() {
           <Stack.Screen
           name='BottomTabs'
           component={BottomTabs}
+          options={{ headerShown: false }}
+          />
+          <Stack.Screen
+          name='Home'
+          component={Home}
           options={{ headerShown: false }}
           />
       </Stack.Navigator>

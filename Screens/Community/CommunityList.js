@@ -17,11 +17,7 @@ const CommunityList = ({navigation,data,setIndex}) => {
     return (
             <View style= {styles.main}>
                 <Text style= {styles.header}>Community</Text>
-                <View
-                    style={[
-                        { ['alignItems']: 'center' },
-                    ]}
-                >
+                <View style={styles.box}>
                 <ScrollView>
                     <View style={styles.list}>
                     {

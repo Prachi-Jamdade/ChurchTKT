@@ -74,7 +74,7 @@ const CommunityBox = ({navigation,image,title,description,setIndex,about}) => {
             ))
             }
         </View>
-        </View>
+    </View>
 
      
         <View style={styles.BigBox}>
