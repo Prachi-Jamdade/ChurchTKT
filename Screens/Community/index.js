@@ -10,8 +10,8 @@ import img3 from '../assests/community3.png';
 import img4 from '../assests/community4.png';
 import img5 from '../assests/community5.png';
 import img6 from '../assests/community6.png';
-import CommunityBox from './CommunityBox'
-import CommunityList from './CommunityList'
+import CommunityBox from './CommunityBox';
+import CommunityList from './CommunityList';
 import ArrowImage from '../assests/icons/communityCardIcon.png'
 
 
