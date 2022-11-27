@@ -8,6 +8,8 @@ import VerifyOtp from '../Screens/login/VerifyOtp';
 import BottomTabs from '../Screens/fragments/BottomTabs';
 import Registration from '../Screens/login/Registration';
 import SplashScreen from '../Screens/splashscreen/SplashScreen';
+import Community from '../Screens/Community';
+import Home from '../Screens/home'
 // import screens
 
 const Stack = createNativeStackNavigator();
@@ -42,6 +44,11 @@ function MainStackNavigator() {
           options={{ headerShown: false }}
           />
           <Stack.Screen
+          name='Community'
+          component={Community}
+          options={{ headerShown: false }}
+          />
+          <Stack.Screen
           name='VerifyOtp'
           component={VerifyOtp}
           options={{ headerShown: false }}
@@ -49,6 +56,11 @@ function MainStackNavigator() {
           <Stack.Screen
           name='BottomTabs'
           component={BottomTabs}
+          options={{ headerShown: false }}
+          />
+          <Stack.Screen
+          name='Home'
+          component={Home}
           options={{ headerShown: false }}
           />
       </Stack.Navigator>

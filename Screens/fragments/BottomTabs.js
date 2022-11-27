@@ -6,20 +6,23 @@ import {
     TouchableOpacity,
     StyleSheet,
     TouchableHighlight,
+    Dimensions
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon, {Icons} from './Icons';
 import * as Animatable from 'react-native-animatable';
 
-import Home from './Home';
+
+
+import Home from '../home';
 import Explore from './Explore';
-import Community from './Community';
+import Community from '../Community';
 import Profile from './profile/Profile';
 const TabArr = [
-    { route: 'Home', label: 'Home', type: Icons.Ionicons, activeIcon:require('../assests/icons/homeActive.png'), inActiveIcon:require('../assests/icons/homeInactive.png'), component: Home },
-    { route: 'Explore', label: 'Explore', type: Icons.MaterialCommunityIcons, activeIcon: require('../assests/icons/exploreActive.png'), inActiveIcon: require('../assests/icons/exploreInactive.png'), component: Explore },
-    { route: 'Community', label: 'Community', type: Icons.MaterialCommunityIcons, activeIcon: require('../assests/icons/communityActive.png'), inActiveIcon: require('../assests/icons/communityInactive.png'), component: Community },
-    { route: 'Profile', label: 'Profile', type: Icons.FontAwesome, activeIcon: require('../assests/icons/profileActive.png'), inActiveIcon: require('../assests/icons/profileInactive.png'), component: Profile },
+    { route: 'Home', label: 'Home', type: Icons.MaterialIcons, name:"home-filled", component: Home },
+    { route: 'Explore', label: 'Explore', type: Icons.MaterialIcons, name:"language", component: Explore },
+    { route: 'Community', label: 'Community', type: Icons.MaterialIcons, name:"groups", component: Community },
+    { route: 'Profile', label: 'Profile', type: Icons.MaterialIcons, name:"person", component: Profile },
   ];
 
 const Tab = createBottomTabNavigator();
@@ -71,14 +74,7 @@ class BottomTabs extends React.Component{
               initialRouteName='Home'
               screenOptions={{
                 headerShown: false,
-                tabBarStyle: {
-                  height: 60,
-                  position: 'absolute',
-                  bottom: 16,
-                  right: 16,
-                  left: 16,
-                  borderRadius: 16
-                }
+                tabBarStyle: styles.bar
               }}
             >
               {TabArr.map((item, index) => {
@@ -87,20 +83,19 @@ class BottomTabs extends React.Component{
                   <Tab.Screen key={index} name={item.route} component={item.component}
                     options={{
                       tabBarLabel : item.label,
+                      tabBarActiveTintColor: 'yellow',
                       tabBarShowLabel: true,
                       tabBarInactiveBackgroundColor: 'black',
                       tabBarIcon: ({focused, color, size}) => (
-                        <Image
-                          source={
-                            focused
-                              ? item.activeIcon
-                              : item.inActiveIcon
-                          }
-                          style={{
-                            width: 30,
-                            height: 30,
-                            borderRadius: size,
-                          }}
+                        <Icon
+                        type={item.type} 
+                        name={item.name}
+                        size ={30}
+                        style={
+                          focused
+                            ? styles.activeIcon
+                            : styles.Icon
+                        }
                         />
                       )
                     }}
@@ -115,11 +110,32 @@ class BottomTabs extends React.Component{
 
 export default BottomTabs;
 
+const {width} = Dimensions.get('window');
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
+    activeIcon:{
+      color:"yellow",
+      backgroundColor:'#2e2d2b',
+      padding:10,
+      paddingTop:7,
+      borderRadius:10,
+    },
+    bar:{
+      height: 75,
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+      left: 0,
+      borderTopLeftRadius: 16,
+      borderTopRightRadius: 16,
+      paddingTop:12,
+      width,
+      backgroundColor: 'black'
+    }
 });
 

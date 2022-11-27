@@ -63,7 +63,9 @@ class Login extends React.Component{
 
                 <View style= {styles.helper}>
                     <Text style = {styles.dehigligtedText}>Don't have an account yet ?</Text>
-                    <Text style = {styles.signUp}>Sign Up</Text>
+                    <Text style = {styles.signUp} onPress={()=>{
+                        this.props.navigation.navigate('Registration');
+                    }}>Sign Up</Text>
                 </View>
                 <TouchableHighlight
                     style={[styles.submit,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
@@ -79,7 +81,7 @@ class Login extends React.Component{
 }
 
 const styles = StyleSheet.create({
-    main : {flex: 1, backgroundColor:'#0F1013'},
+    main : {flex: 1, backgroundColor:'#0F1013',paddingTop:15},
     header : {color: 'white',marginTop: 16, marginHorizontal: 16, fontFamily : 'Montserrat', fontSize: 18, fontWeight: 'bold'},
     dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16},
     input: {
