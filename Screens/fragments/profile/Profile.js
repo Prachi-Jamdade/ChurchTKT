@@ -27,9 +27,9 @@ class Profile extends React.Component{
     }
 
     handleNavigation = (navigateTo) => {
-        if(this.state.clicked) {
+        // if(this.state.clicked) {
             this.navigate(navigateTo)
-        }
+        // }
     }
 
     render(){
@@ -42,10 +42,10 @@ class Profile extends React.Component{
 
                 <Text style={{color: "white", padding:20, fontSize:18, fontWeight:"500"}}>My Name</Text>
 
-                <ProfileComponent imgSource={require('../../assests/icons/acc_details.png')} componentName="Account Details" onClick={{}} />
-                <ProfileComponent imgSource={require('../../assests/icons/help.png')} componentName="Help" />
+                <ProfileComponent imgSource={require('../../assests/icons/acc_details.png')} componentName="Account Details" onClick={ this.handleNavigation('AccountDetails') } />
+                <ProfileComponent imgSource={require('../../assests/icons/help.png')} componentName="Help" onClick={ this.handleNavigation('Help') }/>
                 <ProfileComponent imgSource={require('../../assests/icons/privacy_policy.png')} componentName="Privacy Policy" />
-                <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout" />
+                <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout" onClick={this.handleNavigation('LogoutAlert') } />
 
 
                 <Socials />
