@@ -153,7 +153,7 @@ const HomeCard = ({navigation,day,description,location,date,time}) => {
             ios_backgroundColor="#FFBE18"
             value={isEnabled}
             onValueChange={()=>{setIsEnabled(!isEnabled)}}
-            style={{ height:20 }}
+            style={{ height:20,color:'white' }}
             />
             <Text style={styles.cardText}>Set Reminder</Text>
             </View>
@@ -205,6 +205,10 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         alignItems: 'center',
         flex: 1,
+    },
+    cardText:{
+        color:'white',
+        marginLeft:5,
     },
     header : {
         marginTop: 30,
@@ -306,9 +310,6 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight:'bold',
         color:'white',
-    },
-    cardText:{
-        marginLeft:5,
     },
     images: {
         width :boxWidth,
