@@ -250,6 +250,7 @@ const styles = StyleSheet.create({
     },
     cardDescription:{
         marginBottom:5,
+        color:'white',
     },
     cardDescriptionIcon:{
         marginLeft:5,
