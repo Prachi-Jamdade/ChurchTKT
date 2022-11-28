@@ -17,16 +17,16 @@ const Explore = () => {
 
     const cardContent = [{
         text: "Do your bit by donating a part of your earnings.",
-        icon: require("../assests/icons/cashPayment.png")
+        icon: require("../../assests/cashPayment.png")
     }
         ,
     {
         text: "Request church services by filling small forms.",
-        icon: require("../assests/icons/mobileLogin.png")
+        icon: require("../../assests/mobileLogin.png")
     },
     {
         text: "Watch our sermons and get enlightned.",
-        icon: require("../assests/icons/presidentsDay.png")
+        icon: require("../../assests/presidentsDay.png")
     }
     ]
 

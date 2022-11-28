@@ -15,7 +15,7 @@ import * as Animatable from 'react-native-animatable';
 
 
 import Home from '../home';
-import Explore from './Explore';
+import Explore from '../fragments/explore/Explore';
 import Community from '../Community';
 import Profile from './profile/Profile';
 const TabArr = [
