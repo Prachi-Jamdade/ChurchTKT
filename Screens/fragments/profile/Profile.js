@@ -26,12 +26,6 @@ class Profile extends React.Component{
         super(props);
     }
 
-    handleNavigation = (navigateTo) => {
-        // if(this.state.clicked) {
-            this.navigate(navigateTo)
-        // }
-    }
-
     render(){
         return(
             <View style={{alignItems:'center', justifyContent:'center', backgroundColor:'#0F0F0F', flex: 1}}>
@@ -42,10 +36,10 @@ class Profile extends React.Component{
 
                 <Text style={{color: "white", padding:20, fontSize:18, fontWeight:"500"}}>My Name</Text>
 
-                <ProfileComponent imgSource={require('../../assests/icons/acc_details.png')} componentName="Account Details" onClick={ this.handleNavigation('AccountDetails') } />
-                <ProfileComponent imgSource={require('../../assests/icons/help.png')} componentName="Help" onClick={ this.handleNavigation('Help') }/>
+                <ProfileComponent imgSource={require('../../assests/icons/acc_details.png')} componentName="Account Details" onClick={ this.navigate('AccountDetails') } />
+                <ProfileComponent imgSource={require('../../assests/icons/help.png')} componentName="Help" onClick={ this.navigate('Help') }/>
                 <ProfileComponent imgSource={require('../../assests/icons/privacy_policy.png')} componentName="Privacy Policy" />
-                <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout" onClick={this.handleNavigation('LogoutAlert') } />
+                <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout" onClick={this.navigate('LogoutAlert') } />
 
 
                 <Socials />
