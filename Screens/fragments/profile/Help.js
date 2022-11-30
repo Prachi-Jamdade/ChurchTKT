@@ -84,7 +84,7 @@ const ExpandableComponent = ({ item, onClick }) => {
     )
 }
 
-export default Help = () => {
+const Help = () => {
 
     const [multiSelect, setMultiSelect] = useState(false);
     const [listDataSource, setListDataSource] = useState(CONTENT);
@@ -199,3 +199,5 @@ const styles = StyleSheet.create({
         fontWeight: '500'
     }
 })
+
+export default Help;

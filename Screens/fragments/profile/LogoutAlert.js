@@ -2,7 +2,7 @@ import * as React from "react"
 import { Alert, StyleSheet, View } from "react-native"
 import { Button } from "react-native-elements";
 
-const showLogoutAlert = () => {
+const LogoutAlert = () => {
     Alert.alert(
         "",
         "Do you really want to logout?",
@@ -29,4 +29,4 @@ const showLogoutAlert = () => {
     );
 }
 
-export default showLogoutAlert;
+export default LogoutAlert;
