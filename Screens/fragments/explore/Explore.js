@@ -37,11 +37,31 @@ const Explore = () => {
 
 
     return (
-        <View style={{
-            backgroundColor: '#0F0F0F',
-            width: "100%",
-            height: "100%"
-        }}>
+        // <View style={{
+        //     backgroundColor: '#0F0F0F',
+        //     width: "100%",
+        //     height: "100%"
+        // }}>
+            // <Text style={{
+            //     color: 'white',
+            //     fontSize: 18,
+            //     padding: 18
+            // }}>
+            //     Explore
+            // </Text>
+
+            <ScrollView 
+            vertical ={true}
+            style={{
+                backgroundColor: '#0F0F0F',
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                gap: 5,
+                marginBottom: 70,
+                padding: 15
+            }}>
+
             <Text style={{
                 color: 'white',
                 fontSize: 18,
@@ -49,13 +69,6 @@ const Explore = () => {
             }}>
                 Explore
             </Text>
-
-            <ScrollView style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 5,
-                padding: 15
-            }}>
                 <View style={{
                     display: "flex",
                     flexDirection: "row",
@@ -74,7 +87,7 @@ const Explore = () => {
                             display: "flex",
                             alignItems: 'flex-start'
                         }}>
-                            <Text style={{marginTop: 50, marginRight: 80, fontSize: 18}}>Samuel Patta Ministries</Text>
+                            <Text style={{marginTop: 50, marginRight: 80, fontSize: 18, color: 'white'}}>Samuel Patta   Ministries</Text>
                         </View>
                     </ImageBackground>
 
@@ -93,8 +106,8 @@ const Explore = () => {
                                 backgroundColor: content.color,
                                 borderWidth: 1.5,
                                 borderRadius: 20,
-                                marginTop: 12,
-                                marginBottom: 12,
+                                marginTop: 6,
+                                marginBottom: 26,
                                 minHeight: 130
                             }} key={index}>
 
@@ -130,7 +143,7 @@ const Explore = () => {
                 }
 
             </ScrollView>
-        </View>
+        // </View>
     )
 
 }
