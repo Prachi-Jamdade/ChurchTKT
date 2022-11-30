@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
-import {login} from '../api/authication'
+import {sendOtpToNumber} from '../api/authication'
 
 const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
@@ -44,13 +44,13 @@ class Login extends React.Component{
     }
 
     sendOtp = (props) =>{
-        login(this.state.phoneNumber)
+        sendOtpToNumber(this.state.phoneNumber,true)
         .then((data)=>{
             console.log(data);
             if (!data.isValid){
                 return console.log('User not exits');
             }
-            props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber});
+            props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber,isLogin:true});
         })
         .catch((e)=>{
             console.log('Some thing went wrong');

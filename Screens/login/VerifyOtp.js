@@ -6,7 +6,7 @@ import {
     TouchableHighlight,
 } from 'react-native';
 import OTPTextView from 'react-native-otp-textinput';
-import {loginOtpVerification} from '../api/authication'
+import {loginOtpVerification,sigUpOtpVerification} from '../api/authication'
 
 
 class VerifyOtp extends React.Component{
@@ -24,19 +24,37 @@ class VerifyOtp extends React.Component{
     verify = () => {
         if(!this.state.accepted) {return false;}
         const {phoneNumber}=this.props.route.params;
-        console.log(phoneNumber,this.otp);
-        loginOtpVerification(phoneNumber,this.otp)
-        .then((data)=>{
+        const {isLogin}=this.props.route.params;
+
+        if(isLogin){
+            loginOtpVerification(phoneNumber,this.otp)
+            .then((data)=>{
             console.log(data);
             if (!data.isValid){
                 return console.log('In vaild Otp');
             }
             this.props.navigation.navigate('BottomTabs',data);
-        })
-        .catch((e)=>{
-            console.log(e);
-            console.log('In vaild Otp');
-        });
+            })
+            .catch((e)=>{
+                console.log(e);
+                console.log('In vaild Otp');
+            });
+        }else{
+            const {firstName,lastName}=this.props.route.params;
+            sigUpOtpVerification(phoneNumber,firstName,lastName,this.otp)
+            .then((data)=>{
+                console.log(data);
+                if (!data.isValid){
+                    return console.log('In vaild Otp');
+                }
+                this.props.navigation.navigate('BottomTabs',data);
+            })
+            .catch((e)=>{
+                console.log(e);
+                console.log('In vaild Otp');
+            });
+
+        }
         // alert(this.otp);
     }
 

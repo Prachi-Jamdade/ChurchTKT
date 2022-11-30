@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
+import {sendOtpToNumber} from '../api/authication'
 
 
 class Registration extends React.Component {
@@ -41,7 +42,22 @@ class Registration extends React.Component {
     }
 
     sendOtp = (props) =>{
-        props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber});
+        sendOtpToNumber(this.state.phoneNumber,true)
+        .then((data)=>{
+            if (!data.isValid){
+                return console.log('User exits');
+            }
+            props.navigation.navigate('VerifyOtp',
+            {
+                phoneNumber : this.state.phoneNumber,
+                firstName:this.state.firstName,
+                lastName:this.state.lastName,
+                isLogin:false,
+            });
+        })
+        .catch((e)=>{
+            console.log('Some thing went wrong');
+        });
     }
 
     render(){
@@ -80,13 +96,13 @@ class Registration extends React.Component {
                 <View style= {styles.helper}>
                     <Text style = {styles.dehigligtedText}>Already have an account ?</Text>
                     <TouchableHighlight>
-                        <Text 
+                        <Text
                         style = {styles.timmer}
                         onPress={()=>{
                             this.props.navigation.navigate('Login');
                         }}
                         >Login</Text>
-                        </TouchableHighlight>+
+                        </TouchableHighlight>
                 </View>
                 <TouchableHighlight
                     style={[styles.submit,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
