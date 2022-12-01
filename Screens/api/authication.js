@@ -1,10 +1,9 @@
-import axios from 'axios';
+import {API,APIWithToken} from './axios';
 
-const baseUrl = 'https://connect.tktchurch.com/api';
 
 async function sendOtpToNumber(phoneNumber,isLogin) {
-	const res = await axios.post(
-		baseUrl + '/communication/otp',
+	const res = await API.post(
+		'/communication/otp',
 		{
             'to':phoneNumber,
             'isLogin':isLogin,
@@ -14,8 +13,8 @@ async function sendOtpToNumber(phoneNumber,isLogin) {
 }
 
 async function loginOtpVerification(phoneNumber,otp) {
-	const res = await axios.post(
-		baseUrl + '/account/login_with_otp',
+	const res = await API.post(
+		'/account/login_with_otp',
 		{
             'phonenumber':phoneNumber,
             'otp':otp,
@@ -25,8 +24,8 @@ async function loginOtpVerification(phoneNumber,otp) {
 	return res.data;
 }
 async function sigUpOtpVerification(phoneNumber,firstName,lastName,otp) {
-	const res = await axios.post(
-		baseUrl + '/account/signup_with_otp',
+	const res = await API.post(
+		'/account/signup_with_otp',
 		{
             'phonenumber':phoneNumber,
 			'FirstName':firstName,
@@ -37,7 +36,15 @@ async function sigUpOtpVerification(phoneNumber,firstName,lastName,otp) {
 	return res.data;
 }
 
+async function getProfileDetails(userId) {
+	const res = await APIWithToken.post(
+		'/account/user/' + userId
+	);
+	return res.data;
+}
 
-export {sendOtpToNumber,loginOtpVerification,sigUpOtpVerification};
+
+
+export {sendOtpToNumber,loginOtpVerification,sigUpOtpVerification,getProfileDetails};
 
 

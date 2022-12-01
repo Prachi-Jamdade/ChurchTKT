@@ -4,13 +4,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // import {LocalizationProvider} from 'react-localization';
 import MainStackNavigator from './Navigation/Navigator';
-
+import Context from './context';
 
 
 function App() {
   return (
     <NavigationContainer>
+      <Context>
         <MainStackNavigator />
+      </Context>
     </NavigationContainer>
   );
 }
