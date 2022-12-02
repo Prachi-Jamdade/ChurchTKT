@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 import OTPTextView from 'react-native-otp-textinput';
 import {loginOtpVerification,sigUpOtpVerification} from '../api/authication'
+import { AppContext } from '../../context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 class VerifyOtp extends React.Component{
@@ -16,6 +18,7 @@ class VerifyOtp extends React.Component{
         accepted: 'false',
         route:{},
     }
+    static contextType = AppContext;
 
     constructor(props){
         super(props);
@@ -29,28 +32,30 @@ class VerifyOtp extends React.Component{
         if(isLogin){
             loginOtpVerification(phoneNumber,this.otp)
             .then((data)=>{
-            console.log(data);
             if (!data.isValid){
                 return console.log('In vaild Otp');
             }
-            this.props.navigation.navigate('BottomTabs',data);
+            AsyncStorage.setItem('user', JSON.stringify(data)).then(()=>{
+                this.context.setUser(data);
+                this.props.navigation.navigate('BottomTabs');
+            });
             })
             .catch((e)=>{
-                console.log(e);
                 console.log('In vaild Otp');
             });
         }else{
             const {firstName,lastName}=this.props.route.params;
             sigUpOtpVerification(phoneNumber,firstName,lastName,this.otp)
             .then((data)=>{
-                console.log(data);
                 if (!data.isValid){
                     return console.log('In vaild Otp');
                 }
-                this.props.navigation.navigate('BottomTabs',data);
+                AsyncStorage.setItem('user', JSON.stringify(data)).then(()=>{
+                    this.context.setUser(data);
+                    this.props.navigation.navigate('BottomTabs');
+                });
             })
             .catch((e)=>{
-                console.log(e);
                 console.log('In vaild Otp');
             });
 

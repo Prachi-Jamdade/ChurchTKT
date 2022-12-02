@@ -13,16 +13,19 @@ import {
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Onboarding from '../onboarding/Onboarding'
 import Login from '../login/Login';
+import { AppContext } from '../../context';
 
 
 let logged = false;
 const Stack = createNativeStackNavigator();
 
 const Launch = ({navigation}) => {
+    const {isUserLogin}=useContext(AppContext);
+
     return (
         <>
         {
-            !logged ? navigation.navigate('Onboarding') : <Text>You did it Man !!</Text>
+            !isUserLogin ? navigation.navigate('Onboarding') : navigation.navigate('BottomTabs')
         }
         </>
     )

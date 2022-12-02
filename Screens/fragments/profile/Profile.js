@@ -12,11 +12,14 @@ import ProfileComponent from './ProfileComponent';
 import Socials from './Socials';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import {AppContext} from '../../../context'
+
 class Profile extends React.Component{
 
     state = {
         clicked: false
     }
+    static contextType = AppContext;
 
     navigate = (navigateTo) => {
         this.props.navigation.navigate(navigateTo);
@@ -27,9 +30,7 @@ class Profile extends React.Component{
     }
 
     handleNavigation = (navigateTo) => {
-        // if(this.state.clicked) {
-            this.navigate(navigateTo)
-        // }
+        // this.props.navigation.navigate(navigateTo);
     }
 
     render(){
@@ -45,9 +46,14 @@ class Profile extends React.Component{
                 <ProfileComponent imgSource={require('../../assests/icons/acc_details.png')} componentName="Account Details" onClick={ this.handleNavigation('AccountDetails') } />
                 <ProfileComponent imgSource={require('../../assests/icons/help.png')} componentName="Help" onClick={ this.handleNavigation('Help') }/>
                 <ProfileComponent imgSource={require('../../assests/icons/privacy_policy.png')} componentName="Privacy Policy" />
-                <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout" onClick={this.handleNavigation('LogoutAlert') } />
-
-
+              
+                <TouchableHighlight onPress={()=>{
+                    this.context.clear();
+                    this.props.navigation.navigate("Launch");
+                }}>
+                <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout"/>
+                </TouchableHighlight>
+                
                 <Socials />
             </View>
 

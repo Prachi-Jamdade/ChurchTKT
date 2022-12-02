@@ -1,4 +1,4 @@
-import {API,APIWithToken} from './axios';
+import {API,getAPIWithToken} from './axios';
 
 
 async function sendOtpToNumber(phoneNumber,isLogin) {
@@ -37,6 +37,7 @@ async function sigUpOtpVerification(phoneNumber,firstName,lastName,otp) {
 }
 
 async function getProfileDetails(userId) {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.post(
 		'/account/user/' + userId
 	);

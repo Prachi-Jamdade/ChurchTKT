@@ -1,7 +1,8 @@
-import {APIWithToken} from './axios';
+import {getAPIWithToken} from './axios';
 
 
 async function generatePayment({amount,name,phoneNumber,address,email}) {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.get(
 		'/payment/pay_order',
         {
@@ -16,6 +17,7 @@ async function generatePayment({amount,name,phoneNumber,address,email}) {
 }
 
 async function completePayment({razorpay_payment_id,razorpay_order_id,razorpay_signature}) {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.get(
 		'/payment/complete_order',
         {
@@ -29,6 +31,7 @@ async function completePayment({razorpay_payment_id,razorpay_order_id,razorpay_s
 
 
 async function generatePaymentSPM({amount,name,phoneNumber,address,email}) {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.get(
 		'/spmpayment/pay_order',
         {
@@ -43,6 +46,7 @@ async function generatePaymentSPM({amount,name,phoneNumber,address,email}) {
 }
 
 async function completePaymentSPM({razorpay_payment_id,razorpay_order_id,razorpay_signature}) {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.get(
 		'/spmpayment/complete_order',
         {
@@ -57,6 +61,7 @@ async function completePaymentSPM({razorpay_payment_id,razorpay_order_id,razorpa
 
 
 async function testimonyTypes() {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.get(
 		'/testmonies/types',
 	);
@@ -64,6 +69,7 @@ async function testimonyTypes() {
 }
 
 async function testimoniesList() {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.get(
 		'/testmonies/all/1',
 	);
@@ -71,6 +77,7 @@ async function testimoniesList() {
 }
 
 async function eventsSPM() {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.get(
 		'/events/all',
 	);
@@ -78,12 +85,14 @@ async function eventsSPM() {
 }
 
 async function todayWord() {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.get(
 		'/broadcasting/word',
 	);
 	return res.data;
 }
 async function getLiveEvent() {
+	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.get(
 		'/broadcasting/live',
 	);

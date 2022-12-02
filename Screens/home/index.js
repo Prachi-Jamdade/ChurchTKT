@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {
     Text,
     View,
@@ -12,6 +12,7 @@ import {
 import Icon,{Icons} from '../fragments/Icons';
 import homeHand from '../assests/icons/homeHand.png';
 import homeImage from '../assests/homeImage.png';
+import {getAllHomeEvent} from '../api/home'
 
 
 const data=[
@@ -58,7 +59,8 @@ const TopEvents=[
 const Home = ({navigation}) => {
 
     const [active,setActive]=useState(0)
-  
+
+    
     const change = ({nativeEvent}) => {
         const slide = nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width;
         if (slide !== active ){

@@ -78,7 +78,7 @@ class BottomTabs extends React.Component{
               }}
             >
               {TabArr.map((item, index) => {
-                console.log("Route", item.route)
+               
                 return (
                   <Tab.Screen key={index} name={item.route} component={item.component}
                     options={{

@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React,{useEffect,useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Launch from '../Screens/starters/Launch';
@@ -10,11 +11,34 @@ import Registration from '../Screens/login/Registration';
 import SplashScreen from '../Screens/splashscreen/SplashScreen';
 import Community from '../Screens/Community';
 import Home from '../Screens/home'
+import { AppContext } from '../context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 // import screens
 
 const Stack = createNativeStackNavigator();
 
-function MainStackNavigator() {
+function MainStackNavigator({navigation}) {
+
+const {setUser,setUserLogin}=useContext(AppContext);
+
+  const getData = async () => {
+    const value = await AsyncStorage.getItem('user')
+    if(value===null) {
+      setUserLogin(false);
+      navigation.navigate('Login');
+      return;
+    }
+    setUserLogin(true);
+    setUser({...JSON.parse(value),token:''});
+  };
+
+
+
+  useEffect(()=>{
+    getData();
+  },[]);
+
     return (
       <Stack.Navigator
         initialRouteName='SplashScreenSplashScreenSplashScreen'>
