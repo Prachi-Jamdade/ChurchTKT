@@ -43,12 +43,23 @@ class Profile extends React.Component{
 
                 <Text style={{color: "white", padding:20, fontSize:18, fontWeight:"500"}}>My Name</Text>
 
-                <ProfileComponent imgSource={require('../../assests/icons/acc_details.png')} componentName="Account Details" onClick={ this.handleNavigation('AccountDetails') } />
-                <ProfileComponent imgSource={require('../../assests/icons/help.png')} componentName="Help" onClick={ this.handleNavigation('Help') }/>
+                <TouchableHighlight onPress={()=>{
+                    this.props.navigation.navigate("AccountDetails");
+                }}>
+                <ProfileComponent imgSource={require('../../assests/icons/acc_details.png')} componentName="Account Details" />
+                </TouchableHighlight>
+                
+                <TouchableHighlight onPress={()=>{
+                    this.props.navigation.navigate("Help");
+                }}>
+                <ProfileComponent imgSource={require('../../assests/icons/help.png')} componentName="Help"/>
+                </TouchableHighlight>
+
+                <TouchableHighlight>
                 <ProfileComponent imgSource={require('../../assests/icons/privacy_policy.png')} componentName="Privacy Policy" />
+                </TouchableHighlight>
               
                 <TouchableHighlight onPress={()=>{
-                    this.context.clear();
                     this.props.navigation.navigate("Launch");
                 }}>
                 <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout"/>

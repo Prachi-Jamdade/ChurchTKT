@@ -88,7 +88,6 @@ const {setUser,setUserLogin}=useContext(AppContext);
           options={{ headerShown: false }}
           />
       </Stack.Navigator>
-    
     );
 }
 
