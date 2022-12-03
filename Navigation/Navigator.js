@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React,{useEffect,useContext} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Launch from '../Screens/starters/Launch';
 import Login from '../Screens/login/Login';
 import Onboarding from '../Screens/onboarding/Onboarding';
@@ -13,7 +13,9 @@ import Community from '../Screens/Community';
 import Home from '../Screens/home'
 import { AppContext } from '../context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AccountDetails from '../Screens/fragments/profile/AccountDetails';
+import Help from '../Screens/fragments/profile/Help';
+import LogoutAlert from '../Screens/fragments/profile/LogoutAlert';
 // import screens
 
 const Stack = createNativeStackNavigator();
@@ -87,8 +89,24 @@ const {setUser,setUserLogin}=useContext(AppContext);
           component={Home}
           options={{ headerShown: false }}
           />
-      </Stack.Navigator>
-    );
+          <Stack.Screen
+            name='AccountDetails'
+            component={AccountDetails}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Help'
+            component={Help}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='LogoutAlert'
+            component={LogoutAlert}
+            options={{ headerShown: false }}
+          />
+    </Stack.Navigator>
+
+  );
 }
 
 export default MainStackNavigator;

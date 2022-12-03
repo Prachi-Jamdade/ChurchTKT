@@ -10,8 +10,6 @@ import {
 
 import ProfileComponent from './ProfileComponent';
 import Socials from './Socials';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import {AppContext} from '../../../context'
 
 class Profile extends React.Component{
@@ -27,10 +25,6 @@ class Profile extends React.Component{
 
     constructor(props){
         super(props);
-    }
-
-    handleNavigation = (navigateTo) => {
-        // this.props.navigation.navigate(navigateTo);
     }
 
     render(){
@@ -60,7 +54,7 @@ class Profile extends React.Component{
                 </TouchableHighlight>
               
                 <TouchableHighlight onPress={()=>{
-                    this.props.navigation.navigate("Launch");
+                    this.props.navigation.navigate("LogoutAlert");
                 }}>
                 <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout"/>
                 </TouchableHighlight>

@@ -1,83 +1,108 @@
-import * as React from "react";
-import { Text, Image, StyleSheet } from "react-native";
-import { View, TextInput } from "react-native-animatable";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React,{useState,useContext,useEffect} from 'react';
+import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput } from 'react-native';
+import Icon,{Icons} from '../Icons'
+import {AppContext} from '../../../context'
 
-class AccountDetails extends React.Component {
-
-    state = {
+const AccountDetails = ({navigation})=> {
+    const [data,setData] = useState( {
         name: '',
-        phoneNo: ''
-    }
+        phoneNo: '',
+    });
 
-    constructor(props){
-        super(props);
-    }
+    const {user}=useContext(AppContext);
 
-    handleName = (text) => {
-        this.setState({name: text})
-    }
+    useEffect(()=>{
+        setData({name:user.firstName+" "+user.lastName,phoneNo:user.phoneNumber})
+    },[user])
 
-    handleMobile = (text) => {
-        this.setState({mobile: text})
-    }
 
-    render() {
-        <View style={{backgroundColor:'#0F0F0F', flex: 1}}>
-            <View style={{
-                flexDirection:'row',
-                alignItems:'center',
-                padding:12,
-                margin:2.5
-            }}>
 
-                <Ionicons name='chevron-forward-outline' size={27} color="white" padding={2} margin={5} />
+    const handleName = (text) => {
+        setData({...data,name: text});
+    };
 
-                <Text style={{color: "white", padding:15, fontSize:20, fontWeight:"400"}}>Account Details</Text>
+    const handleMobile = (text) => {
+        setData({...data,mobile: text});
+    };
 
-            </View>
+    return (
+    <View style={{backgroundColor:'#0F0F0F', flex: 1}}>
 
-            <View style={{alignItems:'center', justifyContent:'center', padding:50}}>
-                <Image 
-                    source={require('../../assests/UserPic.png')}
-                    style={{width: 150, height: 150, borderRadius:150/2}}
+            <TouchableHighlight onPress={()=>{
+                    navigation.navigate('Profile');
+                }}>
+                <View style={styles.header}>
+                    <View>
+
+                    <Icon
+                    type={Icons.MaterialIcons}
+                    size={25}
+                    name="arrow-back-ios"
+                    color= "white"
+                    />
+                    </View>
+                    <Text style={{
+                        color: 'white',
+                        fontFamily : 'Montserrat',
+                        fontSize: 22,
+                        fontWeight: 'bold',
+                        }}>Account Details</Text>
+
+                </View>
+            </TouchableHighlight>
+
+        <View style={{alignItems:'center', justifyContent:'center', padding:50}}>
+            <Image
+                source={require('../../assests/UserPic.png')}
+                style={{width: 150, height: 150, borderRadius:150 / 2}}
+            />
+
+            <Text style={{color: '#F79D16', padding:20, fontSize:18, fontWeight:'400'}}>Change Profile Picture</Text>
+        </View>
+
+        <View style={{padding:5, margin:10}}>
+
+            <Text style={{color: '#808080', fontSize:18, fontWeight:'400', margin: 10}}>Name</Text>
+
+            <TextInput style = {styles.input}
+                underlineColorAndroid = "transparent"
+                placeholder = "Prachi Jamdade"
+                placeholderTextColor = "#808080"
+                autoCapitalize = "none"
+                value={data.name}
+                onChangeText = {handleName}
                 />
 
-                <Text style={{color: "#F79D16", padding:20, fontSize:18, fontWeight:"400"}}>Change Profile Picture</Text>
-            </View>
+            <Text style={{color: '#808080', fontSize:18, fontWeight:'400', margin: 10}}>Mobile</Text>
 
-            <View style={{padding:5, margin:10}}>
-
-                <Text style={{color: "#808080", fontSize:18, fontWeight:"400", margin: 10}}>Name</Text>
-
-                <TextInput style = {styles.input}
-                    underlineColorAndroid = "transparent"
-                    placeholder = "Prachi Jamdade"
-                    placeholderTextColor = "#808080"
-                    autoCapitalize = "none"
-                    onChangeText = {this.handleName} />
-
-                <Text style={{color: "#808080", fontSize:18, fontWeight:"400", margin: 10}}>Mobile</Text>
-
-                <TextInput style = {styles.input}
-                    underlineColorAndroid = "transparent"
-                    placeholder = "9324328505"
-                    placeholderTextColor = "#808080"
-                    autoCapitalize = "none"
-                    onChangeText = {this.handleMobile} />
-            </View>
-
+            <TextInput style = {styles.input}
+                underlineColorAndroid = "transparent"
+                placeholder = "9324328505"
+                placeholderTextColor = "#808080"
+                autoCapitalize = "none"
+                value={data.phoneNo}
+                onChangeText = {handleMobile} />
         </View>
-    }
-}
+    </View>
+    );
+
+};
 
 const styles = StyleSheet.create({
     input: {
         margin: 15,
         height: 40,
         borderColor: '#343739',
-        borderWidth: 1
+        borderWidth: 1,
+        paddingHorizontal:10
      },
-})
+     header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 30, 
+        marginHorizontal: 16, 
+        marginBottom:30,
+    },
+});
 
 export default AccountDetails;

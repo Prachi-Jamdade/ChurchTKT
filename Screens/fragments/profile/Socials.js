@@ -14,11 +14,11 @@ const Socials = () => {
             alignItems:'center',
             justifyContent:'center'
         }}>
-            <Ionicons name='logo-linkedin' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
-            <Ionicons name='logo-facebook' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
-            <Ionicons name='logo-twitter' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
-            <Ionicons name='logo-instagram' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
-            <Ionicons name='logo-youtube' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
+            <Ionicons name='logo-linkedin' size={26} color="yellow" style={{padding: 2, margin: 8}} />
+            <Ionicons name='logo-facebook' size={26} color="yellow" style={{padding: 2, margin: 8}} />
+            <Ionicons name='logo-twitter' size={26} color="yellow" style={{padding: 2, margin: 8}} />
+            <Ionicons name='logo-instagram' size={26} color="yellow" style={{padding: 2, margin: 8}} />
+            <Ionicons name='logo-youtube' size={26} color="yellow" style={{padding: 2, margin: 8}} />
         </View>
     </View>
     )

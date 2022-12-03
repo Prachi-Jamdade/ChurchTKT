@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
 import {
-    SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableOpacity, LayoutAnimation, Button
+    SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableHighlight,TouchableOpacity, LayoutAnimation, Button
 } from 'react-native'
 
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Icon,{Icons} from '../Icons' 
 
 
 const CONTENT = [
@@ -84,7 +84,7 @@ const ExpandableComponent = ({ item, onClick }) => {
     )
 }
 
-export default Help = () => {
+const Help = ({navigation}) => {
 
     const [multiSelect, setMultiSelect] = useState(false);
     const [listDataSource, setListDataSource] = useState(CONTENT);
@@ -107,12 +107,28 @@ export default Help = () => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#0F0F0F' }}>
             <View style={styles.container}>
+            <TouchableHighlight onPress={()=>{
+                    navigation.navigate("Profile");
+                }}>
                 <View style={styles.header}>
+                    <View>
 
-                    <Ionicons name='chevron-forward-outline' size={27} color="white" padding={2} margin={5} />
-                    <Text style={{ color: "white", padding: 15, fontSize: 20, fontWeight: "400" }}>Help</Text>
+                    <Icon
+                    type={Icons.MaterialIcons}
+                    size={25}
+                    name="arrow-back-ios"
+                    color= 'white'
+                    />
+                    </View>
+                    <Text style={{   
+                        color: 'white',
+                        fontFamily : 'Montserrat', 
+                        fontSize: 22, 
+                        fontWeight: 'bold' 
+                        }}>Help</Text>
 
                 </View>
+                    </TouchableHighlight>
                 {
                     listDataSource.map((item, key) => (
                         <ExpandableComponent
@@ -136,7 +152,7 @@ export default Help = () => {
 
                     <View style={{marginVertical: 10}}></View>
                     <TouchableOpacity style={styles.chatSupportBtn}
-                        onPress={() => navigate('Profile')}
+                        onPress={() => navigation.navigate('Profile')}
                         underlayColor='#fff'
                     >
                         <Text style={styles.loginText}>Chat Support</Text>
@@ -156,8 +172,9 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 12,
-        margin: 2.5
+        marginTop: 30, 
+        marginHorizontal: 16, 
+        marginBottom:30,
     },
     titleText: {
         flex: 1,
@@ -192,10 +209,14 @@ const styles = StyleSheet.create({
         backgroundColor:'#F79D16',
         borderRadius:4,
         borderWidth: 0.5,
-        borderColor: '#fff'
+        borderColor: '#fff',
+        
     },
     loginText: {
         fontSize: 17,
+        textAlign: 'center',
         fontWeight: '500'
     }
 })
+
+export default Help;

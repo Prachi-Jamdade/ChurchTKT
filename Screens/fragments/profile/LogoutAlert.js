@@ -1,20 +1,28 @@
-import * as React from "react"
+import  React,{useContext} from "react"
 import { Alert, StyleSheet, View } from "react-native"
 import { Button } from "react-native-elements";
+import {AppContext} from '../../../context'
 
-const showLogoutAlert = () => {
+const LogoutAlert = ({navigation}) => {
+    const {clear}=useContext(AppContext);
     Alert.alert(
         "",
         "Do you really want to logout?",
         [
             {
                 text: "Logout",
-                onPress: () => Alert.alert("", "Logout Pressed."),
+                onPress: () => {
+                    clear();
+                    navigation.navigate('Onboarding');
+                },
+                
                 style: "logout",
             },
             {
                 text: "Cancel",
-                onPress: () => Alert.alert("", "You canceled your logout operation."),
+                onPress: () => {
+                    navigation.navigate('Profile');
+                },
                 style: "Cancel"
             }
         ],
@@ -29,4 +37,4 @@ const showLogoutAlert = () => {
     );
 }
 
-export default showLogoutAlert;
+export default LogoutAlert;
