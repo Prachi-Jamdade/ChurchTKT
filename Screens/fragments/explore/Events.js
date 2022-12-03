@@ -4,33 +4,63 @@ import {
     Text,
     StyleSheet,
     TouchableHighlight,
+    TouchableOpacity
 } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
+import ImageBackUp from '../../assests/icons/back.png';
+import ImageTkt from '../../assests/tkt.png';
+import ImageFreame2 from '../../assests/frame2.png';
+import UserPic from '../../assests/frame2.png';
+import EventIcons1 from '../../assests/icons/eventsIcon1.png';
+import EventIcons2 from '../../assests/icons/eventsIcon2.png';
+import EventIcons3 from '../../assests/icons/eventsIcon3.png';
+import EventIcons4 from '../../assests/icons/eventsIcon4.png';
 
-
+const Icons=[
+    {
+        src:EventIcons1,
+    },
+    {
+        src:EventIcons2,
+    },
+    {
+        src:EventIcons3,
+    },
+    {
+        src:EventIcons4,
+    },
+]
 class Events extends React.Component{
+
+    
+
     render(){
         return(
+            
             <View style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
-
-            <View style={styles.nav}>
-                <Image source={require('../assests/icons/back.png')} style={{height: 24, width: 24, resizeMode: 'contain', marginStart: 12}} />
+            <TouchableOpacity 
+            style={styles.nav}
+                // provide navigate path
+                    onPress={() => this.props.navigation.navigate('Explore')}
+                >
+          
+                <Image source={ImageBackUp} style={{height: 24, width: 24, resizeMode: 'contain', marginStart: 12}} />
                 <Text style={{fontWeight: 'bold', color: 'white', fontSize: 18, marginStart: 12}}>Our Events</Text>
-            </View>
+                
+            </TouchableOpacity>
             <View style={{width: '100%', height: 28, backgroundColor: '#000'}} />
             <View style={styles.card}>
                 <Text style={styles.separatingText}>Our Channels</Text>
-                <ImageElement source={require('../assests/tkt.png')} stretch ={false} />
-                <ImageElement source={require('../assests/frame2.png')} />
+                <ImageElement source={ImageTkt} stretch ={false} />
+                <ImageElement source={ImageFreame2} />
                 <Text style={styles.separatingText}>Follow our Podcast on</Text>
             
                 <View style={{flex: 1, flexDirection: 'row', paddingTop: 12, paddingHorizontal: 12}}>
-                    {[1, 2, 3, 5]
-                        .map(() => <Image source={require('../assests/UserPic.png')} 
+                    {Icons
+                        .map((value) => <Image source={value.src} 
                         style={{height: 50, width: 50, borderRadius: 999, marginRight: 12}} />                    
                     )}
-                    <Image source={require('../assests/UserPic.png')} style={{height: 50, width: 50, borderRadius: 999}} />
                 </View>
             </View>
             </View>
@@ -67,7 +97,7 @@ const styles = StyleSheet.create({
     card: {
         position: 'relative',
         flex: 10,
-        backgroundColor: '#0F0F0F',
+        // backgroundColor: '#0F0F0F',
         borderTopRightRadius: 24,
         borderTopLeftRadius: 24,
         paddingHorizontal: 16,

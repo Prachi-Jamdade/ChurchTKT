@@ -17,6 +17,9 @@ import AccountDetails from '../Screens/fragments/profile/AccountDetails';
 import Help from '../Screens/fragments/profile/Help';
 import LogoutAlert from '../Screens/fragments/profile/LogoutAlert';
 import RequestForm from '../Screens/fragments/explore/RequestForm';
+import Events from '../Screens/fragments/explore/Events';
+import OffErings from '../Screens/fragments/explore/Offerings';
+import Spm from '../Screens/fragments/explore/Spm';
 // import screens
 
 const Stack = createNativeStackNavigator();
@@ -108,6 +111,21 @@ const {setUser,setUserLogin}=useContext(AppContext);
           <Stack.Screen
             name='RequestForm'
             component={RequestForm}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Events'
+            component={Events}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='OffErings'
+            component={OffErings}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Spm'
+            component={Spm}
             options={{ headerShown: false }}
           />
     </Stack.Navigator>

@@ -4,10 +4,12 @@ import {
     Text,
     StyleSheet,
     TouchableHighlight,
+    TouchableOpacity
 } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
 import { Screen } from 'react-native-screens';
+import ImageBackUp from '../../assests/icons/back.png';
 
 
 class Offerings extends React.Component{
@@ -19,10 +21,17 @@ class Offerings extends React.Component{
         return(
             <View style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
-            <View style={styles.nav}>
-                <Image source={require('../assests/icons/back.png')} style={{height: 24, width: 24, resizeMode: 'contain', marginStart: 12}} />
+           
+            <TouchableOpacity 
+            style={styles.nav}
+                // provide navigate path
+                    onPress={() => this.props.navigation.navigate('Explore')}
+                >
+
+                <Image source={ImageBackUp} style={{height: 24, width: 24, resizeMode: 'contain', marginStart: 12}} />
                 <Text style={{fontWeight: 'bold', color: 'white', fontSize: 18, marginStart: 12}}>Give Offerings</Text>
-            </View>
+                </TouchableOpacity>
+    
             <View style={{width: '100%', height: 28, backgroundColor: '#000'}} />
             <View style={styles.card}>
                 <View style={{flex: 1}}>
@@ -70,7 +79,7 @@ const styles = StyleSheet.create({
     card: {
         position: 'relative',
         flex: 10,
-        backgroundColor: '#0F0F0F',
+        // backgroundColor: '#0F0F0F',
         borderTopRightRadius: 24,
         borderTopLeftRadius: 24,
         paddingHorizontal: 24,

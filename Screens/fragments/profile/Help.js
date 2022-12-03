@@ -146,9 +146,9 @@ const Help = ({navigation}) => {
                     margin: 2.5
                 }}>
 
-                    <Text style={{fontWeight: '600', fontSize: 20}}>Need some help?</Text>
+                    <Text style={{fontWeight: '600', fontSize: 20,color: 'white'}}>Need some help?</Text>
 
-                    <Text style={{fontWeight: '400', fontSize: 16, marginVertical: 20}}>If you are stuck somewhere, we have got you covered</Text>
+                    <Text style={{fontWeight: '400', fontSize: 16,color: 'white', marginVertical: 20}}>If you are stuck somewhere, we have got you covered</Text>
 
                     <View style={{marginVertical: 10}}></View>
                     <TouchableOpacity style={styles.chatSupportBtn}
@@ -179,7 +179,8 @@ const styles = StyleSheet.create({
     titleText: {
         flex: 1,
         fontSize: 22,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'white'
     },
     item: {
         backgroundColor: '#0F0F0F',
@@ -187,7 +188,8 @@ const styles = StyleSheet.create({
     },
     itemText: {
         fontSize: 16,
-        fontWeight: '500'
+        color: 'white',
+        opacity:0.7,
     },
     content: {
         paddingHorizontal: 10,
@@ -195,10 +197,12 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 16,
-        padding: 10
+        padding: 10,
+        color: 'white',
+        opacity:0.7,
     },
     separator: {
-        height: 0.5,
+        height: 0,
         backgroundColor: '#C8C8C8',
         width: '100%'
     },
@@ -215,7 +219,8 @@ const styles = StyleSheet.create({
     loginText: {
         fontSize: 17,
         textAlign: 'center',
-        fontWeight: '500'
+        fontWeight: '500',
+        color: 'white'
     }
 })
 

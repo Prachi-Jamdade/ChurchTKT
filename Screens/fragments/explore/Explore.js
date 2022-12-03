@@ -19,7 +19,8 @@ const Explore = ({navigation}) => {
     const cardContent = [{
         text: "Do your bit by donating a part of your earnings.",
         icon: require("../../assests/cashPayment.png"),
-        color: '#2BCD93'
+        color: '#2BCD93',
+        navigate:'OffErings'
     }
         ,
     {
@@ -31,7 +32,8 @@ const Explore = ({navigation}) => {
     {
         text: "Watch our sermons and get enlightned.",
         icon: require("../../assests/presidentsDay.png"),
-        color: '#A11212'
+        color: '#A11212',
+        navigate:'Spm'
     }
     ]
 
@@ -74,6 +76,7 @@ const Explore = ({navigation}) => {
             }}>
                 Explore
             </Text>
+            <TouchableHighlight onPress={()=>navigation.navigate("Events")}>
                 <View style={{
                     display: "flex",
                     flexDirection: "row",
@@ -97,6 +100,7 @@ const Explore = ({navigation}) => {
                     </ImageBackground>
 
                 </View>
+            </TouchableHighlight>
                 {
                     cardContent.map((content, index) => {
                         return (
