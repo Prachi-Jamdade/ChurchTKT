@@ -1,11 +1,11 @@
 import React from "react";
-import { View } from "react-native-animatable";
+import { View,Text } from "react-native";
+import RequestFormDetail from './RequestFormDetail';
 
 const ThanksGiving = () => {
 
     return(
         <View>
-            <Text>We need some details</Text>
             <RequestFormDetail autoCompleteValue={'name'} placeholderName={'Name'}></RequestFormDetail>
             <RequestFormDetail placeholderName={'Event Date'}></RequestFormDetail>
             <RequestFormDetail placeholderName={'Event Time'}></RequestFormDetail>

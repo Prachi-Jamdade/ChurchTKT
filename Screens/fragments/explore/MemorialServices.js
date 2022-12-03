@@ -1,11 +1,11 @@
 import React from "react";
-import { View } from "react-native-animatable";
+import { View ,Text} from "react-native";
+import RequestFormDetail from './RequestFormDetail';
 
 const MemorialServices = () => {
 
     return(
-        <View>
-            <Text>We need some details</Text>
+        <View> 
             <RequestFormDetail autoCompleteValue={'name'} placeholderName={'Name of Deceased Person'}></RequestFormDetail>
             <RequestFormDetail autoCompleteValue={'birthdate-full'} placeholderName={'Date of Birth'}></RequestFormDetail>
             <RequestFormDetail placeholderName={'Date of Memorial'}></RequestFormDetail>

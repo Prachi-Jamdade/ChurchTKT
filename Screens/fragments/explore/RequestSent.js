@@ -1,7 +1,7 @@
 import React from 'react';
-import { View } from 'react-native-animatable';
+import { View,Image,TouchableOpacity,Text,StyleSheet } from 'react-native';
 
-const RequestSent = () => {
+const RequestSent = ({navigation}) => {
     return (
         <View>
             <Image
@@ -15,7 +15,7 @@ const RequestSent = () => {
 
             <TouchableOpacity style={styles.chatSupportBtn}
             // provide naviate path
-                onPress={() => navigate('')}
+                onPress={() => navigation.navigate('')}
                 underlayColor='#fff'
             >
                 <Text style={styles.loginText}>Continue</Text>

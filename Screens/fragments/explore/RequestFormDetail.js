@@ -1,8 +1,12 @@
 import React from 'react';
+import {View,Text,TouchableOpacity,StyleSheet,TextInput,Dimensions} from 'react-native';
+import {styles} from '../profile/AccountDetails'
 
+const {width} = Dimensions.get('window');
 const UselessTextInput = (props) => {
     return (
         <TextInput
+            style={[styles.input,{width:(width*0.92)}]}
             {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
             editable
             maxLength={40}
@@ -12,16 +16,15 @@ const UselessTextInput = (props) => {
 
 const RequestFormDetail = ({autoCompleteValue, placeholderName, iconLeft = null}) => {
 
-    const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
+
 
     return (
         <View>
 
             <View
                 style={{
-                    backgroundColor: value,
                     borderBottomColor: '#000000',
-                    borderBottomWidth: 1,
+                    borderBottomWidth: 0.5,
                 }}>
                 <UselessTextInput
                     multiline
@@ -29,9 +32,10 @@ const RequestFormDetail = ({autoCompleteValue, placeholderName, iconLeft = null}
                     autoComplete={autoCompleteValue}
                     placeholder={placeholderName}
                     inlineImageLeft={iconLeft}
-                    onChangeText={text => onChangeText(text)}
-                    value={value}
-                    style={{ padding: 10 }}
+                    // onChangeText={text => onChangeText(text)}
+                    // value={value}
+                    placeholderTextColor = "#808080"
+                   
                 />
             </View>
         </View>

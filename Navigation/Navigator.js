@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AccountDetails from '../Screens/fragments/profile/AccountDetails';
 import Help from '../Screens/fragments/profile/Help';
 import LogoutAlert from '../Screens/fragments/profile/LogoutAlert';
+import RequestForm from '../Screens/fragments/explore/RequestForm';
 // import screens
 
 const Stack = createNativeStackNavigator();
@@ -102,6 +103,11 @@ const {setUser,setUserLogin}=useContext(AppContext);
           <Stack.Screen
             name='LogoutAlert'
             component={LogoutAlert}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='RequestForm'
+            component={RequestForm}
             options={{ headerShown: false }}
           />
     </Stack.Navigator>

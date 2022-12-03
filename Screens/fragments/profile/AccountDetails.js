@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
         height: 40,
         borderColor: '#343739',
         borderWidth: 1,
-        paddingHorizontal:10
+        paddingHorizontal:10,
+        color: 'white'
      },
      header: {
         flexDirection: 'row',
@@ -104,5 +105,7 @@ const styles = StyleSheet.create({
         marginBottom:30,
     },
 });
+
+export {styles};
 
 export default AccountDetails;

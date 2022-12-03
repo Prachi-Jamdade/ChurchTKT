@@ -14,7 +14,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 
 
 
-const Explore = () => {
+const Explore = ({navigation}) => {
 
     const cardContent = [{
         text: "Do your bit by donating a part of your earnings.",
@@ -25,7 +25,8 @@ const Explore = () => {
     {
         text: "Request church services by filling small forms.",
         icon: require("../../assests/mobileLogin.png"),
-        color: '#6333EA'
+        color: '#6333EA',
+        navigate:'RequestForm'
     },
     {
         text: "Watch our sermons and get enlightned.",
@@ -59,13 +60,17 @@ const Explore = () => {
                 display: "flex",
                 gap: 5,
                 marginBottom: 70,
-                padding: 15
+                padding: 15,
             }}>
 
             <Text style={{
                 color: 'white',
-                fontSize: 18,
-                padding: 18
+                padding: 18, 
+                fontSize: 22, 
+                fontWeight: 'bold',
+                paddingLeft:5,
+                marginBottom:25,
+                
             }}>
                 Explore
             </Text>
@@ -74,9 +79,9 @@ const Explore = () => {
                     flexDirection: "row",
                     justifyContent: "space-around",
                     width: "100%",
-                    borderColor: 'white',
+                    borderColor: '#3b3b3b',
                     color: "white",
-                    borderWidth: 1.5,
+                    borderWidth: 1.2,
                     borderRadius: 20,
                     marginBottom: 12,
                     minHeight: 110
@@ -95,6 +100,8 @@ const Explore = () => {
                 {
                     cardContent.map((content, index) => {
                         return (
+                            <TouchableHighlight onPress={()=>navigation.navigate(content.navigate)}>
+                                
                             <View style={{
                                 padding: 20,
                                 display: "flex",
@@ -104,7 +111,7 @@ const Explore = () => {
                                 borderColor: "white",
                                 color: "white",
                                 backgroundColor: content.color,
-                                borderWidth: 1.5,
+                                borderWidth: 0,
                                 borderRadius: 20,
                                 marginTop: 6,
                                 marginBottom: 26,
@@ -123,7 +130,7 @@ const Explore = () => {
                                         {content.text}
                                     </Text>
 
-                                    <AntDesign name='rightcircle' size={30} style={{ paddingTop: 5, marginTop: 15 }} />
+                                    <AntDesign name='rightcircle' size={30} style={{ paddingTop: 5, marginTop: 20 }} color="white" />
 
                                 </View>
                                 <View style={{
@@ -132,12 +139,14 @@ const Explore = () => {
 
                                     <Image
                                         source={content.icon}
-                                        style={{ width: 80, height: 80, padding: 5, marginTop: 30, marginRight: 15, alignItems: 'center', justifyContent: 'center' }}
+                                        style={{ width: 70, height: 70, padding: 5, marginTop: 30, marginRight: 15, alignItems: 'center', justifyContent: 'center' }}
                                     />
 
                                 </View>
 
                             </View>
+
+                            </TouchableHighlight>
                         )
                     })
                 }

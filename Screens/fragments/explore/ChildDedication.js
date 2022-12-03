@@ -1,11 +1,11 @@
 import React from "react";
-import { View,RequestFormDetail } from "react-native-animatable";
+import { View,Text } from "react-native";
+import RequestFormDetail from './RequestFormDetail';
 
 const ChildDedication = () => {
 
     return(
         <View>
-            <Text>We need some details</Text>
             <RequestFormDetail autoCompleteValue={'name'} placeholderName={'Name of Birthday Person'}></RequestFormDetail>
             <RequestFormDetail autoCompleteValue={'name'} placeholderName={"Father's Name"}></RequestFormDetail>
             <RequestFormDetail autoCompleteValue={'name'} placeholderName={"Mother's Name"}></RequestFormDetail>
