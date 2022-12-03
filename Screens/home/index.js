@@ -118,7 +118,10 @@ const Home = ({navigation}) => {
                     }
                 </View>
 
-                <ScrollView>
+                <ScrollView 
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                >
                 <View style={styles.list}>
                     <View>
                         <Text style={[styles.headerDark,styles.fullW,{marginBottom:20}]}>
@@ -150,8 +153,8 @@ const HomeCard = ({navigation,day,description,location,date,time}) => {
             <Text style={styles.cardDescription}>{description}</Text>
             <View style={[styles.rowToggle,{marginHorizontal:5}]}>
             <Switch
-            trackColor={{ false: "#2e2d2b", true: "yellow" }}
-            thumbColor={isEnabled ? "white" : "yellow"}
+            trackColor={{ false: "#2e2d2b", true: "#FFBE18" }}
+            thumbColor={isEnabled ? "white" : "#FFBE18"}
             ios_backgroundColor="#FFBE18"
             value={isEnabled}
             onValueChange={()=>{setIsEnabled(!isEnabled)}}

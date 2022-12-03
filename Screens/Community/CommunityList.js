@@ -18,7 +18,10 @@ const CommunityList = ({navigation,data,setIndex}) => {
             <View style= {styles.main}>
                 <Text style= {styles.header}>Community</Text>
                 <View style={styles.box}>
-                <ScrollView>
+                <ScrollView 
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                >
                     <View style={styles.list}>
                     {
                         data.map((value,index)=>{

@@ -29,7 +29,22 @@ class Profile extends React.Component{
 
     render(){
         return(
-            <View style={{alignItems:'center', justifyContent:'center', backgroundColor:'#0F0F0F', flex: 1}}>
+            <View style={{alignItems:'center', backgroundColor:'#0F0F0F',height:'100%'}}>
+               
+               <Text style={{
+                color: 'white',
+                padding: 18, 
+                fontSize: 22, 
+                fontWeight: 'bold',
+                paddingLeft:5,
+                marginBottom:25,
+                marginTop:30,
+                alignSelf:'flex-start',  
+                marginLeft:30          
+                }}>
+                    Profile
+                </Text>
+
                 <Image 
                     source={require('../../assests/UserPic.png')}
                     style={{width: 100, height: 100, borderRadius:100/2}}

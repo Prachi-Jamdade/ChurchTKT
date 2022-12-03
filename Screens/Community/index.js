@@ -25,16 +25,16 @@ let data=[
         \nPraesent maecenas metus, elit, netus at lobortis enim, a. Venenatis, magnis et, ut aliquet. Tempor at enim sit sed viverra id purus morbi enim. Pretium ut massa, quam cursus. Malesuada arcu sollicitudin enim congue eu sollicitudin bibendum morbi.`
     },
     {
-        'title':'Life Groups',
+        'title':'Bible College',
         'image':[img2,img2,img3],
-        'description':'Be a part of our Online Family',
+        'description':'Learn the Holy Bible',
         'about':`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.
         \nPraesent maecenas metus, elit, netus at lobortis enim, a. Venenatis, magnis et, ut aliquet. Tempor at enim sit sed viverra id purus morbi enim. Pretium ut massa, quam cursus. Malesuada arcu sollicitudin enim congue eu sollicitudin bibendum morbi.`
     },
     {
-        'title':'Dominion Bible College',
+        'title':'Life Groups',
         'image':[img3,img2,img3],
-        'description':'Dominion Bible College',
+        'description':'Lead a life of purpose',
         'about':`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.
         \nPraesent maecenas metus, elit, netus at lobortis enim, a. Venenatis, magnis et, ut aliquet. Tempor at enim sit sed viverra id purus morbi enim. Pretium ut massa, quam cursus. Malesuada arcu sollicitudin enim congue eu sollicitudin bibendum morbi.`
     },
@@ -51,14 +51,7 @@ let data=[
         'description':'Dominion Bible College',
         'about':`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.
         \nPraesent maecenas metus, elit, netus at lobortis enim, a. Venenatis, magnis et, ut aliquet. Tempor at enim sit sed viverra id purus morbi enim. Pretium ut massa, quam cursus. Malesuada arcu sollicitudin enim congue eu sollicitudin bibendum morbi.`
-    },
-    {
-        'title':'Impact Leadership Academy',
-        'image':[img6,img2,img3],
-        'description':'Dominion Bible College',
-        'about':`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.
-        \nPraesent maecenas metus, elit, netus at lobortis enim, a. Venenatis, magnis et, ut aliquet. Tempor at enim sit sed viverra id purus morbi enim. Pretium ut massa, quam cursus. Malesuada arcu sollicitudin enim congue eu sollicitudin bibendum morbi.`
-    },
+    }
 ];
 
 const Community = ({navigation}) => {
@@ -180,13 +173,13 @@ const styles = StyleSheet.create({
     },
     cardBox: {
         position:'relative',
-        height:width/1.7,
+        height:width/2,
         width:boxWidth,
         borderRadius: 24,
         padding:20,
         displayflexDirection:'column',
         justifyContent: 'flex-end',
-        marginBottom:25,
+        marginBottom:15,
     },
     cardTextBox:{
         width:boxWidth*0.85
@@ -194,7 +187,7 @@ const styles = StyleSheet.create({
     },
     cardImage:{
         position:'absolute',
-        height:width/1.7,
+        height:width/2,
         width:boxWidth,
         borderRadius: 24,
         zIndex:-1

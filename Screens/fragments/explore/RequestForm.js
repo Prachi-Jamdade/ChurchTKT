@@ -71,7 +71,10 @@ const RequestForm = ({navigation}) => {
 
   
         <Text style={[{ color: "white",marginVertical:10,marginTop:20},styles.texts]}>We need some details</Text>
-        <ScrollView>
+        <ScrollView 
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+  >
 
             { 
             <GetForm index={index}></GetForm>

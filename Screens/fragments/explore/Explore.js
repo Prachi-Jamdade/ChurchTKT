@@ -55,13 +55,15 @@ const Explore = ({navigation}) => {
 
             <ScrollView 
             vertical ={true}
+            showsVerticalScrollIndicator={false}
+             showsHorizontalScrollIndicator={false}
             style={{
                 backgroundColor: '#0F0F0F',
                 width: "100%",
                 height: "100%",
                 display: "flex",
                 gap: 5,
-                marginBottom: 70,
+                marginBottom: 60,
                 padding: 15,
             }}>
 
