@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import {
     Text,
     View,
@@ -12,7 +12,7 @@ import {
 import Icon,{Icons} from '../fragments/Icons';
 import homeHand from '../assests/icons/homeHand.png';
 import homeImage from '../assests/homeImage.png';
-import {getAllHomeEvent} from '../api/home'
+import { AppContext } from '../../context';
 
 
 const data=[
@@ -58,7 +58,14 @@ const TopEvents=[
 
 const Home = ({navigation}) => {
 
-    const [active,setActive]=useState(0)
+    const [active,setActive]=useState(0);
+    const {homeEvents,getHomeEvent}=useContext(AppContext);
+
+    useEffect(() => {
+        if(homeEvents.length===0){
+            getHomeEvent();
+        }
+    },[getHomeEvent, homeEvents]);
 
     
     const change = ({nativeEvent}) => {
@@ -129,8 +136,8 @@ const Home = ({navigation}) => {
                         </Text>
                     </View>
                     {
-                        data.map((value,index)=>{
-                            return <HomeCard key={index} {...value}/>;
+                        homeEvents.map((value,index)=>{
+                            return <HomeCard key={value.eventId} {...value}/>;
                         })
                     }
                 </View>
@@ -141,7 +148,14 @@ const Home = ({navigation}) => {
 }
 
 
-const HomeCard = ({navigation,day,description,location,date,time}) => {
+const HomeCard = ({navigation,title,description,location,startDate,startTime}) => {
+
+    let _description=description.slice(description.indexOf("<p>")+3,description.lastIndexOf("</p>"))
+    let date=new Date(startDate);
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+    ];
+    let _startDate=`${date.getMonth()}th ${monthNames[date.getMonth()]}`
 
     const [isEnabled,setIsEnabled]=useState(false);
 
@@ -149,8 +163,8 @@ const HomeCard = ({navigation,day,description,location,date,time}) => {
         <View style={styles.cardBox}>
             <View style={{padding:8,paddingVertical:15}}>
 
-            <Text style={styles.cardTitle}>{day}</Text>
-            <Text style={styles.cardDescription}>{description}</Text>
+            <Text style={styles.cardTitle}>{title}</Text>
+            <Text style={styles.cardDescription}>{_description}</Text>
             <View style={[styles.rowToggle,{marginHorizontal:5}]}>
             <Switch
             trackColor={{ false: "#2e2d2b", true: "#FFBE18" }}
@@ -173,6 +187,8 @@ const HomeCard = ({navigation,day,description,location,date,time}) => {
                     />
                     <Text style={styles.cardDescriptionIcon}>{location}</Text>
                 </View>
+            </View>
+            <View style={[styles.row,styles.cardIcons]}>
                 <View style={styles.row}>
                     <Icon 
                     type={Icons.MaterialIcons}
@@ -180,7 +196,7 @@ const HomeCard = ({navigation,day,description,location,date,time}) => {
                     size={20}
                     color='white'
                     />
-                    <Text style={styles.cardDescriptionIcon}>{date}</Text>
+                    <Text style={styles.cardDescriptionIcon}>{_startDate}</Text>
                 </View>
                 <View style={styles.row}>
                     <Icon 
@@ -189,7 +205,7 @@ const HomeCard = ({navigation,day,description,location,date,time}) => {
                     size={20}
                     color="white"
                     />
-                    <Text style={styles.cardDescriptionIcon}>{time}</Text>
+                    <Text style={styles.cardDescriptionIcon}>{startTime}</Text>
                 </View>
             </View>
         </View>
