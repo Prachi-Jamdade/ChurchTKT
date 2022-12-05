@@ -1,33 +1,38 @@
-import React,{useState} from "react";
+/* eslint-disable react-native/no-inline-styles */
+import React,{useState} from 'react';
 import {
-    Dropdown
+    Dropdown,
 }
     from 'react-native-material-dropdown';
 import {View,Text,TouchableOpacity,StyleSheet,Dimensions,ScrollView} from 'react-native';
-import {Icons} from '../Icons'
-import {styles as Input} from '../profile/AccountDetails'
+import {Icons} from '../Icons';
+import {styles as Input} from '../profile/AccountDetails';
 import ModalDropdown from 'react-native-modal-dropdown';
 
-import FuneralService from "./FuneralService";
-import CelebrateBirthday from "./CelebrateBirthday";
+import FuneralService from './FuneralService';
+import CelebrateBirthday from './CelebrateBirthday';
 
-import ChildDedication from "./ChildDedication";
-import HouseDedication from "./HouseDedication";
-import WaterBaptism from "./WaterBaptism";
-import ThanksGiving from "./ThanksGiving";
-import MemorialServices from "./MemorialServices";
+import ChildDedication from './ChildDedication';
+import HouseDedication from './HouseDedication';
+import WaterBaptism from './WaterBaptism';
+import ThanksGiving from './ThanksGiving';
+import MemorialServices from './MemorialServices';
+
+import RequestSent from './RequestSent';
+
 
 const {width} = Dimensions.get('window');
 const RequestForm = ({navigation}) => {
 
-    const options = ['Request Funeral Services', 'Celebrate Birthday', 'Child Dedications', 'House Dedications', 'Water Baptism', 'Thanks Giving', 'Memorial Services']
-    const [index,setIndex]=useState(1);
+    const options = ['Request Funeral Services', 'Celebrate Birthday', 'Child Dedications', 'House Dedications', 'Water Baptism', 'Thanks Giving', 'Memorial Services'];
+    const [index,setIndex] = useState(0);
+    const [show,setShow] = useState(false);
 
 
 
     return (<View style={{ backgroundColor: '#0F0F0F', flex: 1,flexDirection: 'column',alignItems:'center',paddingBottom:30}}>
 
-        <TouchableOpacity 
+        <TouchableOpacity
         // provide navigate path
             onPress={() => navigation.navigate('Explore')}
         >
@@ -39,22 +44,23 @@ const RequestForm = ({navigation}) => {
             margin: 2.5,
             marginVertical: 15,
             alignSelf:'flex-start',
-            width:width
+            width:width,
         }}>
             <View>
-            <Icons.MaterialIcons name='arrow-back-ios' size={27} color="white" />
+            <Icons.MaterialIcons name="arrow-back-ios" size={27} color="white" />
             </View>
-            <Text style={{ color: "white", fontSize: 20, fontWeight: "400" }}>Account Details</Text>
+            <Text style={{ color: 'white', fontSize: 20, fontWeight: '400' }}>Account Details</Text>
         </View>
             </TouchableOpacity>
 
 
         <View style={{flexDirection: 'column',alignItems:'center'}}>
-            <Text style={{ color: "white",marginVertical:10,alignSelf:'flex-start'}}>Choose the Service</Text>
-            <ModalDropdown 
-            options={options} 
+            <Text style={{ color: 'white',marginVertical:10,alignSelf:'flex-start'}}>Choose the Service</Text>
+            <ModalDropdown
+            options={options}
             style={[styles.input]}
             defaultIndex={index}
+            defaultValue={options[index]}
             textStyle={{color: 'white',marginVertical:10}}
             dropdownStyle={styles.dropdownStyle}
             isFullWidth={true}
@@ -62,73 +68,58 @@ const RequestForm = ({navigation}) => {
             dropdownTextHighlightStyle={styles.dropdownTextHighlightStyle}
             onSelect={(e)=>{
                 console.log(e);
-                setIndex(e)
+                setIndex(e);
             }}
-            
-            >
-            </ModalDropdown>
+
+             />
         </View>
 
-  
-        <Text style={[{ color: "white",marginVertical:10,marginTop:20},styles.texts]}>We need some details</Text>
-        <ScrollView 
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-  >
 
-            { 
-            <GetForm index={index}></GetForm>
-            }
-        </ScrollView>
-
-        <View style={{flexDirection: 'column',alignItems:'center'}}>
-
-        <TouchableOpacity style={styles.chatSupportBtn}
-        // provide navigate path
-        onPress={() => navigation.navigate('')}
-        underlayColor='#fff'
-        >
-            <Text style={styles.loginText}>Continue</Text>
-        </TouchableOpacity>
-        </View>
+        <Text style={[{ color: 'white',marginVertical:10,marginTop:20},styles.texts]}>We need some details</Text>
+        
+        <GetForm index={index} setShow={setShow}/>       
+        {
+            show &&
+            <RequestSent setShow={setShow} />
+        }
 
     </View>
-    )
-}
+    );
+};
 
 
-const GetForm=({index})=>{
+const GetForm = ({index})=>{
 
-    if(index===0){
-        return <FuneralService></FuneralService>
+    if (index === 0){
+        return <FuneralService />;
     }
 
-    if(index===1){
-        return <CelebrateBirthday></CelebrateBirthday>
+    if (index === 1){
+        return <CelebrateBirthday />;
     }
 
 
-    if(index===2){
-        return <ChildDedication></ChildDedication>
+    if (index === 2){
+        return <ChildDedication />;
     }
 
-    if(index===3){
-        return <HouseDedication></HouseDedication>
+    if (index === 3){
+        return <HouseDedication />;
     }
-    if(index===4){
-        return <WaterBaptism></WaterBaptism>
+    if (index === 4){
+        return <WaterBaptism />;
     }
-    if(index===5){
-        return <ThanksGiving></ThanksGiving>
+    if (index === 5){
+        return <ThanksGiving />;
     }
-    if(index===6){
-        return <MemorialServices></MemorialServices>
+    if (index === 6){
+        return <MemorialServices />;
     }
-}
+};
 
 
 
-const boxWidth=width*0.9;
+const boxWidth = width * 0.9;
 
 const styles = StyleSheet.create({
     chatSupportBtn: {
@@ -138,7 +129,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 0.5,
         borderColor: '#fff',
-        width:(width*0.92),
+        width:(width * 0.92),
     },
     loginText: {
         fontSize: 17,
@@ -150,9 +141,9 @@ const styles = StyleSheet.create({
         borderColor: '#343739',
         borderWidth: 1,
         color: 'white',
-        width:(width*0.92),
+        width:(width * 0.92),
         padding:4,
-        marginVertical:5
+        marginVertical:5,
      },
      dropdownTextStyle:{
         color: '#808080',
@@ -161,16 +152,18 @@ const styles = StyleSheet.create({
         borderWidth: 0,
      },
      dropdownTextHighlightStyle:{
-        color: 'white'
+        color: 'white',
      },
      texts:{
-        width:(width*0.92),
-     }
+        width:(width * 0.92),
+     },
     // dropdownStyle:{
     //     width:width,
     //     margin:0,
     //     backgroundColor:'transparent',
     // }
-})
+});
+
+export {styles};
 
 export default RequestForm;
