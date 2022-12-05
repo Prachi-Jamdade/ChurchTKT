@@ -2,11 +2,12 @@ import React,{useState} from 'react';
 import {View,TouchableOpacity,Text,ScrollView} from 'react-native';
 import RequestFormDetail from './RequestFormDetail';
 import {styles} from './RequestForm';
+import {sendFom} from '../../api/requestForms'
 
-const CelebrateBirthday = () => {
+const CelebrateBirthday = ({setShow}) => {
 
     const intitial={
-        formType:'',
+        formType:'birthday',
 	    name:'',
 		fatherName:'',
 		motherName:'',
@@ -24,6 +25,13 @@ const CelebrateBirthday = () => {
 
     const submit=()=>{
         console.log(data)
+        sendFom(data).then((res)=>{
+            console.log(res);
+            setData(intitial)
+            setShow(true);
+        }).catch((e)=>{
+            console.log(e);
+        })
     }
 
     return (
@@ -61,7 +69,7 @@ const CelebrateBirthday = () => {
 
             <RequestFormDetail
                 autoCompleteValue={'birthdate-full'}
-                placeholderName={'Birthday Date'}
+                placeholderName={'Date of Birth'}
                 type="date"
                 value={data.eventDate}
                 name="eventDate"

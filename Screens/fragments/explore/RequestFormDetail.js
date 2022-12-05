@@ -56,14 +56,13 @@ const UselessDateInput = (props) => {
         const month=m<10?`0${m}`:m;
 
         const d=date.getDate(); 
-        const day=m<10?`0${d}`:d;
+        const day=d<10?`0${d}`:d;
 
         return `${year}-${month}-${day}`
     }
   
     return (
         <View>
-            <TouchableOpacity onPress={()=>setOpen(!open)}>
             <View
                 style={[styles.input,{
                     flexDirection:'row',
@@ -71,6 +70,12 @@ const UselessDateInput = (props) => {
                     alignItems: 'center'
                 }]}
                 >
+                <TouchableOpacity style={{
+                    flexDirection:'row',
+                    alignItems: 'center',
+                    width:(width * 0.80)
+                }}
+                onPress={()=>setOpen(!open)}>
                 <Icon 
                 type={Icons.MaterialIcons}
                 name="date-range"
@@ -85,8 +90,21 @@ const UselessDateInput = (props) => {
                     :
                     <Text style={{color:'white',opacity:0.5,marginLeft:5}}>{props.placeholderName}</Text>
                 }
+                </TouchableOpacity>
+                {
+                    value &&
+                    <TouchableOpacity
+                    onPress={()=> setValue(name,"")}>
+                    <Icon 
+                    type={Icons.Entypo}
+                    name="circle-with-cross"
+                    size={20}
+                    color='white'
+                    style={{opacity:0.5}}
+                    />
+                    </TouchableOpacity>
+                }
             </View>
-            </TouchableOpacity>
 
             <DatePicker
                     modal
@@ -128,20 +146,41 @@ const UselessTimeInput = (props) => {
                     alignItems: 'center'
                 }]}
                 >
+                <TouchableOpacity style={{
+                    flexDirection:'row',
+                    alignItems: 'center',
+                    width:(width * 0.80)
+                }}
+                onPress={()=>setOpen(!open)}>
                 <Icon 
-                type={Icons.Ionicons}
-                name="time-outline"
-                size={20}
-                color="white"
-                style={{opacity:0.5}}
+                    type={Icons.Ionicons}
+                    name="time-outline"
+                    size={20}
+                    color="white"
+                    style={{opacity:0.5}}
                 />
-                 {
+         
+                {
                     value
                     ?
                     <Text style={{color:'white',opacity:1,marginLeft:5}}>{value}</Text>
                     :
                     <Text style={{color:'white',opacity:0.5,marginLeft:5}}>{props.placeholderName}</Text>
-                 }
+                }
+                </TouchableOpacity>
+                {
+                    value &&
+                    <TouchableOpacity
+                    onPress={()=> setValue(name,"")}>
+                    <Icon 
+                    type={Icons.Entypo}
+                    name="circle-with-cross"
+                    size={20}
+                    color='white'
+                    style={{opacity:0.5}}
+                    />
+                    </TouchableOpacity>
+                }
             </View>
             </TouchableOpacity>
 

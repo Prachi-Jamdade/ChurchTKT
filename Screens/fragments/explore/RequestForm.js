@@ -49,7 +49,7 @@ const RequestForm = ({navigation}) => {
             <View>
             <Icons.MaterialIcons name="arrow-back-ios" size={27} color="white" />
             </View>
-            <Text style={{ color: 'white', fontSize: 20, fontWeight: '400' }}>Account Details</Text>
+            <Text style={{ color: 'white', fontSize: 20, fontWeight: '400' }}>Request Forms</Text>
         </View>
             </TouchableOpacity>
 
@@ -88,32 +88,32 @@ const RequestForm = ({navigation}) => {
 };
 
 
-const GetForm = ({index})=>{
+const GetForm = ({index,setShow})=>{
 
     if (index === 0){
-        return <FuneralService />;
+        return <FuneralService setShow={setShow}/>;
     }
 
     if (index === 1){
-        return <CelebrateBirthday />;
+        return <CelebrateBirthday  setShow={setShow}/ >;
     }
 
 
     if (index === 2){
-        return <ChildDedication />;
+        return <ChildDedication  setShow={setShow}/>;
     }
 
     if (index === 3){
-        return <HouseDedication />;
+        return <HouseDedication  setShow={setShow}/>;
     }
     if (index === 4){
-        return <WaterBaptism />;
+        return <WaterBaptism  setShow={setShow}/>;
     }
     if (index === 5){
-        return <ThanksGiving />;
+        return <ThanksGiving  setShow={setShow}/>;
     }
     if (index === 6){
-        return <MemorialServices />;
+        return <MemorialServices  setShow={setShow}/>;
     }
 };
 
