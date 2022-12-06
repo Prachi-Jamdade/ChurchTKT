@@ -13,31 +13,8 @@ import Icon,{Icons} from '../fragments/Icons';
 import homeHand from '../assests/icons/homeHand.png';
 import homeImage from '../assests/homeImage.png';
 import { AppContext } from '../../context';
+import gobalStyle from '../styles/index'
 
-
-const data=[
-    {
-        day:'Good Friday',
-        description:'We invite everyone to join us at 6:00pm to celebrate Good Friday.',
-        location:'Main Complex',
-        date:'11th Sept',
-        time:'06:00pm',
-    },
-    {
-        day:'Good Friday',
-        description:'We invite everyone to join us at 6:00pm to celebrate Good Friday.',
-        location:'Main Complex',
-        date:'11th Sept',
-        time:'06:00pm',
-    },
-    {
-        day:'Good Friday',
-        description:'We invite everyone to join us at 6:00pm to celebrate Good Friday.',
-        location:'Main Complex',
-        date:'11th Sept',
-        time:'06:00pm',
-    },
-];
 const TopEvents=[
     {
         image:homeImage,
@@ -76,8 +53,8 @@ const Home = ({navigation}) => {
     }
 
     return (
-            <View style= {styles.main}>
-                <View style = {styles.header}>
+            <View style= {gobalStyle.main}>
+                <View style = {gobalStyle.header}>
                     <View>
                     <Image
                     source = {homeHand}
@@ -90,7 +67,7 @@ const Home = ({navigation}) => {
                     <Text style= {styles.headerDark}>Sagar !</Text>
                     </View>
                 </View>
-                <View style= {styles.box}>
+                <View style= {[styles.box]}>
               
                 <View style = {styles.container}>
                 <ScrollView
@@ -230,13 +207,6 @@ const styles = StyleSheet.create({
     cardText:{
         color:'white',
         marginLeft:5,
-    },
-    header : {
-        marginTop: 30,
-        marginHorizontal: 16,
-        fontFamily : 'Montserrat',
-        flexDirection:'row',
-        alignItems: 'center'
     },
     headerLight : {
         color: 'white',

@@ -17,7 +17,16 @@ const styles = StyleSheet.create({
         marginHorizontal: 16,
         fontFamily : 'Montserrat', 
         fontSize: 22, 
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        flexDirection:'row',
+        alignItems: 'center'
+    },
+    bg:{
+        backgroundColor:'#1E1E1E',
+        paddingTop:10,
+        borderTopLeftRadius:10,
+        borderTopRightRadius:10,
+        marginTop:20
     },
     bottomButtons : { 
         flex: 1, 
