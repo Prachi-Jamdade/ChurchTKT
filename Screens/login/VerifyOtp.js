@@ -9,7 +9,7 @@ import OTPTextView from 'react-native-otp-textinput';
 import {loginOtpVerification,sigUpOtpVerification} from '../api/authication'
 import { AppContext } from '../../context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import gobalStyle from '../styles/index';
 
 class VerifyOtp extends React.Component{
 
@@ -76,8 +76,8 @@ class VerifyOtp extends React.Component{
     render(){
         let phoneNumber = '+91' + (this.props.route.params.phoneNumber).toString();
         return (
-            <View style= {styles.main}>
-                <Text style= { styles.header}>Just a second!</Text>
+            <View style= {gobalStyle.main}>
+                <Text style= { gobalStyle.header}>Just a second!</Text>
                 <Text style= {styles.dehigligtedText}>We hae sent an OTP to {phoneNumber}</Text>
                 <OTPTextView
                     borderColor = '#FFBE18'
@@ -98,11 +98,11 @@ class VerifyOtp extends React.Component{
                     </View>
                 </View>
                 <TouchableHighlight
-                    style={[styles.submit,{backgroundColor : this.state.accepted ? '#FFBE18' : 'grey',}]}
+                    style={[gobalStyle.btn_abs,{backgroundColor : this.state.accepted ? '#FFBE18' : 'grey',}]}
                     disabled = {!this.state.accepted}
                     onPress={() => {this.verify()}}
                     underlayColor='#fff'>
-                    <Text style={[styles.text]}>Verify</Text>
+                    <Text style={[gobalStyle.submitText]}>Verify</Text>
               </TouchableHighlight>
             </View>
         )
@@ -112,25 +112,9 @@ class VerifyOtp extends React.Component{
 
 export default VerifyOtp;
 const styles = StyleSheet.create({
-    main : {flex: 1, backgroundColor:'#0F1013'},
-    header : {color: 'white',marginTop: 16, marginHorizontal: 16, fontFamily : 'Montserrat', fontSize: 18, fontWeight: 'bold'},
     dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16},
     timmer:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16},
     redText:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16, textDecorationLine:'underline'},
-    submit : {
-        position: 'absolute',
-        bottom:0,
-        left: 0,
-        right:0,
-        marginHorizontal: 16,
-        marginTop: 10,
-        marginBottom: 16,
-        paddingTop: 15,
-        paddingBottom: 15,
-        backgroundColor: 'grey',
-        borderRadius: 10,
-        borderWidth: 1,
-    },
     roundedTextInput: {
         borderRadius: 10,
         borderWidth: 1,

@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
-import {sendOtpToNumber} from '../api/authication'
+import {sendOtpToNumber} from '../api/authication';
+import gobalStyle from '../styles/index';
 
 
 class Registration extends React.Component {
@@ -62,8 +63,8 @@ class Registration extends React.Component {
 
     render(){
         return(
-            <View style= {styles.main}>
-                <Text style= {styles.header}>We would love to have you!</Text>
+            <View style= {gobalStyle.main}>
+                <Text style= {gobalStyle.header}>We would love to have you!</Text>
                 <Text style= {styles.dehigligtedText}>We need Some details to get you onboard!</Text>
                 <View>
                     <TextInput style = {styles.input}
@@ -105,11 +106,11 @@ class Registration extends React.Component {
                         </TouchableHighlight>
                 </View>
                 <TouchableHighlight
-                    style={[styles.submit,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
+                    style={[gobalStyle.btn_abs,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
                     disabled = {!this.accepted}
                     onPress={() => {this.sendOtp(this.props)}}
                     underlayColor='#fff'>
-                    <Text style={[styles.text]}>Continue</Text>
+                    <Text style={[gobalStyle.submitText]}>Continue</Text>
               </TouchableHighlight>
             </View>
         );
@@ -120,25 +121,9 @@ class Registration extends React.Component {
 export default Registration;
 
 const styles = StyleSheet.create({
-    main : {flex: 1, backgroundColor:'#0F1013',paddingTop:15},
-    header : {color: 'white',marginTop: 16, marginHorizontal: 16, fontFamily : 'Montserrat', fontSize: 18, fontWeight: 'bold'},
     dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16},
     timmer:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16},
     redText:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16, textDecorationLine:'underline'},
-    submit : {
-        position: 'absolute',
-        bottom:0,
-        left: 0,
-        right:0,
-        marginHorizontal: 16,
-        marginTop: 10,
-        marginBottom: 16,
-        paddingTop: 15,
-        paddingBottom: 15,
-        backgroundColor: 'grey',
-        borderRadius: 10,
-        borderWidth: 1,
-    },
     roundedTextInput: {
         borderRadius: 10,
         borderWidth: 1,
@@ -154,7 +139,6 @@ const styles = StyleSheet.create({
         borderColor: 'white',
     },
     helper: {flexDirection: 'row', alignSelf: 'flex-end'},
-    text: {color: 'white', alignSelf: 'center', fontSize: 14},
     input: {
         margin: 15,
         height: 50,

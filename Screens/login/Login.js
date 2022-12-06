@@ -13,6 +13,7 @@ import {
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
 import {sendOtpToNumber} from '../api/authication'
+import gobalStyle from '../styles/index'
 
 const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
@@ -59,8 +60,8 @@ class Login extends React.Component{
 
     render(){
         return (
-            <View style= {styles.main}>
-                <Text style = {styles.header}>Welcome Back!</Text>
+            <View style= {gobalStyle.main}>
+                <Text style = {gobalStyle.header}>Welcome Back!</Text>
                 <Text style = {styles.dehigligtedText}>Enter your mobile no to Login</Text>
                 <View>
                     <TextInput style = {styles.input}
@@ -79,11 +80,11 @@ class Login extends React.Component{
                     }}>Sign Up</Text>
                 </View>
                 <TouchableHighlight
-                    style={[styles.submit,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
+                    style={[gobalStyle.btn_abs,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
                     disabled = {!this.accepted}
                     onPress={() => {this.sendOtp(this.props)}}
                     underlayColor='#fff'>
-                    <Text style={[styles.text]}>Continue</Text>
+                    <Text style={[gobalStyle.submitText]}>Continue</Text>
               </TouchableHighlight>
             </View>
         );
@@ -92,8 +93,6 @@ class Login extends React.Component{
 }
 
 const styles = StyleSheet.create({
-    main : {flex: 1, backgroundColor:'#0F1013',paddingTop:15},
-    header : {color: 'white',marginTop: 16, marginHorizontal: 16, fontFamily : 'Montserrat', fontSize: 18, fontWeight: 'bold'},
     dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16},
     input: {
         margin: 15,
@@ -107,21 +106,6 @@ const styles = StyleSheet.create({
     },
     helper: {flexDirection: 'row', alignSelf: 'flex-end'},
     signUp:{color: '#E23045',marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16},
-    submit : {
-        position: 'absolute',
-        bottom:0,
-        left: 0,
-        right:0,
-        marginHorizontal: 16,
-        marginTop: 10,
-        marginBottom: 16,
-        paddingTop: 15,
-        paddingBottom: 15,
-        backgroundColor: '#FFBE18',
-        borderRadius: 10,
-        borderWidth: 1,
-    },
-    text: {color: 'white', alignSelf: 'center', fontSize: 14},
 });
 
 export default Login;

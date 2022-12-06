@@ -89,7 +89,7 @@ const Explore = ({navigation}) => {
                     borderWidth: 1.2,
                     borderRadius: 20,
                     marginBottom: 12,
-                    minHeight: 110
+                    minHeight: 110,
                 }}>
                     <ImageBackground source={require('../../assests/SamuelPatta.png')} style={{marginLeft: 20, height: 150, width: 280, marginTop: 10}}>
 
