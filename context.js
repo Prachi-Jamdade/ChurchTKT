@@ -10,10 +10,15 @@ function AppContextProvider({children}) {
 	const [ homeEvents, setHomeEvents ] = useState([]);
 	const [ isUserLogin, setUserLogin ] = useState(false);
 
-    function clear(){
-        setUser(null);
-        setUserLogin(false);
-        AsyncStorage.clear();
+    function clear(navigation){
+        AsyncStorage.clear().then(()=>{
+            console.log('clear...');
+            setUser(null);
+            setUserLogin(false);
+            navigation.navigate('Onboarding',{isLogout:true});
+        }).catch((e)=>{
+            console.log(e);
+        })
     }
 
     async function getHomeEvent(){

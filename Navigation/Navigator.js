@@ -25,12 +25,13 @@ import RequestSent from '../Screens/fragments/explore/RequestSent';
 
 const Stack = createNativeStackNavigator();
 
-function MainStackNavigator({navigation}) {
+function MainStackNavigator({navigation,route}) {
 
 const {setUser,setUserLogin}=useContext(AppContext);
 
   const getData = async () => {
     const value = await AsyncStorage.getItem('user')
+    console.log(value);
     if(value===null) {
       setUserLogin(false);
       navigation.navigate('Login');
@@ -102,11 +103,6 @@ const {setUser,setUserLogin}=useContext(AppContext);
           <Stack.Screen
             name='Help'
             component={Help}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name='LogoutAlert'
-            component={LogoutAlert}
             options={{ headerShown: false }}
           />
           <Stack.Screen

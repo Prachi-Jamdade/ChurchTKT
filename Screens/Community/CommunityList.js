@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {styles} from '.';
 import Icon,{Icons} from '../fragments/Icons'
+import gobalStyle from '../styles/index';
 
 import ArrowImage from '../assests/icons/communityCardIcon.png';
 
@@ -15,8 +16,8 @@ import ArrowImage from '../assests/icons/communityCardIcon.png';
 const CommunityList = ({navigation,data,setIndex}) => {
 
     return (
-            <View style= {styles.main}>
-                <Text style= {styles.header}>Community</Text>
+            <View style= {gobalStyle.main}>
+                <Text style= {gobalStyle.header}>Community</Text>
                 <View style={styles.box}>
                 <ScrollView 
                 showsVerticalScrollIndicator={false}

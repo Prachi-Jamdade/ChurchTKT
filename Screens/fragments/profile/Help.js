@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import gobalStyle from '../../styles/index';
+
 
 import {
     SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableHighlight,TouchableOpacity, LayoutAnimation, Button
@@ -105,12 +107,12 @@ const Help = ({navigation}) => {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#0F0F0F' }}>
+        <SafeAreaView style={gobalStyle.main}>
             <View style={styles.container}>
             <TouchableHighlight onPress={()=>{
                     navigation.navigate("Profile");
                 }}>
-                <View style={styles.header}>
+                <View style={gobalStyle.nav}>
                     <View>
 
                     <Icon
@@ -120,12 +122,7 @@ const Help = ({navigation}) => {
                     color= 'white'
                     />
                     </View>
-                    <Text style={{   
-                        color: 'white',
-                        fontFamily : 'Montserrat', 
-                        fontSize: 22, 
-                        fontWeight: 'bold' 
-                        }}>Help</Text>
+                    <Text style={gobalStyle.nav_header}>Help</Text>
 
                 </View>
                     </TouchableHighlight>

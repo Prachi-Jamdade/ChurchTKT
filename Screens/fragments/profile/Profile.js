@@ -10,17 +10,25 @@ import {
 
 import ProfileComponent from './ProfileComponent';
 import Socials from './Socials';
-import {AppContext} from '../../../context'
-
+import {AppContext} from '../../../context';
+import gobalStyle from '../../styles/index';
+import {Icons} from '../Icons';
+import LogoutAlert from './LogoutAlert';
 class Profile extends React.Component{
 
     state = {
-        clicked: false
+        clicked: false,
+        show:false,
     }
     static contextType = AppContext;
 
     navigate = (navigateTo) => {
         this.props.navigation.navigate(navigateTo);
+    }
+
+    setShow(show){
+        this.setState({show:show});
+        console.log(this.state)
     }
 
     constructor(props){
@@ -31,17 +39,7 @@ class Profile extends React.Component{
         return(
             <View style={{alignItems:'center', backgroundColor:'#0F0F0F',height:'100%'}}>
                
-               <Text style={{
-                color: 'white',
-                padding: 18, 
-                fontSize: 22, 
-                fontWeight: 'bold',
-                paddingLeft:5,
-                marginBottom:25,
-                marginTop:30,
-                alignSelf:'flex-start',  
-                marginLeft:30          
-                }}>
+               <Text style={[gobalStyle.header,{alignSelf:'flex-start'}]}>
                     Profile
                 </Text>
 
@@ -50,31 +48,38 @@ class Profile extends React.Component{
                     style={{width: 100, height: 100, borderRadius:100/2}}
                 />
 
-                <Text style={{color: "white", padding:20, fontSize:18, fontWeight:"500"}}>My Name</Text>
+                <Text style={{color: "white", padding:20, fontSize:18, fontWeight:"500"}}>{this.context?.user?.firstName+" "+this.context?.user?.lastName}</Text>
 
                 <TouchableHighlight onPress={()=>{
                     this.props.navigation.navigate("AccountDetails");
                 }}>
-                <ProfileComponent imgSource={require('../../assests/icons/acc_details.png')} componentName="Account Details" />
+                <ProfileComponent 
+                imgSource={ {type: Icons.AntDesign, name:"user"} }
+                componentName="Account Details" 
+                />
                 </TouchableHighlight>
                 
                 <TouchableHighlight onPress={()=>{
                     this.props.navigation.navigate("Help");
                 }}>
-                <ProfileComponent imgSource={require('../../assests/icons/help.png')} componentName="Help"/>
+                <ProfileComponent   imgSource={ {type: Icons.AntDesign, name:"adduser"} } componentName="Help"/>
                 </TouchableHighlight>
 
                 <TouchableHighlight>
-                <ProfileComponent imgSource={require('../../assests/icons/privacy_policy.png')} componentName="Privacy Policy" />
+                <ProfileComponent   imgSource={ {type: Icons.Feather, name:"shield"} } componentName="Privacy Policy" />
                 </TouchableHighlight>
               
                 <TouchableHighlight onPress={()=>{
-                    this.props.navigation.navigate("LogoutAlert");
+                    this.setShow(true);
                 }}>
-                <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout"/>
+                <ProfileComponent   imgSource={ {type: Icons.Ionicons, name:"log-in-outline",isRed:true} } componentName="Logout"/>
                 </TouchableHighlight>
                 
                 <Socials />
+
+                {
+                    this.state.show && <LogoutAlert navigation={this.props.navigation} setShow={(show)=>{this.setShow(show)}}></LogoutAlert>
+                }
             </View>
 
         )

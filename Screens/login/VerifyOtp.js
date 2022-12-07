@@ -37,6 +37,7 @@ class VerifyOtp extends React.Component{
             }
             AsyncStorage.setItem('user', JSON.stringify(data)).then(()=>{
                 this.context.setUser(data);
+                this.context.setUser(true);
                 this.props.navigation.navigate('BottomTabs');
             });
             })
@@ -52,6 +53,7 @@ class VerifyOtp extends React.Component{
                 }
                 AsyncStorage.setItem('user', JSON.stringify(data)).then(()=>{
                     this.context.setUser(data);
+                    this.context.setUser(true);
                     this.props.navigation.navigate('BottomTabs');
                 });
             })

@@ -1,7 +1,8 @@
 import React,{useState,useContext,useEffect} from 'react';
 import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput } from 'react-native';
-import Icon,{Icons} from '../Icons'
-import {AppContext} from '../../../context'
+import Icon,{Icons} from '../Icons';
+import {AppContext} from '../../../context';
+import gobalStyle from '../../styles/index';
 
 const AccountDetails = ({navigation})=> {
     const [data,setData] = useState( {
@@ -26,12 +27,12 @@ const AccountDetails = ({navigation})=> {
     };
 
     return (
-    <View style={{backgroundColor:'#0F0F0F', flex: 1}}>
+    <View style={gobalStyle.main}>
 
             <TouchableHighlight onPress={()=>{
                     navigation.navigate('Profile');
                 }}>
-                <View style={styles.header}>
+                <View style={[gobalStyle.nav,{backgroundColor:'transparent'}]}>
                     <View>
 
                     <Icon
@@ -41,12 +42,7 @@ const AccountDetails = ({navigation})=> {
                     color= "white"
                     />
                     </View>
-                    <Text style={{
-                        color: 'white',
-                        fontFamily : 'Montserrat',
-                        fontSize: 22,
-                        fontWeight: 'bold',
-                        }}>Account Details</Text>
+                    <Text style={gobalStyle.nav_header}>Account Details</Text>
 
                 </View>
             </TouchableHighlight>

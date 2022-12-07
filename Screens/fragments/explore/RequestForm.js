@@ -19,6 +19,8 @@ import ThanksGiving from './ThanksGiving';
 import MemorialServices from './MemorialServices';
 
 import RequestSent from './RequestSent';
+import gobalStyle from '../../styles/index';
+
 
 
 const {width} = Dimensions.get('window');
@@ -35,21 +37,14 @@ const RequestForm = ({navigation}) => {
         <TouchableOpacity
         // provide navigate path
             onPress={() => navigation.navigate('Explore')}
+            style={{alignSelf:'flex-start'}}
         >
 
-        <View style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: 12,
-            margin: 2.5,
-            marginVertical: 15,
-            alignSelf:'flex-start',
-            width:width,
-        }}>
-            <View>
-            <Icons.MaterialIcons name="arrow-back-ios" size={27} color="white" />
+        <View style={[gobalStyle.nav,{alignSelf:'flex-start'}]}>
+            <View style={gobalStyle.nav_image}>
+            <Icons.MaterialIcons name="arrow-back-ios" size={24} color="white" />
             </View>
-            <Text style={{ color: 'white', fontSize: 20, fontWeight: '400' }}>Request Forms</Text>
+            <Text style={gobalStyle.nav_header}>Request Forms</Text>
         </View>
             </TouchableOpacity>
 

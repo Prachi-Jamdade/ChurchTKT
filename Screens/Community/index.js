@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
         borderRadius: 24,
         paddingVertical:10,
         flexDirection:'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom:100,
     },
     box:{
         width,
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         position: 'absolute',
         zIndex:-1,
+        flex:1,
     },
     scrollView :{
         width, 
@@ -161,9 +163,7 @@ const styles = StyleSheet.create({
     list: { 
         backgroundColor:'#0F0F0F',
         borderRadius: 24,
-        marginTop: 10,
         marginBottom: 100,
-        paddingTop: 25,
         paddingBottom:20,
         width:boxWidth,
         flex:1,
@@ -213,13 +213,11 @@ const styles = StyleSheet.create({
         marginTop:20
     },
     submit : {
-        marginHorizontal: 16,
         marginTop: 10,
-        marginBottom: 16,
-        paddingTop: 15,
-        paddingBottom: 15,
-        backgroundColor: 'grey',
         borderRadius: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        backgroundColor: 'grey',
         borderWidth: 1,
         width:width-20
     },

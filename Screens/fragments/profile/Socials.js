@@ -14,11 +14,46 @@ const Socials = () => {
             alignItems:'center',
             justifyContent:'center'
         }}>
-            <Ionicons name='logo-linkedin' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
-            <Ionicons name='logo-facebook' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
-            <Ionicons name='logo-twitter' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
-            <Ionicons name='logo-instagram' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
-            <Ionicons name='logo-youtube' size={26} color="#FFBE18" style={{padding: 2, margin: 8}} />
+            <Ionicons name='logo-linkedin' size={26} color="#FFBE18" 
+            style={{
+                padding: 10, 
+                margin: 8,
+                backgroundColor:'rgba(255, 190, 24, 0.05)',
+                borderRadius:15,
+            }} 
+            />
+            <Ionicons name='logo-facebook' size={26} color="#FFBE18" 
+             style={{
+                padding: 10, 
+                margin: 8,
+                backgroundColor:'rgba(255, 190, 24, 0.05)',
+                borderRadius:15,
+            }}
+            />
+            <Ionicons name='logo-twitter' size={26} color="#FFBE18" 
+             style={{
+                padding: 10, 
+                margin: 8,
+                backgroundColor:'rgba(255, 190, 24, 0.05)',
+                borderRadius:15,
+            }}
+            />
+            <Ionicons name='logo-instagram' size={26} color="#FFBE18" 
+            style={{
+                padding: 10, 
+                margin: 8,
+                backgroundColor:'rgba(255, 190, 24, 0.05)',
+                borderRadius:15,
+            }}
+            />
+            <Ionicons name='logo-youtube' size={26} color="#FFBE18" 
+            style={{
+                padding: 10, 
+                margin: 8,
+                backgroundColor:'rgba(255, 190, 24, 0.05)',
+                borderRadius:15,
+            }}
+            />
         </View>
     </View>
     )

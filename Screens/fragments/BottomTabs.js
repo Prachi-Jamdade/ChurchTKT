@@ -19,10 +19,10 @@ import Explore from '../fragments/explore/Explore';
 import Community from '../Community';
 import Profile from './profile/Profile';
 const TabArr = [
-    { route: 'Home', label: 'Home', type: Icons.MaterialIcons, name:"home-filled", component: Home },
-    { route: 'Explore', label: 'Explore', type: Icons.MaterialIcons, name:"language", component: Explore },
-    { route: 'Community', label: 'Community', type: Icons.MaterialIcons, name:"groups", component: Community },
-    { route: 'Profile', label: 'Profile', type: Icons.MaterialIcons, name:"person", component: Profile },
+    { route: 'Home', label: 'Home', type: Icons.Octicons, name:"home", component: Home },
+    { route: 'Explore', label: 'Explore', type: Icons.Feather, name:"globe", component: Explore },
+    { route: 'Community', label: 'Community', type: Icons.Feather, name:"users", component: Community },
+    { route: 'Profile', label: 'Profile', type: Icons.AntDesign, name:"user", component: Profile },
   ];
 
 const Tab = createBottomTabNavigator();
@@ -90,7 +90,7 @@ class BottomTabs extends React.Component{
                         <Icon
                         type={item.type} 
                         name={item.name}
-                        size ={30}
+                        size ={25}
                         style={
                           focused
                             ? styles.activeIcon
@@ -120,10 +120,10 @@ const styles = StyleSheet.create({
     },
     activeIcon:{
       color:"#FFBE18",
-      backgroundColor:'#2e2d2b',
       padding:10,
       paddingTop:7,
       borderRadius:10,
+      backgroundColor:'rgba(255, 190, 24, 0.05)',
     },
     bar:{
       height: 75,

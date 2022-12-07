@@ -4,12 +4,13 @@ import {
     View,
     Image,
     TouchableHighlight,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
 import {styles} from './index';
 import Icon,{Icons} from '../fragments/Icons';
 import moreInfo from '../assests/moreInfo.png';
-
+import gobalStyle from '../styles/index';
 
 const CommunityBox = ({navigation,image,title,description,setIndex,about}) => {
 
@@ -23,31 +24,35 @@ const CommunityBox = ({navigation,image,title,description,setIndex,about}) => {
     }
 
     return(
-        <View style= {styles.main}>
+        <View style= {gobalStyle.main}>
+        <TouchableOpacity
+            onPress={()=>{setIndex(-1);}}
+        >
+
          <Text style= {
-            [styles.header,{
+             [gobalStyle.header,{
             flexDirection:'row',
             alignItems: 'center',
             justifyContent: 'center'
             }]
         }   
-            onPress={()=>{setIndex(-1);}}
             
             > 
             <View>
             <Icon
             type={Icons.MaterialIcons}
-            size={25}
+            size={24}
             name="arrow-back-ios"
             color= 'white'
             />
             </View>
             <View>
-            <Text style={{fontSize: 22, fontWeight: 'bold',color: 'white'}}>
+            <Text style={gobalStyle.nav_header}>
                 {title}
             </Text>
             </View>
          </Text>
+        </TouchableOpacity>
     
     <View style = {styles.container}>
         <ScrollView
@@ -76,26 +81,30 @@ const CommunityBox = ({navigation,image,title,description,setIndex,about}) => {
         </View>
     </View>
 
-     
         <View style={styles.BigBox}>
+
             <Text style= {[styles.headerInfo,{alignSelf: 'flex-start'}]}> 
                 {title}
             </Text>
-            <Text style= {styles.DescriptionText}> 
-                {about}
-            </Text>
-            <Text style= {[styles.DescriptionText,{alignSelf: 'flex-start'}]}> 
-                More Info
-            </Text>
-            <Image
-            source = {moreInfo}
-            style = {styles.imagesAbout} 
-            />
-            <TouchableHighlight
-                style={[styles.submit,{backgroundColor : '#FFBE18' }]}
-                underlayColor='#fff'>
-                <Text style={[styles.textInfo]}>JOIN US</Text>
-            </TouchableHighlight>
+            <ScrollView>
+            <View style= {{flexDirection:'column',alignItems: 'center'}}>
+                <Text style= {styles.DescriptionText}> 
+                    {about}
+                </Text>
+                <Text style= {[styles.DescriptionText,{alignSelf: 'flex-start'}]}> 
+                    More Info
+                </Text>
+                    <Image
+                    source = {moreInfo}
+                    style = {styles.imagesAbout} 
+                    />
+                    <TouchableHighlight
+                        style={[styles.submit,{backgroundColor : '#FFBE18' }]}
+                        underlayColor='#fff'>
+                        <Text style={[gobalStyle.submitText]}>JOIN US</Text>
+                    </TouchableHighlight>
+                </View>
+            </ScrollView>
         </View>
         </View>
     )

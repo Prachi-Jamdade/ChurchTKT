@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
     View,
@@ -9,7 +10,8 @@ import {
     Image,
 
 } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import gobalStyle from '../../styles/index';
 
 
 
@@ -17,25 +19,28 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 const Explore = ({navigation}) => {
 
     const cardContent = [{
-        text: "Do your bit by donating a part of your earnings.",
-        icon: require("../../assests/cashPayment.png"),
+        text: 'Do your bit by donating a part of your earnings.',
+        icon: require('../../assests/cashPayment.png'),
         color: '#2BCD93',
-        navigate:'OffErings'
+        navigate:'OffErings',
+        top:-20
     }
         ,
     {
-        text: "Request church services by filling small forms.",
-        icon: require("../../assests/mobileLogin.png"),
+        text: 'Request church services by filling small forms.',
+        icon: require('../../assests/mobileLogin.png'),
         color: '#6333EA',
-        navigate:'RequestForm'
+        navigate:'RequestForm',
+        top:-32
     },
     {
-        text: "Watch our sermons and get enlightned.",
-        icon: require("../../assests/presidentsDay.png"),
+        text: 'Watch our sermons and get enlightned.',
+        icon: require('../../assests/presidentsDay.png'),
         color: '#A11212',
-        navigate:'Spm'
-    }
-    ]
+        navigate:'Spm',
+        top:-5
+    },
+    ];
 
 
 
@@ -53,53 +58,50 @@ const Explore = ({navigation}) => {
             //     Explore
             // </Text>
 
-            <ScrollView 
+            <ScrollView
             vertical ={true}
             showsVerticalScrollIndicator={false}
              showsHorizontalScrollIndicator={false}
             style={{
                 backgroundColor: '#0F0F0F',
-                width: "100%",
-                height: "100%",
-                display: "flex",
+                width: '100%',
+                height: '100%',
+                display: 'flex',
                 gap: 5,
                 marginBottom: 60,
-                padding: 15,
+                paddingHorizontal: 15,
             }}>
 
-            <Text style={{
-                color: 'white',
-                padding: 18, 
-                fontSize: 22, 
-                fontWeight: 'bold',
-                paddingLeft:5,
-                marginBottom:25,
-                
-            }}>
+            <Text style={gobalStyle.header}>
                 Explore
             </Text>
-            <TouchableHighlight onPress={()=>navigation.navigate("Events")}>
+            <TouchableHighlight onPress={()=>navigation.navigate('Events')}>
                 <View style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                    width: "100%",
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     borderColor: '#3b3b3b',
-                    color: "white",
+                    color: 'white',
                     borderWidth: 1.2,
                     borderRadius: 20,
-                    marginBottom: 12,
-                    minHeight: 110,
+                    marginBottom: 35,
+                    marginTop: 10,
+                    minHeight: 140,
+                    paddingLeft:20,
+                    overflow: 'hidden',
                 }}>
-                    <ImageBackground source={require('../../assests/SamuelPatta.png')} style={{marginLeft: 20, height: 150, width: 280, marginTop: 10}}>
 
-                        <View style={{
-                            display: "flex",
-                            alignItems: 'flex-start'
-                        }}>
-                            <Text style={{marginTop: 50, marginRight: 80, fontSize: 18, color: 'white'}}>Samuel Patta   Ministries</Text>
-                        </View>
-                    </ImageBackground>
+                    <Text style={{fontSize: 18, color: 'white',}}>
+                        Samuel Patta Ministries
+                    </Text>
+                    <Image source={require('../../assests/SamuelPatta.png')} 
+                    style={{
+                        height: 110,
+                        borderBottomRightRadius: 8,
+                        marginTop:30
+                    }}>
+                    </Image>
 
                 </View>
             </TouchableHighlight>
@@ -107,36 +109,38 @@ const Explore = ({navigation}) => {
                     cardContent.map((content, index) => {
                         return (
                             <TouchableHighlight onPress={()=>navigation.navigate(content.navigate)}>
-                                
+
                             <View style={{
-                                padding: 20,
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "space-around",
-                                width: "100%",
-                                borderColor: "white",
-                                color: "white",
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                width: '100%',
+                                borderColor: 'white',
+                                color: 'white',
                                 backgroundColor: content.color,
                                 borderWidth: 0,
                                 borderRadius: 20,
                                 marginTop: 6,
-                                marginBottom: 26,
-                                minHeight: 130
+                                marginBottom: 20,
+                                minHeight: 130,
+                                position: 'relative',
+                                overflow: 'hidden'
                             }} key={index}>
 
 
 
                                 <View style={{
-                                    width: "70%",
-                                    height: "100%",
-                                    display: "flex",
-                                    gap: 10
+                                    width: '70%',
+                                    height: '100%',
+                                    display: 'flex',
+                                    gap: 10,
+                                    padding:20
                                 }}>
                                     <Text style={{ color: 'white', fontSize: 16 }}>
                                         {content.text}
                                     </Text>
 
-                                    <AntDesign name='rightcircle' size={30} style={{ paddingTop: 5, marginTop: 20 }} color="white" />
+                                    <AntDesign name="rightcircle" size={25} style={{ paddingTop: 5, marginTop: 20 }} color="white" />
 
                                 </View>
                                 <View style={{
@@ -145,7 +149,16 @@ const Explore = ({navigation}) => {
 
                                     <Image
                                         source={content.icon}
-                                        style={{ width: 70, height: 70, padding: 5, marginTop: 30, marginRight: 15, alignItems: 'center', justifyContent: 'center' }}
+                                        style={{ 
+                                            padding: 5,
+                                            marginTop: 30,
+                                            marginRight: 15,
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            position: 'absolute',
+                                            bottom:content.top,
+                                            right:10
+                                        }}
                                     />
 
                                 </View>
@@ -153,14 +166,14 @@ const Explore = ({navigation}) => {
                             </View>
 
                             </TouchableHighlight>
-                        )
+                        );
                     })
                 }
 
             </ScrollView>
         // </View>
-    )
+    );
 
-}
+};
 
 export default Explore;

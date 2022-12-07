@@ -13,7 +13,7 @@ import Icon,{Icons} from '../fragments/Icons';
 import homeHand from '../assests/icons/homeHand.png';
 import homeImage from '../assests/homeImage.png';
 import { AppContext } from '../../context';
-import gobalStyle from '../styles/index'
+import gobalStyle from '../styles/index';
 
 const TopEvents=[
     {
@@ -42,7 +42,8 @@ const Home = ({navigation}) => {
         if(homeEvents.length===0){
             getHomeEvent();
         }
-    },[getHomeEvent, homeEvents]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
 
     
     const change = ({nativeEvent}) => {
@@ -276,7 +277,7 @@ const styles = StyleSheet.create({
         width :boxWidth,
         height:(height/5),
         zIndex:-1,
-        marginVertical:20,
+        marginBottom:20,
         borderRadius:14,
     },
     homeTopCard:{
