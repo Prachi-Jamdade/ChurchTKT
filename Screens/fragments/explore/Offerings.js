@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useContext} from 'react';
 import {
     View,
     Text,
@@ -11,14 +11,58 @@ import { TextInput } from 'react-native-gesture-handler';
 import { Screen } from 'react-native-screens';
 import ImageBackUp from '../../assests/icons/back.png';
 import gobalStyle from '../../styles/index';
+import {AppContext} from '../../../context';
+import {generatePayment,completePayment} from '../../api/explore';
+import RazorpayCheckout from 'react-native-razorpay';
+import RequestSent from './RequestSent';
+
+const Offerings = ({navigation})=>{
+
+    const {user} = useContext(AppContext);
+    const [amount,setAmount] = useState(0);
 
 
-class Offerings extends React.Component{
+    const getOrder = async()=>{
+        try {
 
-    state = {
+        const _amount = parseInt(amount);
+        const {firstName,phoneNumber,email} = user;
+        const getOrderDetails = await generatePayment({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
 
-    }
-    render(){
+        const {razorpayKey,orderId} = getOrderDetails;
+
+        const options = {
+            description: 'Credits towards consultation',
+            image: 'https://i.imgur.com/3g7nmJC.jpg',
+            currency: 'INR',
+            key: razorpayKey,
+            amount: amount,
+            name: 'Acme Corp',
+            order_id: orderId,
+            prefill: {
+              email: email,
+              contact: phoneNumber,
+              name: firstName,
+            },
+            theme: {color: '#53a20e'},
+          };
+
+          RazorpayCheckout.open(options).then(async (data) => {
+            // // handle success
+            // const {razorpay_payment_id,razorpay_order_id,razorpay_signature}=data;
+            const _completePayment = await completePayment(data);
+            setAmount(0);
+            alert('Plament Made Successfully');
+          }).catch((error) => {
+            // handle failure
+            console.log(error);
+            alert('Some thing went Wrong, Try again');
+          });
+        } catch (e){
+            alert('Some thing went Wrong, Try again');
+        }
+        };
+
         return (
             <View style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
@@ -45,23 +89,24 @@ class Offerings extends React.Component{
                     keyboardType = "number-pad"
                     placeholderTextColor = "white"
                     autoCapitalize = "none"
+                    value={amount}
+                    onChangeText={(text)=>{setAmount(text);}}
                     />
                 </View>
 
-
-
                 <TouchableHighlight
                     style={gobalStyle.btn_abs}
-                    onPress={() => {}}
+                    onPress={() => {getOrder();}}
                    >
                     <Text style={[gobalStyle.submitText]}>PAY</Text>
                 </TouchableHighlight>
 
+
+
             </View>
             </View>
-        );
-    }
-}
+    );
+};
 
 const styles = StyleSheet.create({
     card: {

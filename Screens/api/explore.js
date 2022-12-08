@@ -1,15 +1,14 @@
 import {getAPIWithToken} from './axios';
 
 
-async function generatePayment({amount,name,phoneNumber,address,email}) {
+async function generatePayment({amount,name,phoneNumber,email}) {
 	const APIWithToken=await getAPIWithToken();
-	const res = await APIWithToken.get(
+	const res = await APIWithToken.post(
 		'/payment/pay_order',
         {
             'amount':amount,
             'Name':name,
             'PhoneNumber':phoneNumber,
-            'Address':address,
             'Email':email
         }
 	);
@@ -18,7 +17,7 @@ async function generatePayment({amount,name,phoneNumber,address,email}) {
 
 async function completePayment({razorpay_payment_id,razorpay_order_id,razorpay_signature}) {
 	const APIWithToken=await getAPIWithToken();
-	const res = await APIWithToken.get(
+	const res = await APIWithToken.post(
 		'/payment/complete_order',
         {
             'razorpay_payment_id':razorpay_payment_id,
