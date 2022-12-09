@@ -19,6 +19,7 @@ import LogoutAlert from '../Screens/fragments/profile/LogoutAlert';
 import RequestForm from '../Screens/fragments/explore/RequestForm';
 import Events from '../Screens/fragments/explore/Events';
 import OffErings from '../Screens/fragments/explore/Offerings';
+import SpmOffErings from '../Screens/fragments/explore/SpmOfferings';
 import Spm from '../Screens/fragments/explore/Spm';
 import RequestSent from '../Screens/fragments/explore/RequestSent';
 // import screens
@@ -118,6 +119,11 @@ const {setUser,setUserLogin}=useContext(AppContext);
           <Stack.Screen
             name='OffErings'
             component={OffErings}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='SpmOffErings'
+            component={SpmOffErings}
             options={{ headerShown: false }}
           />
           <Stack.Screen

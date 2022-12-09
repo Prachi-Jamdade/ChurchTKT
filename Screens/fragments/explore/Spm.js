@@ -5,6 +5,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     Dimensions,
+    TouchableHighlight
 } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import ImageBackUp from '../../assests/icons/back.png';
@@ -13,12 +14,9 @@ import {Icons} from '../Icons';
 import gobalStyle from '../../styles/index';
 
 
-class Offerings extends React.Component{
+const Offerings =({navigation})=>{
 
-    state = {
 
-    }
-    render(){
         return (
             <View style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
@@ -26,7 +24,7 @@ class Offerings extends React.Component{
             <TouchableOpacity
             style={gobalStyle.nav}
                 // provide navigate path
-                    onPress={() => this.props.navigation.navigate('Explore')}
+                    onPress={() => navigation.navigate('Explore')}
                 >
                 <Image source={ImageBackUp} style={gobalStyle.nav_image} />
                 <Text style={gobalStyle.nav_header}>SPM</Text>
@@ -35,7 +33,7 @@ class Offerings extends React.Component{
             <View style={styles.card}>
                 <View style={[{flexDirection: 'column'},styles.fullW]}>
                         <ImageElement source={ImageFreame2} />
-                        <Button buttonStyle={{
+                        {/* <Button buttonStyle={{
                             backgroundColor: '#FFA318',
                             borderRadius: 12,
                             width:'100%',
@@ -45,7 +43,7 @@ class Offerings extends React.Component{
                         titleStyle= {{
                             letterSpacing: 2,
                         }}
-                        title="Join SPM" />
+                        title="Join SPM" /> */}
                 </View>
                 <Text style= {styles.DescriptionText}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.
@@ -54,6 +52,9 @@ class Offerings extends React.Component{
                 Praesent maecenas metus, elit, netus at lobortis enim, a. Venenatis, magnis et, ut aliquet. Tempor at enim sit sed viverra id purus morbi enim. Pretium ut massa, quam cursus. Malesuada arcu sollicitudin enim congue eu sollicitudin bibendum morbi.
                 </Text>
 
+                    <TouchableHighlight
+                        onPress={() => navigation.navigate('SpmOffErings')}
+                    >
                 <View style={[{flexDirection: 'column',backgroundColor: '#4FF491',marginTop:20,borderRadius: 12},styles.fullW]}>
                         <View style={[
                             {flexDirection: 'row',alignItems:'center',paddingVertical:40,
@@ -63,22 +64,23 @@ class Offerings extends React.Component{
                                 <Icons.FontAwesome5 name="hand-holding-heart" color="white" size={40} />
 
                         </View>
-                        <Button buttonStyle={{
-                            backgroundColor: '#034A2B',
-                            borderRadius: 12,
-                            width:'100%',
-                            borderTopRightRadius:0,
-                            borderTopLeftRadius:0,
-                        }}
-                        titleStyle= {{
-                            letterSpacing: 2,
-                        }}
-                        title="Give" />
+                        
+                            <Button buttonStyle={{
+                                backgroundColor: '#034A2B',
+                                borderRadius: 12,
+                                width:'100%',
+                                borderTopRightRadius:0,
+                                borderTopLeftRadius:0,
+                            }}
+                            titleStyle= {{
+                                letterSpacing: 2,
+                            }}
+                            title="Give" />
                 </View>
+                </TouchableHighlight>
             </View>
             </View>
         );
-    }
 }
 
 function ImageElement({source, stretch = true}) {
