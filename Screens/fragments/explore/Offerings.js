@@ -70,7 +70,7 @@ const Offerings = ({navigation})=>{
             <TouchableOpacity
             style={gobalStyle.nav}
                 // provide navigate path
-                    onPress={() => this.props.navigation.navigate('Explore')}
+                    onPress={() => navigation.navigate('Explore')}
                 >
 
                 <Image source={ImageBackUp} style={gobalStyle.nav_image} />
