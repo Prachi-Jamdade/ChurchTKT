@@ -14,29 +14,29 @@ import homeHand from '../assests/icons/homeHand.png';
 import homeImage from '../assests/homeImage.png';
 import { AppContext } from '../../context';
 import gobalStyle from '../styles/index';
-
-const TopEvents=[
-    {
-        image:homeImage,
-        date:'29th Sept, 2023',
-        title:'WORSHIP NIGHT'
-    },
-    {
-        image:homeImage,
-        date:'29th Sept, 2023',
-        title:'WORSHIP NIGHT'
-    },
-    {
-        image:homeImage,
-        date:'29th Sept, 2023',
-        title:'WORSHIP NIGHT'
-    },
-]
+import YoutubePlayer from 'react-native-youtube-iframe';
+// const TopEvents=[
+//     {
+//         image:homeImage,
+//         date:'29th Sept, 2023',
+//         title:'WORSHIP NIGHT'
+//     },
+//     {
+//         image:homeImage,
+//         date:'29th Sept, 2023',
+//         title:'WORSHIP NIGHT'
+//     },
+//     {
+//         image:homeImage,
+//         date:'29th Sept, 2023',
+//         title:'WORSHIP NIGHT'
+//     },
+// ]
 
 const Home = ({navigation}) => {
 
     const [active,setActive]=useState(0);
-    const {homeEvents,getHomeEvent}=useContext(AppContext);
+    const {homeEvents,getHomeEvent,videoLink}=useContext(AppContext);
 
     useEffect(() => {
         if(homeEvents.length===0){
@@ -78,16 +78,15 @@ const Home = ({navigation}) => {
                     showsHorizontalScrollIndicator = {false}
                 >
                     {
-                    TopEvents.map((data, index) => (
+                    videoLink.map((data, index) => (
                         <View key={index} style={styles.homeTopCard}>
-                        <Image
-                        source = {data.image}
-                        style = {styles.images} />
-                        <View style={styles.homeTopCardText}>
-                            <Text style={styles.homeTopCardTextDate}>{data.date}</Text>
-                            <Text style={styles.homeTopCardTextTitle}>{data.title}</Text>
-                        </View>
-                        
+                            <YoutubePlayer
+                                height={300}
+                                play={true}
+                                videoId={data.videoId}
+                                style = {styles.images}
+                            />
+                    
                         </View>
                     ))
                     }
@@ -95,13 +94,13 @@ const Home = ({navigation}) => {
 
                 </View>
 
-                <View style = {styles.pagination}>
+                {/* <View style = {styles.pagination}>
                     {
-                    TopEvents.map((i,k) => (
+                    videoLink.map((i,k) => (
                     <Text key={k} style={ k === active ? styles.pagingActive :  styles.pagingText} />
                     ))
                     }
-                </View>
+                </View> */}
 
                 <ScrollView 
                 showsVerticalScrollIndicator={false}

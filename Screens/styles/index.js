@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
     nav: {
         marginTop: 30,
-        marginHorizontal: 16,
+        marginHorizontal: 6,
         marginBottom: 20,
         flexDirection: 'row',
         alignItems: 'center',

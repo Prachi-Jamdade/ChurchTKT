@@ -23,13 +23,13 @@ const HouseDedication = ({setShow}) => {
     }
 
     const submit=()=>{
-        console.log(data)
+        // console.log(data)
         sendFom(data).then((res)=>{
             console.log(res);
             setData(intitial)
             setShow(true);
         }).catch((e)=>{
-            console.log(e);
+            alert('Some thing went Wrong, Try again');
         })
     }
 

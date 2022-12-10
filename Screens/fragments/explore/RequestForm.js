@@ -5,7 +5,7 @@ import {
 }
     from 'react-native-material-dropdown';
 import {View,Text,TouchableOpacity,StyleSheet,Dimensions,ScrollView} from 'react-native';
-import {Icons} from '../Icons';
+
 import {styles as Input} from '../profile/AccountDetails';
 import ModalDropdown from 'react-native-modal-dropdown';
 
@@ -20,16 +20,35 @@ import MemorialServices from './MemorialServices';
 
 import RequestSent from './RequestSent';
 import gobalStyle from '../../styles/index';
+import Icon,{Icons} from '../Icons'
 
 
 
 const {width} = Dimensions.get('window');
 const RequestForm = ({navigation}) => {
 
-    const options = ['Request Funeral Services', 'Celebrate Birthday', 'Child Dedications', 'House Dedications', 'Water Baptism', 'Thanks Giving', 'Memorial Services'];
+    const options = [
+        'Request Funeral Services', 
+        'Celebrate Birthday', 
+        'Child Dedications', 
+        'House Dedications', 
+        'Water Baptism', 
+        'Thanks Giving', 
+        'Memorial Services'
+    ];
+    const optionIcons = [
+        { type: Icons.Octicons, name:"home", },
+        { type: Icons.FontAwesome5, name:"birthday-cake", },
+        { type: Icons.MaterialCommunityIcons, name:"human-male-child", },
+        { type: Icons.FontAwesome5, name:"home", },
+        { type: Icons.MaterialCommunityIcons, name:"water-plus", },
+        { type: Icons.AntDesign, name:"heart", },
+        { type: Icons.MaterialCommunityIcons, name:"candle", },
+      ];
+    
     const [index,setIndex] = useState(0);
     const [show,setShow] = useState(false);
-
+    console.log(index);
 
 
     return (<View style={{ backgroundColor: '#0F0F0F', flex: 1,flexDirection: 'column',alignItems:'center',paddingBottom:30}}>
@@ -62,9 +81,58 @@ const RequestForm = ({navigation}) => {
             dropdownTextStyle={styles.dropdownTextStyle}
             dropdownTextHighlightStyle={styles.dropdownTextHighlightStyle}
             onSelect={(e)=>{
-                console.log(e);
-                setIndex(e);
+                setIndex(e)
             }}
+           
+        
+            renderRow={(option,Index,isSelected)=>{
+                const item=optionIcons[Index];
+                return (
+                    
+
+                    <View
+                    style={[
+                    {
+                        flexDirection:'row',
+                        alignItems: 'center',
+                        paddingVertical:10,
+                        paddingHorizontal:5,
+                        backgroundColor:'#0F0F0F',
+                        borderWidth:0,
+                    }
+                    ]}
+                    >
+                    <Icon
+                    type={item?.type} 
+                    name={item?.name}
+                    size ={20}
+                    style={[
+                        !isSelected
+                        ?
+                        styles.dropdownTextStyle
+                        :
+                        styles.dropdownTextHighlightStyle
+                    ]
+                    }
+                    />
+
+                    <Text 
+                    style={[
+                        {marginLeft:10}
+                        ,
+                        !isSelected
+                        ?
+                        styles.dropdownTextStyle
+                        :
+                        styles.dropdownTextHighlightStyle
+                    ]
+                    }>{option}</Text>
+                    </View>
+         
+                )
+
+            }}
+
 
              />
         </View>
@@ -90,7 +158,7 @@ const GetForm = ({index,setShow})=>{
     }
 
     if (index === 1){
-        return <CelebrateBirthday  setShow={setShow}/ >;
+        return <CelebrateBirthday  setShow={setShow}/>;
     }
 
 
@@ -152,11 +220,9 @@ const styles = StyleSheet.create({
      texts:{
         width:(width * 0.92),
      },
-    // dropdownStyle:{
-    //     width:width,
-    //     margin:0,
-    //     backgroundColor:'transparent',
-    // }
+    dropdownStyle:{
+        height:250,
+    }
 });
 
 export {styles};

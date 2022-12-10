@@ -29,13 +29,13 @@ const FuneralService = ({setShow}) => {
     };
 
     const submit=()=>{
-        console.log(data)
+        // console.log(data)
         sendFom(data).then((res)=>{
             console.log(res);
             setData(intitial)
             setShow(true);
         }).catch((e)=>{
-            console.log(e);
+            alert('Some thing went Wrong, Try again');
         })
     }
 
@@ -49,7 +49,7 @@ const FuneralService = ({setShow}) => {
 
             <RequestFormDetail
                 autoCompleteValue={'name'}
-                placeholderName={'Name of Birthday Person'}
+                placeholderName={'Name of deceased person'}
                 type="text"
                 name={'name'}
                 value={data.name}

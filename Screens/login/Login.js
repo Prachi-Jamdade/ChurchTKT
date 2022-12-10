@@ -47,14 +47,14 @@ class Login extends React.Component{
     sendOtp = (props) =>{
         sendOtpToNumber(this.state.phoneNumber,true)
         .then((data)=>{
-            console.log(data);
+            // console.log(data);
             if (!data.isValid){
-                return console.log('User not exits');
+                return alert('User not exits');
             }
             props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber,isLogin:true});
         })
         .catch((e)=>{
-            console.log('Some thing went wrong');
+            alert('Some thing went wrong');
         });
     }
 

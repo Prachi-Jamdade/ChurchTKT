@@ -55,7 +55,7 @@ const Offerings = ({navigation})=>{
             alert('Plament Made Successfully');
           }).catch((error) => {
             // handle failure
-            console.log(error);
+            // console.log(error);
             alert('Some thing went Wrong, Try again');
           });
         } catch (e){

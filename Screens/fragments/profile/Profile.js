@@ -28,7 +28,7 @@ class Profile extends React.Component{
 
     setShow(show){
         this.setState({show:show});
-        console.log(this.state)
+        // console.log(this.state)
     }
 
     constructor(props){

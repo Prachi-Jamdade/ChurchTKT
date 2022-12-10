@@ -43,10 +43,10 @@ class Registration extends React.Component {
     }
 
     sendOtp = (props) =>{
-        sendOtpToNumber(this.state.phoneNumber,true)
+        sendOtpToNumber(this.state.phoneNumber,false)
         .then((data)=>{
             if (!data.isValid){
-                return console.log('User exits');
+                return alert('Looks like you have already an account,please login');
             }
             props.navigation.navigate('VerifyOtp',
             {
@@ -57,7 +57,7 @@ class Registration extends React.Component {
             });
         })
         .catch((e)=>{
-            console.log('Some thing went wrong');
+            alert('Some thing went wrong');
         });
     }
 

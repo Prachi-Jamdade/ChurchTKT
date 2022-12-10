@@ -28,11 +28,11 @@ const Stack = createNativeStackNavigator();
 
 function MainStackNavigator({navigation,route}) {
 
-const {setUser,setUserLogin}=useContext(AppContext);
+const {setUser,setUserLogin,isUserLogin}=useContext(AppContext);
 
   const getData = async () => {
     const value = await AsyncStorage.getItem('user')
-    console.log(value);
+    // console.log(value);
     if(value===null) {
       setUserLogin(false);
       navigation.navigate('Login');
@@ -46,7 +46,7 @@ const {setUser,setUserLogin}=useContext(AppContext);
 
   useEffect(()=>{
     getData();
-  },[]);
+  },[isUserLogin]);
 
     return (
       <Stack.Navigator

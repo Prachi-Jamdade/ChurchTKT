@@ -42,14 +42,14 @@ class VerifyOtp extends React.Component{
             });
             })
             .catch((e)=>{
-                console.log('In vaild Otp');
+                alert('In vaild Otp');
             });
         }else{
             const {firstName,lastName}=this.props.route.params;
             sigUpOtpVerification(phoneNumber,firstName,lastName,this.otp)
             .then((data)=>{
                 if (!data.isValid){
-                    return console.log('In vaild Otp');
+                    return alert('In vaild Otp');
                 }
                 AsyncStorage.setItem('user', JSON.stringify(data)).then(()=>{
                     this.context.setUser(data);
@@ -58,7 +58,7 @@ class VerifyOtp extends React.Component{
                 });
             })
             .catch((e)=>{
-                console.log('In vaild Otp');
+                alert('In vaild Otp');
             });
 
         }

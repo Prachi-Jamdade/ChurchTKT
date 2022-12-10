@@ -81,6 +81,13 @@ async function eventsSPM() {
 	);
 	return res.data;
 }
+async function getDailyDose() {
+	const APIWithToken=await getAPIWithToken();
+	const res = await APIWithToken.get(
+		'/daily_manna/active',
+	);
+	return res.data;
+}
 
 async function todayWord() {
 	const APIWithToken=await getAPIWithToken();
@@ -108,6 +115,7 @@ export {
     generatePaymentSPM,
     getLiveEvent,
     todayWord,
+	getDailyDose,
 };
 
 
