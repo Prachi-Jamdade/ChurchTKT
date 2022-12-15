@@ -141,7 +141,7 @@ const RequestForm = ({ navigation }) => {
         </View>
 
 
-        <View style={{flex:1, alignSelf: 'flex-start', justifyContent: 'space-around', backgroundColor: '#161616', borderRadius: 20}}>
+        <View style={{flex:2, marginTop: (100/5), paddingVertical: 10, alignItems: 'center', flexDirection: 'column', backgroundColor: '#161616', borderRadius: 20}}>
             <Text style={[{ color: 'white', marginStart: 15, marginTop: 20, padding: 2, fontSize: 16, fontFamily: 'Montserrat-Medium' }, styles.texts]}>We need some details</Text>
 
             <GetForm index={index} setShow={setShow} />

@@ -68,58 +68,61 @@ const Home = ({navigation}) => {
                     <Text style= {styles.headerDark}>Sagar!</Text>
                     </View>
                 </View>
+                
                 <View style= {[styles.box]}>
               
-                <View style = {styles.container}>
-                <ScrollView
-                    pagingEnabled
-                    horizontal
-                    onScroll={change}
-                    showsHorizontalScrollIndicator = {false}
-                >
-                    {
-                    videoLink.map((data, index) => (
-                        <View key={index} style={styles.homeTopCard}>
-                            <YoutubePlayer
-                                height={300}
-                                play={true}
-                                videoId={data.videoId}
-                                style = {styles.images}
-                            />
-                    
-                        </View>
-                    ))
-                    }
-                </ScrollView>
+              <View style = {styles.container}>
+              <ScrollView
+                  pagingEnabled
+                  horizontal
+                  onScroll={change}
+                  showsHorizontalScrollIndicator = {false}
+              >
+                  {
+                  videoLink.map((data, index) => (
+                      <View key={index} style={styles.homeTopCard}>
+                          <YoutubePlayer
+                              height={300}
+                              play={true}
+                              videoId={data.videoId}
+                              style = {styles.images}
+                          />
+                  
+                      </View>
+                  ))
+                  }
+              </ScrollView>
+
+              </View>
+
+              {/* <View style = {styles.pagination}>
+                  {
+                  videoLink.map((i,k) => (
+                  <Text key={k} style={ k === active ? styles.pagingActive :  styles.pagingText} />
+                  ))
+                  }
+              </View> */}
+
+              <ScrollView 
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              >
+              <View style={styles.list}>
+                  <View>
+                      <Text style={[styles.headerDark,styles.fullW,{marginBottom:20}]}>
+                      Upcoming Events
+                      </Text>
+                  </View>
+                  {
+                      homeEvents.map((value,index)=>{
+                          return <HomeCard key={value.eventId} {...value}/>;
+                      })
+                  }
+              </View>
+              </ScrollView>
 
                 </View>
-
-                {/* <View style = {styles.pagination}>
-                    {
-                    videoLink.map((i,k) => (
-                    <Text key={k} style={ k === active ? styles.pagingActive :  styles.pagingText} />
-                    ))
-                    }
-                </View> */}
-
-                <ScrollView 
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                >
-                <View style={styles.list}>
-                    <View>
-                        <Text style={[styles.headerDark,styles.fullW,{marginBottom:20}]}>
-                        Upcoming Events
-                        </Text>
-                    </View>
-                    {
-                        homeEvents.map((value,index)=>{
-                            return <HomeCard key={value.eventId} {...value}/>;
-                        })
-                    }
-                </View>
-                </ScrollView>
-                </View>
+                
             </View>
         )
 }
@@ -200,9 +203,12 @@ const styles = StyleSheet.create({
     main : {flex: 1, backgroundColor:'#0F1013'},
     box : {
         width,
+        backgroundColor: '#1E1E1E',
         flexDirection:'column',
         alignItems: 'center',
+        borderRadius: 20,
         flex: 1,
+        marginTop: 20
     },
     cardText:{
         color:'white',
