@@ -115,8 +115,8 @@ class VerifyOtp extends React.Component {
 export default VerifyOtp;
 const styles = StyleSheet.create({
     dehigligtedText: { color: '#989898', marginTop: 6, marginLeft: 16, fontSize: 16, fontFamily: 'Montserrat-Medium' },
-    timmer: { color: '#E23045', marginTop: 6, marginLeft: 10, marginEnd: 16, fontSize: 16 },
-    redText: { color: '#E23045', marginTop: 6, marginLeft: 10, marginEnd: 16, fontSize: 16, textDecorationLine: 'underline',  fontFamily: 'Montserrat-Medium' },
+    timmer: { color: '#E23045', marginTop: 6, marginLeft: 5, marginEnd: 5, fontSize: 16, fontFamily: 'Montserrat-Medium' },
+    redText: { color: '#E23045', marginTop: 6, marginRight: 30, marginEnd: 16, fontSize: 16, textDecorationLine: 'underline',  fontFamily: 'Montserrat-Medium' },
     roundedTextInput: {
         borderRadius: 10,
         borderWidth: 1,

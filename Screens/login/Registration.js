@@ -122,7 +122,7 @@ export default Registration;
 
 const styles = StyleSheet.create({
     dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
-    timmer:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16},
+    timmer:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
     redText:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16, textDecorationLine:'underline'},
     roundedTextInput: {
         borderRadius: 10,

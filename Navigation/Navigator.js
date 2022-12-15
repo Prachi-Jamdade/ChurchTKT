@@ -22,6 +22,7 @@ import OffErings from '../Screens/fragments/explore/Offerings';
 import SpmOffErings from '../Screens/fragments/explore/SpmOfferings';
 import Spm from '../Screens/fragments/explore/Spm';
 import RequestSent from '../Screens/fragments/explore/RequestSent';
+import JoinSPM from '../Screens/fragments/explore/JoinSPM';
 // import screens
 
 const Stack = createNativeStackNavigator();
@@ -129,6 +130,11 @@ const {setUser,setUserLogin,isUserLogin}=useContext(AppContext);
           <Stack.Screen
             name='Spm'
             component={Spm}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='JoinSPM'
+            component={JoinSPM}
             options={{ headerShown: false }}
           />
     </Stack.Navigator>

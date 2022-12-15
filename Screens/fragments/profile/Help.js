@@ -3,10 +3,10 @@ import gobalStyle from '../../styles/index';
 
 
 import {
-    SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableHighlight,TouchableOpacity, LayoutAnimation, Button
+    SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableHighlight, TouchableOpacity, LayoutAnimation, Button
 } from 'react-native'
 
-import Icon,{Icons} from '../Icons' 
+import Icon, { Icons } from '../Icons'
 
 
 const CONTENT = [
@@ -14,14 +14,14 @@ const CONTENT = [
         isExpanded: false,
         category_name: 'Who are we?',
         sub_category: [
-            { id: 1, val: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.' },
+            { id: 1, val: "The King’s Temple Church started with a gathering of 10 in 1986 under the leadership of Bishop Samuel Patta and his team. Today, the church is home to more than 10,000 people worshipping across 7 services over the weekend. \n\nThe King’s Temple church is a word and prayer-based church. \n\nThe Vision of the church is to build lives through the Word of Faith. To accomplish this, the Church runs its own Foundation of Faith course for every member. It has its own Bible College. Church also hosts Life Transformation Camps which teach about salvation and Holy Spirit." },
         ]
     },
     {
         isExpanded: false,
         category_name: 'Where we are located?',
         sub_category: [
-            { id: 2, val: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.' }
+            { id: 2, val: "We host our services every friday and sunday at Clock Tower Second Bazaar Maruthi Veedhi, Shivaji Nagar, Hyderabad, Telangana 500003. Can't wait to worship with you." }
         ]
     },
     {
@@ -86,7 +86,7 @@ const ExpandableComponent = ({ item, onClick }) => {
     )
 }
 
-const Help = ({navigation}) => {
+const Help = ({ navigation }) => {
 
     const [multiSelect, setMultiSelect] = useState(false);
     const [listDataSource, setListDataSource] = useState(CONTENT);
@@ -109,54 +109,57 @@ const Help = ({navigation}) => {
     return (
         <SafeAreaView style={gobalStyle.main}>
             <View style={styles.container}>
-            <TouchableHighlight onPress={()=>{
+                <TouchableHighlight onPress={() => {
                     navigation.navigate("Profile");
                 }}>
-                <View style={gobalStyle.nav}>
-                    <View>
+                    <View style={gobalStyle.nav}>
+                        <View>
 
-                    <Icon
-                    style={{paddingStart: 12}}
-                    type={Icons.MaterialIcons}
-                    size={25}
-                    name="arrow-back-ios"
-                    color= 'white'
-                    />
+                            <Icon
+                                style={{ paddingStart: 12 }}
+                                type={Icons.MaterialIcons}
+                                size={25}
+                                name="arrow-back-ios"
+                                color='white'
+                            />
+                        </View>
+                        <Text style={gobalStyle.nav_header}>Help</Text>
+
                     </View>
-                    <Text style={gobalStyle.nav_header}>Help</Text>
+                </TouchableHighlight>
+                <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width: '100%', height: '100%', marginTop: 10 }}>
+                    {
+                        listDataSource.map((item, key) => (
+                            <ExpandableComponent
+                                style={{ marginTop: 10 }}
+                                key={item.category_name}
+                                item={item}
+                                onClick={() => {
+                                    updateLayout(key)
+                                }}
+                            />
+                        ))
+                    }
 
-                </View>
-                    </TouchableHighlight>
-                {
-                    listDataSource.map((item, key) => (
-                        <ExpandableComponent
-                            key={item.category_name}
-                            item={item}
-                            onClick={() => {
-                                updateLayout(key)
-                            }}
-                        />
-                    ))
-                }
+                    <View style={{
+                        padding: 12,
+                        margin: 2.5
+                    }}>
 
-                <View style={{
-                    padding: 12,
-                    margin: 2.5
-                }}>
+                        <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 20, color: 'white' }}>Need some help?</Text>
 
-                    <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 20,color: 'white'}}>Need some help?</Text>
+                        <Text style={{ fontFamily: 'Montserrat-Medium', fontSize: 16, color: 'white', marginVertical: 20 }}>If you are stuck somewhere, we have got you covered</Text>
 
-                    <Text style={{ fontFamily: 'Montserrat-Medium', fontSize: 16,color: 'white', marginVertical: 20}}>If you are stuck somewhere, we have got you covered</Text>
+                        <View style={{ marginVertical: 10 }}></View>
+                        <TouchableOpacity style={styles.chatSupportBtn}
+                            onPress={() => navigation.navigate('Profile')}
+                            underlayColor='#fff'
+                        >
+                            <Text style={styles.loginText}>Chat Support</Text>
 
-                    <View style={{marginVertical: 10}}></View>
-                    <TouchableOpacity style={styles.chatSupportBtn}
-                        onPress={() => navigation.navigate('Profile')}
-                        underlayColor='#fff'
-                    >
-                        <Text style={styles.loginText}>Chat Support</Text>
+                        </TouchableOpacity>
 
-                    </TouchableOpacity>
-
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
@@ -170,9 +173,9 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 30, 
-        marginHorizontal: 16, 
-        marginBottom:30,
+        marginTop: 30,
+        marginHorizontal: 16,
+        marginBottom: 30,
         fontFamily: 'Montserrat-Medium'
     },
     titleText: {
@@ -182,13 +185,14 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     item: {
-        backgroundColor: '#0F0F0F',
+        borderRadius: 20,
+        backgroundColor: '#1E1E1E',
         padding: 20
     },
     itemText: {
         fontSize: 16,
         color: 'white',
-        opacity:0.7,
+        opacity: 0.7,
         fontFamily: 'Montserrat-Medium'
     },
     content: {
@@ -199,12 +203,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         padding: 10,
         color: 'white',
-        opacity:0.7,
+        opacity: 0.7,
         fontFamily: 'Montserrat-Regular'
     },
     separator: {
         height: 0,
-        backgroundColor: '#C8C8C8',
+        backgroundColor: '#1E1E1E',
         width: '100%'
     },
     chatSupportBtn: {
@@ -212,11 +216,11 @@ const styles = StyleSheet.create({
         marginStart: 5,
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor:'#F79D16',
-        borderRadius:4,
+        backgroundColor: '#F79D16',
+        borderRadius: 4,
         borderWidth: 0.3,
         borderColor: '#fff',
-        
+
     },
     loginText: {
         fontSize: 16,

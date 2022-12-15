@@ -43,13 +43,14 @@ const Offerings =({navigation})=>{
                         titleStyle= {{
                             letterSpacing: 2,
                         }}
-                        title="JOIN SPM" />
+                        title="JOIN SPM"
+                        onPress={() => navigation.navigate('JoinSPM')} />
                 </View>
                 <Text style= {styles.DescriptionText}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.
+                Partnering with samuel patta ministries is a powerful way to expand the reach and impact of the King's Temple Church. No matter how you choose to give, your support is invaluable in helping the ministry to achieve its goals and make a positive impact in the world. 
                 </Text>
                 <Text style= {styles.DescriptionText}>
-                Praesent maecenas metus, elit, netus at lobortis enim, a. Venenatis, magnis et, ut aliquet. Tempor at enim sit sed viverra id purus morbi enim. Pretium ut massa, quam cursus. Malesuada arcu sollicitudin enim congue eu sollicitudin bibendum morbi.
+                So, if you are considering partner with us, know that your support is greatly appreciated and will make a real difference in the lives of others. By giving generously and faithfully, you can help to advance the work of the church and bring more people into a relationship with Christ.
                 </Text>
 
                     <TouchableHighlight

@@ -13,6 +13,7 @@ import img1 from '../assests/onboardScreen1.png';
 import img2 from '../assests/onboardScreen2.png';
 import img3 from '../assests/onboardScreen3.png';
 import gobalStyle from '../styles/index';
+import AutoScroll from "@homielab/react-native-auto-scroll";
 
 
 const {width} = Dimensions.get('window');
