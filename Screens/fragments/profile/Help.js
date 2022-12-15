@@ -116,6 +116,7 @@ const Help = ({navigation}) => {
                     <View>
 
                     <Icon
+                    style={{paddingStart: 12}}
                     type={Icons.MaterialIcons}
                     size={25}
                     name="arrow-back-ios"
@@ -143,9 +144,9 @@ const Help = ({navigation}) => {
                     margin: 2.5
                 }}>
 
-                    <Text style={{fontWeight: '600', fontSize: 20,color: 'white'}}>Need some help?</Text>
+                    <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 20,color: 'white'}}>Need some help?</Text>
 
-                    <Text style={{fontWeight: '400', fontSize: 16,color: 'white', marginVertical: 20}}>If you are stuck somewhere, we have got you covered</Text>
+                    <Text style={{ fontFamily: 'Montserrat-Medium', fontSize: 16,color: 'white', marginVertical: 20}}>If you are stuck somewhere, we have got you covered</Text>
 
                     <View style={{marginVertical: 10}}></View>
                     <TouchableOpacity style={styles.chatSupportBtn}
@@ -172,11 +173,12 @@ const styles = StyleSheet.create({
         marginTop: 30, 
         marginHorizontal: 16, 
         marginBottom:30,
+        fontFamily: 'Montserrat-Medium'
     },
     titleText: {
         flex: 1,
         fontSize: 22,
-        fontWeight: 'bold',
+        fontFamily: 'Montserrat-Medium',
         color: 'white'
     },
     item: {
@@ -187,6 +189,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: 'white',
         opacity:0.7,
+        fontFamily: 'Montserrat-Medium'
     },
     content: {
         paddingHorizontal: 10,
@@ -197,6 +200,7 @@ const styles = StyleSheet.create({
         padding: 10,
         color: 'white',
         opacity:0.7,
+        fontFamily: 'Montserrat-Regular'
     },
     separator: {
         height: 0,
@@ -204,19 +208,20 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     chatSupportBtn: {
-        marginHorizontal: 20,
-        paddingHorizontal: 20,
+        width: 200,
+        marginStart: 5,
+        paddingHorizontal: 10,
         paddingVertical: 10,
         backgroundColor:'#F79D16',
         borderRadius:4,
-        borderWidth: 0.5,
+        borderWidth: 0.3,
         borderColor: '#fff',
         
     },
     loginText: {
-        fontSize: 17,
+        fontSize: 16,
         textAlign: 'center',
-        fontWeight: '500',
+        fontFamily: 'Montserrat-Medium',
         color: 'white'
     }
 })

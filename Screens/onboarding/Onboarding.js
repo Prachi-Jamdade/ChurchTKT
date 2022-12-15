@@ -84,16 +84,18 @@ class Onboarding extends React.Component{
               </View>
               <View style = {styles.bottomButtons}>
               <TouchableHighlight
-                style={gobalStyle.btn2}
+                style={gobalStyle.btn1}
                 onPress={() => {this.SignUp(this.props);}}
                 underlayColor="#fff">
                   <Text style={gobalStyle.submitText}>Join Us</Text>
               </TouchableHighlight>
-              <View>
-                <Text style = {styles.or}>----------- or -----------</Text>
+              <View flexDirection='row' justifyContent='center' alignItems='center'>
+                <Image source={require('../assests/white_separator.png')} style={{width: 150}} />
+                <Text style = {styles.or}>OR</Text>
+                <Image source={require('../assests/white_separator.png')} style={{width: 150}} />
               </View>
               <TouchableHighlight
-                style={gobalStyle.btn1}
+                style={gobalStyle.btn2}
                 onPress={() => {this.Login(this.props);}}
                 underlayColor="#fff">
                   <Text style={gobalStyle.submitText}>Login</Text>
@@ -139,10 +141,10 @@ const styles = StyleSheet.create({
        borderRadius:50,
       },
     pagingActive : {fontSize: (width / 30) ,width:20,height:9, backgroundColor: '#FFBE18', margin: 3,borderRadius:50,transitionDuration:10},
-    text : {fontSize: 15 , color : 'white',alignSelf : 'center', marginTop: 8, marginHorizontal: 16},
+    text : {fontSize: 15, color : 'white',alignSelf : 'center', textAlign: 'center', marginTop: 8, marginHorizontal: 16, fontFamily: 'Montserrat-SemiBold'},
     contentContainer: {flex: 1},
-    or : {alignSelf: 'center', color: '#888'},
-    bottomButtons : { flex: 1, flexDirection: 'column', justifyContent: 'space-around', marginHorizontal: 16},
+    or : {alignSelf: 'center', color: '#888', fontSize: 16, padding: 10, letterSpacing: 2},
+    bottomButtons : { flex: 1, flxexDirection: 'column', justifyContent: 'space-around', marginHorizontal: 16},
     textAll:{
       marginTop:5,
     },

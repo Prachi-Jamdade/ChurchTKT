@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     separatingText: {
-        fontWeight: 'bold', 
+        fontFamily: 'Montserrat-SemiBold',
         color: 'white', 
         fontSize: 18, 
         marginStart: 12, 

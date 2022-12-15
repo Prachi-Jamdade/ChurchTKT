@@ -53,7 +53,7 @@ const CommunityCard = ({navigation,image,title,description,about,index,setIndex}
                     <Text  style={styles.cardBoxDescriptionText}>{description}</Text>
                          <Icon
                             type={Icons.AntDesign}
-                            size={20}
+                            size={24}
                             name="rightcircleo"
                             color= 'white'
                          />

@@ -33,7 +33,7 @@ const ProfileComponent = ({imgSource, componentName, onClick}) => {
                 size ={25}
              />
 
-            <Text style={{color: "white", padding:15, fontSize:17, fontWeight:"400", width:230}}>{componentName}</Text>
+            <Text style={{color: "white", padding:15, fontSize:17,  fontFamily: 'Montserrat-Medium', width:230}}>{componentName}</Text>
 
             <Ionicons name='chevron-forward-outline' size={20} color="white" style={{padding:2, marginHorizontal:8}} />
 

@@ -80,8 +80,8 @@ const Offerings = ({navigation})=>{
             <View style={styles.card}>
                 <View style={{flex: 1}}>
 
-                <Text style={{fontWeight: 'bold', color: 'white', fontSize: 18}}>Enter the amount</Text>
-                <Text style={{color: 'gray', fontSize: 12, marginTop: 12}}>How much would you love to offer us, Enter the amount here.</Text>
+                <Text style={{fontFamily: 'Montserrat-Medium', color: 'white', fontSize: 18}}>Enter the amount</Text>
+                <Text style={{ fontFamily: 'Montserrat-Regular', color: 'gray', fontSize: 14, marginTop: 12, marginBottom: 14}}>How much would you love to offer us, Enter the amount here.</Text>
                 <TextInput style={styles.input}
                     underlineColorAndroid = "transparent"
                     placeholder = "Amount (in INR)"
@@ -98,7 +98,7 @@ const Offerings = ({navigation})=>{
                     style={gobalStyle.btn_abs}
                     onPress={() => {getOrder();}}
                    >
-                    <Text style={[gobalStyle.submitText]}>PAY</Text>
+                    <Text style={[gobalStyle.submitText]}>GIVE</Text>
                 </TouchableHighlight>
 
 
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
         borderColor: '#989898',
         borderWidth: 1,
         borderRadius: 10,
+        fontFamily: 'Montserrat-Regular'
     },
 
 });

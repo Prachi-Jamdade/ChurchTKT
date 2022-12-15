@@ -68,13 +68,13 @@ class Login extends React.Component{
                         underlineColorAndroid = "transparent"
                         placeholder = "Mobile No"
                         keyboardType = 'number-pad'
-                        placeholderTextColor = "white"
+                        placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleNumber}/>
                 </View>
 
                 <View style= {styles.helper}>
-                    <Text style = {styles.dehigligtedText}>Don't have an account yet ?</Text>
+                    <Text style = {styles.dehigligtedText}>Don't have an account yet?</Text>
                     <Text style = {styles.signUp} onPress={()=>{
                         this.props.navigation.navigate('Registration');
                     }}>Sign Up</Text>
@@ -93,19 +93,22 @@ class Login extends React.Component{
 }
 
 const styles = StyleSheet.create({
-    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16},
+    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
     input: {
         margin: 15,
         height: 50,
         padding: 10,
         color: 'white',
+        marginVertical: 16,
         fontSize: 16,
+        paddingStart: 20,
         borderColor: '#989898',
-        borderWidth: 1,
+        borderWidth: 2,
         borderRadius: 10,
+        fontFamily: 'Montserrat-Regular'
     },
     helper: {flexDirection: 'row', alignSelf: 'flex-end'},
-    signUp:{color: '#E23045',marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16},
+    signUp:{color: '#E23045',marginTop: 6, marginLeft:8, marginEnd: 20, fontSize: 16, fontFamily: 'Montserrat-Medium'},
 });
 
 export default Login;

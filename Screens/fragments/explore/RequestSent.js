@@ -12,7 +12,7 @@ const RequestSent = ({navigation,setShow}) => {
 
                 <Text style={styles.header}>Request Sent</Text>
 
-                <Text style={styles.text}>Thank you so much for giving your valuable feedback</Text>
+                <Text style={styles.text}>Thank you so much for sending your request</Text>
 
                 <TouchableOpacity style={styles.chatSupportBtn}
                 // provide naviate path
@@ -31,11 +31,12 @@ const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     chatSupportBtn: {
+        marginTop: 8,
         marginHorizontal: 20,
         paddingHorizontal: 20,
         paddingVertical: 10,
         backgroundColor: '#F79D16',
-        borderRadius: 4,
+        borderRadius: 5,
         borderWidth: 0.5,
         borderColor: '#fff',
         width:width*0.8,
@@ -43,8 +44,9 @@ const styles = StyleSheet.create({
     loginText: {
         color:'white',
         textAlign: 'center',
-        fontWeight:'bold',
-        fontSize: 17,
+        fontWeight:'medium',
+        fontSize: 16,
+        fontFamily: 'Montserrat-Regular'
     },
     container:{
         position:'absolute',
@@ -68,6 +70,7 @@ const styles = StyleSheet.create({
         color:'white',
         marginTop: 20,
         marginBottom: 5,
+        fontFamily: 'Montserrat-Medium'
     },
     text:{
         color:'white',
@@ -75,6 +78,7 @@ const styles = StyleSheet.create({
         textAlign:'center',
         lineHeight:20,
         marginBottom: 20,
+        fontFamily: 'Montserrat-Regular'
     }
 })
 

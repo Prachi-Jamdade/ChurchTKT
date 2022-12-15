@@ -55,7 +55,10 @@ const styles = StyleSheet.create({
     loginText: {
         color:'white',
         textAlign: 'center',
-        fontSize: 15,
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium',
+        textTransform: 'uppercase',
+        letterSpacing: 1
     },
     container:{
         position:'absolute',
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
     },
     header:{
         fontSize:18,
-        fontWeight:'bold',
+        fontFamily: 'Montserrat-Medium',
         color:'white',
         marginBottom: 40,
     },
@@ -88,6 +91,7 @@ const styles = StyleSheet.create({
         textAlign:'center',
         lineHeight:20,
         marginBottom: 20,
+        fontFamily: 'Montserrat-Medium'
     }
 })
 

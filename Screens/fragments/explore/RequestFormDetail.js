@@ -209,7 +209,7 @@ const RequestFormDetail = (props) => {
             <View
                 style={{
                     borderBottomColor: '#000000',
-                    borderBottomWidth: 0.5,
+                    borderBottomWidth: 0.2,
                 }}>
                 {
                     getInput(props)

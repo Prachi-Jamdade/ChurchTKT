@@ -30,7 +30,7 @@ const CelebrateBirthday = ({setShow}) => {
             setData(intitial)
             setShow(true);
         }).catch((e)=>{
-            alert('Some thing went Wrong, Try again');
+            alert('Something went Wrong, Try again');
         })
     }
 
@@ -69,7 +69,7 @@ const CelebrateBirthday = ({setShow}) => {
 
             <RequestFormDetail
                 autoCompleteValue={'birthdate-full'}
-                placeholderName={'Date of Birth'}
+                placeholderName={'Birthday Date'}
                 type="date"
                 value={data.eventDate}
                 name="eventDate"

@@ -36,6 +36,7 @@ const AccountDetails = ({navigation})=> {
                     <View>
 
                     <Icon
+                    style={{paddingStart: 10}}
                     type={Icons.MaterialIcons}
                     size={25}
                     name="arrow-back-ios"
@@ -47,18 +48,18 @@ const AccountDetails = ({navigation})=> {
                 </View>
             </TouchableHighlight>
 
-        <View style={{alignItems:'center', justifyContent:'center', padding:50}}>
+        <View style={{alignItems:'center', justifyContent:'center', padding:30}}>
             <Image
                 source={require('../../assests/UserPic.png')}
-                style={{width: 150, height: 150, borderRadius:150 / 2}}
+                style={{width: 130, height: 130, borderRadius:130 / 2}}
             />
 
-            <Text style={{color: '#F79D16', padding:20, fontSize:18, fontWeight:'400'}}>Change Profile Picture</Text>
+            <Text style={{color: '#F79D16', padding:10, fontSize:18, fontFamily: 'Montserrat-Regular'}}>Change Profile Picture</Text>
         </View>
 
         <View style={{padding:5, margin:10}}>
 
-            <Text style={{color: '#808080', fontSize:18, fontWeight:'400', margin: 10}}>Name</Text>
+            <Text style={{color: '#808080', fontSize:18, fontFamily: 'Montserrat-Regular', margin: 10}}>Name</Text>
 
             <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -69,7 +70,7 @@ const AccountDetails = ({navigation})=> {
                 onChangeText = {handleName}
                 />
 
-            <Text style={{color: '#808080', fontSize:18, fontWeight:'400', margin: 10}}>Mobile</Text>
+            <Text style={{color: '#808080', fontSize:18,  fontFamily: 'Montserrat-Regular', margin: 10}}>Mobile</Text>
 
             <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -86,12 +87,18 @@ const AccountDetails = ({navigation})=> {
 
 const styles = StyleSheet.create({
     input: {
-        margin: 15,
+        height: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 5,
+        marginHorizontal: 10,
         height: 40,
         borderColor: '#343739',
         borderWidth: 1,
         paddingHorizontal:10,
-        color: 'white'
+        color: 'white',
+        fontSize: 16,
+        fontFamily: 'Montserrat-Regular'
      },
      header: {
         flexDirection: 'row',

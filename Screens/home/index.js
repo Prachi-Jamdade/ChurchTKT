@@ -62,10 +62,10 @@ const Home = ({navigation}) => {
                     style = {styles.image}/>
                     </View>
                     <View>
-                    <Text style= {styles.headerLight}>Hello ,</Text>
+                    <Text style= {styles.headerLight}>Hello,</Text>
                     </View>
                     <View>
-                    <Text style= {styles.headerDark}>Sagar !</Text>
+                    <Text style= {styles.headerDark}>Sagar!</Text>
                     </View>
                 </View>
                 <View style= {[styles.box]}>
@@ -129,8 +129,8 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
 
     let _description=description.slice(description.indexOf("<p>")+3,description.lastIndexOf("</p>"))
     let date=new Date(startDate);
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
     ];
     let _startDate=`${date.getMonth()}th ${monthNames[date.getMonth()]}`
 
@@ -138,7 +138,7 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
 
     return(
         <View style={styles.cardBox}>
-            <View style={{padding:8,paddingVertical:15}}>
+            <View style={{padding:12,paddingVertical:15}}>
 
             <Text style={styles.cardTitle}>{title}</Text>
             <Text style={styles.cardDescription}>{_description}</Text>
@@ -207,17 +207,19 @@ const styles = StyleSheet.create({
     cardText:{
         color:'white',
         marginLeft:5,
+        fontFamily: 'Montserrat-Medium'
     },
     headerLight : {
         color: 'white',
         fontSize: 22, 
         opacity:0.7,
-        paddingLeft:10
+        paddingLeft:10,
+        fontFamily: 'Montserrat-Medium'
     },
     headerDark : {
         color: 'white',
         fontSize: 22, 
-        fontWeight: 'bold',
+        fontFamily: 'Montserrat-SemiBold',
         paddingLeft:5
     },
     headerInfo : {
@@ -234,29 +236,33 @@ const styles = StyleSheet.create({
         borderRadius:14,
         color:'white',
         marginBottom:20,
-        borderWidth:0.8,
+        borderWidth:1,
         borderColor:'#3b3b3b',
     },
     cardTitle:{
         fontSize:16,
-        fontWeight: 'bold',
         color:'white',
         marginBottom:5,
+        fontFamily: 'Montserrat-Medium'
     },
     cardDescription:{
         marginBottom:5,
         color:'white',
+        fontFamily: 'Montserrat-Medium'
     },
     cardDescriptionIcon:{
         marginLeft:5,
         color:'white',
+        fontFamily: 'Montserrat-Medium'
     },
     fullW:{
         width:boxWidth,
     },
     row:{
         flexDirection:'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 2,
+        marginEnd: 15
     },
     rowToggle:{
         flexDirection:'row',
@@ -282,7 +288,8 @@ const styles = StyleSheet.create({
     homeTopCard:{
         width:boxWidth,
         position: 'relative',
-        borderRadius:14,
+        borderRadius: 20,
+        marginVertical:10
     },
     homeTopCardText:{
         position:'absolute',

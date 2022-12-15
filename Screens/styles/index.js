@@ -15,12 +15,11 @@ const styles = StyleSheet.create({
         marginTop: 30,
         color: 'white',
         marginHorizontal: 16,
-        fontFamily : 'Montserrat', 
+        fontFamily : 'Montserrat-Bold', 
         fontSize: 22, 
-        fontWeight: 'bold',
         flexDirection:'row',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 5,
     },
     nav: {
         marginTop: 30,
@@ -37,10 +36,9 @@ const styles = StyleSheet.create({
     },
     nav_header:{
         color: 'white',
-        fontFamily : 'Montserrat', 
+        fontFamily: 'Montserrat-SemiBold', 
         fontSize: 22, 
-        marginLeft:5,
-        fontWeight: 'bold',
+        marginLeft:5
     },
     bg:{
         backgroundColor:'#1E1E1E',
@@ -82,7 +80,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 20,
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 12,
         backgroundColor: '#FFBE18',
         borderRadius: 10,
         borderWidth: 1,
@@ -91,9 +89,11 @@ const styles = StyleSheet.create({
     },
     submitText:{
         fontSize: 17,
-        fontWeight: '500',
+        textTransform: 'uppercase',
         textAlign: 'center',
         color: 'white',
+        fontFamily: 'Montserrat-SemiBold',
+        letterSpacing: 1
     }
   });
 

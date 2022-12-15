@@ -71,7 +71,7 @@ class Registration extends React.Component {
                         underlineColorAndroid = "transparent"
                         placeholder = "First Name"
                         keyboardType = 'name-phone-pad'
-                        placeholderTextColor = "white"
+                        placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleFirstName}/>
                 </View>
@@ -80,7 +80,7 @@ class Registration extends React.Component {
                         underlineColorAndroid = "transparent"
                         placeholder = "Last Name"
                         keyboardType = 'name-phone-pad'
-                        placeholderTextColor = "white"
+                        placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleLastName}/>
                 </View>
@@ -89,7 +89,7 @@ class Registration extends React.Component {
                         underlineColorAndroid = "transparent"
                         placeholder = "Mobile No"
                         keyboardType = 'number-pad'
-                        placeholderTextColor = "white"
+                        placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleNumber}/>
                 </View>
@@ -121,7 +121,7 @@ class Registration extends React.Component {
 export default Registration;
 
 const styles = StyleSheet.create({
-    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16},
+    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
     timmer:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16},
     redText:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16, textDecorationLine:'underline'},
     roundedTextInput: {
@@ -134,19 +134,20 @@ const styles = StyleSheet.create({
         width: '100%',
         marginVertical: 16,
         paddingHorizontal: 60,
-        color: 'white',
+        color :'#989898',
         letterSpacing: 0,
         borderColor: 'white',
     },
     helper: {flexDirection: 'row', alignSelf: 'flex-end'},
     input: {
-        margin: 15,
+        margin: 16,
         height: 50,
-        padding: 10,
+        paddingStart: 20,
         color: 'white',
         fontSize: 16,
-        borderColor: '#989898',
-        borderWidth: 1,
+        borderColor: '#292929',
+        borderWidth: 2,
         borderRadius: 10,
+        fontFamily: 'Montserrat-Regular'
     },
 });

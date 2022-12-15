@@ -21,8 +21,8 @@ import Profile from './profile/Profile';
 const TabArr = [
     { route: 'Home', label: 'Home', type: Icons.Octicons, name:"home", component: Home },
     { route: 'Explore', label: 'Explore', type: Icons.Feather, name:"globe", component: Explore },
-    { route: 'Community', label: 'Community', type: Icons.Feather, name:"users", component: Community },
-    { route: 'Profile', label: 'Profile', type: Icons.AntDesign, name:"user", component: Profile },
+    { route: 'Community', label: 'Community', type: Icons.FontAwesome5, name:"users", component: Community },
+    { route: 'Profile', label: 'Profile', type: Icons.Feather, name:"user", component: Profile },
   ];
 
 const Tab = createBottomTabNavigator();
@@ -44,26 +44,26 @@ class BottomTabs extends React.Component{
     TabButton = (props) => {
         const { item, onPress, accessibilityState } = props;
         const focused = accessibilityState.selected;
-        // const viewRef =useRef(null);
-        // useEffect(() => {
-        //   if (focused) {
-        //     this.viewRef.current.animate({0: {scale: .5, rotate: '0deg'}, 1: {scale: 1.5, rotate: '360deg'}});
-        //   } else {
-        //     this.viewRef.current.animate({0: {scale: 1.5, rotate: '360deg'}, 1: {scale: 1, rotate: '0deg'}});
-        //   }
-        // }, [focused])
+        const viewRef =useRef(null);
+        useEffect(() => {
+          if (focused) {
+            this.viewRef.current.animate({0: {scale: .5, rotate: '0deg'}, 1: {scale: 1.5, rotate: '360deg'}});
+          } else {
+            this.viewRef.current.animate({0: {scale: 1.5, rotate: '360deg'}, 1: {scale: 1, rotate: '0deg'}});
+          }
+        }, [focused])
       
         return (
           <TouchableOpacity
             onPress={onPress}
             activeOpacity={1}
             style={styles.container}>
-            {/* <Animatable.View
-            //   ref={viewRef}
+            <Animatable.View
+              ref={viewRef}
               duration={1000}
               style={styles.container}>
               <Icon type={item.type} name={focused ? item.activeIcon : item.inActiveIcon}/>
-            </Animatable.View> */}
+            </Animatable.View>
           </TouchableOpacity>
         );
     }
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
       padding:10,
       paddingTop:7,
       borderRadius:10,
-      backgroundColor:'rgba(255, 190, 24, 0.05)',
+      backgroundColor:'rgba(255, 200, 30, 0.1)',
     },
     bar:{
       height: 75,
@@ -131,12 +131,13 @@ const styles = StyleSheet.create({
       bottom: 0,
       right: 0,
       left: 0,
-      borderTopLeftRadius: 16,
-      borderTopRightRadius: 16,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
       paddingTop:12,
       width,
       backgroundColor: 'black',
-      borderColor:'#FFBE18'
+      borderTopColor:'#FFBE18',
+      borderTopWidth: 1
     }
-});
+}); 
 

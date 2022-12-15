@@ -8,7 +8,7 @@ const Socials = () => {
         alignItems:'center',
         justifyContent:'center'
     }}>
-        <Text style={{color: "white", padding:15, fontSize:17, fontWeight:"400",} }>Follow us on</Text>
+        <Text style={{color: "white", padding:15, fontSize:17, fontFamily: 'Montserrat-Regular'} }>Follow us on</Text>
         <View style={{
             flexDirection:'row',
             alignItems:'center',

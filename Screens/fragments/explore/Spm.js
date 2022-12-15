@@ -33,7 +33,7 @@ const Offerings =({navigation})=>{
             <View style={styles.card}>
                 <View style={[{flexDirection: 'column'},styles.fullW]}>
                         <ImageElement source={ImageFreame2} />
-                        {/* <Button buttonStyle={{
+                        <Button buttonStyle={{
                             backgroundColor: '#FFA318',
                             borderRadius: 12,
                             width:'100%',
@@ -43,7 +43,7 @@ const Offerings =({navigation})=>{
                         titleStyle= {{
                             letterSpacing: 2,
                         }}
-                        title="Join SPM" /> */}
+                        title="JOIN SPM" />
                 </View>
                 <Text style= {styles.DescriptionText}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.
@@ -57,7 +57,7 @@ const Offerings =({navigation})=>{
                     >
                 <View style={[{flexDirection: 'column',backgroundColor: '#4FF491',marginTop:20,borderRadius: 12},styles.fullW]}>
                         <View style={[
-                            {flexDirection: 'row',alignItems:'center',paddingVertical:40,
+                            {flexDirection: 'row',alignItems:'center',paddingVertical:30,
                             justifyContent:'center',
                         }]}>
 
@@ -74,6 +74,7 @@ const Offerings =({navigation})=>{
                             }}
                             titleStyle= {{
                                 letterSpacing: 2,
+                                fontFamily: 'Montserrat-Medium'
                             }}
                             title="Give" />
                 </View>
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
         color: 'white',
         width: (width * 0.9),
         marginVertical:10,
+        fontFamily: 'Montserrat-Medium'
     },
 
 });
