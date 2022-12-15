@@ -39,14 +39,16 @@ class Profile extends React.Component {
         return (
             <View style={{ alignItems: 'center', backgroundColor: '#0F0F0F', height: '100%' }}>
 
-                <Text style={[gobalStyle.header, { alignSelf: 'flex-start' }]}>
+                <Text style={[gobalStyle.header, { alignSelf: 'flex-start', marginBottom: 20 }]}>
                     Profile
                 </Text>
 
-                <View style={{ borderColor: '#1E1E1E', height: 200, borderRadius: 20, flexDirection: 'column', alignItems: 'center' }} >
+                <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
+                    
+         
                     <Image
                         source={require('../../assests/UserPic.png')}
-                        style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
+                        style={{ width: 100, height: 100, borderRadius: 100 / 2, marginTop: 20 }}
                     />
 
                     <Text style={{ color: "white", padding: 20, fontSize: 18, fontFamily: 'Montserrat-SemiBold' }}>{this.context?.user?.firstName + " " + this.context?.user?.lastName}</Text>

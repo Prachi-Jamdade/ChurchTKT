@@ -48,7 +48,8 @@ const AccountDetails = ({navigation})=> {
                 </View>
             </TouchableHighlight>
 
-        <View style={{alignItems:'center', justifyContent:'center', padding:30}}>
+            <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
+            <View style={{alignItems:'center', justifyContent:'center', padding:30}}>
             <Image
                 source={require('../../assests/UserPic.png')}
                 style={{width: 130, height: 130, borderRadius:130 / 2}}
@@ -57,9 +58,10 @@ const AccountDetails = ({navigation})=> {
             <Text style={{color: '#F79D16', padding:10, fontSize:18, fontFamily: 'Montserrat-Regular'}}>Change Profile Picture</Text>
         </View>
 
-        <View style={{padding:5, margin:10}}>
+        <View style={{padding:5, margin:10, width: '100%', margin: 10}}>
 
-            <Text style={{color: '#808080', fontSize:18, fontFamily: 'Montserrat-Regular', margin: 10}}>Name</Text>
+            <Text style={{color: '#808080', fontSize:18, fontFamily: 'Montserrat-Regular', margin: 10, marginStart: 20,
+        marginEnd: 20,}}>Name</Text>
 
             <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -70,7 +72,8 @@ const AccountDetails = ({navigation})=> {
                 onChangeText = {handleName}
                 />
 
-            <Text style={{color: '#808080', fontSize:18,  fontFamily: 'Montserrat-Regular', margin: 10}}>Mobile</Text>
+            <Text style={{color: '#808080', fontSize:18,  fontFamily: 'Montserrat-Regular', margin: 10, marginStart: 20,
+        marginEnd: 20,}}>Mobile</Text>
 
             <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -80,6 +83,7 @@ const AccountDetails = ({navigation})=> {
                 value={data.phoneNo}
                 onChangeText = {handleMobile} />
         </View>
+            </View>
     </View>
     );
 
@@ -92,6 +96,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginVertical: 5,
         marginHorizontal: 10,
+        marginStart: 20,
+        marginEnd: 20,
         height: 40,
         borderColor: '#343739',
         borderWidth: 1,
