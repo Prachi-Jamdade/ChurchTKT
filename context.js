@@ -9,9 +9,17 @@ import {getLiveEvent,getDailyDose} from './Screens/api/explore';
 function AppContextProvider({children}) {
 	const [ user, setUser ] = useState(null);
 	const [ homeEvents, setHomeEvents ] = useState([]);
-	const [ videoLink, setVideoLink ] = useState([{
+	const [ videoLink, setVideoLink ] = useState([
+        {
         "videoId":"1nTd931luNM",
-    }]);
+        },
+        {
+        "videoId":"1nTd931luNM",
+        },
+        {
+        "videoId":"1nTd931luNM",
+        },
+]);
 	const [ isUserLogin, setUserLogin ] = useState(false);
 
     function clear(navigation){
@@ -27,18 +35,18 @@ function AppContextProvider({children}) {
 
     async function getHomeEvent(){
         const data=await getAllHomeEvent();
-        setHomeEvents(data);
-        let video=await getLiveEvent();
-        if(!video?.sourceUrl){
-            video=await getDailyDose();   
-        }
-        console.log(video);
-        if(!video?.sourceUrl){
-            return;
-        }
-        const list=video?.sourceUrl.split("/");
-        const videoId=list[list.length-1];
-        setVideoLink([{videoId}]);
+        setHomeEvents([...data,...data,...data,...data]);
+        // let video=await getLiveEvent();
+        // if(!video?.sourceUrl){
+        //     video=await getDailyDose();   
+        // }
+        // console.log(video);
+        // if(!video?.sourceUrl){
+        //     return;
+        // }
+        // const list=video?.sourceUrl.split("/");
+        // const videoId=list[list.length-1];
+        // setVideoLink([{videoId}]);
     }
     
 	return (

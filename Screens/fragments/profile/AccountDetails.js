@@ -91,7 +91,6 @@ const AccountDetails = ({navigation})=> {
 
 const styles = StyleSheet.create({
     input: {
-        height: 60,
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: 5,

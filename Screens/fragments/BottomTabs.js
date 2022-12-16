@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef,useEffect } from 'react';
 import {
     View,
     Text,
@@ -44,14 +44,14 @@ class BottomTabs extends React.Component{
     TabButton = (props) => {
         const { item, onPress, accessibilityState } = props;
         const focused = accessibilityState.selected;
-        const viewRef =useRef(null);
-        useEffect(() => {
-          if (focused) {
-            this.viewRef.current.animate({0: {scale: .5, rotate: '0deg'}, 1: {scale: 1.5, rotate: '360deg'}});
-          } else {
-            this.viewRef.current.animate({0: {scale: 1.5, rotate: '360deg'}, 1: {scale: 1, rotate: '0deg'}});
-          }
-        }, [focused])
+        // const viewRef =useRef(null);
+        // useEffect(() => {
+        //   if (focused) {
+        //     this.viewRef.current.animate({0: {scale: .5, rotate: '0deg'}, 1: {scale: 1.5, rotate: '360deg'}});
+        //   } else {
+        //     this.viewRef.current.animate({0: {scale: 1.5, rotate: '360deg'}, 1: {scale: 1, rotate: '0deg'}});
+        //   }
+        // }, [focused])
       
         return (
           <TouchableOpacity
@@ -59,7 +59,7 @@ class BottomTabs extends React.Component{
             activeOpacity={1}
             style={styles.container}>
             <Animatable.View
-              ref={viewRef}
+              // ref={viewRef}
               duration={1000}
               style={styles.container}>
               <Icon type={item.type} name={focused ? item.activeIcon : item.inActiveIcon}/>

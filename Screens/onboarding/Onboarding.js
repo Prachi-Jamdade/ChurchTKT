@@ -8,6 +8,7 @@ import {
     ScrollView,
     TouchableHighlight,
 } from 'react-native';
+import { Keyboard } from "react-native";
 
 import img1 from '../assests/onboardScreen1.png';
 import img2 from '../assests/onboardScreen2.png';
@@ -20,7 +21,7 @@ const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
 
 const images = [img1,img2,img3];
-const infos = ['Connect to the divinity of the almighty lord.','A helping hand in the darkness of life.','A community of people who care for you.'];
+const infos = ['Access all our sermons and live stream.','Request for any church services with a single tap.','Join a community of people who care for you.'];
 
 
 class Onboarding extends React.Component{
@@ -28,6 +29,9 @@ class Onboarding extends React.Component{
 
   constructor(props) {
     super(props);
+    this.props.navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+    })
   }
 
     state = {
@@ -50,7 +54,7 @@ class Onboarding extends React.Component{
 
     render(){
         return (
-            <View style={gobalStyle.main}>
+            <View style={styles.main}>
 
               <View style = {styles.container}>
                 <ScrollView
@@ -85,7 +89,7 @@ class Onboarding extends React.Component{
               </View>
               <View style = {styles.bottomButtons}>
               <TouchableHighlight
-                style={gobalStyle.btn1}
+                style={[gobalStyle.btn1,{ padding:0}]}
                 onPress={() => {this.SignUp(this.props);}}
                 underlayColor="#fff">
                   <Text style={gobalStyle.submitText}>Join Us</Text>
@@ -96,7 +100,7 @@ class Onboarding extends React.Component{
                 <Image source={require('../assests/white_separator.png')} style={{width: 150}} />
               </View>
               <TouchableHighlight
-                style={gobalStyle.btn2}
+                style={[gobalStyle.btn2,{ padding:0,marginTop:0}]}
                 onPress={() => {this.Login(this.props);}}
                 underlayColor="#fff">
                   <Text style={gobalStyle.submitText}>Login</Text>
@@ -109,6 +113,9 @@ class Onboarding extends React.Component{
 }
 
 const styles = StyleSheet.create({
+    main:{
+      flex: 1, backgroundColor:'black',
+    },
     container: {
       marginTop: 0,
       width,
@@ -144,10 +151,18 @@ const styles = StyleSheet.create({
     pagingActive : {fontSize: (width / 30) ,width:20,height:9, backgroundColor: '#FFBE18', margin: 3,borderRadius:50,transitionDuration:10},
     text : {fontSize: 15, color : 'white',alignSelf : 'center', textAlign: 'center', marginTop: 8, marginHorizontal: 16, fontFamily: 'Montserrat-SemiBold'},
     contentContainer: {flex: 1},
-    or : {alignSelf: 'center', color: '#888', fontSize: 16, padding: 10, letterSpacing: 2},
-    bottomButtons : { flex: 1, flxexDirection: 'column', justifyContent: 'space-around', marginHorizontal: 16},
+    or : {alignSelf: 'center', color: '#888', fontSize: 16, padding: 10},
+    bottomButtons : { 
+      flex: 1, 
+      flxexDirection: 'column', 
+      marginHorizontal: 16,
+      marginTop:20,
+      justifyContent:'space-around',
+    },
     textAll:{
-      marginTop:5,
+      marginVertical:20,
+      marginHorizontal:30,
+      height:50
     },
   });
 

@@ -23,13 +23,6 @@ const CONTENT = [
         sub_category: [
             { id: 2, val: "We host our services every friday and sunday at Clock Tower Second Bazaar Maruthi Veedhi, Shivaji Nagar, Hyderabad, Telangana 500003. Can't wait to worship with you." }
         ]
-    },
-    {
-        isExpanded: false,
-        category_name: 'Why should you join us?',
-        sub_category: [
-            { id: 3, val: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.' },
-        ]
     }
 ]
 
@@ -72,7 +65,7 @@ const ExpandableComponent = ({ item, onClick }) => {
 
                             <Text style={styles.text}>
 
-                                {key}. {item.val}
+                               {item.val}
 
                             </Text>
 
@@ -197,7 +190,7 @@ const styles = StyleSheet.create({
     },
     content: {
         paddingHorizontal: 10,
-        backgroundColor: '#0F0F0F',
+        // backgroundColor: '#0F0F0F',
     },
     text: {
         fontSize: 16,

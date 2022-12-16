@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     list: { 
         backgroundColor:'#0F0F0F',
         borderRadius: 24,
-        marginBottom: 100,
+        marginBottom: 110,
         paddingBottom:20,
         width:boxWidth,
         flex:1,
@@ -176,14 +176,14 @@ const styles = StyleSheet.create({
         height:width/2,
         width:boxWidth,
         borderRadius: 24,
-        padding:20,
+        paddingHorizontal:20,
+        paddingVertical:5,
         displayflexDirection:'column',
         justifyContent: 'flex-end',
         marginBottom:15,
     },
     cardTextBox:{
-        width:boxWidth*0.85
-        ,
+        width:boxWidth*0.85,
     },
     cardImage:{
         position:'absolute',
@@ -215,7 +215,9 @@ const styles = StyleSheet.create({
     cardTextBoxDescription:{
         display:'flex',
         flexDirection:'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
+        
+
     },
     DescriptionText:{
         fontSize: 15,
