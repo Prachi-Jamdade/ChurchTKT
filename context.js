@@ -31,14 +31,11 @@ function AppContextProvider({children}) {
 
     async function getHomeEvent(){
         const data=await getAllHomeEvent();
-        setHomeEvents([...data,...data,...data,...data]);
+        setHomeEvents([...data]);
         let video1=await getLiveEvent();
         const list=await getAllDaiyMana();
-
         const newVideo=list.map((item)=>{return {videoId:find(item.sourceUrl)}});
-
         console.log(newVideo);
-
         setVideoLink(newVideo);
     }
 
