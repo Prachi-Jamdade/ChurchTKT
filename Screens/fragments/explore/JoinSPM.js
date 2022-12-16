@@ -30,11 +30,11 @@ const JoinSPM = () => {
 
     return (
         <View>
-            <Text>
+            <Text style={boldText}>
                 We need some details
             </Text>
 
-            <Text>
+            <Text style={lightText}>
                 Please provide us some of your information to be a part of SPM
             </Text>
 
@@ -56,7 +56,7 @@ const JoinSPM = () => {
                 onChangeText={handleFatherName}
             />
 
-            <Text>Gender</Text>
+            <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 16, margin:10, color: 'white'}}>Gender</Text>
             <Text style={{ fontFamily: 'Montserrat-Medium', color: 'white', fontSize: 18 }}>Enter the amount you want to commit: </Text>
             <TextInput style={styles.input}
                 underlineColorAndroid="transparent"
@@ -95,6 +95,22 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         fontFamily: 'Montserrat-Regular'
+    },
+    boldText: {
+        fontFamily: 'Montserrat-SemiBold',
+        fontSize: 14,
+        margin: 10,
+        color: 'white',
+    },
+    lightText: {
+        fontFamily: 'Montserrat-Regular',
+        fontSize: 15,
+        margin: 10,
+        marginBottom: 10,
+        color: '#989898'
+    },
+    normalText: {
+        
     }
 })
 
