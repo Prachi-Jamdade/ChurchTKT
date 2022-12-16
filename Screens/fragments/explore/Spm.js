@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState,useContext} from 'react';
 import {
     View,
     Text,
@@ -13,9 +13,25 @@ import ImageFreame2 from '../../assests/frame2.png';
 import {Icons} from '../Icons';
 import gobalStyle from '../../styles/index';
 import JoinSPM from './JoinSPM';
+import {getSPMFrom} from '../../api/requestForms';
+
+import {AppContext} from '../../../context';
 
 
 const Offerings =({navigation})=>{
+
+    const [isJoin,setIsJoin]=useState(null);
+    const {user}=useContext(AppContext);
+
+    useEffect(()=>{
+        getSPMFrom(user.userId).then((e)=>{
+            setIsJoin(true);
+            setIsJoin("JOINED");
+        }).catch((e)=>{
+            console.log(e);
+            setIsJoin("JOIN SPM");
+        })
+    },[user.userId])
 
 
         return (
@@ -44,8 +60,12 @@ const Offerings =({navigation})=>{
                         titleStyle= {{
                             letterSpacing: 2,
                         }}
-                        title="JOIN SPM"
-                        onPress={() => navigation.navigate('JoinSPM')} />
+                        title={isJoin==null?"JOIN SPM":isJoin}
+                        onPress={() => {
+                            if(isJoin==null || isJoin=="JOINED") return;
+                            navigation.navigate('JoinSPM')
+                        }
+                        } />
                 </View>
                 <Text style= {styles.DescriptionText}>
                 Partnering with samuel patta ministries is a powerful way to expand the reach and impact of the King's Temple Church. No matter how you choose to give, your support is invaluable in helping the ministry to achieve its goals and make a positive impact in the world. 
