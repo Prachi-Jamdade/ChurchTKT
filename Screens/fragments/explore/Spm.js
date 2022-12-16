@@ -12,6 +12,7 @@ import ImageBackUp from '../../assests/icons/back.png';
 import ImageFreame2 from '../../assests/frame2.png';
 import {Icons} from '../Icons';
 import gobalStyle from '../../styles/index';
+import JoinSPM from './JoinSPM';
 
 
 const Offerings =({navigation})=>{
