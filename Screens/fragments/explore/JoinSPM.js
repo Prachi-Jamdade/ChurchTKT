@@ -158,11 +158,11 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     lightText: {
-        fontFamily: 'Montserrat-Regular',
+        fontFamily: 'Montserrat-Medium',
         fontSize: 16,
         margin: 10,
         marginBottom: 10,
-        color: '#989898'
+        color: '#989898',
     },
     normalText: {
        
