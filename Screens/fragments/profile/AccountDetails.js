@@ -2,18 +2,24 @@ import React,{useState,useContext,useEffect} from 'react';
 import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput } from 'react-native';
 import Icon,{Icons} from '../Icons';
 import {AppContext} from '../../../context';
+import {launchImageLibrary} from 'react-native-image-picker';
 import gobalStyle from '../../styles/index';
+import RNFS from 'react-native-fs';
+import {styles as btnS} from '../explore/RequestForm';
+import {updateUserData,getProfileDetails} from '../../api/authication'
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const AccountDetails = ({navigation})=> {
     const [data,setData] = useState( {
         name: '',
         phoneNo: '',
     });
+    const [isEditOn,setEditOn] = useState(false);
 
-    const {user}=useContext(AppContext);
+    const {user,profileUrl,setProfileUrl,setUser}=useContext(AppContext);
 
     useEffect(()=>{
-        setData({name:user.firstName+" "+user.lastName,phoneNo:user.phoneNumber})
+        setData({name:user.firstName,phoneNo:user.phoneNumber})
     },[user])
 
 
@@ -25,6 +31,49 @@ const AccountDetails = ({navigation})=> {
     const handleMobile = (text) => {
         setData({...data,mobile: text});
     };
+
+    const handleChoosePhoto = () => {
+        const options = {
+          noData: true,
+        };
+        launchImageLibrary(options, (response) => {
+          if(response.assets.length==1){
+              RNFS.readFile(response.assets[0].uri, 'base64')
+              .then(res =>{
+                  updateUserData({...user,profileUrl:`data:${response.assets[0].type};base64`+","+res}).then(
+                    (e)=>{
+                        setProfileUrl(`data:${response.assets[0].type};base64`+","+res);
+                  })
+            });
+            }
+        
+          if (response.uri) {
+            console.log(response.uri);
+          }
+        });
+      };
+
+    const handleSubmite = () => {
+
+        console.log(data)
+     
+        updateUserData({...user,profileUrl,firstName:data.name,phoneNumber:data.phoneNo})
+        .then((e)=>{
+            console.log("update")
+            getProfileDetails(user.userId)
+            .then((data)=>{
+                data.profileUrl=null;
+                data.token=user.token;
+                AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
+                    setUser(data);
+                    setEditOn(false);
+                });
+            })
+            .catch((e)=>console.log(e))
+        })
+         
+      };
+
 
     return (
     <View style={gobalStyle.main}>
@@ -50,12 +99,26 @@ const AccountDetails = ({navigation})=> {
 
             <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
             <View style={{alignItems:'center', justifyContent:'center', padding:30}}>
-            <Image
+
+            {
+                profileUrl
+                ?
+                <Image
+                source={{uri: profileUrl}}
+                style={{width: 130, height: 130, borderRadius:130 / 2}}
+                />
+                :
+                <Image
                 source={require('../../assests/UserPic.png')}
                 style={{width: 130, height: 130, borderRadius:130 / 2}}
-            />
+                />
+            }
+
+            <TouchableHighlight onPress={handleChoosePhoto}>
 
             <Text style={{color: '#F79D16', padding:10, fontSize:18, fontFamily: 'Montserrat-Regular'}}>Change Profile Picture</Text>
+            </TouchableHighlight>      
+
         </View>
 
         <View style={{padding:5, margin:10, width: '100%', margin: 10}}>
@@ -69,6 +132,7 @@ const AccountDetails = ({navigation})=> {
                 placeholderTextColor = "#808080"
                 autoCapitalize = "none"
                 value={data.name}
+                editable={isEditOn}
                 onChangeText = {handleName}
                 />
 
@@ -81,9 +145,35 @@ const AccountDetails = ({navigation})=> {
                 placeholderTextColor = "#808080"
                 autoCapitalize = "none"
                 value={data.phoneNo}
+                editable={isEditOn}
                 onChangeText = {handleMobile} />
-        </View>
             </View>
+
+            <View style={{flexDirection: 'column',alignItems:'center',marginTop:30}}>
+                <TouchableHighlight style={btnS.chatSupportBtn}
+                // provide navigate path
+                onPress={
+
+                    ()=>{
+                        if(isEditOn){
+                            handleSubmite()
+                        }else{
+                            setEditOn(true)
+                        }
+                    }
+                }
+                underlayColor="#fff"
+                >
+                    {
+                        isEditOn
+                        ?
+                        <Text style={btnS.loginText}>Save</Text>
+                        :
+                        <Text style={btnS.loginText}>Edit</Text>
+                    }
+                </TouchableHighlight>
+        </View>
+        </View>
     </View>
     );
 

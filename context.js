@@ -3,22 +3,18 @@ import { createContext } from 'react';
 const AppContext = createContext();
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getAllHomeEvent} from './Screens/api/home';
-import {getLiveEvent,getDailyDose} from './Screens/api/explore';
+import {getLiveEvent} from './Screens/api/explore';
+import {getAllDaiyMana} from './Screens/api/home';
 
 
 function AppContextProvider({children}) {
 	const [ user, setUser ] = useState(null);
 	const [ homeEvents, setHomeEvents ] = useState([]);
+	const [ profileUrl, setProfileUrl ] = useState(null);
 	const [ videoLink, setVideoLink ] = useState([
         {
         "videoId":"1nTd931luNM",
-        },
-        {
-        "videoId":"1nTd931luNM",
-        },
-        {
-        "videoId":"1nTd931luNM",
-        },
+        }
 ]);
 	const [ isUserLogin, setUserLogin ] = useState(false);
 
@@ -36,31 +32,35 @@ function AppContextProvider({children}) {
     async function getHomeEvent(){
         const data=await getAllHomeEvent();
         setHomeEvents([...data,...data,...data,...data]);
-        // let video=await getLiveEvent();
-        // if(!video?.sourceUrl){
-        //     video=await getDailyDose();   
-        // }
-        // console.log(video);
-        // if(!video?.sourceUrl){
-        //     return;
-        // }
-        // const list=video?.sourceUrl.split("/");
-        // const videoId=list[list.length-1];
-        // setVideoLink([{videoId}]);
+        let video1=await getLiveEvent();
+        const list=await getAllDaiyMana();
+
+        const newVideo=list.map((item)=>{return {videoId:find(item.sourceUrl)}});
+
+        console.log(newVideo);
+
+        setVideoLink(newVideo);
+    }
+
+    function find(sourceUrl){
+        const list=sourceUrl.split("/");
+        return list[list.length-1];
     }
     
 	return (
         // eslint-disable-next-line react/react-in-jsx-scope
         <AppContext.Provider value={
             { 
-            user,
             setUser,
             setUserLogin,
             clear,
             getHomeEvent,
+            setProfileUrl,
+            user,
             homeEvents,
             isUserLogin,
-            videoLink
+            videoLink,
+            profileUrl
             }
             }>
             {children}

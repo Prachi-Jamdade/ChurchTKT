@@ -40,7 +40,7 @@ const {setUser,setUserLogin,isUserLogin}=useContext(AppContext);
       return;
     }
     setUserLogin(true);
-    setUser({...JSON.parse(value),token:''});
+    setUser({...JSON.parse(value)});
   };
 
 
@@ -90,11 +90,6 @@ const {setUser,setUserLogin,isUserLogin}=useContext(AppContext);
           <Stack.Screen
           name='BottomTabs'
           component={BottomTabs}
-          options={{ headerShown: false }}
-          />
-          <Stack.Screen
-          name='Home'
-          component={Home}
           options={{ headerShown: false }}
           />
           <Stack.Screen

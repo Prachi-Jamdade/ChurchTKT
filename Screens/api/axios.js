@@ -22,4 +22,4 @@ const getAPIWithToken = async () => {
 
 
 
-export {API,getAPIWithToken};
+export {API,getAPIWithToken,baseUrl};

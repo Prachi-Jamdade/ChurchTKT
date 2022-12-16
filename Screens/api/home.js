@@ -9,7 +9,15 @@ async function getAllHomeEvent() {
 	return res.data;
 }
 
+async function getAllDaiyMana() {
+	const APIWithToken=await getAPIWithToken();
+	const res = await APIWithToken.get(
+		'/daily_manna/all',
+	);
+	return res.data;
+}
 
-export {getAllHomeEvent};
+
+export {getAllHomeEvent,getAllDaiyMana};
 
 

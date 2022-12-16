@@ -14,6 +14,7 @@ import { AppContext } from '../../../context';
 import gobalStyle from '../../styles/index';
 import { Icons } from '../Icons';
 import LogoutAlert from './LogoutAlert';
+import {getProfileDetails} from '../../api/authication';
 class Profile extends React.Component {
 
     state = {
@@ -35,6 +36,13 @@ class Profile extends React.Component {
         super(props);
     }
 
+    componentDidMount(){
+        const {user,setUser,profileUrl, setProfileUrl}=this.context;
+        getProfileDetails(user.userId).then((data)=>{
+            setProfileUrl(data.profileUrl)
+        }).catch((e)=>console.log(e))
+    }
+
     render() {
         return (
             <View style={{ alignItems: 'center', backgroundColor: '#0F0F0F', height: '100%' }}>
@@ -44,12 +52,21 @@ class Profile extends React.Component {
                 </Text>
 
                 <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
-                    
-         
+                            
+                {
+                    this.context.profileUrl
+                    ?
                     <Image
-                        source={require('../../assests/UserPic.png')}
+                    source={{uri: this.context.profileUrl}}
                         style={{ width: 100, height: 100, borderRadius: 100 / 2, marginTop: 20 }}
                     />
+                    :
+                    <Image
+                    source={
+                        require('../../assests/UserPic.png')}
+                        style={{ width: 100, height: 100, borderRadius: 100 / 2, marginTop: 20 }}
+                    />
+                }
 
                     <Text style={{ color: "white", padding: 20, fontSize: 18, fontFamily: 'Montserrat-SemiBold' }}>{this.context?.user?.firstName + " " + this.context?.user?.lastName}</Text>
 

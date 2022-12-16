@@ -1,31 +1,21 @@
 import React, {useContext} from 'react';
-import {
-    View,
-    Image,
-    StyleSheet,
-    Dimensions,
-    ImageBackground,
-    Layout,
-    Text,
-    Modal,
-    Button
-} from 'react-native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Onboarding from '../onboarding/Onboarding'
-import Login from '../login/Login';
+import  {Text} from 'react-native';
 import { AppContext } from '../../context';
 
 
-let logged = false;
-const Stack = createNativeStackNavigator();
 
-const Launch = ({navigation}) => {
+const Launch = ({navigation,route}) => {
+
     const {isUserLogin}=useContext(AppContext);
+    const  isLogin = route?.params?.isLogin;
+    console.log(isUserLogin,isLogin)
+    const isLoginUser= isUserLogin || isLogin;
+
 
     return (
         <>
         {
-            !isUserLogin ? navigation.navigate('Onboarding') : navigation.navigate('BottomTabs')
+            isLoginUser ? navigation.navigate('BottomTabs'): navigation.navigate('Onboarding')
         }
         </>
     )
