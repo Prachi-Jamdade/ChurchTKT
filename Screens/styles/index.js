@@ -9,7 +9,7 @@ const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
 
 const styles = StyleSheet.create({
-    main : {flex: 1, backgroundColor:'#0F1013'},
+    main : {flex: 1, backgroundColor:'black'},
     container: {marginTop: 0},
     header : {
         marginTop: 30,

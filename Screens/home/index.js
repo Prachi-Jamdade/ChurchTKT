@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React,{useState,useEffect,useContext} from 'react';
 import {
     Text,
@@ -36,7 +37,7 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 const Home = ({navigation}) => {
 
     const [active,setActive]=useState(0);
-    const {homeEvents,getHomeEvent,videoLink}=useContext(AppContext);
+    const {homeEvents,getHomeEvent,videoLink,user}=useContext(AppContext);
 
     useEffect(() => {
         if(homeEvents.length===0){
@@ -65,7 +66,7 @@ const Home = ({navigation}) => {
                     <Text style= {styles.headerLight}>Hello,</Text>
                     </View>
                     <View>
-                    <Text style= {styles.headerDark}>Sagar!</Text>
+                    <Text style= {styles.headerDark}>{user?.firstName}!</Text>
                     </View>
                 </View>
                 
@@ -82,8 +83,8 @@ const Home = ({navigation}) => {
                   videoLink.map((data, index) => (
                       <View key={index} style={styles.homeTopCard}>
                           <YoutubePlayer
-                              height={300}
-                              play={true}
+                              height={200}
+                            //   play={true}
                               videoId={data.videoId}
                               style = {styles.images}
                           />
@@ -95,13 +96,13 @@ const Home = ({navigation}) => {
 
               </View>
 
-              {/* <View style = {styles.pagination}>
+              <View style = {styles.pagination}>
                   {
                   videoLink.map((i,k) => (
                   <Text key={k} style={ k === active ? styles.pagingActive :  styles.pagingText} />
                   ))
                   }
-              </View> */}
+              </View>
 
               <ScrollView 
               showsVerticalScrollIndicator={false}
@@ -139,6 +140,12 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
 
     const [isEnabled,setIsEnabled]=useState(false);
 
+    function formatTime(timeString) {
+        const [hourString, minute] = timeString.split(":");
+        const hour = +hourString % 24;
+        return (hour % 12 || 12) + ":" + minute + (hour < 12 ? "AM" : "PM");
+    }
+
     return(
         <View style={styles.cardBox}>
             <View style={{padding:12,paddingVertical:15}}>
@@ -168,7 +175,8 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
                     <Text style={styles.cardDescriptionIcon}>{location}</Text>
                 </View>
             </View>
-            <View style={[styles.row,styles.cardIcons]}>
+            <View style={[styles.row,styles.cardIcons,{borderBottomLeftRadius:14,
+        borderBottomRightRadius:14}]}>
                 <View style={styles.row}>
                     <Icon 
                     type={Icons.MaterialIcons}
@@ -185,7 +193,7 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
                     size={20}
                     color="white"
                     />
-                    <Text style={styles.cardDescriptionIcon}>{startTime}</Text>
+                    <Text style={styles.cardDescriptionIcon}>{formatTime(startTime)}</Text>
                 </View>
             </View>
         </View>
@@ -208,7 +216,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 20,
         flex: 1,
-        marginTop: 20
+        marginTop: 20,
+        paddingTop:20,
     },
     cardText:{
         color:'white',
@@ -226,7 +235,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 22, 
         fontFamily: 'Montserrat-SemiBold',
-        paddingLeft:5
+        paddingLeft:5,
+        textTransform: 'capitalize',
     },
     headerInfo : {
         color: 'white',
@@ -279,23 +289,24 @@ const styles = StyleSheet.create({
     cardIcons:{
         justifyContent:'space-between',
         backgroundColor:'#0F0D0B',
-        borderBottomLeftRadius:14,
-        borderBottomRightRadius:14,
         paddingVertical:8,
         paddingHorizontal:10,
+        width:boxWidth,
     },
     container: {
         width :boxWidth,
-        height:(height/5),
         zIndex:-1,
-        marginBottom:20,
+        marginBottom:5,
         borderRadius:14,
     },
     homeTopCard:{
         width:boxWidth,
-        position: 'relative',
         borderRadius: 20,
-        marginVertical:10
+        marginVertical:10,
+        paddingTop:25,
+        paddingLeft:20,
+        paddingRight:20,
+        backgroundColor:'black',
     },
     homeTopCardText:{
         position:'absolute',
@@ -304,6 +315,7 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         justifyContent: 'center',
         width :boxWidth,
+       
     },
     homeTopCardTextDate:{
         fontSize:12,
@@ -316,16 +328,14 @@ const styles = StyleSheet.create({
         color:'white',
     },
     images: {
-        width :boxWidth,
-        height:(height/5),
+        width :boxWidth-20,
         borderRadius:14,
-        position:'absolute',
         zIndex:-10,
     },
     pagination : {
         flexDirection : 'row',
         alignSelf: 'center',
-        marginBottom:10,
+        marginBottom:15,
     },
     pagingText : {
         fontSize: (width / 30) ,
@@ -345,7 +355,7 @@ const styles = StyleSheet.create({
         transitionDuration:10
     },
     list: { 
-        backgroundColor:'#0F0F0F',
+        // backgroundColor:'#0F0F0F',
         borderRadius: 24,
         marginTop: 5,
         marginBottom: 60,

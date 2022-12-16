@@ -48,9 +48,9 @@ const CommunityCard = ({navigation,image,title,description,about,index,setIndex}
                     source = {image[0]}
                     style = {styles.cardImage}/>
                 <View style={styles.cardTextBox}>
-                    <Text style= {styles.cardTextBoxheader}>{title}</Text>
+                    {/* <Text style= {styles.cardTextBoxheader}>{title}</Text> */}
                     <View style={styles.cardTextBoxDescription}>
-                    <Text  style={styles.cardBoxDescriptionText}>{description}</Text>
+                    {/* <Text  style={styles.cardBoxDescriptionText}>{description}</Text> */}
                          <Icon
                             type={Icons.AntDesign}
                             size={24}

@@ -10,6 +10,7 @@ import { loginOtpVerification, sigUpOtpVerification } from '../api/authication'
 import { AppContext } from '../../context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import gobalStyle from '../styles/index';
+import {sendOtpToNumber} from '../api/authication';
 
 class VerifyOtp extends React.Component {
 
@@ -17,11 +18,18 @@ class VerifyOtp extends React.Component {
         otp: '',
         accepted: 'false',
         route: {},
+        timer:60*5,
+        timerRef:null,
     }
     static contextType = AppContext;
 
     constructor(props) {
         super(props);
+        const timerRef=setInterval(() =>{
+            if(this.state.timer==0) return;
+            this.setState({ timer:this.state.timer-1 })
+        },1000);
+        this.setState({timerRef:timerRef});
     }
 
     verify = () => {
@@ -65,6 +73,44 @@ class VerifyOtp extends React.Component {
         // alert(this.otp);
     }
 
+    resendOtp = () => {
+
+        if (!this.state.accepted) { return false; }
+        const { phoneNumber } = this.props.route.params;
+        const { isLogin } = this.props.route.params;
+
+
+        if (!isLogin) {
+            sendOtpToNumber(phoneNumber,false)
+                .then((data)=>{
+                    if (!data.isValid){
+                        return alert('Looks like you have already an account,please login');
+                    }
+                    alert('Send The New Otp');
+                    this.setState({ timer:60*5 })
+
+                })
+                .catch((e)=>{
+                    alert('Some thing went wrong');
+                });
+        } else {
+            sendOtpToNumber(phoneNumber,true)
+                .then((data)=>{
+                    // console.log(data);
+                    if (!data.isValid){
+                        return alert('User not exits');
+                    }
+                    this.setState({ timer:60*5 })
+                    alert('Send The New Otp');
+                })
+                .catch((e)=>{
+                    alert('Some thing went wrong');
+                });
+
+        }
+        // alert(this.otp);
+    }
+
     handleOTP = (text) => {
         if (text.length === 4) {
             this.otp = text;
@@ -73,6 +119,19 @@ class VerifyOtp extends React.Component {
         else {
             this.setState({ accepted: false });
         }
+    }
+
+    getMinutes=()=>{
+        return `0${Math.floor(this.state.timer/60)}`;
+    }
+
+    getSeconds =()=>{
+        let ans=this.state.timer-Math.floor(this.state.timer/60)*60;
+        return ans<10?`0${ans}`:ans;
+    }
+
+    getTime =()=>{
+        return `${this.getMinutes()}:${this.getSeconds()}`
     }
 
     render() {
@@ -93,10 +152,16 @@ class VerifyOtp extends React.Component {
                 <View style={{ flexDirection: 'row' }}>
                     <View style={{ width: '80%', flexDirection: 'row' }}>
                         <Text style={styles.dehigligtedText}>Expries in : </Text>
-                        <Text style={styles.timmer}>00:31</Text>
+                        <Text style={styles.timmer}>
+                            {this.getTime()}
+                        </Text>
                     </View>
                     <View style={{ width: '30%', alignSelf: 'flex-end' }}>
+                    <TouchableHighlight
+                    onPress={() => { this.resendOtp() }}
+                    >
                         <Text style={styles.redText}>Resend</Text>
+                    </TouchableHighlight>
                     </View>
                 </View>
                 <TouchableHighlight
