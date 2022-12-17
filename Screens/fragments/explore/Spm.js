@@ -18,20 +18,26 @@ import {getSPMFrom} from '../../api/requestForms';
 import {AppContext} from '../../../context';
 
 
-const Offerings =({navigation})=>{
+const Offerings =({navigation,route})=>{
 
     const [isJoin,setIsJoin]=useState(null);
     const {user}=useContext(AppContext);
 
     useEffect(()=>{
         getSPMFrom(user.userId).then((e)=>{
-            setIsJoin(true);
-            setIsJoin("JOINED");
+            // console.log(e);
+            setIsJoin(null);
+            if(e.status==200){
+                setIsJoin(true);
+                setIsJoin("JOINED");
+            }else{
+                setIsJoin("JOIN SPM");
+            }
         }).catch((e)=>{
             console.log(e);
             setIsJoin("JOIN SPM");
         })
-    },[user.userId])
+    },[user.userId,route])
 
 
         return (

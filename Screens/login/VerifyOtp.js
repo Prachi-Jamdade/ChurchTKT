@@ -29,7 +29,6 @@ class VerifyOtp extends React.Component {
             if(this.state.timer==0) return;
             this.setState({ timer:this.state.timer-1 })
         },1000);
-        this.setState({timerRef:timerRef});
     }
 
     verify = () => {
@@ -46,7 +45,7 @@ class VerifyOtp extends React.Component {
                     AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
                         this.context.setUser(data);
                         this.context.setUserLogin(true);
-                        this.props.navigation.navigate('Onboarding',{isLogin:true});
+                        this.props.navigation.navigate('BottomTabs',{isLogin:true});
                     });
                 })
                 .catch((e) => {
@@ -62,7 +61,7 @@ class VerifyOtp extends React.Component {
                     AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
                         this.context.setUser(data);
                         this.context.setUserLogin(true);
-                        this.props.navigation.navigate('Onboarding',{isLogin:true});
+                        this.props.navigation.navigate('BottomTabs',{isLogin:true});
                     });
                 })
                 .catch((e) => {
@@ -91,20 +90,20 @@ class VerifyOtp extends React.Component {
 
                 })
                 .catch((e)=>{
-                    alert('Some thing went wrong');
+                    alert('Something went wrong, try again');
                 });
         } else {
             sendOtpToNumber(phoneNumber,true)
                 .then((data)=>{
                     // console.log(data);
                     if (!data.isValid){
-                        return alert('User not exits');
+                        return alert('User does not exit');
                     }
                     this.setState({ timer:60*5 })
                     alert('Send The New Otp');
                 })
                 .catch((e)=>{
-                    alert('Some thing went wrong');
+                    alert('Something went wrong, try again');
                 });
 
         }

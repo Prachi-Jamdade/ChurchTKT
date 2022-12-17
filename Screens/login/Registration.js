@@ -57,7 +57,7 @@ class Registration extends React.Component {
             });
         })
         .catch((e)=>{
-            alert('Some thing went wrong');
+            alert('Something went wrong');
         });
     }
 

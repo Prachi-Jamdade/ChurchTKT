@@ -28,7 +28,7 @@ const WaterBaptism = ({setShow}) => {
             setData(intitial)
             setShow(true);
         }).catch((e)=>{
-            alert('Some thing went Wrong, Try again');
+            alert('Something went wrong, try again');
         })
     }
 

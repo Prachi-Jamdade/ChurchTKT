@@ -49,12 +49,12 @@ class Login extends React.Component{
         .then((data)=>{
             // console.log(data);
             if (!data.isValid){
-                return alert('User not exits');
+                return alert('User does not exit');
             }
             props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber,isLogin:true});
         })
         .catch((e)=>{
-            alert('Some thing went wrong');
+            alert('Something went wrong, try again');
         });
     }
 

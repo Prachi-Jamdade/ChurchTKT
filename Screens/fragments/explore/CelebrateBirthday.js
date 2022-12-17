@@ -30,7 +30,7 @@ const CelebrateBirthday = ({setShow}) => {
             setData(intitial)
             setShow(true);
         }).catch((e)=>{
-            alert('Something went Wrong, Try again');
+            alert('Something went wrong, try again');
         })
     }
 

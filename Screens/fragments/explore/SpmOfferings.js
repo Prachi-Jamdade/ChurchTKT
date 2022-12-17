@@ -32,12 +32,12 @@ const SPMOfferings = ({navigation})=>{
         const {razorpayKey,orderId} = getOrderDetails;
 
         const options = {
-            description: 'Credits towards consultation',
-            image: 'https://i.imgur.com/3g7nmJC.jpg',
+            description: 'Tkt Church',
+            image: "https://kingstemple.in/wp-content/uploads/2019/08/logotkt-darkk.png",
             currency: 'INR',
             key: razorpayKey,
             amount: amount,
-            name: 'Acme Corp',
+            name: 'TKT Church',
             order_id: orderId,
             prefill: {
               email: email,
@@ -52,14 +52,14 @@ const SPMOfferings = ({navigation})=>{
             // const {razorpay_payment_id,razorpay_order_id,razorpay_signature}=data;
             const _completePayment = await completePaymentSPM(data);
             setAmount(0);
-            alert('Plament Made Successfully');
+            alert('Payment done successfully');
           }).catch((error) => {
             // handle failure
             console.log(error);
-            alert('Some thing went Wrong, Try again');
+            alert('Something went wrong, try again');
           });
         } catch (e){
-            alert('Some thing went Wrong, Try again');
+            alert('Something went wrong, try again');
         }
         };
 
