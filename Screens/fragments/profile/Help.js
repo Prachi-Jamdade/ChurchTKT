@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import gobalStyle from '../../styles/index';
+import { Linking } from 'react-native';
 
 
 import {
@@ -79,6 +80,20 @@ const ExpandableComponent = ({ item, onClick }) => {
     )
 }
 
+const OpenWhatsApp = () => {
+    let url = "whatsapp://send?text=" +
+          "" +
+          "&phone=91" +
+          "7993478539";
+        Linking.openURL(url)
+          .then(data => {
+            console.log("WhatsApp Opened successfully " + data);  //<---Success
+          })
+          .catch(() => {
+            alert("Make sure WhatsApp installed on your device");  //<---Error
+          });
+}
+
 const Help = ({ navigation }) => {
 
     const [multiSelect, setMultiSelect] = useState(false);
@@ -145,7 +160,7 @@ const Help = ({ navigation }) => {
 
                         <View style={{ marginVertical: 10 }}></View>
                         <TouchableOpacity style={styles.chatSupportBtn}
-                            onPress={() => navigation.navigate('Profile')}
+                            onPress={OpenWhatsApp}
                             underlayColor='#fff'
                         >
                             <Text style={styles.loginText}>Chat Support</Text>
