@@ -13,7 +13,7 @@ function AppContextProvider({children}) {
 	const [ profileUrl, setProfileUrl ] = useState(null);
 	const [ videoLink, setVideoLink ] = useState([
         {
-        "videoId":"1nTd931luNM",
+        "videoId":"vqzqb6Jz29A",
         }
 ]);
 	const [ isUserLogin, setUserLogin ] = useState(false);
@@ -34,8 +34,11 @@ function AppContextProvider({children}) {
         setHomeEvents([...data]);
         let video1=await getLiveEvent();
         const list=await getAllDaiyMana();
-        const newVideo=list.map((item)=>{return {videoId:find(item.sourceUrl)}});
-        console.log(newVideo);
+        let newVideo=list.map((item)=>{return {videoId:find(item.sourceUrl)}});
+        console.log(video1);
+        if(video1?.sourceUrl){
+            newVideo=[{videoId:find(video1?.sourceUrl)},...newVideo]
+        }
         setVideoLink(newVideo);
     }
 

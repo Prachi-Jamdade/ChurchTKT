@@ -25,11 +25,10 @@ class VerifyOtp extends React.Component {
 
     constructor(props) {
         super(props);
-        // const timerRef=setInterval(() =>{
-        //     if(this.state.timer==0) return;
-        //     this.setState({ timer:this.state.timer-1 })
-        // },1000);
-        // this.setState({timerRef:timerRef});
+        const timerRef=setInterval(() =>{
+            if(this.state.timer==0) return;
+            this.setState({ timer:this.state.timer-1 })
+        },1000);
     }
 
     verify = () => {
