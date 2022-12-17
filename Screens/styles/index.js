@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         color: 'white',
         marginHorizontal: RFValue(16),
         fontFamily : 'Montserrat-Bold', 
-        fontSize: RFValue(20), 
+        fontSize: RFValue(18), 
         flexDirection:'row',
         alignItems: 'center',
         marginBottom: RFValue(5),
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         marginHorizontal: RFValue(16),
     },
     submitText:{
-        fontSize: RFValue(16),
+        fontSize: RFValue(15),
         textTransform: 'uppercase',
         textAlign: 'center',
         color: 'white',

@@ -95,14 +95,14 @@ class Login extends React.Component{
 }
 
 const styles = StyleSheet.create({
-    dehigligtedText: {color :'#989898', marginTop: RFValue(6), marginLeft: RFValue(16), fontSize: RFValue(16), fontFamily: 'Montserrat-Medium'},
+    dehigligtedText: {color :'#989898', marginTop: RFValue(6), marginLeft: RFValue(16), fontSize: RFValue(14), fontFamily: 'Montserrat-Medium'},
     input: {
         margin: RFValue(15),
         height: RFValue(50),
         padding: RFValue(10),
         color: 'white',
         marginVertical: RFValue(16),
-        fontSize: RFValue(16),
+        fontSize: RFValue(14),
         paddingStart: RFValue(20),
         borderColor: '#989898',
         borderWidth: 2,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Regular'
     },
     helper: {flexDirection: 'row', alignSelf: 'flex-end'},
-    signUp:{color: '#E23045',marginTop: RFValue(6), marginLeft:RFValue(8), marginEnd: RFValue(20), fontSize: RFValue(16), fontFamily: 'Montserrat-Medium'},
+    signUp:{color: '#E23045',marginTop: RFValue(6), marginLeft:RFValue(8), marginEnd: RFValue(20), fontSize: RFValue(14), fontFamily: 'Montserrat-Medium'},
 });
 
 export default Login;

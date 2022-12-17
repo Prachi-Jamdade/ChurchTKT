@@ -123,9 +123,9 @@ class Registration extends React.Component {
 export default Registration;
 
 const styles = StyleSheet.create({
-    dehigligtedText: {color :'#989898', marginTop: RFValue(6), marginLeft: RFValue(16), fontSize: RFValue(16), fontFamily: 'Montserrat-Medium'},
-    timmer:{color: '#E23045', marginTop: RFValue(6), marginLeft:RFValue(10), marginEnd: RFValue(16), fontSize: RFValue(16), fontFamily: 'Montserrat-Medium'},
-    redText:{color: '#E23045', marginTop: RFValue(6), marginLeft:RFValue(10), marginEnd: RFValue(16), fontSize: RFValue(16), textDecorationLine:'underline'},
+    dehigligtedText: {color :'#989898', marginTop: RFValue(6), marginLeft: RFValue(16), fontSize: RFValue(14), fontFamily: 'Montserrat-Medium'},
+    timmer:{color: '#E23045', marginTop: RFValue(6), marginLeft:RFValue(10), marginEnd: RFValue(16), fontSize: RFValue(14), fontFamily: 'Montserrat-Medium'},
+    redText:{color: '#E23045', marginTop: RFValue(6), marginLeft:RFValue(10), marginEnd: RFValue(16), fontSize: RFValue(14), textDecorationLine:'underline'},
     roundedTextInput: {
         borderRadius: 10,
         borderWidth: 1,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     textInputContainer: {
         alignSelf: 'center',
         width: '100%',
-        marginVertical: RFValue(16),
+        marginVertical: RFValue(10),
         paddingHorizontal: RFValue(60),
         color :'#989898',
         letterSpacing: 0,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
         height: RFValue(50),
         paddingStart: RFValue(20),
         color: 'white',
-        fontSize: RFValue(16),
+        fontSize: RFValue(14),
         borderColor: '#292929',
         borderWidth: 2,
         borderRadius: 10,

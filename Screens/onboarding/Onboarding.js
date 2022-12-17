@@ -142,28 +142,28 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
     },
     pagingText : {
-      fontSize: (width / 30) ,
+      fontSize: RFValue(width / 30) ,
       backgroundColor: '#888' ,
        margin: RFValue(3),
-       width:9,
-       height:9,
+       width:RFValue(8),
+       height:RFValue(8),
        borderRadius:RFValue(50),
       },
-    pagingActive : {fontSize: (width / 30) ,width:20,height:9, backgroundColor: '#FFBE18', margin: RFValue(3),borderRadius:50,transitionDuration:10},
-    text : {fontSize: RFValue(15), color : 'white',alignSelf : 'center', textAlign: 'center', marginTop: RFValue(8), marginHorizontal: RFValue(16), fontFamily: 'Montserrat-SemiBold'},
+    pagingActive : {fontSize: RFValue(width / 30) ,width:RFValue(18),height:RFValue(8), backgroundColor: '#FFBE18', margin: RFValue(3),borderRadius:50,transitionDuration:10},
+    text : {fontSize: RFValue(14), color : 'white',alignSelf : 'center', textAlign: 'center', marginTop: RFValue(5), marginHorizontal: RFValue(5), fontFamily: 'Montserrat-SemiBold'},
     contentContainer: {flex: 1},
-    or : {alignSelf: 'center', color: '#888', fontSize: RFValue(16), padding: RFValue(10)},
+    or : {alignSelf: 'center', color: '#888', fontSize: RFValue(14), padding: RFValue(10)},
     bottomButtons : { 
       flex: 1, 
       flxexDirection: 'column', 
       marginHorizontal: RFValue(16),
-      marginTop:RFValue(20),
+      marginTop:RFValue(2),
       justifyContent:'space-around',
     },
     textAll:{
-      marginVertical:RFValue(20),
+      marginVertical:RFValue(15),
       marginHorizontal:RFValue(30),
-      height:50
+      height:RFValue(45)
     },
   });
 

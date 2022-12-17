@@ -14,6 +14,7 @@ import gobalStyle from '../styles/index';
 import {sendOtpToNumber} from '../api/authication';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { RFValue } from 'react-native-responsive-fontsize';
+import { ActivityIndicator } from 'react-native';
 
 class VerifyOtp extends React.Component {
 
