@@ -29,7 +29,6 @@ class VerifyOtp extends React.Component {
             if(this.state.timer==0) return;
             this.setState({ timer:this.state.timer-1 })
         },1000);
-        this.setState({timerRef:timerRef});
     }
 
     verify = () => {
@@ -46,7 +45,7 @@ class VerifyOtp extends React.Component {
                     AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
                         this.context.setUser(data);
                         this.context.setUserLogin(true);
-                        this.props.navigation.navigate('Onboarding',{isLogin:true});
+                        this.props.navigation.navigate('BottomTabs',{isLogin:true});
                     });
                 })
                 .catch((e) => {
@@ -62,7 +61,7 @@ class VerifyOtp extends React.Component {
                     AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
                         this.context.setUser(data);
                         this.context.setUserLogin(true);
-                        this.props.navigation.navigate('Onboarding',{isLogin:true});
+                        this.props.navigation.navigate('BottomTabs',{isLogin:true});
                     });
                 })
                 .catch((e) => {

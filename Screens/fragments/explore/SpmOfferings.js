@@ -32,12 +32,12 @@ const SPMOfferings = ({navigation})=>{
         const {razorpayKey,orderId} = getOrderDetails;
 
         const options = {
-            description: 'Credits towards consultation',
-            image: 'https://i.imgur.com/3g7nmJC.jpg',
+            description: 'Tkt Church',
+            image: "https://kingstemple.in/wp-content/uploads/2019/08/logotkt-darkk.png",
             currency: 'INR',
             key: razorpayKey,
             amount: amount,
-            name: 'Acme Corp',
+            name: 'TKT Church',
             order_id: orderId,
             prefill: {
               email: email,

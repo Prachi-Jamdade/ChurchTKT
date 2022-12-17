@@ -1,12 +1,20 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useContext} from 'react';
 import Video from 'react-native-video';
-
+import { AppContext } from '../../context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen =({navigation})=>{
-
+    
     useEffect(()=>{
         setTimeout(() => {
-            navigation.navigate('Launch');
+            AsyncStorage.getItem('user').then((value)=>{
+                // console.log(value);
+                if(value===null) {    
+                navigation.navigate('Onboarding');
+                return;
+                }
+                navigation.navigate('BottomTabs');
+            })
         },5000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
