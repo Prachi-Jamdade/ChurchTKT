@@ -43,7 +43,7 @@ const JoinSPM = ({ navigation }) => {
                 gender: "",
                 amounts: 0
             })
-            navigation.navigate("Spm")
+            navigation.navigate("Spm",{isJoin:true})
         }).catch((e) => {
             alert("Something went wrong")
         })
@@ -112,7 +112,7 @@ const JoinSPM = ({ navigation }) => {
 
                     <RadioButtonRN
                     data={genderData}
-                    selectedBtn={(e) => console.log(e)}
+                    selectedBtn={(e) => change("gender",e.label)}
                     style={{marginStart: 5}}
                     activeColor={'#CF820E'}
                     inactiveColor={'#181818'}

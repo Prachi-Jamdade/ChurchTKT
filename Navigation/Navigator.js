@@ -57,11 +57,11 @@ const {setUser,setUserLogin,isUserLogin}=useContext(AppContext);
           component={SplashScreen}
           options={{ headerShown: false }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
           name='Launch'
           component={Launch}
           options={{ headerShown: false }}
-          />
+          /> */}
           <Stack.Screen
           name='Onboarding'
           component={Onboarding}

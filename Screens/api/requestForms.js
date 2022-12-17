@@ -26,7 +26,7 @@ async function getSPMFrom(id){
 	const res = await APIWithToken.get(
 		`/spmform/get/${id}`
 	);
-	return res.data;
+	return res;
 
 }
 
