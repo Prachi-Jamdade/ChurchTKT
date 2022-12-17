@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import gobalStyle from '../../styles/index';
+
 
 import {
-    SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableOpacity, LayoutAnimation, Button
+    SafeAreaView, StyleSheet, View, Text, ScrollView, TouchableHighlight, TouchableOpacity, LayoutAnimation, Button
 } from 'react-native'
 
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Icon, { Icons } from '../Icons'
 
 
 const CONTENT = [
@@ -12,21 +14,14 @@ const CONTENT = [
         isExpanded: false,
         category_name: 'Who are we?',
         sub_category: [
-            { id: 1, val: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.' },
+            { id: 1, val: "The King’s Temple Church started with a gathering of 10 in 1986 under the leadership of Bishop Samuel Patta and his team. Today, the church is home to more than 10,000 people worshipping across 7 services over the weekend. \n\nThe King’s Temple church is a word and prayer-based church. \n\nThe Vision of the church is to build lives through the Word of Faith. To accomplish this, the Church runs its own Foundation of Faith course for every member. It has its own Bible College. Church also hosts Life Transformation Camps which teach about salvation and Holy Spirit." },
         ]
     },
     {
         isExpanded: false,
         category_name: 'Where we are located?',
         sub_category: [
-            { id: 2, val: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.' }
-        ]
-    },
-    {
-        isExpanded: false,
-        category_name: 'Why should you join us?',
-        sub_category: [
-            { id: 3, val: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu mattis convallis magna odio condimentum facilisi nisl. Enim nulla scelerisque ut rhoncus purus. Eu, libero et felis est risus vel aenean.' },
+            { id: 2, val: "We host our services every friday and sunday at Clock Tower Second Bazaar Maruthi Veedhi, Shivaji Nagar, Hyderabad, Telangana 500003. Can't wait to worship with you." }
         ]
     }
 ]
@@ -70,7 +65,7 @@ const ExpandableComponent = ({ item, onClick }) => {
 
                             <Text style={styles.text}>
 
-                                {key}. {item.val}
+                               {item.val}
 
                             </Text>
 
@@ -84,7 +79,7 @@ const ExpandableComponent = ({ item, onClick }) => {
     )
 }
 
-export default Help = () => {
+const Help = ({ navigation }) => {
 
     const [multiSelect, setMultiSelect] = useState(false);
     const [listDataSource, setListDataSource] = useState(CONTENT);
@@ -105,44 +100,59 @@ export default Help = () => {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#0F0F0F' }}>
+        <SafeAreaView style={gobalStyle.main}>
             <View style={styles.container}>
-                <View style={styles.header}>
-
-                    <Ionicons name='chevron-forward-outline' size={27} color="white" padding={2} margin={5} />
-                    <Text style={{ color: "white", padding: 15, fontSize: 20, fontWeight: "400" }}>Help</Text>
-
-                </View>
-                {
-                    listDataSource.map((item, key) => (
-                        <ExpandableComponent
-                            key={item.category_name}
-                            item={item}
-                            onClick={() => {
-                                updateLayout(key)
-                            }}
-                        />
-                    ))
-                }
-
-                <View style={{
-                    padding: 12,
-                    margin: 2.5
+                <TouchableHighlight onPress={() => {
+                    navigation.navigate("Profile");
                 }}>
+                    <View style={gobalStyle.nav}>
+                        <View>
 
-                    <Text style={{fontWeight: '600', fontSize: 20}}>Need some help?</Text>
+                            <Icon
+                                style={{ paddingStart: 12 }}
+                                type={Icons.MaterialIcons}
+                                size={25}
+                                name="arrow-back-ios"
+                                color='white'
+                            />
+                        </View>
+                        <Text style={gobalStyle.nav_header}>Help</Text>
 
-                    <Text style={{fontWeight: '400', fontSize: 16, marginVertical: 20}}>If you are stuck somewhere, we have got you covered</Text>
+                    </View>
+                </TouchableHighlight>
+                <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width: '100%', height: '100%', marginTop: 10 }}>
+                    {
+                        listDataSource.map((item, key) => (
+                            <ExpandableComponent
+                                style={{ marginTop: 10 }}
+                                key={item.category_name}
+                                item={item}
+                                onClick={() => {
+                                    updateLayout(key)
+                                }}
+                            />
+                        ))
+                    }
 
-                    <View style={{marginVertical: 10}}></View>
-                    <TouchableOpacity style={styles.chatSupportBtn}
-                        onPress={() => navigate('Profile')}
-                        underlayColor='#fff'
-                    >
-                        <Text style={styles.loginText}>Chat Support</Text>
+                    <View style={{
+                        padding: 12,
+                        margin: 2.5
+                    }}>
 
-                    </TouchableOpacity>
+                        <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 20, color: 'white' }}>Need some help?</Text>
 
+                        <Text style={{ fontFamily: 'Montserrat-Medium', fontSize: 16, color: 'white', marginVertical: 20 }}>If you are stuck somewhere, we have got you covered</Text>
+
+                        <View style={{ marginVertical: 10 }}></View>
+                        <TouchableOpacity style={styles.chatSupportBtn}
+                            onPress={() => navigation.navigate('Profile')}
+                            underlayColor='#fff'
+                        >
+                            <Text style={styles.loginText}>Chat Support</Text>
+
+                        </TouchableOpacity>
+
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
@@ -156,46 +166,61 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 12,
-        margin: 2.5
+        marginTop: 30,
+        marginHorizontal: 16,
+        marginBottom: 30,
+        fontFamily: 'Montserrat-Medium'
     },
     titleText: {
         flex: 1,
         fontSize: 22,
-        fontWeight: 'bold'
+        fontFamily: 'Montserrat-Medium',
+        color: 'white'
     },
     item: {
-        backgroundColor: '#0F0F0F',
+        borderRadius: 20,
+        backgroundColor: '#1E1E1E',
         padding: 20
     },
     itemText: {
         fontSize: 16,
-        fontWeight: '500'
+        color: 'white',
+        opacity: 0.7,
+        fontFamily: 'Montserrat-Medium'
     },
     content: {
         paddingHorizontal: 10,
-        backgroundColor: '#0F0F0F',
+        // backgroundColor: '#0F0F0F',
     },
     text: {
         fontSize: 16,
-        padding: 10
+        padding: 10,
+        color: 'white',
+        opacity: 0.7,
+        fontFamily: 'Montserrat-Regular'
     },
     separator: {
-        height: 0.5,
-        backgroundColor: '#C8C8C8',
+        height: 0,
+        backgroundColor: '#1E1E1E',
         width: '100%'
     },
     chatSupportBtn: {
-        marginHorizontal: 20,
-        paddingHorizontal: 20,
+        width: 200,
+        marginStart: 5,
+        paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor:'#F79D16',
-        borderRadius:4,
-        borderWidth: 0.5,
-        borderColor: '#fff'
+        backgroundColor: '#F79D16',
+        borderRadius: 4,
+        borderWidth: 0.3,
+        borderColor: '#fff',
+
     },
     loginText: {
-        fontSize: 17,
-        fontWeight: '500'
+        fontSize: 16,
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Medium',
+        color: 'white'
     }
 })
+
+export default Help;

@@ -7,21 +7,21 @@ import {
     Text,
     ScrollView,
     TouchableHighlight,
-    ImageBackground,
-    Button,
 } from 'react-native';
+import { Keyboard } from "react-native";
 
 import img1 from '../assests/onboardScreen1.png';
 import img2 from '../assests/onboardScreen2.png';
 import img3 from '../assests/onboardScreen3.png';
-import overlay from '../assests/blackOverlay.png';
+import gobalStyle from '../styles/index';
+import AutoScroll from "@homielab/react-native-auto-scroll";
 
 
 const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
 
-const images = [img1,img3,img2];
-const infos = ['Connect to the divinity of the almighty lord.','A helping hand in the darkness of life.','A community of people who care for you.'];
+const images = [img1,img2,img3];
+const infos = ['Access all our sermons and live stream.','Request for any church services with a single tap.','Join a community of people who care for you.'];
 
 
 class Onboarding extends React.Component{
@@ -29,6 +29,9 @@ class Onboarding extends React.Component{
 
   constructor(props) {
     super(props);
+    this.props.navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+    })
   }
 
     state = {
@@ -74,7 +77,7 @@ class Onboarding extends React.Component{
                 <View style = {styles.pagination}>
                   {
                     images.map((i,k) => (
-                    <Text key={k} style={ k === this.state.active ? styles.pagingActive :  styles.pagingText}></Text>
+                    <Text key={k} style={ k === this.state.active ? styles.pagingActive :  styles.pagingText} />
                     ))
                   }
                 </View>
@@ -86,19 +89,21 @@ class Onboarding extends React.Component{
               </View>
               <View style = {styles.bottomButtons}>
               <TouchableHighlight
-                style={styles.joinusButton}
-                onPress={() => {this.SignUp(this.props)}}
-                underlayColor='#fff'>
-                  <Text style={[styles.submitText,{fontSize:14,fontWeight:'bold'}]}>Join Us</Text>
+                style={[gobalStyle.btn1,{ padding:0}]}
+                onPress={() => {this.SignUp(this.props);}}
+                underlayColor="#fff">
+                  <Text style={gobalStyle.submitText}>Join Us</Text>
               </TouchableHighlight>
-              <View>
-                <Text style = {styles.or}>----------- or -----------</Text>
+              <View flexDirection='row' justifyContent='center' alignItems='center'>
+                <Image source={require('../assests/white_separator.png')} style={{width: 150}} />
+                <Text style = {styles.or}>OR</Text>
+                <Image source={require('../assests/white_separator.png')} style={{width: 150}} />
               </View>
               <TouchableHighlight
-                style={styles.loginButton}
-                onPress={() => {this.Login(this.props)}}
-                underlayColor='#fff'>
-                  <Text style={[styles.submitText,{fontSize:14,fontWeight:'bold'}]}>Login</Text>
+                style={[gobalStyle.btn2,{ padding:0,marginTop:0}]}
+                onPress={() => {this.Login(this.props);}}
+                underlayColor="#fff">
+                  <Text style={gobalStyle.submitText}>Login</Text>
               </TouchableHighlight>
               </View>
           </View>
@@ -108,47 +113,57 @@ class Onboarding extends React.Component{
 }
 
 const styles = StyleSheet.create({
-    main : {flex: 1, backgroundColor:'#0F1013'},
-    container: {marginTop: 0, width, height},
+    main:{
+      flex: 1, backgroundColor:'black',
+    },
+    container: {
+      marginTop: 0,
+      width,
+      height,
+    },
     title: {
       textAlign: 'center',
       marginVertical: 8,
     },
-    scrollView :{width, height},
-    images: {width,height,resizeMode: 'cover'},
-    pagination : {flexDirection : 'row', position: 'absolute', bottom:5, alignSelf: 'center' },
-    pagingText : {fontSize: (width / 30) , backgroundColor: '#888' , margin: 3,width:9,height:9,borderRadius:50},
+    scrollView :{
+      width,
+      height,
+    },
+    images: {
+      width,
+      height,
+      resizeMode: 'cover',
+    },
+    pagination : {
+      flexDirection : 'row',
+      position: 'absolute',
+      bottom:5,
+      alignSelf: 'center',
+    },
+    pagingText : {
+      fontSize: (width / 30) ,
+      backgroundColor: '#888' ,
+       margin: 3,
+       width:9,
+       height:9,
+       borderRadius:50,
+      },
     pagingActive : {fontSize: (width / 30) ,width:20,height:9, backgroundColor: '#FFBE18', margin: 3,borderRadius:50,transitionDuration:10},
-    text : {fontSize: (width / 25) , color : 'white',alignSelf : 'center', marginTop: 6, marginHorizontal: 16},
+    text : {fontSize: 15, color : 'white',alignSelf : 'center', textAlign: 'center', marginTop: 8, marginHorizontal: 16, fontFamily: 'Montserrat-SemiBold'},
     contentContainer: {flex: 1},
-    or : {alignSelf: 'center', color: '#888'},
-    bottomButtons : { flex: 1, flexDirection: "column", justifyContent: "space-around", marginHorizontal: 16},
-    joinusButton : {
+    or : {alignSelf: 'center', color: '#888', fontSize: 16, padding: 10},
+    bottomButtons : { 
+      flex: 1, 
+      flxexDirection: 'column', 
       marginHorizontal: 16,
-      marginTop: 10,
-      paddingTop: 20,
-      paddingBottom: 20,
-      backgroundColor: '#FFBE18',
-      borderRadius: 10,
-      borderWidth: 1,
-    },
-    loginButton: {
-      marginHorizontal: 16,
-      marginTop: 10,
-      paddingTop: 20,
-      paddingBottom: 20,
-      backgroundColor: '#0F1013',
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: '#fff',
-    },
-    submitText: {
-      color: '#fff',
-      textAlign: 'center',
+      marginTop:20,
+      justifyContent:'space-around',
     },
     textAll:{
-      marginTop:5,
-    }
+      marginVertical:20,
+      marginHorizontal:30,
+      height:50
+    },
   });
 
 

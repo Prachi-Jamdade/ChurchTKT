@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
+import {sendOtpToNumber} from '../api/authication'
+import gobalStyle from '../styles/index'
 
 const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
@@ -43,36 +45,46 @@ class Login extends React.Component{
     }
 
     sendOtp = (props) =>{
-        props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber});
+        sendOtpToNumber(this.state.phoneNumber,true)
+        .then((data)=>{
+            // console.log(data);
+            if (!data.isValid){
+                return alert('User not exits');
+            }
+            props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber,isLogin:true});
+        })
+        .catch((e)=>{
+            alert('Some thing went wrong');
+        });
     }
 
     render(){
         return (
-            <View style= {styles.main}>
-                <Text style = {styles.header}>Welcome Back!</Text>
+            <View style= {gobalStyle.main}>
+                <Text style = {gobalStyle.header}>Welcome Back!</Text>
                 <Text style = {styles.dehigligtedText}>Enter your mobile no to Login</Text>
                 <View>
                     <TextInput style = {styles.input}
                         underlineColorAndroid = "transparent"
                         placeholder = "Mobile No"
                         keyboardType = 'number-pad'
-                        placeholderTextColor = "white"
+                        placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleNumber}/>
                 </View>
 
                 <View style= {styles.helper}>
-                    <Text style = {styles.dehigligtedText}>Don't have an account yet ?</Text>
+                    <Text style = {styles.dehigligtedText}>Don't have an account yet?</Text>
                     <Text style = {styles.signUp} onPress={()=>{
                         this.props.navigation.navigate('Registration');
                     }}>Sign Up</Text>
                 </View>
                 <TouchableHighlight
-                    style={[styles.submit,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
+                    style={[gobalStyle.btn_abs,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
                     disabled = {!this.accepted}
                     onPress={() => {this.sendOtp(this.props)}}
                     underlayColor='#fff'>
-                    <Text style={[styles.text]}>Continue</Text>
+                    <Text style={[gobalStyle.submitText]}>Continue</Text>
               </TouchableHighlight>
             </View>
         );
@@ -81,36 +93,22 @@ class Login extends React.Component{
 }
 
 const styles = StyleSheet.create({
-    main : {flex: 1, backgroundColor:'#0F1013',paddingTop:15},
-    header : {color: 'white',marginTop: 16, marginHorizontal: 16, fontFamily : 'Montserrat', fontSize: 18, fontWeight: 'bold'},
-    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16},
+    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
     input: {
         margin: 15,
         height: 50,
         padding: 10,
         color: 'white',
+        marginVertical: 16,
         fontSize: 16,
+        paddingStart: 20,
         borderColor: '#989898',
-        borderWidth: 1,
+        borderWidth: 2,
         borderRadius: 10,
+        fontFamily: 'Montserrat-Regular'
     },
     helper: {flexDirection: 'row', alignSelf: 'flex-end'},
-    signUp:{color: '#E23045',marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16},
-    submit : {
-        position: 'absolute',
-        bottom:0,
-        left: 0,
-        right:0,
-        marginHorizontal: 16,
-        marginTop: 10,
-        marginBottom: 16,
-        paddingTop: 15,
-        paddingBottom: 15,
-        backgroundColor: '#FFBE18',
-        borderRadius: 10,
-        borderWidth: 1,
-    },
-    text: {color: 'white', alignSelf: 'center', fontSize: 14},
+    signUp:{color: '#E23045',marginTop: 6, marginLeft:8, marginEnd: 20, fontSize: 16, fontFamily: 'Montserrat-Medium'},
 });
 
 export default Login;

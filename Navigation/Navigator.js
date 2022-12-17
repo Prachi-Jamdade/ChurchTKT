@@ -1,6 +1,7 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React,{useEffect,useContext} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Launch from '../Screens/starters/Launch';
 import Login from '../Screens/login/Login';
 import Onboarding from '../Screens/onboarding/Onboarding';
@@ -10,11 +11,44 @@ import Registration from '../Screens/login/Registration';
 import SplashScreen from '../Screens/splashscreen/SplashScreen';
 import Community from '../Screens/Community';
 import Home from '../Screens/home'
+import { AppContext } from '../context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AccountDetails from '../Screens/fragments/profile/AccountDetails';
+import Help from '../Screens/fragments/profile/Help';
+import LogoutAlert from '../Screens/fragments/profile/LogoutAlert';
+import RequestForm from '../Screens/fragments/explore/RequestForm';
+import Events from '../Screens/fragments/explore/Events';
+import OffErings from '../Screens/fragments/explore/Offerings';
+import SpmOffErings from '../Screens/fragments/explore/SpmOfferings';
+import Spm from '../Screens/fragments/explore/Spm';
+import RequestSent from '../Screens/fragments/explore/RequestSent';
+import JoinSPM from '../Screens/fragments/explore/JoinSPM';
 // import screens
 
 const Stack = createNativeStackNavigator();
 
-function MainStackNavigator() {
+function MainStackNavigator({navigation,route}) {
+
+const {setUser,setUserLogin,isUserLogin}=useContext(AppContext);
+
+  const getData = async () => {
+    const value = await AsyncStorage.getItem('user')
+    // console.log(value);
+    if(value===null) {
+      setUserLogin(false);
+      navigation.navigate('Login');
+      return;
+    }
+    setUserLogin(true);
+    setUser({...JSON.parse(value)});
+  };
+
+
+
+  useEffect(()=>{
+    getData();
+  },[isUserLogin]);
+
     return (
       <Stack.Navigator
         initialRouteName='SplashScreenSplashScreenSplashScreen'>
@@ -59,13 +93,48 @@ function MainStackNavigator() {
           options={{ headerShown: false }}
           />
           <Stack.Screen
-          name='Home'
-          component={Home}
-          options={{ headerShown: false }}
+            name='AccountDetails'
+            component={AccountDetails}
+            options={{ headerShown: false }}
           />
-      </Stack.Navigator>
-    
-    );
+          <Stack.Screen
+            name='Help'
+            component={Help}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='RequestForm'
+            component={RequestForm}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Events'
+            component={Events}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='OffErings'
+            component={OffErings}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='SpmOffErings'
+            component={SpmOffErings}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='Spm'
+            component={Spm}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='JoinSPM'
+            component={JoinSPM}
+            options={{ headerShown: false }}
+          />
+    </Stack.Navigator>
+
+  );
 }
 
 export default MainStackNavigator;
