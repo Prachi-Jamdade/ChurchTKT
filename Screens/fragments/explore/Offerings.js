@@ -52,14 +52,14 @@ const Offerings = ({navigation})=>{
             // const {razorpay_payment_id,razorpay_order_id,razorpay_signature}=data;
             const _completePayment = await completePayment(data);
             setAmount(0);
-            alert('Plament Made Successfully');
+            alert('Payment done successfully');
           }).catch((error) => {
             // handle failure
             // console.log(error);
-            alert('Some thing went Wrong, Try again');
+            alert('Something went wrong, try again');
           });
         } catch (e){
-            alert('Some thing went Wrong, Try again');
+            alert('Something went wrong, try again');
         }
         };
 
