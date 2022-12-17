@@ -1,31 +1,22 @@
-import React from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableHighlight,
-} from 'react-native';
-
+import React,{useEffect} from 'react';
 import Video from 'react-native-video';
 
 
-class SplashScreen extends React.Component{
+const SplashScreen =({navigation})=>{
 
-    constructor(props) {
-        super(props);
-      }
-    render(){
-
+    useEffect(()=>{
         setTimeout(() => {
-            this.props.navigation.replace('Launch');
+            navigation.navigate('Launch');
         },5000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
-        return (
-            <Video style = {{flex:1, backgroundColor:'black'}}
-            source = {require('../assests/splash.mp4')}
-            resizeMode = 'contain' />
-        );
-    }
+
+    return (
+        <Video style = {{flex:1, backgroundColor:'black'}}
+        source = {require('../assests/splash.mp4')}
+        resizeMode = 'contain' />
+    );   
 }
 
 export default SplashScreen;

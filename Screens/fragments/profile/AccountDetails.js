@@ -1,83 +1,209 @@
-import * as React from "react";
-import { Text, Image, StyleSheet } from "react-native";
-import { View, TextInput } from "react-native-animatable";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React,{useState,useContext,useEffect} from 'react';
+import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput } from 'react-native';
+import Icon,{Icons} from '../Icons';
+import {AppContext} from '../../../context';
+import {launchImageLibrary} from 'react-native-image-picker';
+import gobalStyle from '../../styles/index';
+import RNFS from 'react-native-fs';
+import {styles as btnS} from '../explore/RequestForm';
+import {updateUserData,getProfileDetails} from '../../api/authication'
 
-class AccountDetails extends React.Component {
-
-    state = {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const AccountDetails = ({navigation})=> {
+    const [data,setData] = useState( {
         name: '',
-        phoneNo: ''
-    }
+        phoneNo: '',
+    });
+    const [isEditOn,setEditOn] = useState(false);
 
-    constructor(props){
-        super(props);
-    }
+    const {user,profileUrl,setProfileUrl,setUser}=useContext(AppContext);
 
-    handleName = (text) => {
-        this.setState({name: text})
-    }
+    useEffect(()=>{
+        setData({name:user.firstName,phoneNo:user.phoneNumber})
+    },[user])
 
-    handleMobile = (text) => {
-        this.setState({mobile: text})
-    }
 
-    render() {
-        <View style={{backgroundColor:'#0F0F0F', flex: 1}}>
-            <View style={{
-                flexDirection:'row',
-                alignItems:'center',
-                padding:12,
-                margin:2.5
-            }}>
 
-                <Ionicons name='chevron-forward-outline' size={27} color="white" padding={2} margin={5} />
+    const handleName = (text) => {
+        setData({...data,name: text});
+    };
 
-                <Text style={{color: "white", padding:15, fontSize:20, fontWeight:"400"}}>Account Details</Text>
+    const handleMobile = (text) => {
+        setData({...data,mobile: text});
+    };
 
-            </View>
+    const handleChoosePhoto = () => {
+        const options = {
+          noData: true,
+        };
+        launchImageLibrary(options, (response) => {
+          if(response.assets.length==1){
+              RNFS.readFile(response.assets[0].uri, 'base64')
+              .then(res =>{
+                  updateUserData({...user,profileUrl:`data:${response.assets[0].type};base64`+","+res}).then(
+                    (e)=>{
+                        setProfileUrl(`data:${response.assets[0].type};base64`+","+res);
+                  })
+            });
+            }
+        
+          if (response.uri) {
+            console.log(response.uri);
+          }
+        });
+      };
 
-            <View style={{alignItems:'center', justifyContent:'center', padding:50}}>
-                <Image 
-                    source={require('../../assests/UserPic.png')}
-                    style={{width: 150, height: 150, borderRadius:150/2}}
+    const handleSubmite = () => {
+
+        console.log(data)
+     
+        updateUserData({...user,profileUrl,firstName:data.name,phoneNumber:data.phoneNo})
+        .then((e)=>{
+            console.log("update")
+            getProfileDetails(user.userId)
+            .then((data)=>{
+                data.profileUrl=null;
+                data.token=user.token;
+                AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
+                    setUser(data);
+                    setEditOn(false);
+                });
+            })
+            .catch((e)=>console.log(e))
+        })
+         
+      };
+
+
+    return (
+    <View style={gobalStyle.main}>
+
+            <TouchableHighlight onPress={()=>{
+                    navigation.navigate('Profile');
+                }}>
+                <View style={[gobalStyle.nav,{backgroundColor:'transparent'}]}>
+                    <View>
+
+                    <Icon
+                    style={{paddingStart: 10}}
+                    type={Icons.MaterialIcons}
+                    size={25}
+                    name="arrow-back-ios"
+                    color= "white"
+                    />
+                    </View>
+                    <Text style={gobalStyle.nav_header}>Account Details</Text>
+
+                </View>
+            </TouchableHighlight>
+
+            <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
+            <View style={{alignItems:'center', justifyContent:'center', padding:30}}>
+
+            {
+                profileUrl
+                ?
+                <Image
+                source={{uri: profileUrl}}
+                style={{width: 130, height: 130, borderRadius:130 / 2}}
                 />
+                :
+                <Image
+                source={require('../../assests/UserPic.png')}
+                style={{width: 130, height: 130, borderRadius:130 / 2}}
+                />
+            }
 
-                <Text style={{color: "#F79D16", padding:20, fontSize:18, fontWeight:"400"}}>Change Profile Picture</Text>
-            </View>
+            <TouchableHighlight onPress={handleChoosePhoto}>
 
-            <View style={{padding:5, margin:10}}>
-
-                <Text style={{color: "#808080", fontSize:18, fontWeight:"400", margin: 10}}>Name</Text>
-
-                <TextInput style = {styles.input}
-                    underlineColorAndroid = "transparent"
-                    placeholder = "Prachi Jamdade"
-                    placeholderTextColor = "#808080"
-                    autoCapitalize = "none"
-                    onChangeText = {this.handleName} />
-
-                <Text style={{color: "#808080", fontSize:18, fontWeight:"400", margin: 10}}>Mobile</Text>
-
-                <TextInput style = {styles.input}
-                    underlineColorAndroid = "transparent"
-                    placeholder = "9324328505"
-                    placeholderTextColor = "#808080"
-                    autoCapitalize = "none"
-                    onChangeText = {this.handleMobile} />
-            </View>
+            <Text style={{color: '#F79D16', padding:10, fontSize:18, fontFamily: 'Montserrat-Regular'}}>Change Profile Picture</Text>
+            </TouchableHighlight>      
 
         </View>
-    }
-}
+
+        <View style={{padding:5, margin:10, width: '100%', margin: 10}}>
+
+            <Text style={{color: '#808080', fontSize:18, fontFamily: 'Montserrat-Regular', margin: 10, marginStart: 20,
+        marginEnd: 20,}}>Name</Text>
+
+            <TextInput style = {styles.input}
+                underlineColorAndroid = "transparent"
+                placeholder = "Prachi Jamdade"
+                placeholderTextColor = "#808080"
+                autoCapitalize = "none"
+                value={data.name}
+                editable={isEditOn}
+                onChangeText = {handleName}
+                />
+
+            <Text style={{color: '#808080', fontSize:18,  fontFamily: 'Montserrat-Regular', margin: 10, marginStart: 20,
+        marginEnd: 20,}}>Mobile</Text>
+
+            <TextInput style = {styles.input}
+                underlineColorAndroid = "transparent"
+                placeholder = "9324328505"
+                placeholderTextColor = "#808080"
+                autoCapitalize = "none"
+                value={data.phoneNo}
+                editable={isEditOn}
+                onChangeText = {handleMobile} />
+            </View>
+
+            <View style={{flexDirection: 'column',alignItems:'center',marginTop:30}}>
+                <TouchableHighlight style={btnS.chatSupportBtn}
+                // provide navigate path
+                onPress={
+
+                    ()=>{
+                        if(isEditOn){
+                            handleSubmite()
+                        }else{
+                            setEditOn(true)
+                        }
+                    }
+                }
+                underlayColor="#fff"
+                >
+                    {
+                        isEditOn
+                        ?
+                        <Text style={btnS.loginText}>Save</Text>
+                        :
+                        <Text style={btnS.loginText}>Edit</Text>
+                    }
+                </TouchableHighlight>
+        </View>
+        </View>
+    </View>
+    );
+
+};
 
 const styles = StyleSheet.create({
     input: {
-        margin: 15,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 5,
+        marginHorizontal: 10,
+        marginStart: 20,
+        marginEnd: 20,
         height: 40,
         borderColor: '#343739',
-        borderWidth: 1
+        borderWidth: 1,
+        paddingHorizontal:10,
+        color: 'white',
+        fontSize: 16,
+        fontFamily: 'Montserrat-Regular'
      },
-})
+     header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 30, 
+        marginHorizontal: 16, 
+        marginBottom:30,
+    },
+});
+
+export {styles};
 
 export default AccountDetails;

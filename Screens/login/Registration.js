@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
+import {sendOtpToNumber} from '../api/authication';
+import gobalStyle from '../styles/index';
 
 
 class Registration extends React.Component {
@@ -41,20 +43,35 @@ class Registration extends React.Component {
     }
 
     sendOtp = (props) =>{
-        props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber});
+        sendOtpToNumber(this.state.phoneNumber,false)
+        .then((data)=>{
+            if (!data.isValid){
+                return alert('Looks like you have already an account,please login');
+            }
+            props.navigation.navigate('VerifyOtp',
+            {
+                phoneNumber : this.state.phoneNumber,
+                firstName:this.state.firstName,
+                lastName:this.state.lastName,
+                isLogin:false,
+            });
+        })
+        .catch((e)=>{
+            alert('Some thing went wrong');
+        });
     }
 
     render(){
         return(
-            <View style= {styles.main}>
-                <Text style= {styles.header}>We would love to have you!</Text>
+            <View style= {gobalStyle.main}>
+                <Text style= {gobalStyle.header}>We would love to have you!</Text>
                 <Text style= {styles.dehigligtedText}>We need Some details to get you onboard!</Text>
                 <View>
                     <TextInput style = {styles.input}
                         underlineColorAndroid = "transparent"
                         placeholder = "First Name"
                         keyboardType = 'name-phone-pad'
-                        placeholderTextColor = "white"
+                        placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleFirstName}/>
                 </View>
@@ -63,7 +80,7 @@ class Registration extends React.Component {
                         underlineColorAndroid = "transparent"
                         placeholder = "Last Name"
                         keyboardType = 'name-phone-pad'
-                        placeholderTextColor = "white"
+                        placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleLastName}/>
                 </View>
@@ -72,7 +89,7 @@ class Registration extends React.Component {
                         underlineColorAndroid = "transparent"
                         placeholder = "Mobile No"
                         keyboardType = 'number-pad'
-                        placeholderTextColor = "white"
+                        placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleNumber}/>
                 </View>
@@ -80,20 +97,20 @@ class Registration extends React.Component {
                 <View style= {styles.helper}>
                     <Text style = {styles.dehigligtedText}>Already have an account ?</Text>
                     <TouchableHighlight>
-                        <Text 
+                        <Text
                         style = {styles.timmer}
                         onPress={()=>{
                             this.props.navigation.navigate('Login');
                         }}
                         >Login</Text>
-                        </TouchableHighlight>+
+                        </TouchableHighlight>
                 </View>
                 <TouchableHighlight
-                    style={[styles.submit,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
+                    style={[gobalStyle.btn_abs,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
                     disabled = {!this.accepted}
                     onPress={() => {this.sendOtp(this.props)}}
                     underlayColor='#fff'>
-                    <Text style={[styles.text]}>Continue</Text>
+                    <Text style={[gobalStyle.submitText]}>Continue</Text>
               </TouchableHighlight>
             </View>
         );
@@ -104,25 +121,9 @@ class Registration extends React.Component {
 export default Registration;
 
 const styles = StyleSheet.create({
-    main : {flex: 1, backgroundColor:'#0F1013',paddingTop:15},
-    header : {color: 'white',marginTop: 16, marginHorizontal: 16, fontFamily : 'Montserrat', fontSize: 18, fontWeight: 'bold'},
-    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16},
-    timmer:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16},
+    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
+    timmer:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
     redText:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16, textDecorationLine:'underline'},
-    submit : {
-        position: 'absolute',
-        bottom:0,
-        left: 0,
-        right:0,
-        marginHorizontal: 16,
-        marginTop: 10,
-        marginBottom: 16,
-        paddingTop: 15,
-        paddingBottom: 15,
-        backgroundColor: 'grey',
-        borderRadius: 10,
-        borderWidth: 1,
-    },
     roundedTextInput: {
         borderRadius: 10,
         borderWidth: 1,
@@ -133,20 +134,20 @@ const styles = StyleSheet.create({
         width: '100%',
         marginVertical: 16,
         paddingHorizontal: 60,
-        color: 'white',
+        color :'#989898',
         letterSpacing: 0,
         borderColor: 'white',
     },
     helper: {flexDirection: 'row', alignSelf: 'flex-end'},
-    text: {color: 'white', alignSelf: 'center', fontSize: 14},
     input: {
-        margin: 15,
+        margin: 16,
         height: 50,
-        padding: 10,
+        paddingStart: 20,
         color: 'white',
         fontSize: 16,
-        borderColor: '#989898',
-        borderWidth: 1,
+        borderColor: '#292929',
+        borderWidth: 2,
         borderRadius: 10,
+        fontFamily: 'Montserrat-Regular'
     },
 });

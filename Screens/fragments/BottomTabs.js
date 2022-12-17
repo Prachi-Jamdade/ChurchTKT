@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef,useEffect } from 'react';
 import {
     View,
     Text,
@@ -19,10 +19,10 @@ import Explore from '../fragments/explore/Explore';
 import Community from '../Community';
 import Profile from './profile/Profile';
 const TabArr = [
-    { route: 'Home', label: 'Home', type: Icons.MaterialIcons, name:"home-filled", component: Home },
-    { route: 'Explore', label: 'Explore', type: Icons.MaterialIcons, name:"language", component: Explore },
-    { route: 'Community', label: 'Community', type: Icons.MaterialIcons, name:"groups", component: Community },
-    { route: 'Profile', label: 'Profile', type: Icons.MaterialIcons, name:"person", component: Profile },
+    { route: 'Home', label: 'Home', type: Icons.Octicons, name:"home", component: Home },
+    { route: 'Explore', label: 'Explore', type: Icons.Feather, name:"globe", component: Explore },
+    { route: 'Community', label: 'Community', type: Icons.FontAwesome5, name:"users", component: Community },
+    { route: 'Profile', label: 'Profile', type: Icons.Feather, name:"user", component: Profile },
   ];
 
 const Tab = createBottomTabNavigator();
@@ -58,12 +58,12 @@ class BottomTabs extends React.Component{
             onPress={onPress}
             activeOpacity={1}
             style={styles.container}>
-            {/* <Animatable.View
-            //   ref={viewRef}
+            <Animatable.View
+              // ref={viewRef}
               duration={1000}
               style={styles.container}>
               <Icon type={item.type} name={focused ? item.activeIcon : item.inActiveIcon}/>
-            </Animatable.View> */}
+            </Animatable.View>
           </TouchableOpacity>
         );
     }
@@ -78,19 +78,19 @@ class BottomTabs extends React.Component{
               }}
             >
               {TabArr.map((item, index) => {
-                console.log("Route", item.route)
+               
                 return (
                   <Tab.Screen key={index} name={item.route} component={item.component}
                     options={{
                       tabBarLabel : item.label,
-                      tabBarActiveTintColor: 'yellow',
+                      tabBarActiveTintColor: '#FFBE18',
                       tabBarShowLabel: true,
                       tabBarInactiveBackgroundColor: 'black',
                       tabBarIcon: ({focused, color, size}) => (
                         <Icon
                         type={item.type} 
                         name={item.name}
-                        size ={30}
+                        size ={25}
                         style={
                           focused
                             ? styles.activeIcon
@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     activeIcon:{
-      color:"yellow",
-      backgroundColor:'#2e2d2b',
+      color:"#FFBE18",
       padding:10,
       paddingTop:7,
       borderRadius:10,
+      backgroundColor:'rgba(255, 200, 30, 0.1)',
     },
     bar:{
       height: 75,
@@ -131,11 +131,13 @@ const styles = StyleSheet.create({
       bottom: 0,
       right: 0,
       left: 0,
-      borderTopLeftRadius: 16,
-      borderTopRightRadius: 16,
+      borderTopLeftRadius: 5,
+      borderTopRightRadius: 5,
       paddingTop:12,
       width,
-      backgroundColor: 'black'
+      backgroundColor: 'black',
+      borderTopColor:'#FFBE18',
+      borderTopWidth: 1
     }
-});
+}); 
 

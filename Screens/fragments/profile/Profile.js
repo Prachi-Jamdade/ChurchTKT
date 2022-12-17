@@ -10,45 +10,99 @@ import {
 
 import ProfileComponent from './ProfileComponent';
 import Socials from './Socials';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-class Profile extends React.Component{
+import { AppContext } from '../../../context';
+import gobalStyle from '../../styles/index';
+import { Icons } from '../Icons';
+import LogoutAlert from './LogoutAlert';
+import {getProfileDetails} from '../../api/authication';
+class Profile extends React.Component {
 
     state = {
-        clicked: false
+        clicked: false,
+        show: false,
     }
+    static contextType = AppContext;
 
     navigate = (navigateTo) => {
         this.props.navigation.navigate(navigateTo);
     }
 
-    constructor(props){
+    setShow(show) {
+        this.setState({ show: show });
+        // console.log(this.state)
+    }
+
+    constructor(props) {
         super(props);
     }
 
-    handleNavigation = (navigateTo) => {
-        // if(this.state.clicked) {
-            this.navigate(navigateTo)
-        // }
+    componentDidMount(){
+        const {user,setUser,profileUrl, setProfileUrl}=this.context;
+        getProfileDetails(user.userId).then((data)=>{
+            setProfileUrl(data.profileUrl)
+        }).catch((e)=>console.log(e))
     }
 
-    render(){
-        return(
-            <View style={{alignItems:'center', justifyContent:'center', backgroundColor:'#0F0F0F', flex: 1}}>
-                <Image 
-                    source={require('../../assests/UserPic.png')}
-                    style={{width: 100, height: 100, borderRadius:100/2}}
-                />
+    render() {
+        return (
+            <View style={{ alignItems: 'center', backgroundColor: '#0F0F0F', height: '100%' }}>
 
-                <Text style={{color: "white", padding:20, fontSize:18, fontWeight:"500"}}>My Name</Text>
+                <Text style={[gobalStyle.header, { alignSelf: 'flex-start', marginBottom: 20 }]}>
+                    Profile
+                </Text>
 
-                <ProfileComponent imgSource={require('../../assests/icons/acc_details.png')} componentName="Account Details" onClick={ this.handleNavigation('AccountDetails') } />
-                <ProfileComponent imgSource={require('../../assests/icons/help.png')} componentName="Help" onClick={ this.handleNavigation('Help') }/>
-                <ProfileComponent imgSource={require('../../assests/icons/privacy_policy.png')} componentName="Privacy Policy" />
-                <ProfileComponent imgSource={require('../../assests/icons/logout.png')} componentName="Logout" onClick={this.handleNavigation('LogoutAlert') } />
+                <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
+                            
+                {
+                    this.context.profileUrl
+                    ?
+                    <Image
+                    source={{uri: this.context.profileUrl}}
+                        style={{ width: 100, height: 100, borderRadius: 100 / 2, marginTop: 20 }}
+                    />
+                    :
+                    <Image
+                    source={
+                        require('../../assests/UserPic.png')}
+                        style={{ width: 100, height: 100, borderRadius: 100 / 2, marginTop: 20 }}
+                    />
+                }
+
+                    <Text style={{ color: "white", padding: 20, fontSize: 18, fontFamily: 'Montserrat-SemiBold' }}>{this.context?.user?.firstName + " " + this.context?.user?.lastName}</Text>
+
+                    <TouchableHighlight onPress={() => {
+                        this.props.navigation.navigate("AccountDetails");
+                    }}>
+                        <ProfileComponent
+                            imgSource={{ type: Icons.AntDesign, name: "user" }}
+                            componentName="Account Details"
+                        />
+                    </TouchableHighlight>
+
+                    <TouchableHighlight onPress={() => {
+                        this.props.navigation.navigate("Help");
+                    }}>
+                        <ProfileComponent imgSource={{ type: Icons.AntDesign, name: "adduser" }} componentName="Help" />
+                    </TouchableHighlight>
+
+                    <TouchableHighlight>
+                        <ProfileComponent imgSource={{ type: Icons.Feather, name: "shield" }} componentName="Privacy Policy" />
+                    </TouchableHighlight>
+
+                    <TouchableHighlight onPress={() => {
+                        this.setShow(true);
+                    }}>
+                        <ProfileComponent imgSource={{ type: Icons.Ionicons, name: "log-in-outline", isRed: true }} componentName="Logout" />
+                    </TouchableHighlight>
+
+                    <Socials />
+
+                    {
+                        this.state.show && <LogoutAlert navigation={this.props.navigation} setShow={(show) => { this.setShow(show) }}></LogoutAlert>
+                    }
+                </View>
 
 
-                <Socials />
             </View>
 
         )
