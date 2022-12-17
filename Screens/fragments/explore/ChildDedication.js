@@ -32,7 +32,7 @@ const ChildDedication = ({setShow}) => {
             setShow(true);
         }).catch((e)=>{
             // console.log(e);
-            alert('Some thing went Wrong, Try again');
+            alert('Some thing went wrong, try again');
         })
     }
 
