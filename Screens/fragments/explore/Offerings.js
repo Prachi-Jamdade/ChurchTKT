@@ -5,6 +5,7 @@ import {
     StyleSheet,
     TouchableHighlight,
     TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
@@ -15,6 +16,7 @@ import {AppContext} from '../../../context';
 import {generatePayment,completePayment} from '../../api/explore';
 import RazorpayCheckout from 'react-native-razorpay';
 import RequestSent from './RequestSent';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const Offerings = ({navigation})=>{
 
@@ -64,7 +66,7 @@ const Offerings = ({navigation})=>{
         };
 
         return (
-            <View style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
+            <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
 
             <TouchableOpacity
@@ -77,11 +79,11 @@ const Offerings = ({navigation})=>{
                 <Text style={gobalStyle.nav_header}>Give Offerings</Text>
                 </TouchableOpacity>
 
-            <View style={styles.card}>
-                <View style={{flex: 1}}>
+            <SafeAreaView style={styles.card}>
+                <SafeAreaView style={{flex: 1}}>
 
-                <Text style={{fontFamily: 'Montserrat-Medium', color: 'white', fontSize: 18}}>Enter the amount</Text>
-                <Text style={{ fontFamily: 'Montserrat-Regular', color: 'gray', fontSize: 14, marginTop: 12, marginBottom: 14}}>How much would you love to offer us, Enter the amount here.</Text>
+                <Text style={{fontFamily: 'Montserrat-Medium', color: 'white', fontSize: RFValue(16)}}>Enter the amount</Text>
+                <Text style={{ fontFamily: 'Montserrat-Regular', color: 'gray', fontSize: RFValue(14), marginTop: RFValue(12), marginBottom: RFValue(14)}}>How much would you love to offer us, Enter the amount here.</Text>
                 <TextInput style={styles.input}
                     underlineColorAndroid = "transparent"
                     placeholder = "Amount (in INR)"
@@ -92,7 +94,7 @@ const Offerings = ({navigation})=>{
                     value={amount}
                     onChangeText={(text)=>{setAmount(text);}}
                     />
-                </View>
+                </SafeAreaView>
 
                 <TouchableHighlight
                     style={gobalStyle.btn_abs}
@@ -103,8 +105,8 @@ const Offerings = ({navigation})=>{
 
 
 
-            </View>
-            </View>
+            </SafeAreaView>
+            </SafeAreaView>
     );
 };
 
@@ -115,16 +117,16 @@ const styles = StyleSheet.create({
         // backgroundColor: '#0F0F0F',
         borderTopRightRadius: 24,
         borderTopLeftRadius: 24,
-        paddingHorizontal: 24,
-        paddingTop: 18,
+        paddingHorizontal: RFValue(24),
+        paddingTop: RFValue(18),
     },
     input: {
-        height: 50,
-        marginTop: 12,
-        padding: 10,
+        height: RFValue(50),
+        marginTop: RFValue(12),
+        padding: RFValue(10),
         width: '100%',
         color: 'white',
-        fontSize: 16,
+        fontSize: RFValue(16),
         borderColor: '#989898',
         borderWidth: 1,
         borderRadius: 10,

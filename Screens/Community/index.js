@@ -19,6 +19,7 @@ import img12 from '../assests/community12.png';
 import CommunityBox from './CommunityBox';
 import CommunityList from './CommunityList';
 import ArrowImage from '../assests/icons/communityCardIcon.png'
+import { RFValue } from 'react-native-responsive-fontsize';
 
 
 let logged = true;
@@ -96,10 +97,10 @@ const styles = StyleSheet.create({
         backgroundColor:'#0F1013',
         marginTop:(height/5),
         borderRadius: 24,
-        paddingVertical:10,
+        paddingVertical:RFValue(10),
         flexDirection:'column',
         alignItems: 'center',
-        marginBottom:100,
+        marginBottom:RFValue(100),
     },
     box:{
         width,
@@ -108,17 +109,17 @@ const styles = StyleSheet.create({
     },
     header : {
         color: 'white',
-        marginTop: 30, 
-        marginHorizontal: 16,
-        fontSize: 22,
+        marginTop: RFValue(30), 
+        marginHorizontal: RFValue(16),
+        fontSize: RFValue(22),
         fontFamily: 'Montserrat-Medium'
     },
     headerInfo : {
         color: 'white',
-        marginTop: 10,
-        marginHorizontal: 16, 
+        marginTop: RFValue(10),
+        marginHorizontal: RFValue(16), 
         fontFamily: 'Montserrat-Bold',
-        fontSize: 20,
+        fontSize: RFValue(20),
     },
     container: {
         width,
@@ -144,27 +145,27 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     pagingText : {
-        fontSize: (width / 30) ,
+        fontSize: RFValue((width / 30)) ,
         backgroundColor: '#888',
-        margin: 3,
-        width:9,
-        height:9,
+        margin: RFValue(3),
+        width:RFValue(9),
+        height:RFValue(9),
         borderRadius:50,
     },
     pagingActive : {
         fontSize: (width / 30),
-        width:20,
-        height:9,
+        width:RFValue(20),
+        height:RFValue(9),
         backgroundColor: '#FFBE18', 
-        margin: 3,
-        borderRadius:50,
+        margin: RFValue(3),
+        borderRadius:RFValue(50),
         transitionDuration:10
     },
     list: { 
         backgroundColor:'#0F0F0F',
         borderRadius: 24,
-        marginBottom: 110,
-        paddingBottom:20,
+        marginBottom: RFValue(110),
+        paddingBottom:RFValue(20),
         width:boxWidth,
         flex:1,
         flexDirection:'column',
@@ -176,39 +177,39 @@ const styles = StyleSheet.create({
         height:width/2,
         width:boxWidth,
         borderRadius: 24,
-        paddingHorizontal:20,
-        paddingVertical:5,
+        paddingHorizontal:RFValue(14),
+        paddingVertical:RFValue(5),
         displayflexDirection:'column',
         justifyContent: 'flex-end',
-        marginBottom:15,
+        marginBottom:RFValue(15),
     },
     cardTextBox:{
         width:boxWidth*0.85,
     },
     cardImage:{
         position:'absolute',
-        height:width/2,
+        height:RFValue(width/2.5),
         width:boxWidth,
-        borderRadius: 24,
+        borderRadius: 20,
         zIndex:-1
     },
     cardTextBoxheader:{
         textShadowOffset: {
-            width: 2, height: 2
+            width: RFValue(2), height: RFValue(2)
         },
         textShadowRadius: 10,
         textShadowColor: '#333',
-        fontSize: 18,
+        fontSize: RFValue(18),
         color:'#FFFFFF',
         fontFamily: 'Montserrat-SemiBold'
     },
     cardBoxDescriptionText:{
         textShadowOffset: {
-            width: 2, height: 2
+            width: RFValue(2), height: RFValue(2)
         },
         textShadowRadius: 10,
         textShadowColor: '#333',
-        fontSize: 16,
+        fontSize: RFValue(16),
         color:'#FFFFFF',
         fontFamily: 'Montserrat-Medium'
     },
@@ -220,23 +221,23 @@ const styles = StyleSheet.create({
 
     },
     DescriptionText:{
-        fontSize: 15,
+        fontSize: RFValue(15),
         fontFamily: 'Montserrat-Medium',
         color:'#FFFFFF',
-        paddingHorizontal:13,
-        marginTop:20
+        paddingHorizontal:RFValue(13),
+        marginTop:RFValue(20)
     },
     submit : {
-        marginTop: 10,
-        borderRadius: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 10,
+        marginTop: RFValue(10),
+        borderRadius: RFValue(10),
+        paddingHorizontal: RFValue(20),
+        paddingVertical: RFValue(10),
         backgroundColor: 'grey',
         borderWidth: 1,
         width:width-20
     },
-    textInfo: {color: 'white', alignSelf: 'center', fontSize: 14},
-    imagesAbout:{marginTop:15,height:width/3}
+    textInfo: {color: 'white', alignSelf: 'center', fontSize: RFValue(14)},
+    imagesAbout:{marginTop:RFValue(10),height:RFValue(width/3)}
 });
 
 export {styles};

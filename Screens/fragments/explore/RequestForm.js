@@ -4,7 +4,7 @@ import {
     Dropdown,
 }
     from 'react-native-material-dropdown';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView, SafeAreaView } from 'react-native';
 
 import { styles as Input } from '../profile/AccountDetails';
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -51,7 +51,7 @@ const RequestForm = ({ navigation }) => {
     console.log(index);
 
 
-    return (<View style={{ backgroundColor: '#0F0F0F', flex: 1, flexDirection: 'column', alignItems: 'center', paddingBottom: 30 }}>
+    return (<SafeAreaView style={{ backgroundColor: '#0F0F0F', flex: 1, flexDirection: 'column', alignItems: 'center', paddingBottom: 30 }}>
 
         <TouchableOpacity
             // provide navigate path
@@ -59,23 +59,23 @@ const RequestForm = ({ navigation }) => {
             style={{ alignSelf: 'flex-start' }}
         >
 
-            <View style={[gobalStyle.nav, { alignSelf: 'flex-start' }]}>
-                <View style={gobalStyle.nav_image}>
+            <SafeAreaView style={[gobalStyle.nav, { alignSelf: 'flex-start' }]}>
+                <SafeAreaView style={gobalStyle.nav_image}>
                     <Icons.MaterialIcons name="arrow-back-ios" size={24} color="white" />
-                </View>
+                </SafeAreaView>
                 <Text style={gobalStyle.nav_header}>Request Forms</Text>
-            </View>
+            </SafeAreaView>
         </TouchableOpacity>
 
 
-        <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+        <SafeAreaView style={{ flexDirection: 'column', alignItems: 'center' }}>
             <Text style={{ color: 'white', marginVertical: 10, alignSelf: 'flex-start', fontSize: 16, fontFamily: 'Montserrat-Medium' }}>Choose the Service</Text>
             <ModalDropdown
                 options={options}
                 style={[styles.input]}
                 defaultIndex={index}
-                defaultValue={options[index]}
-                textStyle={{ color: 'white', marginVertical: 10, fontSize: 16 }}
+                defaultValue={'Choose the Service'}
+                textStyle={{ color: 'white', marginVertical: 10, fontSize: 16, fontFamily: 'Montserrat-Medium', marginStart: 10 }}
                 dropdownStyle={styles.dropdownStyle}
                 isFullWidth={true}
                 borderRadius={5}
@@ -91,7 +91,7 @@ const RequestForm = ({ navigation }) => {
                     return (
 
 
-                        <View
+                        <SafeAreaView
                             style={[
                                 {
                                     flexDirection: 'row',
@@ -130,7 +130,7 @@ const RequestForm = ({ navigation }) => {
                                         styles.dropdownTextHighlightStyle
                                 ]
                                 }>{option}</Text>
-                        </View>
+                        </SafeAreaView>
 
                     )
 
@@ -138,11 +138,11 @@ const RequestForm = ({ navigation }) => {
 
 
             />
-        </View>
+        </SafeAreaView>
 
 
-        <View style={{flex:2, marginTop: (100/5), paddingVertical: 10, alignItems: 'center', flexDirection: 'column', backgroundColor: '#161616', borderRadius: 20}}>
-            <Text style={[{ color: 'white', marginStart: 15, marginTop: 20, padding: 2, fontSize: 16, fontFamily: 'Montserrat-Medium' }, styles.texts]}>We need some details</Text>
+        <SafeAreaView style={{flex:2, marginTop: (100/5), paddingVertical: 8, alignItems: 'center', flexDirection: 'column', backgroundColor: '#161616', borderRadius: 20}}>
+            <Text style={[{ color: 'white', marginStart: 15, marginTop: 15, padding: 2, fontSize: 16, fontFamily: 'Montserrat-Medium' }, styles.texts]}>We need some details</Text>
 
             <GetForm index={index} setShow={setShow} />
             {
@@ -150,8 +150,8 @@ const RequestForm = ({ navigation }) => {
                 <RequestSent setShow={setShow} />
             }
 
-        </View>
-    </View>
+        </SafeAreaView>
+    </SafeAreaView>
     );
 };
 
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
         borderColor: '#343739',
         borderWidth: 1,
         color: 'white',
-        width: (width * 0.92),
+        width: (width * 0.90),
         padding: 4,
         marginVertical: 5,
         fontFamily: 'Montserrat-Medium'

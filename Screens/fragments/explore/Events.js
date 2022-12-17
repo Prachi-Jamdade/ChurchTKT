@@ -5,10 +5,11 @@ import {
     StyleSheet,
     TouchableHighlight,
     TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import { Linking } from 'react-native';
 import { Button, Image } from 'react-native-elements';
-import { TextInput } from 'react-native-gesture-handler';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import ImageBackUp from '../../assests/icons/back.png';
 import Sermons1 from '../../assests/sermons1.png';
 import Sermons2 from '../../assests/sermons2.png';
@@ -21,6 +22,7 @@ import EventIcons2 from '../../assests/icons/eventsIcon2.png';
 import EventIcons3 from '../../assests/icons/eventsIcon3.png';
 import EventIcons4 from '../../assests/icons/eventsIcon4.png';
 import gobalStyle from '../../styles/index';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const Icons = [
     {
@@ -47,7 +49,7 @@ class Events extends React.Component{
     render(){
         return (
 
-            <View style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
+            <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
             <TouchableOpacity
             style={gobalStyle.nav}
                 // provide navigate path
@@ -59,7 +61,7 @@ class Events extends React.Component{
 
             </TouchableOpacity>
 
-            <View style={styles.card}>
+            <ScrollView style={styles.card}>
                 <Text style={styles.separatingText}>Watch us live on</Text>
                 <ImageElement source={Sermons1} stretch ={false} title='Every Thursday 9 PM' content='Tune into our only English brodcast on GOD TV every thursday at 9 PM' />
                 <ImageElement source={Sermons2} title='Daily 4 PM' content='Tune into our only Telugu brodcast on Aradana TV everyday at 4 PM except monday and friday at 6 PM' />
@@ -67,46 +69,45 @@ class Events extends React.Component{
                 <ImageElement source={Sermons4} title='Thursday 9 PM' content='Tune into our only Telugu brodcast on Subhsanesh TV Thursday at 9 PM' />
                 <Text style={styles.separatingText}>Follow our Podcast on</Text>
 
-                <View style={{flex: 1, flexDirection: 'row', paddingTop: 12, paddingHorizontal: 12}}>
+                <SafeAreaView style={{flex: 1, flexDirection: 'row', paddingTop: RFValue(12), paddingHorizontal: RFValue(12)}}>
                     {Icons
                         .map((value) => <Image source={value.src}
-                        style={{height: 50, width: 50, borderRadius: 999, marginRight: 12}} 
+                        style={{height: RFValue(40), width: RFValue(40), borderRadius: RFValue(999), marginRight: RFValue(12)}} 
                         onPress={() => Linking.openURL(value.navigate)}
                         />
                     )}
-                </View>
-            </View>
-            </View>
+            </SafeAreaView>
+            </ScrollView>
+            </SafeAreaView>
 
         );
     }
 }
 
 function ImageElement({source, stretch = true, title, content}) {
-    return <View style={{
+    return <SafeAreaView style={{
         width: '100%',
-        marginTop: 8,
-        padding: 5,
-        marginTop: 5,
-        marginBottom: 5,
+        marginTop: RFValue(4),
+        padding: RFValue(3),
+        marginBottom: RFValue(4),
         borderRadius: 14,
         flexDirection: 'row'
     }}>
         <Image source={source} style={{
                     flex: 1,
-                    width: 100,
-                    height: 100,
+                    width: RFValue(90),
+                    height: RFValue(90),
                     resizeMode: 'contain',
                     borderRadius: 5,
-                    padding: 2
+                    padding: RFValue(1)
                 }} />
 
-        <View style={{flexDirection: 'column', padding: 4, flexGrow: 1, flex: 1,}}>
-            <Text style={{fontFamily: 'Montserrat-Bold', color: 'white', marginStart: 4, marginBottom: 10}}>{title}</Text>
-            <Text style={{fontFamily: 'Montserrat-Medium', color: 'white', marginStart: 4}}>{content}</Text>
-        </View>
+        <SafeAreaView style={{flexDirection: 'column', padding: RFValue(4), flexGrow: 1, flex: 1,}}>
+            <Text style={{fontFamily: 'Montserrat-Bold', color: 'white', marginStart: RFValue(4), marginBottom: RFValue(10)}}>{title}</Text>
+            <Text style={{fontFamily: 'Montserrat-Medium', color: 'white', marginStart: RFValue(4)}}>{content}</Text>
+        </SafeAreaView>
         
-    </View>;
+    </SafeAreaView>;
 }
 
 const styles = StyleSheet.create({
@@ -117,15 +118,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#1E1E1E',
         borderTopRightRadius: 24,
         borderTopLeftRadius: 24,
-        paddingHorizontal: 16,
+        paddingHorizontal: RFValue(14),
     },
     input: {
-        height: 50,
-        marginTop: 12,
-        padding: 10,
+        height: RFValue(50),
+        marginTop: RFValue(12),
+        padding: RFValue(10),
         width: '100%',
         color: 'white',
-        fontSize: 16,
+        fontSize: RFValue(14),
         borderColor: '#989898',
         borderWidth: 1,
         borderRadius: 10,
@@ -133,10 +134,10 @@ const styles = StyleSheet.create({
     separatingText: {
         fontFamily: 'Montserrat-SemiBold',
         color: 'white', 
-        fontSize: 18, 
-        marginStart: 12, 
-        marginTop: 20,
-        marginBottom: 10
+        fontSize: RFValue(16), 
+        marginStart: RFValue(12), 
+        marginTop: RFValue(20),
+        marginBottom: RFValue(10)
     },
 });
 

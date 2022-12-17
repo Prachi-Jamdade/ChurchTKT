@@ -116,12 +116,12 @@ const Help = ({ navigation }) => {
 
     return (
         <SafeAreaView style={gobalStyle.main}>
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <TouchableHighlight onPress={() => {
                     navigation.navigate("Profile");
                 }}>
-                    <View style={gobalStyle.nav}>
-                        <View>
+                    <SafeAreaView style={gobalStyle.nav}>
+                        <SafeAreaView>
 
                             <Icon
                                 style={{ paddingStart: 12 }}
@@ -130,12 +130,12 @@ const Help = ({ navigation }) => {
                                 name="arrow-back-ios"
                                 color='white'
                             />
-                        </View>
+                        </SafeAreaView>
                         <Text style={gobalStyle.nav_header}>Help</Text>
 
-                    </View>
+                    </SafeAreaView>
                 </TouchableHighlight>
-                <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width: '100%', height: '100%', marginTop: 10 }}>
+                <SafeAreaView style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width: '100%', height: '100%', marginTop: 10 }}>
                     {
                         listDataSource.map((item, key) => (
                             <ExpandableComponent
@@ -149,7 +149,7 @@ const Help = ({ navigation }) => {
                         ))
                     }
 
-                    <View style={{
+                    <SafeAreaView style={{
                         padding: 12,
                         margin: 2.5
                     }}>
@@ -158,7 +158,7 @@ const Help = ({ navigation }) => {
 
                         <Text style={{ fontFamily: 'Montserrat-Medium', fontSize: 16, color: 'white', marginVertical: 20 }}>If you are stuck somewhere, we have got you covered</Text>
 
-                        <View style={{ marginVertical: 10 }}></View>
+                        <SafeAreaView style={{ marginVertical: 10 }}></SafeAreaView>
                         <TouchableOpacity style={styles.chatSupportBtn}
                             onPress={OpenWhatsApp}
                             underlayColor='#fff'
@@ -167,9 +167,9 @@ const Help = ({ navigation }) => {
 
                         </TouchableOpacity>
 
-                    </View>
-                </View>
-            </View>
+                    </SafeAreaView>
+                </SafeAreaView>
+            </SafeAreaView>
         </SafeAreaView>
     )
 }

@@ -1,24 +1,25 @@
 import * as React from "react"
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, SafeAreaView } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { Linking } from 'react-native';
+import { RFValue } from "react-native-responsive-fontsize";
 
 const Socials = () => {
     return(
-    <View style={{
+    <SafeAreaView style={{
         alignItems:'center',
         justifyContent:'center'
     }}>
-        <Text style={{color: "white", padding:15, fontSize:17, fontFamily: 'Montserrat-Regular'} }>Follow us on</Text>
-        <View style={{
+        <Text style={{color: "white", padding:RFValue(15), fontSize:RFValue(17), fontFamily: 'Montserrat-Regular'} }>Follow us on</Text>
+        <SafeAreaView style={{
             flexDirection:'row',
             alignItems:'center',
             justifyContent:'center'
         }}>
             <Ionicons name='logo-linkedin' size={26} color="#FFBE18" 
             style={{
-                padding: 10, 
-                margin: 8,
+                padding: RFValue(8), 
+                margin: RFValue(5),
                 backgroundColor:'rgba(255, 190, 24, 0.05)',
                 borderRadius:15,
             }} 
@@ -26,8 +27,8 @@ const Socials = () => {
             />
             <Ionicons name='logo-facebook' size={26} color="#FFBE18" 
              style={{
-                padding: 10, 
-                margin: 8,
+                padding: RFValue(8), 
+                margin: RFValue(5),
                 backgroundColor:'rgba(255, 190, 24, 0.05)',
                 borderRadius:15,
             }}
@@ -35,8 +36,8 @@ const Socials = () => {
             />
             <Ionicons name='logo-twitter' size={26} color="#FFBE18" 
              style={{
-                padding: 10, 
-                margin: 8,
+                padding: RFValue(8), 
+                margin: RFValue(5),
                 backgroundColor:'rgba(255, 190, 24, 0.05)',
                 borderRadius:15,
             }}
@@ -44,8 +45,8 @@ const Socials = () => {
             />
             <Ionicons name='logo-instagram' size={26} color="#FFBE18" 
             style={{
-                padding: 10, 
-                margin: 8,
+                padding: RFValue(8), 
+                margin: RFValue(5),
                 backgroundColor:'rgba(255, 190, 24, 0.05)',
                 borderRadius:15,
             }}
@@ -53,15 +54,15 @@ const Socials = () => {
             />
             <Ionicons name='logo-youtube' size={26} color="#FFBE18" 
             style={{
-                padding: 10, 
-                margin: 8,
+                padding: RFValue(8), 
+                margin: RFValue(5),
                 backgroundColor:'rgba(255, 190, 24, 0.05)',
                 borderRadius:15,
             }}
             onPress={() => Linking.openURL('https://youtube.com/@thekingstemplechurch3010')}
             />
-        </View>
-    </View>
+        </SafeAreaView>
+    </SafeAreaView>
     )
 }
 

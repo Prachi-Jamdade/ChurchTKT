@@ -7,6 +7,7 @@ import {
     Text,
     ScrollView,
     TouchableHighlight,
+    SafeAreaView
 } from 'react-native';
 import { Keyboard } from "react-native";
 
@@ -14,7 +15,7 @@ import img1 from '../assests/onboardScreen1.png';
 import img2 from '../assests/onboardScreen2.png';
 import img3 from '../assests/onboardScreen3.png';
 import gobalStyle from '../styles/index';
-import AutoScroll from "@homielab/react-native-auto-scroll";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 
 const {width} = Dimensions.get('window');
@@ -54,9 +55,9 @@ class Onboarding extends React.Component{
 
     render(){
         return (
-            <View style={styles.main}>
+            <SafeAreaView style={styles.main}>
 
-              <View style = {styles.container}>
+              <SafeAreaView style = {styles.container}>
                 <ScrollView
                   pagingEnabled
                   horizontal
@@ -81,32 +82,32 @@ class Onboarding extends React.Component{
                     ))
                   }
                 </View>
-              </View>
-              <View style = {styles.textAll}>
+              </SafeAreaView>
+              <SafeAreaView style = {styles.textAll}>
                 {
                   <Text style = {styles.text}>{infos[this.state.active]}</Text>
                 }
-              </View>
-              <View style = {styles.bottomButtons}>
+              </SafeAreaView>
+              <SafeAreaView style = {styles.bottomButtons}>
               <TouchableHighlight
-                style={[gobalStyle.btn1,{ padding:0}]}
+                style={[gobalStyle.btn1,{ padding:RFValue(0)}]}
                 onPress={() => {this.SignUp(this.props);}}
                 underlayColor="#fff">
                   <Text style={gobalStyle.submitText}>Join Us</Text>
               </TouchableHighlight>
-              <View flexDirection='row' justifyContent='center' alignItems='center'>
+              <SafeAreaView flexDirection='row' justifyContent='center' alignItems='center'>
                 <Image source={require('../assests/white_separator.png')} style={{width: 150}} />
                 <Text style = {styles.or}>OR</Text>
                 <Image source={require('../assests/white_separator.png')} style={{width: 150}} />
-              </View>
+              </SafeAreaView>
               <TouchableHighlight
-                style={[gobalStyle.btn2,{ padding:0,marginTop:0}]}
+                style={[gobalStyle.btn2,{ padding:RFValue(0),marginTop:RFValue(0)}]}
                 onPress={() => {this.Login(this.props);}}
                 underlayColor="#fff">
                   <Text style={gobalStyle.submitText}>Login</Text>
               </TouchableHighlight>
-              </View>
-          </View>
+              </SafeAreaView>
+          </SafeAreaView>
         );
     }
 
@@ -117,13 +118,13 @@ const styles = StyleSheet.create({
       flex: 1, backgroundColor:'black',
     },
     container: {
-      marginTop: 0,
+      marginTop: RFValue(0),
       width,
       height,
     },
     title: {
       textAlign: 'center',
-      marginVertical: 8,
+      marginVertical: RFValue(8),
     },
     scrollView :{
       width,
@@ -143,25 +144,25 @@ const styles = StyleSheet.create({
     pagingText : {
       fontSize: (width / 30) ,
       backgroundColor: '#888' ,
-       margin: 3,
+       margin: RFValue(3),
        width:9,
        height:9,
-       borderRadius:50,
+       borderRadius:RFValue(50),
       },
-    pagingActive : {fontSize: (width / 30) ,width:20,height:9, backgroundColor: '#FFBE18', margin: 3,borderRadius:50,transitionDuration:10},
-    text : {fontSize: 15, color : 'white',alignSelf : 'center', textAlign: 'center', marginTop: 8, marginHorizontal: 16, fontFamily: 'Montserrat-SemiBold'},
+    pagingActive : {fontSize: (width / 30) ,width:20,height:9, backgroundColor: '#FFBE18', margin: RFValue(3),borderRadius:50,transitionDuration:10},
+    text : {fontSize: RFValue(15), color : 'white',alignSelf : 'center', textAlign: 'center', marginTop: RFValue(8), marginHorizontal: RFValue(16), fontFamily: 'Montserrat-SemiBold'},
     contentContainer: {flex: 1},
-    or : {alignSelf: 'center', color: '#888', fontSize: 16, padding: 10},
+    or : {alignSelf: 'center', color: '#888', fontSize: RFValue(16), padding: RFValue(10)},
     bottomButtons : { 
       flex: 1, 
       flxexDirection: 'column', 
-      marginHorizontal: 16,
-      marginTop:20,
+      marginHorizontal: RFValue(16),
+      marginTop:RFValue(20),
       justifyContent:'space-around',
     },
     textAll:{
-      marginVertical:20,
-      marginHorizontal:30,
+      marginVertical:RFValue(20),
+      marginHorizontal:RFValue(30),
       height:50
     },
   });

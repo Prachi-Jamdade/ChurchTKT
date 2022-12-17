@@ -5,6 +5,7 @@ import {
     StyleSheet,
     TouchableHighlight,
     TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
@@ -64,7 +65,7 @@ const SPMOfferings = ({navigation})=>{
         };
 
         return (
-            <View style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
+            <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
 
             <TouchableOpacity
@@ -77,10 +78,10 @@ const SPMOfferings = ({navigation})=>{
                 <Text style={gobalStyle.nav_header}>SPM</Text>
                 </TouchableOpacity>
 
-            <View style={styles.card}>
-                <View style={{flex: 1}}>
+            <SafeAreaView style={styles.card}>
+                <SafeAreaView style={{flex: 1}}>
 
-                <Text style={{fontWeight: 'bold', color: 'white', fontSize: 18}}>Enter the amount</Text>
+                <Text style={{fontWeight: 'bold', color: 'white', fontSize: RFValue(16)}}>Enter the amount</Text>
                 <TextInput style={styles.input}
                     underlineColorAndroid = "transparent"
                     placeholder = "Amount (in INR)"
@@ -91,7 +92,7 @@ const SPMOfferings = ({navigation})=>{
                     value={amount}
                     onChangeText={(text)=>{setAmount(text);}}
                     />
-                </View>
+                </SafeAreaView>
 
                 <TouchableHighlight
                     style={gobalStyle.btn_abs}
@@ -101,8 +102,8 @@ const SPMOfferings = ({navigation})=>{
                 </TouchableHighlight>
 
 
-            </View>
-            </View>
+            </SafeAreaView>
+            </SafeAreaView>
     );
 };
 

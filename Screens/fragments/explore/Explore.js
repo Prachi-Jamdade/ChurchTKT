@@ -8,8 +8,10 @@ import {
     ScrollView,
     ImageBackground,
     Image,
+    SafeAreaView
 
 } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import gobalStyle from '../../styles/index';
 
@@ -58,14 +60,14 @@ const Explore = ({ navigation }) => {
         //     Explore
         // </Text>
 
-        <View style={{
+        <SafeAreaView style={{
             backgroundColor: '#0F0F0F',
             width: '100%',
             height: '100%',
             gap: 5,
             flex: 1
         }}>
-            <Text style={[gobalStyle.header, { marginBottom: 15 }]}>
+            <Text style={[gobalStyle.header, { marginBottom: RFValue(15) }]}>
                 Explore
             </Text>
 
@@ -80,15 +82,15 @@ const Explore = ({ navigation }) => {
                     height: '100%',
                     display: 'flex',
                     gap: 5,
-                    marginBottom: 60,
-                    borderRadius: 20,
-                    padding: 20,
+                    marginBottom: RFValue(60),
+                    borderRadius: RFValue(20),
+                    padding: RFValue(20),
                     flex: 1
                 }}
             >
 
                 <TouchableHighlight onPress={() => navigation.navigate('Spm')}>
-                    <View style={{
+                    <SafeAreaView style={{
                         display: 'flex',
                         flexDirection: 'row',
                         justifyContent: 'center',
@@ -97,41 +99,41 @@ const Explore = ({ navigation }) => {
                         color: 'white',
                         borderWidth: 1.2,
                         borderRadius: 20,
-                        marginBottom: 10,
-                        marginTop: 5,
-                        minHeight: 140,
-                        paddingLeft: 20,
+                        marginBottom: RFValue(12),
+                        marginTop: RFValue(1),
+                        minHeight: RFValue(140),
+                        paddingLeft: RFValue(20),
                         overflow: 'hidden',
                     }}>
 
-                        <Text style={{ fontSize: 14, color: 'white', fontFamily: 'Montserrat-Medium' }}>
+                        <Text style={{ marginStart: RFValue(10), fontSize: RFValue(12), color: 'white', fontFamily: 'Montserrat-Medium' }}>
                             Samuel Patta Ministries
                         </Text>
                         <Image source={require('../../assests/SamuelPatta.png')}
                             style={{
-                                height: 110,
+                                height: RFValue(110),
                                 borderBottomRightRadius: 8,
-                                marginTop: 30
+                                marginTop: RFValue(30)
                             }}>
                         </Image>
 
-                    </View>
+                    </SafeAreaView>
                 </TouchableHighlight>
 
-                <View style={{
+                <SafeAreaView style={{
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
                     <Image source={require('../../assests/golden_separator.png')}
-                        style={{ height: 3, marginBottom: 10, }} />
-                </View>
+                        style={{ height: RFValue(3), marginBottom: RFValue(10), }} />
+                </SafeAreaView>
 
                 {
                     cardContent.map((content, index) => {
                         return (
                             <TouchableHighlight onPress={() => navigation.navigate(content.navigate)}>
 
-                                <View style={{
+                                <SafeAreaView style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     justifyContent: 'space-between',
@@ -141,39 +143,39 @@ const Explore = ({ navigation }) => {
                                     backgroundColor: content.color,
                                     borderWidth: 0,
                                     borderRadius: 20,
-                                    marginTop: 6,
-                                    marginBottom: 10,
-                                    minHeight: 130,
+                                    marginTop: RFValue(5),
+                                    marginBottom: RFValue(8),
+                                    minHeight: RFValue(100),
                                     position: 'relative',
                                     overflow: 'hidden'
                                 }} key={index}>
 
 
 
-                                    <View style={{
+                                    <SafeAreaView style={{
                                         width: '70%',
                                         height: '100%',
                                         display: 'flex',
                                         gap: 5,
-                                        padding: 20
+                                        padding: RFValue(15)
                                     }}>
-                                        <Text style={{ color: 'white', fontSize: 15, fontFamily: 'Montserrat-Medium' }}>
+                                        <Text style={{ color: 'white', fontSize: RFValue(14), fontFamily: 'Montserrat-Medium' }}>
                                             {content.text}
                                         </Text>
 
-                                        <Ionicons name="arrow-forward-circle" size={35} style={{ paddingTop: 5, marginTop: 20 }} color="white" />
+                                        <Ionicons name="arrow-forward-circle" size={35} style={{ paddingTop: RFValue(5), marginTop: RFValue(15) }} color="white" />
 
-                                    </View>
-                                    <View style={{
+                                    </SafeAreaView>
+                                    <SafeAreaView style={{
                                         // width: "50%"
                                     }}>
 
                                         <Image
                                             source={content.icon}
                                             style={{
-                                                padding: 5,
-                                                marginTop: 30,
-                                                marginRight: 15,
+                                                padding: RFValue(5),
+                                                marginTop: RFValue(30),
+                                                marginRight: RFValue(15),
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
                                                 position: 'absolute',
@@ -182,9 +184,9 @@ const Explore = ({ navigation }) => {
                                             }}
                                         />
 
-                                    </View>
+                                    </SafeAreaView>
 
-                                </View>
+                                </SafeAreaView>
 
                             </TouchableHighlight>
                         );
@@ -192,7 +194,7 @@ const Explore = ({ navigation }) => {
                 }
 
             </ScrollView>
-        </View>
+        </SafeAreaView>
 
         // </View>
     );
