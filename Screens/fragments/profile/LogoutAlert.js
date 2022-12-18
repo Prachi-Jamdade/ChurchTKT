@@ -5,16 +5,17 @@ import { Button } from "react-native-elements";
 import { View,Image,TouchableOpacity,Text,StyleSheet,Dimensions } from 'react-native';
 
 import {AppContext} from '../../../context'
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const LogoutAlert = ({navigation,setShow}) => {
     const {clear}=useContext(AppContext);
     return (
-        <View style={styles.container}>
-            <View style={styles.containerItem}>
+        <SafeAreaView style={styles.container}>
+            <SafeAreaView style={styles.containerItem}>
 
                 <Text style={styles.header}>Do you really want to logout?</Text>
 
-                <View style={{flexDirection:'row'}}>
+                <SafeAreaView style={{flexDirection:'row'}}>
                     <TouchableOpacity style={styles.chatSupportBtn}
                         // provide naviate path
                         onPress={() => setShow(false)}
@@ -32,10 +33,10 @@ const LogoutAlert = ({navigation,setShow}) => {
                         >
                         <Text style={styles.loginText}>Logout</Text>
                     </TouchableOpacity>
-                </View>
-            </View>
+                </SafeAreaView>
+            </SafeAreaView>
 
-        </View>
+        </SafeAreaView>
     )
 }
 

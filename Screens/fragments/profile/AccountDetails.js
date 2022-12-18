@@ -1,5 +1,5 @@
 import React,{useState,useContext,useEffect} from 'react';
-import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput } from 'react-native';
+import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput, SafeAreaView } from 'react-native';
 import Icon,{Icons} from '../Icons';
 import {AppContext} from '../../../context';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -7,6 +7,7 @@ import gobalStyle from '../../styles/index';
 import RNFS from 'react-native-fs';
 import {styles as btnS} from '../explore/RequestForm';
 import {updateUserData,getProfileDetails} from '../../api/authication'
+import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const AccountDetails = ({navigation})=> {
@@ -76,55 +77,55 @@ const AccountDetails = ({navigation})=> {
 
 
     return (
-    <View style={gobalStyle.main}>
+    <SafeAreaView style={gobalStyle.main}>
 
             <TouchableHighlight onPress={()=>{
                     navigation.navigate('Profile');
                 }}>
-                <View style={[gobalStyle.nav,{backgroundColor:'transparent'}]}>
-                    <View>
+                <SafeAreaView style={[gobalStyle.nav,{backgroundColor:'transparent'}]}>
+                    <SafeAreaView>
 
                     <Icon
-                    style={{paddingStart: 10}}
+                    style={{paddingStart: RFValue(10)}}
                     type={Icons.MaterialIcons}
                     size={25}
                     name="arrow-back-ios"
                     color= "white"
                     />
-                    </View>
+                    </SafeAreaView>
                     <Text style={gobalStyle.nav_header}>Account Details</Text>
 
-                </View>
+                </SafeAreaView>
             </TouchableHighlight>
 
-            <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
-            <View style={{alignItems:'center', justifyContent:'center', padding:30}}>
+            <SafeAreaView style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
+            <SafeAreaView style={{alignItems:'center', justifyContent:'center', padding:30}}>
 
             {
                 profileUrl
                 ?
                 <Image
                 source={{uri: profileUrl}}
-                style={{width: 130, height: 130, borderRadius:130 / 2}}
+                style={{width: RFValue(120), height: RFValue(120), borderRadius:RFValue(120/2)}}
                 />
                 :
                 <Image
                 source={require('../../assests/UserPic.png')}
-                style={{width: 130, height: 130, borderRadius:130 / 2}}
+                style={{width: RFValue(120), height: RFValue(120), borderRadius:RFValue(120/2)}}
                 />
             }
 
             <TouchableHighlight onPress={handleChoosePhoto}>
 
-            <Text style={{color: '#F79D16', padding:10, fontSize:18, fontFamily: 'Montserrat-Regular'}}>Change Profile Picture</Text>
+            <Text style={{color: '#F79D16', padding:RFValue(10), fontSize:RFValue(16), fontFamily: 'Montserrat-Regular'}}>Change Profile Picture</Text>
             </TouchableHighlight>      
 
-        </View>
+        </SafeAreaView>
 
-        <View style={{padding:5, margin:10, width: '100%', margin: 10}}>
+        <SafeAreaView style={{padding:RFValue(5), margin:RFValue(10), width: '100%', margin: RFValue(10)}}>
 
-            <Text style={{color: '#808080', fontSize:18, fontFamily: 'Montserrat-Regular', margin: 10, marginStart: 20,
-        marginEnd: 20,}}>Name</Text>
+            <Text style={{color: '#808080', fontSize:RFValue(16), fontFamily: 'Montserrat-Regular', margin: RFValue(10), marginStart: RFValue(20),
+        marginEnd: RFValue(20),}}>Name</Text>
 
             <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -136,8 +137,8 @@ const AccountDetails = ({navigation})=> {
                 onChangeText = {handleName}
                 />
 
-            <Text style={{color: '#808080', fontSize:18,  fontFamily: 'Montserrat-Regular', margin: 10, marginStart: 20,
-        marginEnd: 20,}}>Mobile</Text>
+            <Text style={{color: '#808080', fontSize:RFValue(16),  fontFamily: 'Montserrat-Regular', margin: RFValue(10), marginStart: RFValue(20),
+        marginEnd: RFValue(20),}}>Mobile</Text>
 
             <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -147,9 +148,9 @@ const AccountDetails = ({navigation})=> {
                 value={data.phoneNo}
                 editable={isEditOn}
                 onChangeText = {handleMobile} />
-            </View>
+            </SafeAreaView>
 
-            <View style={{flexDirection: 'column',alignItems:'center',marginTop:30}}>
+            <SafeAreaView style={{flexDirection: 'column',alignItems:'center',marginTop:30}}>
                 <TouchableHighlight style={btnS.chatSupportBtn}
                 // provide navigate path
                 onPress={
@@ -172,9 +173,9 @@ const AccountDetails = ({navigation})=> {
                         <Text style={btnS.loginText}>Edit</Text>
                     }
                 </TouchableHighlight>
-        </View>
-        </View>
-    </View>
+        </SafeAreaView>
+        </SafeAreaView>
+    </SafeAreaView>
     );
 
 };
@@ -183,24 +184,25 @@ const styles = StyleSheet.create({
     input: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 5,
-        marginHorizontal: 10,
-        marginStart: 20,
-        marginEnd: 20,
-        height: 40,
+        marginVertical: RFValue(5),
+        marginHorizontal: RFValue(10),
+        marginStart: RFValue(20),
+        marginEnd: RFValue(20),
+        height: RFValue(40),
         borderColor: '#343739',
-        borderWidth: 1,
-        paddingHorizontal:10,
+        borderWidth: 2,
+        borderRadius: 6,
+        paddingHorizontal:RFValue(10),
         color: 'white',
-        fontSize: 16,
+        fontSize: RFValue(16),
         fontFamily: 'Montserrat-Regular'
      },
      header: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 30, 
-        marginHorizontal: 16, 
-        marginBottom:30,
+        marginTop: RFValue(30), 
+        marginHorizontal: RFValue(16), 
+        marginBottom:RFValue(30),
     },
 });
 

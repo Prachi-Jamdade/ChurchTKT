@@ -5,6 +5,7 @@ import {
     ScrollView,
     Image,
     TouchableHighlight,
+    SafeAreaView
 } from 'react-native';
 import {styles} from '.';
 import Icon,{Icons} from '../fragments/Icons'
@@ -16,23 +17,23 @@ import ArrowImage from '../assests/icons/communityCardIcon.png';
 const CommunityList = ({navigation,data,setIndex}) => {
 
     return (
-            <View style= {gobalStyle.main}>
+            <SafeAreaView style= {gobalStyle.main}>
                 <Text style= {gobalStyle.header}>Community</Text>
-                <View style={styles.box}>
+                <SafeAreaView style={styles.box}>
                 <ScrollView 
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 >
-                    <View style={styles.list}>
+                    <SafeAreaView style={styles.list}>
                     {
                         data.map((value,index)=>{
                             return <CommunityCard key={index} index={index} setIndex={setIndex} navigation={navigation} {...value}/>;
                         })
                     }
-                    </View>
+                    </SafeAreaView>
                 </ScrollView>
-            </View>
-            </View>
+            </SafeAreaView>
+            </SafeAreaView>
         )
 }
 
@@ -42,14 +43,14 @@ const CommunityCard = ({navigation,image,title,description,about,index,setIndex}
     return(
 
         <TouchableHighlight onPress={()=>setIndex(index)}>
-            <View style={styles.cardBox} 
+            <SafeAreaView style={styles.cardBox} 
                 >
                 <Image
                     source = {image[0]}
                     style = {styles.cardImage}/>
-                <View style={styles.cardTextBox}>
+                <SafeAreaView style={styles.cardTextBox}>
                     {/* <Text style= {styles.cardTextBoxheader}>{title}</Text> */}
-                    <View style={styles.cardTextBoxDescription}>
+                    <SafeAreaView style={styles.cardTextBoxDescription}>
                     {/* <Text  style={styles.cardBoxDescriptionText}>{description}</Text> */}
                          <Icon
                             type={Icons.AntDesign}
@@ -57,9 +58,9 @@ const CommunityCard = ({navigation,image,title,description,about,index,setIndex}
                             name="rightcircleo"
                             color= 'white'
                          />
-                    </View>
-                </View>
-            </View>
+                    </SafeAreaView>
+                </SafeAreaView>
+            </SafeAreaView>
         </TouchableHighlight>
     )
 

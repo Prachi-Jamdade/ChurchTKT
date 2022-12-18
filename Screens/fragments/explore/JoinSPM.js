@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Dimensions, ScrollView, Text, TextInput, TouchableHighlight, TouchableOpacity } from "react-native";
+import { View, Image, Dimensions, ScrollView, Text, TextInput, TouchableHighlight, TouchableOpacity, SafeAreaView } from "react-native";
 import { StyleSheet } from "react-native";
 import gobalStyle from '../../styles/index';
 import { AppContext } from '../../../context';
@@ -7,6 +7,7 @@ import { useState, useContext, useEffect } from "react";
 import ImageBackUp from '../../assests/icons/back.png';
 import { sendSPMFrom } from '../../api/requestForms'
 import RadioButtonRN from 'radio-buttons-react-native';
+import { RFValue } from "react-native-responsive-fontsize";
 
 const JoinSPM = ({ navigation }) => {
     const { user } = useContext(AppContext);
@@ -51,7 +52,7 @@ const JoinSPM = ({ navigation }) => {
 
 
     return (
-        <View style={gobalStyle.main}>
+        <SafeAreaView style={gobalStyle.main}>
             <TouchableOpacity
                 style={gobalStyle.nav}
                 // provide navigate path
@@ -61,7 +62,7 @@ const JoinSPM = ({ navigation }) => {
                 <Text style={gobalStyle.nav_header}>Join SPM</Text>
             </TouchableOpacity>
 
-            <View style={[styles.box]}>
+            <SafeAreaView style={[styles.box]}>
 
 
                 <Text style={styles.boldText}>
@@ -105,7 +106,7 @@ const JoinSPM = ({ navigation }) => {
                     //     onChangeText={(e) => change("gender", e)}
                     // /> */}
 
-<Text style={[styles.lightText, marginBottom= 3]}>
+<Text style={[styles.normalText]}>
                     Gender
                 </Text>
 
@@ -113,15 +114,15 @@ const JoinSPM = ({ navigation }) => {
                     <RadioButtonRN
                     data={genderData}
                     selectedBtn={(e) => change("gender",e.label)}
-                    style={{marginStart: 5}}
+                    style={{marginStart: RFValue(2)}}
                     activeColor={'#CF820E'}
                     inactiveColor={'#181818'}
                     boxStyle={{backgroundColor: '#1E1E1E', borderColor: '#1E1E1E'}}
-                    textStyle={{fontFamily: 'Montserrat-Medium', fontSize: 16, color: 'white'}}
+                    textStyle={{fontFamily: 'Montserrat-Medium', fontSize: RFValue(16), color: 'white'}}
                     />
 
                     {/* <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 16, margin:10, color: 'white'}}>Gender</Text> */}
-                    <Text style={[styles.lightText, { marginTop: 30 }]}>Enter the amount you want to commit: </Text>
+                    <Text style={[styles.lightText, { marginTop: RFValue(10) }]}>Enter the amount you want to commit: </Text>
 
                     <TextInput style={styles.input}
                         underlineColorAndroid="transparent"
@@ -141,8 +142,8 @@ const JoinSPM = ({ navigation }) => {
                 >
                     <Text style={[gobalStyle.submitText]}>JOIN</Text>
                 </TouchableHighlight>
-            </View>
-        </View>
+            </SafeAreaView>
+        </SafeAreaView>
     )
 }
 
@@ -150,46 +151,52 @@ const { width } = Dimensions.get('window');
 const boxWidth = width * 0.9;
 const styles = StyleSheet.create({
     input: {
-        height: 50,
+        height: RFValue(50),
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 5,
-        marginHorizontal: 10,
-        marginStart: 20,
-        marginEnd: 20,
+        marginVertical: RFValue(5),
+        marginHorizontal: RFValue(10),
+        marginStart: RFValue(20),
+        marginEnd: RFValue(20),
         borderColor: '#343739',
         borderWidth: 1,
-        paddingHorizontal: 10,
+        paddingHorizontal: RFValue(10),
         color: 'white',
-        borderRadius: 10,
-        borderWidth: 2,
-        fontSize: 16,
+        borderRadius: RFValue(10),
+        borderWidth: RFValue(2),
+        fontSize: RFValue(15),
         fontFamily: 'Montserrat-Regular'
     },
     box: {
         width,
         backgroundColor: '#1E1E1E',
         flexDirection: 'column',
-        borderRadius: 20,
+        borderRadius: RFValue(20),
         flex: 1,
-        marginTop: 10,
-        paddingTop: 10,
+        marginTop: RFValue(5),
+        paddingTop: RFValue(10),
     },
     boldText: {
         fontFamily: 'Montserrat-SemiBold',
-        fontSize: 18,
+        fontSize: RFValue(17),
         color: 'white',
-        margin: 20,
+        margin: RFValue(20),
+        marginTop: 10,
+        marginBottom: RFValue(5),
     },
     lightText: {
         fontFamily: 'Montserrat-Medium',
-        fontSize: 16,
-        margin: 20,
-        marginBottom: 10,
+        fontSize: RFValue(14),
+        margin: RFValue(20),
+        marginBottom: RFValue(10),
         color: '#989898',
     },
     normalText: {
-
+        fontFamily: 'Montserrat-Medium',
+        fontSize: RFValue(15),
+        margin: RFValue(20),
+        marginBottom: RFValue(5),
+        color: '#989898',
     }
 })
 

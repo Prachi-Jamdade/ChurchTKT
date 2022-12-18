@@ -3,6 +3,8 @@ import {
     Dimensions,
 } from 'react-native';
 
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+
 
 
 const {width} = Dimensions.get('window');
@@ -12,19 +14,19 @@ const styles = StyleSheet.create({
     main : {flex: 1, backgroundColor:'black'},
     container: {marginTop: 0},
     header : {
-        marginTop: 30,
+        marginTop: RFValue(30),
         color: 'white',
-        marginHorizontal: 16,
+        marginHorizontal: RFValue(16),
         fontFamily : 'Montserrat-Bold', 
-        fontSize: 22, 
+        fontSize: RFValue(18), 
         flexDirection:'row',
         alignItems: 'center',
-        marginBottom: 5,
+        marginBottom: RFValue(5),
     },
     nav: {
-        marginTop: 30,
-        marginHorizontal: 6,
-        marginBottom: 20,
+        marginTop: RFValue(30),
+        marginHorizontal: RFValue(6),
+        marginBottom: RFValue(20),
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -32,40 +34,40 @@ const styles = StyleSheet.create({
         height: 24,
         width: 24,
         resizeMode: 'contain',
-        marginStart: 12
+        marginStart: RFValue(12)
     },
     nav_header:{
         color: 'white',
         fontFamily: 'Montserrat-SemiBold', 
-        fontSize: 22, 
+        fontSize: RFValue(20), 
         marginLeft:5
     },
     bg:{
         backgroundColor:'#1E1E1E',
-        paddingTop:10,
+        paddingTop:RFValue(10),
         borderTopLeftRadius:10,
         borderTopRightRadius:10,
-        marginTop:20
+        marginTop:RFValue(20)
     },
     bottomButtons : { 
         flex: 1, 
         flexDirection: "column", 
         justifyContent: "space-around", 
-        marginHorizontal: 16
+        marginHorizontal: RFValue(16)
     },
     btn2 : {
         backgroundColor: '#0F1013',
-        marginTop: 10,
+        marginTop: RFValue(10),
         borderRadius: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingHorizontal: RFValue(20),
+        paddingVertical: RFValue(10),
         borderWidth: 1,
         borderColor: '#fff',
         width:(width * 0.92),
     },
     btn1: {
-        paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingHorizontal: RFValue(20),
+        paddingVertical: RFValue(10),
         backgroundColor: '#F79D16',
         borderRadius: 10,
         borderWidth: 0.5,
@@ -77,18 +79,18 @@ const styles = StyleSheet.create({
         bottom:0,
         left: 0,
         right:0,
-        marginTop: 10,
-        marginBottom: 20,
-        paddingHorizontal: 20,
-        paddingVertical: 12,
+        marginTop: RFValue(10),
+        marginBottom: RFValue(20),
+        paddingHorizontal: RFValue(20),
+        paddingVertical: RFValue(12),
         backgroundColor: '#FFBE18',
         borderRadius: 10,
         borderWidth: 1,
         width:(width * 0.92),
-        marginHorizontal: 16,
+        marginHorizontal: RFValue(16),
     },
     submitText:{
-        fontSize: 17,
+        fontSize: RFValue(15),
         textTransform: 'uppercase',
         textAlign: 'center',
         color: 'white',

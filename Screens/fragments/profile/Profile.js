@@ -5,7 +5,8 @@ import {
     StyleSheet,
     TouchableHighlight,
     Image,
-    TextInput
+    TextInput,
+    SafeAreaView
 } from 'react-native';
 
 import ProfileComponent from './ProfileComponent';
@@ -15,6 +16,9 @@ import gobalStyle from '../../styles/index';
 import { Icons } from '../Icons';
 import LogoutAlert from './LogoutAlert';
 import {getProfileDetails} from '../../api/authication';
+import { ScrollView } from 'react-navigation';
+import { RFValue } from 'react-native-responsive-fontsize';
+
 class Profile extends React.Component {
 
     state = {
@@ -45,30 +49,30 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <View style={{ alignItems: 'center', backgroundColor: '#0F0F0F', height: '100%' }}>
+            <SafeAreaView style={{ alignItems: 'center', backgroundColor: '#0F0F0F', height: '100%' }}>
 
-                <Text style={[gobalStyle.header, { alignSelf: 'flex-start', marginBottom: 20 }]}>
+                <Text style={[gobalStyle.header, { alignSelf: 'flex-start', marginBottom: RFValue(20) }]}>
                     Profile
                 </Text>
 
-                <View style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
+                <SafeAreaView style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
                             
                 {
                     this.context.profileUrl
                     ?
                     <Image
                     source={{uri: this.context.profileUrl}}
-                        style={{ width: 100, height: 100, borderRadius: 100 / 2, marginTop: 20 }}
+                        style={{ width: RFValue(90), height: RFValue(90), borderRadius: 90 / 2, marginTop: RFValue(15) }}
                     />
                     :
                     <Image
                     source={
                         require('../../assests/UserPic.png')}
-                        style={{ width: 100, height: 100, borderRadius: 100 / 2, marginTop: 20 }}
+                        style={{ width: RFValue(90), height: RFValue(90), borderRadius: 90 / 2, marginTop: RFValue(15) }}
                     />
                 }
 
-                    <Text style={{ color: "white", padding: 20, fontSize: 18, fontFamily: 'Montserrat-SemiBold' }}>{this.context?.user?.firstName + " " + this.context?.user?.lastName}</Text>
+                    <Text style={{ color: "white", padding: RFValue(20), fontSize: RFValue(16), fontFamily: 'Montserrat-SemiBold' }}>{this.context?.user?.firstName + " " + this.context?.user?.lastName}</Text>
 
                     <TouchableHighlight onPress={() => {
                         this.props.navigation.navigate("AccountDetails");
@@ -100,10 +104,10 @@ class Profile extends React.Component {
                     {
                         this.state.show && <LogoutAlert navigation={this.props.navigation} setShow={(show) => { this.setShow(show) }}></LogoutAlert>
                     }
-                </View>
+                </SafeAreaView>
 
 
-            </View>
+            </SafeAreaView>
 
         )
     }

@@ -5,12 +5,17 @@ import {
     Image,
     TouchableHighlight,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView,
+    BackHandler
 } from 'react-native';
 import { styles } from './index';
 import Icon, { Icons } from '../fragments/Icons';
 import moreInfo from '../assests/moreInfo.png';
 import gobalStyle from '../styles/index';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { useEffect } from 'react';
+import { useBackHandler } from '@react-native-community/hooks'
 
 const CommunityBox = ({ navigation, image, title, description, setIndex, about }) => {
 
@@ -23,8 +28,20 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
         }
     }
 
+    // const backBtnHandler = () => {
+    //     navigation.navigate('Community'); 
+    // }
+
+    // useEffect(() => {
+    //     const backHandler = BackHandler.addEventListener("hardwareBackPress", backBtnHandler);
+    
+    //     return () => {
+    //       backHandler.removeEventListener("hardwareBackPress", backBtnHandler);
+    //     };
+    //   }, [backBtnHandler]);
+    
     return (
-        <View style={gobalStyle.main}>
+        <SafeAreaView style={gobalStyle.main}>
             <TouchableOpacity
                 onPress={() => { setIndex(-1); }}
             >
@@ -38,23 +55,23 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
                 }
 
                 >
-                    <View>
+                    <SafeAreaView>
                         <Icon
                             type={Icons.MaterialIcons}
                             size={24}
                             name="arrow-back-ios"
                             color='white'
                         />
-                    </View>
-                    <View>
+                    </SafeAreaView>
+                    <SafeAreaView>
                         <Text style={gobalStyle.nav_header}>
                             {title}
                         </Text>
-                    </View>
+                    </SafeAreaView>
                 </Text>
             </TouchableOpacity>
 
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <ScrollView
                     pagingEnabled
                     horizontal
@@ -79,9 +96,9 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
                         ))
                     }
                 </View>
-            </View>
+            </SafeAreaView>
 
-            <View style={styles.BigBox}>
+            <SafeAreaView style={styles.BigBox}>
 
                 <Text style={[styles.headerInfo, { alignSelf: 'flex-start' }]}>
                     {title}
@@ -99,14 +116,14 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
                     style = {styles.imagesAbout} 
                     /> */}
                         <TouchableHighlight
-                            style={[styles.submit, { backgroundColor: '#FFBE18', marginTop: 20, marginStart: 10, marginEnd: 10 }]}
+                            style={[styles.submit, { backgroundColor: '#FFBE18', marginTop: RFValue(20), marginStart: RFValue(10), marginEnd: RFValue(10) }]}
                             underlayColor='#fff'>
                             <Text style={[gobalStyle.submitText]}>JOIN US</Text>
                         </TouchableHighlight>
                     </View>
                 </ScrollView>
-            </View>
-        </View>
+            </SafeAreaView>
+        </SafeAreaView>
     )
 }
 
