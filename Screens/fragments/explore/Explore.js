@@ -8,7 +8,7 @@ import {
     ScrollView,
     ImageBackground,
     Image,
-    SafeAreaView
+    SafeAreaView,TouchableOpacity
 
 } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -131,9 +131,9 @@ const Explore = ({ navigation }) => {
                 {
                     cardContent.map((content, index) => {
                         return (
-                            <TouchableHighlight onPress={() => navigation.navigate(content.navigate)}>
+                            <TouchableOpacity activeOpacity={0.98} onPress={() => navigation.navigate(content.navigate)}>
 
-                                <SafeAreaView style={{
+                                <View style={{
                                     display: 'flex',
                                     flexDirection: 'row',
                                     justifyContent: 'space-between',
@@ -152,7 +152,7 @@ const Explore = ({ navigation }) => {
 
 
 
-                                    <SafeAreaView style={{
+                                    <View style={{
                                         width: '70%',
                                         height: '100%',
                                         display: 'flex',
@@ -165,8 +165,8 @@ const Explore = ({ navigation }) => {
 
                                         <Ionicons name="arrow-forward-circle" size={35} style={{ paddingTop: RFValue(5), marginTop: RFValue(15) }} color="white" />
 
-                                    </SafeAreaView>
-                                    <SafeAreaView style={{
+                                    </View>
+                                    <View style={{
                                         // width: "50%"
                                     }}>
 
@@ -184,11 +184,11 @@ const Explore = ({ navigation }) => {
                                             }}
                                         />
 
-                                    </SafeAreaView>
+                                    </View>
 
-                                </SafeAreaView>
+                                </View>
 
-                            </TouchableHighlight>
+                            </TouchableOpacity>
                         );
                     })
                 }

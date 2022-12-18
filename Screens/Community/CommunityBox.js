@@ -43,6 +43,8 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
     return (
         <SafeAreaView style={gobalStyle.main}>
             <TouchableOpacity
+
+            style={{zIndex:999,}}
                 onPress={() => { setIndex(-1); }}
             >
 
@@ -55,23 +57,23 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
                 }
 
                 >
-                    <SafeAreaView>
+                    <View>
                         <Icon
                             type={Icons.MaterialIcons}
                             size={24}
                             name="arrow-back-ios"
                             color='white'
                         />
-                    </SafeAreaView>
-                    <SafeAreaView>
+                    </View>
+                    <View>
                         <Text style={gobalStyle.nav_header}>
                             {title}
                         </Text>
-                    </SafeAreaView>
+                    </View>
                 </Text>
             </TouchableOpacity>
 
-            <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
                 <ScrollView
                     pagingEnabled
                     horizontal
@@ -96,7 +98,7 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
                         ))
                     }
                 </View>
-            </SafeAreaView>
+            </View>
 
             <SafeAreaView style={styles.BigBox}>
 

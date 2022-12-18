@@ -5,7 +5,8 @@ import {
     StyleSheet,
     TouchableHighlight,
     TouchableOpacity,
-    SafeAreaView
+    SafeAreaView,
+    KeyboardAvoidingView
 } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
@@ -16,6 +17,7 @@ import {AppContext} from '../../../context';
 import {generatePaymentSPM,completePaymentSPM} from '../../api/explore';
 import RazorpayCheckout from 'react-native-razorpay';
 import RequestSent from './RequestSent';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const SPMOfferings = ({navigation})=>{
 
@@ -65,6 +67,11 @@ const SPMOfferings = ({navigation})=>{
         };
 
         return (
+            <KeyboardAvoidingView
+            keyboardShouldPersistTaps='never'
+            behavior= {Platform.OS=='ios'?"padding":'height'}
+            >
+
             <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
 
@@ -104,6 +111,8 @@ const SPMOfferings = ({navigation})=>{
 
             </SafeAreaView>
             </SafeAreaView>
+            </KeyboardAvoidingView>
+
     );
 };
 

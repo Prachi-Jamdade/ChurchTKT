@@ -1,5 +1,5 @@
 import React,{useState,useContext,useEffect} from 'react';
-import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput, SafeAreaView } from 'react-native';
+import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import Icon,{Icons} from '../Icons';
 import {AppContext} from '../../../context';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -77,6 +77,12 @@ const AccountDetails = ({navigation})=> {
 
 
     return (
+        <KeyboardAvoidingView
+        keyboardShouldPersistTaps='never'
+        behavior= {Platform.OS=='ios'?"padding":'height'}
+        style={{flex:1}}
+        >
+
     <SafeAreaView style={gobalStyle.main}>
 
             <TouchableHighlight onPress={()=>{
@@ -176,6 +182,8 @@ const AccountDetails = ({navigation})=> {
         </SafeAreaView>
         </SafeAreaView>
     </SafeAreaView>
+    </KeyboardAvoidingView>
+
     );
 
 };

@@ -11,6 +11,7 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon, {Icons} from './Icons';
 import * as Animatable from 'react-native-animatable';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 
 
@@ -90,7 +91,7 @@ class BottomTabs extends React.Component{
                         <Icon
                         type={item.type} 
                         name={item.name}
-                        size ={25}
+                        size ={22}
                         style={
                           focused
                             ? styles.activeIcon
@@ -120,17 +121,19 @@ const styles = StyleSheet.create({
     },
     activeIcon:{
       color:"#FFBE18",
-      padding:10,
+      paddingHorizontal:10,
+      // paddingTop:7,
       paddingTop:7,
       borderRadius:10,
       backgroundColor:'rgba(255, 200, 30, 0.1)',
     },
     bar:{
-      height: 75,
+      height: Platform.OS==='ios'?RFValue(78):RFValue(50),
       position: 'absolute',
       bottom: 0,
       right: 0,
       left: 0,
+      // flex:1,
       borderTopLeftRadius: 5,
       borderTopRightRadius: 5,
       paddingTop:12,

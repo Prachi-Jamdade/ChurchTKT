@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet,
     TouchableHighlight,
-    SafeAreaView
+    SafeAreaView,
+    KeyboardAvoidingView
 } from 'react-native';
 import OTPTextView from 'react-native-otp-textinput';
 import { loginOtpVerification, sigUpOtpVerification } from '../api/authication'
@@ -140,6 +141,12 @@ class VerifyOtp extends React.Component {
     render() {
         let phoneNumber = '+91' + (this.props.route.params.phoneNumber).toString();
         return (
+            <KeyboardAvoidingView
+            keyboardShouldPersistTaps='never'
+            behavior= {Platform.OS=='ios'?"padding":'height'}
+         
+      style={{flex:1}}
+            >
             <SafeAreaView style={gobalStyle.main}>
                 <Text style={gobalStyle.header}>Just a second!</Text>
                 <Text style={styles.dehigligtedText}>We have sent an OTP to {phoneNumber}</Text>
@@ -175,6 +182,8 @@ class VerifyOtp extends React.Component {
                     <Text style={[gobalStyle.submitText]}>Verify</Text>
                 </TouchableHighlight>
             </SafeAreaView>
+            </KeyboardAvoidingView>
+
         )
     }
 

@@ -50,6 +50,7 @@ const Home = ({navigation}) => {
 
     
     const change = ({nativeEvent}) => {
+    console.log(nativeEvent,'event debug')
         const slide = nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width;
         if (slide !== active ){
            setActive(slide);
@@ -98,13 +99,13 @@ const Home = ({navigation}) => {
 
               </SafeAreaView>
 
-              <SafeAreaView style = {styles.pagination}>
+              <View style = {styles.pagination}>
                   {
                   videoLink.map((i,k) => (
                   <Text key={k} style={ k === active ? styles.pagingActive :  styles.pagingText} />
                   ))
                   }
-              </SafeAreaView>
+              </View>
 
               <ScrollView 
               showsVerticalScrollIndicator={false}
@@ -150,21 +151,22 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
 
     return(
         <SafeAreaView style={styles.cardBox}>
-            <SafeAreaView style={{padding:RFValue(12),paddingVertical:RFValue(12)}}>
+            <SafeAreaView style={{paddingHorizontal:RFValue(12),paddingVertical:12}}>
 
             <Text style={styles.cardTitle}>{title}</Text>
             <Text style={styles.cardDescription}>{_description}</Text>
-            <SafeAreaView style={[styles.rowToggle,{marginHorizontal:5}]}>
+            {/* <SafeAreaView style={[styles.rowToggle,{marginHorizontal:5}]}>
             <Switch
             trackColor={{ false: "#2e2d2b", true: "#FFBE18" }}
             thumbColor={isEnabled ? "white" : "#FFBE18"}
             ios_backgroundColor="#FFBE18"
             value={isEnabled}
+            
             onValueChange={()=>{setIsEnabled(!isEnabled)}}
-            style={{ height:RFValue(20),color:'white' }}
+            style={{ height:Platform.OS=='android'?RFValue(20):RFValue(10),color:'white' }}
             />
             <Text style={styles.cardText}>Set Reminder</Text>
-            </SafeAreaView>
+            </SafeAreaView> */}
             </SafeAreaView>
             <SafeAreaView style={[styles.row,styles.cardIcons]}>
                 <SafeAreaView style={styles.row}>
@@ -336,7 +338,7 @@ const styles = StyleSheet.create({
     },
     pagination : {
         flexDirection : 'row',
-        alignSelf: 'center',
+        alignSelf: 'center',flex:1,
         marginBottom:RFValue(15),
     },
     pagingText : {
@@ -353,7 +355,7 @@ const styles = StyleSheet.create({
         height:RFValue(9),
         backgroundColor: '#FFBE18', 
         margin: RFValue(3),
-        borderRadius:RFValue(50),
+        borderRadius:RFValue(10),
         transitionDuration:10
     },
     list: { 

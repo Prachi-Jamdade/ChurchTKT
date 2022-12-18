@@ -5,7 +5,8 @@ import {
     StyleSheet,
     TouchableHighlight,
     TouchableOpacity,
-    SafeAreaView
+    SafeAreaView,
+    KeyboardAvoidingView
 } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
@@ -66,6 +67,11 @@ const Offerings = ({navigation})=>{
         };
 
         return (
+            <KeyboardAvoidingView
+            keyboardShouldPersistTaps='never'
+            behavior= {Platform.OS=='ios'?"padding":'height'}
+            >
+
             <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
 
@@ -107,6 +113,8 @@ const Offerings = ({navigation})=>{
 
             </SafeAreaView>
             </SafeAreaView>
+            </KeyboardAvoidingView>
+
     );
 };
 
