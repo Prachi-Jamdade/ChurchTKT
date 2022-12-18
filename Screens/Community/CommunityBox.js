@@ -6,13 +6,15 @@ import {
     TouchableHighlight,
     ScrollView,
     TouchableOpacity,
-    SafeAreaView
+    SafeAreaView,
+    BackHandler
 } from 'react-native';
 import { styles } from './index';
 import Icon, { Icons } from '../fragments/Icons';
 import moreInfo from '../assests/moreInfo.png';
 import gobalStyle from '../styles/index';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useEffect } from 'react';
 
 const CommunityBox = ({ navigation, image, title, description, setIndex, about }) => {
 
@@ -25,6 +27,19 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
         }
     }
 
+    const backBtnHandler = () => {
+        navigation.navigate('Community'); 
+    }
+
+    useEffect(() => {
+        const backHandler = BackHandler.addEventListener("hardwareBackPress", backBtnHandler);
+    
+        return () => {
+          backHandler.removeEventListener("hardwareBackPress", backBtnHandler);
+        };
+      }, [backBtnHandler]);
+    
+      
     return (
         <SafeAreaView style={gobalStyle.main}>
             <TouchableOpacity
