@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     images: {
         width,
         height:(height/3.5),
-        resizeMode: 'cover',
+        resizeMode:'contain'
     },
     pagination : {
         flexDirection : 'row',
