@@ -9,11 +9,13 @@ import {
     TouchableHighlight,
     ImageBackground,
     Button,
+    SafeAreaView
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
 import {sendOtpToNumber} from '../api/authication'
 import gobalStyle from '../styles/index'
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
@@ -60,10 +62,10 @@ class Login extends React.Component{
 
     render(){
         return (
-            <View style= {gobalStyle.main}>
+            <SafeAreaView style= {gobalStyle.main}>
                 <Text style = {gobalStyle.header}>Welcome Back!</Text>
                 <Text style = {styles.dehigligtedText}>Enter your mobile no to Login</Text>
-                <View>
+                <SafeAreaView>
                     <TextInput style = {styles.input}
                         underlineColorAndroid = "transparent"
                         placeholder = "Mobile No"
@@ -71,14 +73,14 @@ class Login extends React.Component{
                         placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleNumber}/>
-                </View>
+                </SafeAreaView>
 
-                <View style= {styles.helper}>
+                <SafeAreaView style= {styles.helper}>
                     <Text style = {styles.dehigligtedText}>Don't have an account yet?</Text>
                     <Text style = {styles.signUp} onPress={()=>{
                         this.props.navigation.navigate('Registration');
                     }}>Sign Up</Text>
-                </View>
+                </SafeAreaView>
                 <TouchableHighlight
                     style={[gobalStyle.btn_abs,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
                     disabled = {!this.accepted}
@@ -86,29 +88,29 @@ class Login extends React.Component{
                     underlayColor='#fff'>
                     <Text style={[gobalStyle.submitText]}>Continue</Text>
               </TouchableHighlight>
-            </View>
+            </SafeAreaView>
         );
     }
 
 }
 
 const styles = StyleSheet.create({
-    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
+    dehigligtedText: {color :'#989898', marginTop: RFValue(6), marginLeft: RFValue(16), fontSize: RFValue(14), fontFamily: 'Montserrat-Medium'},
     input: {
-        margin: 15,
-        height: 50,
-        padding: 10,
+        margin: RFValue(15),
+        height: RFValue(50),
+        padding: RFValue(10),
         color: 'white',
-        marginVertical: 16,
-        fontSize: 16,
-        paddingStart: 20,
+        marginVertical: RFValue(16),
+        fontSize: RFValue(14),
+        paddingStart: RFValue(20),
         borderColor: '#989898',
         borderWidth: 2,
         borderRadius: 10,
         fontFamily: 'Montserrat-Regular'
     },
     helper: {flexDirection: 'row', alignSelf: 'flex-end'},
-    signUp:{color: '#E23045',marginTop: 6, marginLeft:8, marginEnd: 20, fontSize: 16, fontFamily: 'Montserrat-Medium'},
+    signUp:{color: '#E23045',marginTop: RFValue(6), marginLeft:RFValue(8), marginEnd: RFValue(20), fontSize: RFValue(14), fontFamily: 'Montserrat-Medium'},
 });
 
 export default Login;

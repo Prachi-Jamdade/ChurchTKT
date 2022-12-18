@@ -5,7 +5,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     Dimensions,
-    TouchableHighlight
+    TouchableHighlight,
+    SafeAreaView
 } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import ImageBackUp from '../../assests/icons/back.png';
@@ -16,6 +17,7 @@ import JoinSPM from './JoinSPM';
 import {getSPMFrom} from '../../api/requestForms';
 
 import {AppContext} from '../../../context';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 
 const Offerings =({navigation,route})=>{
@@ -41,7 +43,7 @@ const Offerings =({navigation,route})=>{
 
 
         return (
-            <View style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
+            <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
 
             <TouchableOpacity
@@ -53,8 +55,8 @@ const Offerings =({navigation,route})=>{
                 <Text style={gobalStyle.nav_header}>SPM</Text>
             </TouchableOpacity>
 
-            <View style={styles.card}>
-                <View style={[{flexDirection: 'column'},styles.fullW]}>
+            <SafeAreaView style={styles.card}>
+                <SafeAreaView style={[{flexDirection: 'column'},styles.fullW]}>
                         <ImageElement source={ImageFreame2} />
                         <Button buttonStyle={{
                             backgroundColor: '#FFA318',
@@ -72,7 +74,7 @@ const Offerings =({navigation,route})=>{
                             navigation.navigate('JoinSPM')
                         }
                         } />
-                </View>
+                </SafeAreaView>
                 <Text style= {styles.DescriptionText}>
                 Partnering with samuel patta ministries is a powerful way to expand the reach and impact of the King's Temple Church. No matter how you choose to give, your support is invaluable in helping the ministry to achieve its goals and make a positive impact in the world. 
                 </Text>
@@ -83,19 +85,19 @@ const Offerings =({navigation,route})=>{
                     <TouchableHighlight
                         onPress={() => navigation.navigate('SpmOffErings')}
                     >
-                <View style={[{flexDirection: 'column',backgroundColor: '#4FF491',marginTop:20,borderRadius: 12},styles.fullW]}>
-                        <View style={[
-                            {flexDirection: 'row',alignItems:'center',paddingVertical:30,
+                <SafeAreaView style={[{flexDirection: 'column',backgroundColor: '#4FF491',marginTop:RFValue(10),borderRadius: RFValue(12)},styles.fullW]}>
+                        <SafeAreaView style={[
+                            {flexDirection: 'row',alignItems:'center',paddingVertical:RFValue(20),
                             justifyContent:'center',
                         }]}>
 
                                 <Icons.FontAwesome5 name="hand-holding-heart" color="white" size={40} />
 
-                        </View>
+                        </SafeAreaView>
                         
                             <Button buttonStyle={{
                                 backgroundColor: '#034A2B',
-                                borderRadius: 12,
+                                borderRadius: RFValue(12),
                                 width:'100%',
                                 borderTopRightRadius:0,
                                 borderTopLeftRadius:0,
@@ -105,29 +107,29 @@ const Offerings =({navigation,route})=>{
                                 fontFamily: 'Montserrat-Medium'
                             }}
                             title="Give" />
-                </View>
+                </SafeAreaView>
                 </TouchableHighlight>
-            </View>
-            </View>
+            </SafeAreaView>
+            </SafeAreaView>
         );
 }
 
 function ImageElement({source, stretch = true}) {
-    return <View style={[{
+    return <SafeAreaView style={[{
         backgroundColor: '#000',
-        marginTop: 16,
-        height: 140,
-        borderRadius: 14,
+        marginTop: RFValue(16),
+        height: RFValue(140),
+        borderRadius: RFValue(14),
     },styles.fullW]}>
         <Image source={source} style={{
                     width: '100%',
                     height: '100%',
                     resizeMode: stretch ? 'cover' : 'contain',
-                    borderRadius: 14,
+                    borderRadius: RFValue(14),
                     borderBottomLeftRadius:0,
                     borderBottomRightRadius:0,
                 }} />
-        </View>;
+        </SafeAreaView>;
 }
 
 
@@ -137,10 +139,10 @@ const styles = StyleSheet.create({
     card: {
         flex: 10,
         width: width,
-        // backgroundColor: '#0F0F0F',
-        borderTopRightRadius: 24,
-        borderTopLeftRadius: 24,
-        paddingTop: 10,
+        backgroundColor: '#1E1E1E',
+        borderTopRightRadius: RFValue(20),
+        borderTopLeftRadius: RFValue(20),
+        paddingTop: RFValue(2),
         flexDirection:'column',
         alignItems: 'center',
     },
@@ -148,20 +150,20 @@ const styles = StyleSheet.create({
         width: (width * 0.9),
     },
     input: {
-        height: 50,
-        marginTop: 12,
-        padding: 10,
+        height: RFValue(50),
+        marginTop: RFValue(12),
+        padding: RFValue(10),
         width: '100%',
         color: 'white',
-        fontSize: 16,
+        fontSize: RFValue(16),
         borderColor: '#989898',
-        borderWidth: 1,
-        borderRadius: 10,
+        borderWidth: RFValue(1),
+        borderRadius: RFValue(10),
     },
     DescriptionText:{
         color: 'white',
-        width: (width * 0.9),
-        marginVertical:10,
+        width: width * 0.9,
+        marginVertical:RFValue(10),
         fontFamily: 'Montserrat-Medium'
     },
 

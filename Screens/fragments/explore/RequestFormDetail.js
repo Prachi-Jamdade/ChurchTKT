@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React,{useState} from 'react';
-import {View,Text,TouchableOpacity,StyleSheet,TextInput,Dimensions} from 'react-native';
+import {View,Text,TouchableOpacity,StyleSheet,TextInput,Dimensions, SafeAreaView} from 'react-native';
 import {styles} from '../profile/AccountDetails';
 import DatePicker from 'react-native-date-picker';
 import Icon,{Icons} from '../Icons';
@@ -62,8 +62,8 @@ const UselessDateInput = (props) => {
     }
   
     return (
-        <View>
-            <View
+        <SafeAreaView>
+            <SafeAreaView
                 style={[styles.input,{
                     flexDirection:'row',
                     width:(width * 0.92),
@@ -104,7 +104,7 @@ const UselessDateInput = (props) => {
                     />
                     </TouchableOpacity>
                 }
-            </View>
+            </SafeAreaView>
 
             <DatePicker
                     modal
@@ -119,7 +119,7 @@ const UselessDateInput = (props) => {
                     setOpen(false)
                     }}
                 />
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -137,9 +137,9 @@ const UselessTimeInput = (props) => {
         return strTime;
       }
     return (
-        <View>
+        <SafeAreaView>
             <TouchableOpacity onPress={()=>setOpen(true)}>
-            <View
+            <SafeAreaView
                 style={[styles.input,{
                     flexDirection:'row',
                     width:(width * 0.92),
@@ -181,7 +181,7 @@ const UselessTimeInput = (props) => {
                     />
                     </TouchableOpacity>
                 }
-            </View>
+            </SafeAreaView>
             </TouchableOpacity>
 
             <DatePicker
@@ -197,7 +197,7 @@ const UselessTimeInput = (props) => {
                     setOpen(false)
                     }}
                 />
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -205,8 +205,8 @@ const RequestFormDetail = (props) => {
 
 
     return (
-        <View>
-            <View
+        <SafeAreaView>
+            <SafeAreaView
                 style={{
                     borderBottomColor: '#000000',
                     borderBottomWidth: 0.2,
@@ -215,8 +215,8 @@ const RequestFormDetail = (props) => {
                     getInput(props)
                 }
 
-            </View>
-        </View>
+            </SafeAreaView>
+        </SafeAreaView>
     );
 };
 

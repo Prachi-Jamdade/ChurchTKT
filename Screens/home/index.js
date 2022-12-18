@@ -9,6 +9,7 @@ import {
     StyleSheet,
     Switch,
     Dimensions,
+    SafeAreaView
 } from 'react-native';
 import Icon,{Icons} from '../fragments/Icons';
 import homeHand from '../assests/icons/homeHand.png';
@@ -16,6 +17,7 @@ import homeImage from '../assests/homeImage.png';
 import { AppContext } from '../../context';
 import gobalStyle from '../styles/index';
 import YoutubePlayer from 'react-native-youtube-iframe';
+import { RFValue } from 'react-native-responsive-fontsize';
 // const TopEvents=[
 //     {
 //         image:homeImage,
@@ -55,24 +57,24 @@ const Home = ({navigation}) => {
     }
 
     return (
-            <View style= {gobalStyle.main}>
-                <View style = {gobalStyle.header}>
-                    <View>
+            <SafeAreaView style= {gobalStyle.main}>
+                <SafeAreaView style = {gobalStyle.header}>
+                    <SafeAreaView>
                     <Image
                     source = {homeHand}
                     style = {styles.image}/>
-                    </View>
-                    <View>
+                    </SafeAreaView>
+                    <SafeAreaView>
                     <Text style= {styles.headerLight}>Hello,</Text>
-                    </View>
-                    <View>
+                    </SafeAreaView>
+                    <SafeAreaView>
                     <Text style= {styles.headerDark}>{user?.firstName}!</Text>
-                    </View>
-                </View>
+                    </SafeAreaView>
+                </SafeAreaView>
                 
-                <View style= {[styles.box]}>
+                <SafeAreaView style= {[styles.box]}>
               
-              <View style = {styles.container}>
+              <SafeAreaView style = {styles.container}>
               <ScrollView
                   pagingEnabled
                   horizontal
@@ -83,7 +85,7 @@ const Home = ({navigation}) => {
                   videoLink.map((data, index) => (
                       <View key={index} style={styles.homeTopCard}>
                           <YoutubePlayer
-                              height={200}
+                              height={RFValue(190)}
                             //   play={true}
                               videoId={data.videoId}
                               style = {styles.images}
@@ -94,37 +96,37 @@ const Home = ({navigation}) => {
                   }
               </ScrollView>
 
-              </View>
+              </SafeAreaView>
 
-              <View style = {styles.pagination}>
+              <SafeAreaView style = {styles.pagination}>
                   {
                   videoLink.map((i,k) => (
                   <Text key={k} style={ k === active ? styles.pagingActive :  styles.pagingText} />
                   ))
                   }
-              </View>
+              </SafeAreaView>
 
               <ScrollView 
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}
               >
-              <View style={styles.list}>
-                  <View>
-                      <Text style={[styles.headerDark,styles.fullW,{marginBottom:20}]}>
+              <SafeAreaView style={styles.list}>
+                  <SafeAreaView>
+                      <Text style={[styles.headerDark,styles.fullW,{marginBottom:RFValue(15)}]}>
                       Upcoming Events
                       </Text>
-                  </View>
+                  </SafeAreaView>
                   {
                       homeEvents.map((value,index)=>{
                           return <HomeCard key={value.eventId} {...value}/>;
                       })
                   }
-              </View>
+              </SafeAreaView>
               </ScrollView>
 
-                </View>
+                </SafeAreaView>
                 
-            </View>
+            </SafeAreaView>
         )
 }
 
@@ -147,25 +149,25 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
     }
 
     return(
-        <View style={styles.cardBox}>
-            <View style={{padding:12,paddingVertical:15}}>
+        <SafeAreaView style={styles.cardBox}>
+            <SafeAreaView style={{padding:RFValue(12),paddingVertical:RFValue(12)}}>
 
             <Text style={styles.cardTitle}>{title}</Text>
             <Text style={styles.cardDescription}>{_description}</Text>
-            <View style={[styles.rowToggle,{marginHorizontal:5}]}>
+            <SafeAreaView style={[styles.rowToggle,{marginHorizontal:5}]}>
             <Switch
             trackColor={{ false: "#2e2d2b", true: "#FFBE18" }}
             thumbColor={isEnabled ? "white" : "#FFBE18"}
             ios_backgroundColor="#FFBE18"
             value={isEnabled}
             onValueChange={()=>{setIsEnabled(!isEnabled)}}
-            style={{ height:20,color:'white' }}
+            style={{ height:RFValue(20),color:'white' }}
             />
             <Text style={styles.cardText}>Set Reminder</Text>
-            </View>
-            </View>
-            <View style={[styles.row,styles.cardIcons]}>
-                <View style={styles.row}>
+            </SafeAreaView>
+            </SafeAreaView>
+            <SafeAreaView style={[styles.row,styles.cardIcons]}>
+                <SafeAreaView style={styles.row}>
                     <Icon 
                     type={Icons.Ionicons}
                     name="location-outline"
@@ -173,11 +175,11 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
                     color='white'
                     />
                     <Text style={styles.cardDescriptionIcon}>{location}</Text>
-                </View>
-            </View>
-            <View style={[styles.row,styles.cardIcons,{borderBottomLeftRadius:14,
-        borderBottomRightRadius:14}]}>
-                <View style={styles.row}>
+                </SafeAreaView>
+            </SafeAreaView>
+            <SafeAreaView style={[styles.row,styles.cardIcons,{borderBottomLeftRadius:RFValue(14),
+        borderBottomRightRadius:RFValue(14)}]}>
+                <SafeAreaView style={styles.row}>
                     <Icon 
                     type={Icons.MaterialIcons}
                     name="date-range"
@@ -185,8 +187,8 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
                     color='white'
                     />
                     <Text style={styles.cardDescriptionIcon}>{_startDate}</Text>
-                </View>
-                <View style={styles.row}>
+                </SafeAreaView>
+                <SafeAreaView style={styles.row}>
                     <Icon 
                     type={Icons.Ionicons}
                     name="time-outline"
@@ -194,9 +196,9 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
                     color="white"
                     />
                     <Text style={styles.cardDescriptionIcon}>{formatTime(startTime)}</Text>
-                </View>
-            </View>
-        </View>
+                </SafeAreaView>
+            </SafeAreaView>
+        </SafeAreaView>
     )
 
 }
@@ -204,7 +206,7 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
 
 
 const {width} = Dimensions.get('window');
-const boxWidth=width*0.9;
+const boxWidth=width*0.92;
 const height = width * 100 / 40;
 
 const styles = StyleSheet.create({
@@ -214,10 +216,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#1E1E1E',
         flexDirection:'column',
         alignItems: 'center',
-        borderRadius: 20,
+        borderRadius: RFValue(20),
         flex: 1,
-        marginTop: 20,
-        paddingTop:20,
+        marginTop: RFValue(15),
+        paddingTop:RFValue(10),
     },
     cardText:{
         color:'white',
@@ -226,48 +228,48 @@ const styles = StyleSheet.create({
     },
     headerLight : {
         color: 'white',
-        fontSize: 22, 
+        fontSize: RFValue(20), 
         opacity:0.7,
-        paddingLeft:10,
+        paddingLeft:RFValue(10),
         fontFamily: 'Montserrat-Medium'
     },
     headerDark : {
         color: 'white',
-        fontSize: 22, 
+        fontSize: RFValue(20), 
         fontFamily: 'Montserrat-SemiBold',
-        paddingLeft:5,
+        paddingLeft:RFValue(5),
         textTransform: 'capitalize',
     },
     headerInfo : {
         color: 'white',
-        marginTop: 10,
-        marginHorizontal: 16, 
+        marginTop: RFValue(10),
+        marginHorizontal: RFValue(16), 
         fontFamily : 'Montserrat',
-        fontSize: 20,
+        fontSize: RFValue(18),
         fontWeight: 'bold'
     },
     cardBox:
     {
         width:boxWidth,
-        borderRadius:14,
+        borderRadius:RFValue(14),
         color:'white',
-        marginBottom:20,
-        borderWidth:1,
+        marginBottom:RFValue(20),
+        borderWidth:RFValue(1),
         borderColor:'#3b3b3b',
     },
     cardTitle:{
-        fontSize:16,
+        fontSize:RFValue(14),
         color:'white',
-        marginBottom:5,
+        marginBottom:RFValue(5),
         fontFamily: 'Montserrat-Medium'
     },
     cardDescription:{
-        marginBottom:5,
+        marginBottom:RFValue(5),
         color:'white',
         fontFamily: 'Montserrat-Medium'
     },
     cardDescriptionIcon:{
-        marginLeft:5,
+        marginLeft:RFValue(5),
         color:'white',
         fontFamily: 'Montserrat-Medium'
     },
@@ -277,40 +279,40 @@ const styles = StyleSheet.create({
     row:{
         flexDirection:'row',
         alignItems: 'center',
-        padding: 2,
-        marginEnd: 15
+        padding: RFValue(2),
+        marginEnd: RFValue(15)
     },
     rowToggle:{
         flexDirection:'row',
         alignItems: 'center',
         width:boxWidth,
-        marginVertical:5,
+        marginVertical:RFValue(5),
     },
     cardIcons:{
         justifyContent:'space-between',
         backgroundColor:'#0F0D0B',
-        paddingVertical:8,
-        paddingHorizontal:10,
+        paddingVertical:RFValue(8),
+        paddingHorizontal:RFValue(10),
         width:boxWidth,
     },
     container: {
         width :boxWidth,
         zIndex:-1,
-        marginBottom:5,
-        borderRadius:14,
+        marginBottom:RFValue(5),
+        borderRadius:RFValue(14),
     },
     homeTopCard:{
         width:boxWidth,
-        borderRadius: 20,
-        marginVertical:10,
-        paddingTop:25,
-        paddingLeft:20,
-        paddingRight:20,
+        borderRadius: RFValue(20),
+        marginVertical:RFValue(10),
+        paddingTop:RFValue(25),
+        paddingLeft:RFValue(20),
+        paddingRight:RFValue(20),
         backgroundColor:'black',
     },
     homeTopCardText:{
         position:'absolute',
-        bottom:10,
+        bottom:RFValue(10),
         alignItems: 'center',
         flexDirection:'column',
         justifyContent: 'center',
@@ -318,48 +320,48 @@ const styles = StyleSheet.create({
        
     },
     homeTopCardTextDate:{
-        fontSize:12,
+        fontSize:RFValue(12),
         fontWeight:'bold',
         color:'white',
     },
     homeTopCardTextTitle:{
-        fontSize:18,
+        fontSize:RFValue(16),
         fontWeight:'bold',
         color:'white',
     },
     images: {
-        width :boxWidth-20,
-        borderRadius:14,
+        width :RFValue(boxWidth-40),
+        borderRadius:RFValue(12),
         zIndex:-10,
     },
     pagination : {
         flexDirection : 'row',
         alignSelf: 'center',
-        marginBottom:15,
+        marginBottom:RFValue(15),
     },
     pagingText : {
-        fontSize: (width / 30) ,
+        fontSize: RFValue((width / 30)) ,
         backgroundColor: '#888',
-        margin: 3,
-        width:9,
-        height:9,
-        borderRadius:50,
+        margin: RFValue(3),
+        width:RFValue(9),
+        height:RFValue(8),
+        borderRadius:RFValue(50),
     },
     pagingActive : {
         fontSize: (width / 30),
-        width:20,
-        height:9,
+        width:RFValue(20),
+        height:RFValue(9),
         backgroundColor: '#FFBE18', 
-        margin: 3,
-        borderRadius:50,
+        margin: RFValue(3),
+        borderRadius:RFValue(50),
         transitionDuration:10
     },
     list: { 
         // backgroundColor:'#0F0F0F',
-        borderRadius: 24,
-        marginTop: 5,
-        marginBottom: 60,
-        paddingBottom:20,
+        borderRadius: RFValue(24),
+        marginTop: RFValue(5),
+        marginBottom: RFValue(40),
+        paddingBottom:RFValue(15),
         width,
         flex:1,
         flexDirection:'column',
@@ -367,8 +369,8 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
 
-    textInfo: {color: 'white', alignSelf: 'center', fontSize: 14},
-    imagesAbout:{marginTop:15,height:width/3}
+    textInfo: {color: 'white', alignSelf: 'center', fontSize: RFValue(14)},
+    imagesAbout:{marginTop:RFValue(15),height:RFValue(width/3)}
 });
 
 export {styles};

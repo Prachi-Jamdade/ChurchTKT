@@ -1,10 +1,10 @@
 import React from 'react';
-import { View,Image,TouchableOpacity,Text,StyleSheet,Dimensions } from 'react-native';
+import { View,Image,TouchableOpacity,Text,StyleSheet,Dimensions, SafeAreaView } from 'react-native';
 
 const RequestSent = ({navigation,setShow}) => {
     return (
-        <View style={styles.container}>
-            <View style={styles.containerItem}>
+        <SafeAreaView style={styles.container}>
+            <SafeAreaView style={styles.containerItem}>
                 <Image
                     source={require('../../assests/icons/RequestSent.png')}
                     style={{ width: 120, height: 120 }}
@@ -21,9 +21,9 @@ const RequestSent = ({navigation,setShow}) => {
                     >
                     <Text style={styles.loginText}>Continue</Text>
                 </TouchableOpacity>
-            </View>
+            </SafeAreaView>
 
-        </View>
+        </SafeAreaView>
     )
 }
 

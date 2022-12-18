@@ -9,11 +9,13 @@ import {
     TouchableHighlight,
     ImageBackground,
     Button,
+    SafeAreaView
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
 import {sendOtpToNumber} from '../api/authication';
 import gobalStyle from '../styles/index';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 
 class Registration extends React.Component {
@@ -63,10 +65,10 @@ class Registration extends React.Component {
 
     render(){
         return(
-            <View style= {gobalStyle.main}>
+            <SafeAreaView style= {gobalStyle.main}>
                 <Text style= {gobalStyle.header}>We would love to have you!</Text>
                 <Text style= {styles.dehigligtedText}>We need Some details to get you onboard!</Text>
-                <View>
+                <SafeAreaView>
                     <TextInput style = {styles.input}
                         underlineColorAndroid = "transparent"
                         placeholder = "First Name"
@@ -74,8 +76,8 @@ class Registration extends React.Component {
                         placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleFirstName}/>
-                </View>
-                <View>
+                </SafeAreaView>
+                <SafeAreaView>
                     <TextInput style = {styles.input}
                         underlineColorAndroid = "transparent"
                         placeholder = "Last Name"
@@ -83,8 +85,8 @@ class Registration extends React.Component {
                         placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleLastName}/>
-                </View>
-                <View>
+                </SafeAreaView>
+                <SafeAreaView>
                     <TextInput style = {styles.input}
                         underlineColorAndroid = "transparent"
                         placeholder = "Mobile No"
@@ -92,9 +94,9 @@ class Registration extends React.Component {
                         placeholderTextColor = "#989898"
                         autoCapitalize = "none"
                         onChangeText = {this.handleNumber}/>
-                </View>
+                </SafeAreaView>
 
-                <View style= {styles.helper}>
+                <SafeAreaView style= {styles.helper}>
                     <Text style = {styles.dehigligtedText}>Already have an account ?</Text>
                     <TouchableHighlight>
                         <Text
@@ -104,7 +106,7 @@ class Registration extends React.Component {
                         }}
                         >Login</Text>
                         </TouchableHighlight>
-                </View>
+                </SafeAreaView>
                 <TouchableHighlight
                     style={[gobalStyle.btn_abs,{backgroundColor : this.accepted ? '#FFBE18' : 'grey'}]}
                     disabled = {!this.accepted}
@@ -112,7 +114,7 @@ class Registration extends React.Component {
                     underlayColor='#fff'>
                     <Text style={[gobalStyle.submitText]}>Continue</Text>
               </TouchableHighlight>
-            </View>
+            </SafeAreaView>
         );
     }
 
@@ -121,9 +123,9 @@ class Registration extends React.Component {
 export default Registration;
 
 const styles = StyleSheet.create({
-    dehigligtedText: {color :'#989898', marginTop: 6, marginLeft: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
-    timmer:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16, fontFamily: 'Montserrat-Medium'},
-    redText:{color: '#E23045', marginTop: 6, marginLeft:10, marginEnd: 16, fontSize: 16, textDecorationLine:'underline'},
+    dehigligtedText: {color :'#989898', marginTop: RFValue(6), marginLeft: RFValue(16), fontSize: RFValue(14), fontFamily: 'Montserrat-Medium'},
+    timmer:{color: '#E23045', marginTop: RFValue(6), marginLeft:RFValue(10), marginEnd: RFValue(16), fontSize: RFValue(14), fontFamily: 'Montserrat-Medium'},
+    redText:{color: '#E23045', marginTop: RFValue(6), marginLeft:RFValue(10), marginEnd: RFValue(16), fontSize: RFValue(14), textDecorationLine:'underline'},
     roundedTextInput: {
         borderRadius: 10,
         borderWidth: 1,
@@ -132,19 +134,19 @@ const styles = StyleSheet.create({
     textInputContainer: {
         alignSelf: 'center',
         width: '100%',
-        marginVertical: 16,
-        paddingHorizontal: 60,
+        marginVertical: RFValue(10),
+        paddingHorizontal: RFValue(60),
         color :'#989898',
         letterSpacing: 0,
         borderColor: 'white',
     },
     helper: {flexDirection: 'row', alignSelf: 'flex-end'},
     input: {
-        margin: 16,
-        height: 50,
-        paddingStart: 20,
+        margin: RFValue(16),
+        height: RFValue(50),
+        paddingStart: RFValue(20),
         color: 'white',
-        fontSize: 16,
+        fontSize: RFValue(14),
         borderColor: '#292929',
         borderWidth: 2,
         borderRadius: 10,

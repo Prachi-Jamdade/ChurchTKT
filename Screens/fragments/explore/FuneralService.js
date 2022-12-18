@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {View,TouchableOpacity,Text,ScrollView} from 'react-native';
+import {View,TouchableOpacity,Text,ScrollView, SafeAreaView} from 'react-native';
 import RequestFormDetail from './RequestFormDetail';
 import {styles} from './RequestForm';
 import {sendFom} from '../../api/requestForms'
@@ -117,7 +117,7 @@ const FuneralService = ({setShow}) => {
              />
         </ScrollView>
 
-        <View style={{flexDirection: 'column',alignItems:'center'}}>
+        <SafeAreaView style={{flexDirection: 'column',alignItems:'center'}}>
                 <TouchableOpacity style={styles.chatSupportBtn}
                 // provide navigate path
                 onPress={submit}
@@ -125,7 +125,7 @@ const FuneralService = ({setShow}) => {
                 >
                     <Text style={styles.loginText}>Continue</Text>
                 </TouchableOpacity>
-        </View>
+        </SafeAreaView>
         </>
     )
 }
