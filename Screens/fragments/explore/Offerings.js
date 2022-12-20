@@ -28,7 +28,7 @@ const Offerings = ({navigation})=>{
     const getOrder = async()=>{
         try {
 
-        const _amount = parseInt(amount);
+        const _amount = parseInt(amount+'00');
         const {firstName,phoneNumber,email} = user;
         const getOrderDetails = await generatePayment({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
 
