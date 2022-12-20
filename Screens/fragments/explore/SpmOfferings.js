@@ -25,7 +25,8 @@ const SPMOfferings = ({navigation})=>{
     const getOrder = async()=>{
         try {
 
-        const _amount = parseInt(amount);
+        let _amount = parseInt(amount);
+        _amount=_amount*100;
         const {firstName,phoneNumber,email} = user;
         const getOrderDetails = await generatePaymentSPM({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
 
@@ -36,7 +37,7 @@ const SPMOfferings = ({navigation})=>{
             image: "https://kingstemple.in/wp-content/uploads/2019/08/logotkt-darkk.png",
             currency: 'INR',
             key: razorpayKey,
-            amount: amount,
+            amount: _amount,
             name: 'TKT Church',
             order_id: orderId,
             prefill: {
@@ -44,7 +45,7 @@ const SPMOfferings = ({navigation})=>{
               contact: phoneNumber,
               name: firstName,
             },
-            theme: {color: '#53a20e'},
+            theme: {color: '#FFFFFF'},
           };
 
           RazorpayCheckout.open(options).then(async (data) => {
@@ -59,6 +60,7 @@ const SPMOfferings = ({navigation})=>{
             alert('Something went wrong, try again');
           });
         } catch (e){
+            console.log(e);
             alert('Something went wrong, try again');
         }
         };

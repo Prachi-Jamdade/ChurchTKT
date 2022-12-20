@@ -25,7 +25,7 @@ const Offerings = ({navigation})=>{
     const getOrder = async()=>{
         try {
 
-        const _amount = parseInt(amount);
+        const _amount = parseInt(amount)*100;
         const {firstName,phoneNumber,email} = user;
         const getOrderDetails = await generatePayment({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
 
@@ -36,7 +36,7 @@ const Offerings = ({navigation})=>{
             image: "https://kingstemple.in/wp-content/uploads/2019/08/logotkt-darkk.png",
             currency: 'INR',
             key: razorpayKey,
-            amount: amount,
+            amount: _amount,
             name:"TKT Church",
             order_id: orderId,
             prefill: {
@@ -44,7 +44,7 @@ const Offerings = ({navigation})=>{
               contact: phoneNumber,
               name: firstName,
             },
-            theme: {color: '#53a20e'},
+            theme: {color: '#FFFFFF'},
           };
 
           RazorpayCheckout.open(options).then(async (data) => {
