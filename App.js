@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {StyleSheet, Button, TouchableOpacity, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -6,9 +6,14 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainStackNavigator from './Navigation/Navigator';
 import Context from './context';
 import { setCustomText } from 'react-native-global-props';
-
+import { requestUserPermission , notificationListener  } from './utils/NotificationService';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function App() {
+  useEffect(()=>{
+    requestUserPermission()
+    notificationListener()
+  },[])
   return (
     <NavigationContainer>
       <Context>
