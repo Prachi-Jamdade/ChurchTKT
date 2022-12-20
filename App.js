@@ -12,12 +12,13 @@ import Toast from 'react-native-toast-message';
 
 function App() {
   useEffect(()=>{
-    if(Platform.OS=='android'){
+   /* if(Platform.OS=='android'){
 
-      requestUserPermission()
-      notificationListener()
-    }
-  },[])
+
+    }*/
+    requestUserPermission();
+    notificationListener();
+  },[]);
   return (
     <NavigationContainer>
       <Context>
