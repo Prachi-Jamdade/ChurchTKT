@@ -26,15 +26,27 @@ class Registration extends React.Component {
 
     handleFirstName = (text) => {
         this.setState({firstName: text});
+        if (text && this.state.phoneNumber.length===10 && this.state.lastName){
+            this.accepted = true;
+        }
+        else {
+            this.accepted = false;
+        }
     }
 
     handleLastName = (text) => {
         this.setState({lastName: text});
+        if (text && this.state.phoneNumber.length===10 && this.state.firstName){
+            this.accepted = true;
+        }
+        else {
+            this.accepted = false;
+        }
     }
 
     handleNumber = (text) => {
         this.setState({phoneNumber : text});
-        if (text.length === 10){
+        if (text.length === 10 && this.state.firstName && this.state.lastName){
             this.accepted = true;
         }
         else {

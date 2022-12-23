@@ -26,6 +26,10 @@ const SPMOfferings = ({navigation})=>{
         try {
 
         let _amount = parseInt(amount);
+
+        if(_amount==0){
+            return alert('Enter the amount');
+        }
         _amount=_amount*100;
         const {firstName,phoneNumber,email} = user;
         const getOrderDetails = await generatePaymentSPM({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
