@@ -46,7 +46,7 @@ let data=[
         'title':'Teen x Youth',
         'image':[img4,img7,img8],
         'description':'Dominion Bible College',
-        'about':`The King’s Kids is an Initiative of The king’s Temple Church\n\nwe focus on teaching children the basic tenets of Christianity in a fun and exciting way. Instilling these values in young hearts will lead to a lifetime of faithful service to God.\n\nWe start each week with an energetic opening song, followed by a Bible story. The story is always related to the theme for that particular week and is backed with crafts, games, and other activities.\n\nOur goal is to create an environment where your child can feel comfortable asking questions, engaging with other children, and building a personal relationship with JESUS.We would love to have your child join us on this journey of faith!`
+        'about':`Welcome to the Teen X Youth community! \n\nWe are a group of young people who come together to grow in our faith, build relationships, and serve others. \n\nTeen X Youth offers a variety of activities and events, including 1-1 conversations with our Youth leaders, Teen X Youth night which happens once a month, Life group which happens every week, and our annual Youth Conference “AWAKENING”  that we run every year. \n\nOur goal is to provide a supportive and welcoming environment where young people can share their hardships and realize that they aren’t alone -Jesus is right beside them.\n\nWe believe that being part of a community of faith is an important part of spiritual growth, and we are committed to helping our youth grow in their relationship with God and others. We invite you to join us and be a part of this.`
     },
     {
         'title':'Girl Tribe',
