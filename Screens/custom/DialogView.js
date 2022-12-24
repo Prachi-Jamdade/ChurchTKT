@@ -8,7 +8,7 @@ import Icon, {Icons} from '../fragments/Icons';
 const DialogView = ({status, description}) => {
     return(
         <SafeAreaView
-            style={[gobalStyle.btn_abs, {backgroundColor:status=='success' ? '#339033' : '#C22626', marginBottom: RFValue(93)}]}
+            style={[gobalStyle.btn_abs, {backgroundColor:status=='success' ? '#339033' : '#C22626', marginBottom: RFValue(85)}]}
         >
             <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                 <Icon type={status=='success' ? Icons.AntDesign : Icons.MaterialIcons} 

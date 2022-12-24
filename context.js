@@ -18,7 +18,7 @@ function AppContextProvider({children}) {
     ]);
 	const [ isUserLogin, setUserLogin ] = useState(false);
 
-    const [success, setSuccessDescription] = useState(null);
+    const [dialog, setDialogDescription] = useState(null);
 
     function clear(navigation){
         AsyncStorage.clear().then(()=>{
@@ -32,9 +32,9 @@ function AppContextProvider({children}) {
     }
 
     function setAlert(status, description) {
-        setSuccessDescription({status: status, description: description});
+        setDialogDescription({status: status, description: description});
         setTimeout(() => {
-            setSuccessDescription(null);
+            setDialogDescription(null);
         }, 5000);
     }
 
@@ -75,7 +75,7 @@ function AppContextProvider({children}) {
             }>
             {children}
             {
-                success && <DisplayView {...success} />
+                dialog && <DisplayView {...dialog} />
             }
         </AppContext.Provider>
 	);
