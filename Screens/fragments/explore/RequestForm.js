@@ -7,6 +7,7 @@ import {
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView, SafeAreaView } from 'react-native';
 
 import { styles as Input } from '../profile/AccountDetails';
+import Icon,{ Icons } from '../Icons';
 import ModalDropdown from 'react-native-modal-dropdown';
 
 import FuneralService from './FuneralService';
@@ -20,7 +21,9 @@ import MemorialServices from './MemorialServices';
 
 import RequestSent from './RequestSent';
 import gobalStyle from '../../styles/index';
-import Icon, { Icons } from '../Icons'
+import {sendFom} from '../../api/requestForms';
+import {checkObj} from '../../utils/obj'
+
 
 
 
@@ -50,6 +53,22 @@ const RequestForm = ({ navigation }) => {
     const [show, setShow] = useState(false);
     console.log(index);
 
+    const submit=(data,setData,intitial)=>{
+        // console.log(data)
+        const isOK=checkObj(data);
+        if(!isOK){
+            return alert('All fields are mandatory');
+        }
+        sendFom(data).then((res)=>{
+            console.log(res);
+            setData(intitial)
+            setShow(true);
+        }).catch((e)=>{
+            alert('Some thing went Wrong, Try again');
+        })
+    }
+
+
 
     return (<SafeAreaView style={{ backgroundColor: '#0F0F0F', flex: 1, flexDirection: 'column', alignItems: 'center', paddingBottom: 30 }}>
 
@@ -68,8 +87,10 @@ const RequestForm = ({ navigation }) => {
         </TouchableOpacity>
 
 
-        <SafeAreaView style={{ flexDirection: 'column', alignItems: 'center' }}>
+        <SafeAreaView style={{ flexDirection: 'column', alignItems: 'center',position:'relative'  }}>
             <Text style={{ color: 'white', marginVertical: 10, alignSelf: 'flex-start', fontSize: 16, fontFamily: 'Montserrat-Medium' }}>Choose the Service</Text>
+
+            <Icon type={Icons.MaterialIcons} name="keyboard-arrow-down" size={26} style={styles.arrow}></Icon>
             <ModalDropdown
                 options={options}
                 style={[styles.input]}
@@ -144,10 +165,10 @@ const RequestForm = ({ navigation }) => {
         <SafeAreaView style={{flex:2, marginTop: (100/5), paddingVertical: 8, alignItems: 'center', flexDirection: 'column', backgroundColor: '#161616', borderRadius: 20}}>
             <Text style={[{ color: 'white', marginStart: 15, marginTop: 15, padding: 2, fontSize: 16, fontFamily: 'Montserrat-Medium' }, styles.texts]}>We need some details</Text>
 
-            <GetForm index={index} setShow={setShow} />
+            <GetForm index={index} setShow={setShow}  submit={submit} />
             {
                 show &&
-                <RequestSent setShow={setShow} />
+                <RequestSent setShow={setShow}/>
             }
 
         </SafeAreaView>
@@ -156,32 +177,33 @@ const RequestForm = ({ navigation }) => {
 };
 
 
-const GetForm = ({ index, setShow }) => {
+const GetForm = ({ index, setShow,submit }) => {
+
 
     if (index === 0) {
-        return <FuneralService setShow={setShow} />;
+        return <FuneralService setShow={setShow} submit={submit} />;
     }
 
     if (index === 1) {
-        return <CelebrateBirthday setShow={setShow} />;
+        return <CelebrateBirthday setShow={setShow} submit={submit}  />;
     }
 
 
     if (index === 2) {
-        return <ChildDedication setShow={setShow} />;
+        return <ChildDedication setShow={setShow} submit={submit}  />;
     }
 
     if (index === 3) {
-        return <HouseDedication setShow={setShow} />;
+        return <HouseDedication setShow={setShow} submit={submit}  />;
     }
     if (index === 4) {
-        return <WaterBaptism setShow={setShow} />;
+        return <WaterBaptism setShow={setShow} submit={submit}  />;
     }
     if (index === 5) {
-        return <ThanksGiving setShow={setShow} />;
+        return <ThanksGiving setShow={setShow} submit={submit}  />;
     }
     if (index === 6) {
-        return <MemorialServices setShow={setShow} />;
+        return <MemorialServices setShow={setShow} submit={submit}  />;
     }
 };
 
@@ -197,7 +219,6 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 0.2,
         borderColor: '#fff',
-        textTransform: 'capitalize',
         textTransform: 'uppercase',
         width: (width * 0.92),
     },
@@ -206,6 +227,11 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Medium',
         textAlign: 'center',
         color: 'white',
+    },
+    arrow:{
+        position:'absolute',
+        right:10,
+        bottom:15,
     },
     input: {
         borderColor: '#343739',

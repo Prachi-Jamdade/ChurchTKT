@@ -57,6 +57,10 @@ const AccountDetails = ({navigation})=> {
     const handleSubmite = () => {
 
         console.log(data)
+
+        if(!data.name || !data.phoneNo || data.phoneNo.length!=10){
+            return alert("Enter the vaild phone no and name");
+        }
      
         updateUserData({...user,profileUrl,firstName:data.name,phoneNumber:data.phoneNo})
         .then((e)=>{
@@ -129,7 +133,7 @@ const AccountDetails = ({navigation})=> {
 
             <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
-                placeholder = "Prachi Jamdade"
+                placeholder = "Name"
                 placeholderTextColor = "#808080"
                 autoCapitalize = "none"
                 value={data.name}
@@ -142,7 +146,7 @@ const AccountDetails = ({navigation})=> {
 
             <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
-                placeholder = "9324328505"
+                placeholder = "Phone No."
                 placeholderTextColor = "#808080"
                 autoCapitalize = "none"
                 value={data.phoneNo}

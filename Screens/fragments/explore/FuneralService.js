@@ -2,10 +2,8 @@ import React,{useState} from 'react';
 import {View,TouchableOpacity,Text,ScrollView, SafeAreaView} from 'react-native';
 import RequestFormDetail from './RequestFormDetail';
 import {styles} from './RequestForm';
-import {sendFom} from '../../api/requestForms'
 
-
-const FuneralService = ({setShow}) => {
+const FuneralService = ({setShow,submit}) => {
 
     const intitial = {
         formType:'funeral',
@@ -28,17 +26,7 @@ const FuneralService = ({setShow}) => {
         setData({...data,[name]:value});
     };
 
-    const submit=()=>{
-        // console.log(data)
-        sendFom(data).then((res)=>{
-            console.log(res);
-            setData(intitial)
-            setShow(true);
-        }).catch((e)=>{
-            alert('Some thing went Wrong, Try again');
-        })
-    }
-
+  
 
 
     return(
@@ -120,7 +108,7 @@ const FuneralService = ({setShow}) => {
         <SafeAreaView style={{flexDirection: 'column',alignItems:'center'}}>
                 <TouchableOpacity style={styles.chatSupportBtn}
                 // provide navigate path
-                onPress={submit}
+                onPress={()=>submit(data,setData,intitial)}
                 underlayColor="#fff"
                 >
                     <Text style={styles.loginText}>Continue</Text>
