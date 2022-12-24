@@ -11,7 +11,7 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon, {Icons} from './Icons';
 import * as Animatable from 'react-native-animatable';
-
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 
 import Home from '../home';
@@ -32,6 +32,10 @@ const Tab = createBottomTabNavigator();
 
 class BottomTabs extends React.Component{
 
+  options = {
+    ignoreAndroidSystemSettings: true
+  };
+
     state ={
         viewRef : '',
     }
@@ -41,32 +45,32 @@ class BottomTabs extends React.Component{
         this.viewRef = React.createRef();
     }
 
-    TabButton = (props) => {
-        const { item, onPress, accessibilityState } = props;
-        const focused = accessibilityState.selected;
-        // const viewRef =useRef(null);
-        // useEffect(() => {
-        //   if (focused) {
-        //     this.viewRef.current.animate({0: {scale: .5, rotate: '0deg'}, 1: {scale: 1.5, rotate: '360deg'}});
-        //   } else {
-        //     this.viewRef.current.animate({0: {scale: 1.5, rotate: '360deg'}, 1: {scale: 1, rotate: '0deg'}});
-        //   }
-        // }, [focused])
+    // TabButton = (props) => {
+    //     const { item, onPress, accessibilityState } = props;
+    //     const focused = accessibilityState.selected;
+    //     // const viewRef =useRef(null);
+    //     // useEffect(() => {
+    //     //   if (focused) {
+    //     //     this.viewRef.current.animate({0: {scale: .5, rotate: '0deg'}, 1: {scale: 1.5, rotate: '360deg'}});
+    //     //   } else {
+    //     //     this.viewRef.current.animate({0: {scale: 1.5, rotate: '360deg'}, 1: {scale: 1, rotate: '0deg'}});
+    //     //   }
+    //     // }, [focused])
       
-        return (
-          <TouchableOpacity
-            onPress={onPress}
-            activeOpacity={1}
-            style={styles.container}>
-            <Animatable.View
-              // ref={viewRef}
-              duration={1000}
-              style={styles.container}>
-              <Icon type={item.type} name={focused ? item.activeIcon : item.inActiveIcon}/>
-            </Animatable.View>
-          </TouchableOpacity>
-        );
-    }
+    //     return (
+    //       <TouchableOpacity
+    //         onPress={onPress}
+    //         activeOpacity={1}
+    //         style={styles.container}>
+    //         <Animatable.View
+    //           // ref={viewRef}
+    //           duration={1000}
+    //           style={styles.container}>
+    //           <Icon type={item.type} name={focused ? item.activeIcon : item.inActiveIcon}/>
+    //         </Animatable.View>
+    //       </TouchableOpacity>
+    //     );
+    // }
 
     render(){
         return (
@@ -78,7 +82,7 @@ class BottomTabs extends React.Component{
               }}
             >
               {TabArr.map((item, index) => {
-               
+                
                 return (
                   <Tab.Screen key={index} name={item.route} component={item.component}
                     options={{

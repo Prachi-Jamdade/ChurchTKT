@@ -88,14 +88,13 @@ const RequestForm = ({ navigation }) => {
 
 
         <SafeAreaView style={{ flexDirection: 'column', alignItems: 'center',position:'relative'  }}>
-            <Text style={{ color: 'white', marginVertical: 10, alignSelf: 'flex-start', fontSize: 16, fontFamily: 'Montserrat-Medium' }}>Choose the Service</Text>
 
             <Icon type={Icons.MaterialIcons} name="keyboard-arrow-down" size={26} style={styles.arrow}></Icon>
             <ModalDropdown
                 options={options}
                 style={[styles.input]}
                 defaultIndex={index}
-                defaultValue={'Choose the Service'}
+                defaultValue={'Choose a Service'}
                 textStyle={{ color: 'white', marginVertical: 10, fontSize: 16, fontFamily: 'Montserrat-Medium', marginStart: 10 }}
                 dropdownStyle={styles.dropdownStyle}
                 isFullWidth={true}
