@@ -24,7 +24,7 @@ import gobalStyle from '../../styles/index';
 import {sendFom} from '../../api/requestForms';
 import {checkObj} from '../../utils/obj'
 import {AppContext} from '../../../context';
-
+import { useContext } from 'react';
 
 
 
@@ -171,7 +171,7 @@ const RequestForm = ({ navigation }) => {
 
 
         <SafeAreaView style={{flex:2, marginTop: (100/5), paddingVertical: 8, alignItems: 'center', flexDirection: 'column', backgroundColor: '#161616', borderRadius: 20}}>
-            <Text style={[{ color: 'white', marginStart: 15, marginTop: 15, padding: 2, fontSize: 16, fontFamily: 'Montserrat-Medium' }, styles.texts]}>We need some details</Text>
+            <Text style={[{ color: 'white', marginStart: 15, marginTop: 1, padding: 2, fontSize: 16, fontFamily: 'Montserrat-Medium' }, styles.texts]}>We need some details</Text>
 
             <GetForm index={index} setShow={setShow}  submit={submit} />
             {
