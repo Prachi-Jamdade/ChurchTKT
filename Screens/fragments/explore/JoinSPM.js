@@ -8,6 +8,8 @@ import ImageBackUp from '../../assests/icons/back.png';
 import { sendSPMFrom } from '../../api/requestForms'
 import RadioButtonRN from 'radio-buttons-react-native';
 import { RFValue } from "react-native-responsive-fontsize";
+import {checkObj} from '../../utils/obj'
+
 
 const JoinSPM = ({ navigation }) => {
     const { user } = useContext(AppContext);
@@ -15,9 +17,9 @@ const JoinSPM = ({ navigation }) => {
     const [data, setData] = useState({
         userName: '',
         fatherName: '',
-        "userId": user.userId,
-        "gender": "",
-        "amount": 0
+        userId: user.userId,
+        gender: '',
+        amount: 0,
     });
 
 
@@ -34,7 +36,10 @@ const JoinSPM = ({ navigation }) => {
         setData({ ...data, [name]: value });
     };
     const submit = () => {
-        console.log(data);
+        const isOK=checkObj(data);
+        if(!isOK){
+            return alert('All fields are mandatory');
+        }
         sendSPMFrom({ ...data }).then(() => {
             alert("Join the spm")
             setData({
@@ -62,8 +67,13 @@ const JoinSPM = ({ navigation }) => {
                 <Text style={gobalStyle.nav_header}>Join SPM</Text>
             </TouchableOpacity>
 
-            <SafeAreaView style={[styles.box]}>
+            <ScrollView
+             style={[styles.box]}
+             showsVerticalScrollIndicator={false}
+             showsHorizontalScrollIndicator={false}
+             >
 
+                <SafeAreaView>
 
                 <Text style={styles.boldText}>
                     We need some details
@@ -72,9 +82,7 @@ const JoinSPM = ({ navigation }) => {
                 <Text style={styles.lightText}>
                     Please provide us some of your information to be a part of SPM
                 </Text>
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    showsHorizontalScrollIndicator={false}>
+               
 
                     <TextInput style={styles.input}
                         underlineColorAndroid="transparent"
@@ -106,7 +114,7 @@ const JoinSPM = ({ navigation }) => {
                     //     onChangeText={(e) => change("gender", e)}
                     // /> */}
 
-<Text style={[styles.normalText]}>
+                <Text style={[styles.normalText]}>
                     Gender
                 </Text>
 
@@ -134,15 +142,15 @@ const JoinSPM = ({ navigation }) => {
                         name="amount"
                         onChangeText={(e) => change("amount", parseInt(e))}
                     />
-                </ScrollView>
+                </SafeAreaView>
 
                 <TouchableHighlight
-                    style={gobalStyle.btn_abs}
+                    style={[gobalStyle.btn_abs,{position:'relative',marginTop:20}]}
                     onPress={() => { submit(); }}
-                >
+                    >
                     <Text style={[gobalStyle.submitText]}>JOIN</Text>
                 </TouchableHighlight>
-            </SafeAreaView>
+            </ScrollView>
         </SafeAreaView>
     )
 }
@@ -163,7 +171,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: RFValue(10),
         color: 'white',
         borderRadius: RFValue(10),
-        borderWidth: RFValue(2),
         fontSize: RFValue(15),
         fontFamily: 'Montserrat-Regular'
     },
@@ -172,9 +179,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#1E1E1E',
         flexDirection: 'column',
         borderRadius: RFValue(20),
-        flex: 1,
         marginTop: RFValue(5),
         paddingTop: RFValue(10),
+        flex:3,
     },
     boldText: {
         fontFamily: 'Montserrat-SemiBold',

@@ -50,7 +50,7 @@ const RequestForm = ({ navigation }) => {
     ];
 
     const [index, setIndex] = useState(0);
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
    
 
     const submit=(data,setData,intitial)=>{

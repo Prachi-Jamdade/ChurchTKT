@@ -16,6 +16,8 @@ import {AppContext} from '../../../context';
 import {generatePaymentSPM,completePaymentSPM} from '../../api/explore';
 import RazorpayCheckout from 'react-native-razorpay';
 import RequestSent from './RequestSent';
+import { RFValue } from 'react-native-responsive-fontsize';
+
 
 const SPMOfferings = ({navigation})=>{
 
