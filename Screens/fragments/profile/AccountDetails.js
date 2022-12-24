@@ -17,7 +17,7 @@ const AccountDetails = ({navigation})=> {
     });
     const [isEditOn,setEditOn] = useState(false);
 
-    const {user,profileUrl,setProfileUrl,setUser}=useContext(AppContext);
+    const {user,profileUrl,setProfileUrl,setUser, setAlert}=useContext(AppContext);
 
     useEffect(()=>{
         setData({name:user.firstName,phoneNo:user.phoneNumber})
@@ -59,7 +59,8 @@ const AccountDetails = ({navigation})=> {
         console.log(data)
 
         if(!data.name || !data.phoneNo || data.phoneNo.length!=10){
-            return alert("Enter the vaild phone no and name");
+            return setAlert("error", "Enter the valid phone number and name");
+            // return alert("Enter the vaild phone no and name");
         }
      
         updateUserData({...user,profileUrl,firstName:data.name,phoneNumber:data.phoneNo})

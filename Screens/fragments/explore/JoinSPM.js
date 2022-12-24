@@ -12,7 +12,7 @@ import {checkObj} from '../../utils/obj'
 
 
 const JoinSPM = ({ navigation }) => {
-    const { user } = useContext(AppContext);
+    const { user, setAlert } = useContext(AppContext);
 
     const [data, setData] = useState({
         userName: '',
@@ -38,10 +38,12 @@ const JoinSPM = ({ navigation }) => {
     const submit = () => {
         const isOK=checkObj(data);
         if(!isOK){
-            return alert('All fields are mandatory');
+            return setAlert("error", "All fields are mandatory'");
+            // return alert('All fields are mandatory');
         }
         sendSPMFrom({ ...data }).then(() => {
-            alert("Join the spm")
+            return setAlert("error", "Join the SPM");
+            // alert("Join the spm")
             setData({
                 userName: '',
                 fatherName: '',
@@ -51,7 +53,8 @@ const JoinSPM = ({ navigation }) => {
             })
             navigation.navigate("Spm",{isJoin:true})
         }).catch((e) => {
-            alert("Something went wrong")
+            return setAlert("error", "Something went wrong");
+            // alert("Something went wrong")
         })
     };
 

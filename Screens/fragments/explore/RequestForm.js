@@ -23,12 +23,15 @@ import RequestSent from './RequestSent';
 import gobalStyle from '../../styles/index';
 import {sendFom} from '../../api/requestForms';
 import {checkObj} from '../../utils/obj'
+import {AppContext} from '../../../context';
 
 
 
 
 const { width } = Dimensions.get('window');
 const RequestForm = ({ navigation }) => {
+
+    const {setAlert} = useContext(AppContext);
 
     const options = [
         'Request Funeral Services',
@@ -57,14 +60,16 @@ const RequestForm = ({ navigation }) => {
         // console.log(data)
         const isOK=checkObj(data);
         if(!isOK){
-            return alert('All fields are mandatory');
+            return setAlert("error", "All fields are mandatory'");
+            // return alert('All fields are mandatory');
         }
         sendFom(data).then((res)=>{
             console.log(res);
             setData(intitial)
             setShow(true);
         }).catch((e)=>{
-            alert('Some thing went Wrong, Try again');
+            return setAlert("error", "Something went wrong, try again");
+            // alert('Something went wrong, Try again');
         })
     }
 

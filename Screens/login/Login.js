@@ -16,6 +16,7 @@ import CustomInput from '../custom/CustomInput';
 import {sendOtpToNumber} from '../api/authication'
 import gobalStyle from '../styles/index'
 import { RFValue } from 'react-native-responsive-fontsize';
+import { AppContext } from '../../context';
 
 const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
@@ -31,6 +32,8 @@ class Login extends React.Component{
         phoneNumber : '',
         accepted : 'false',
     }
+
+    static contextType = AppContext;
 
     constructor(props){
         super(props);
@@ -51,11 +54,12 @@ class Login extends React.Component{
         .then((data)=>{
             // console.log(data);
             if (!data.isValid){
-                return alert('User does not exit');
+                return this.context.setAlert("error", "User does not exist");
             }
             props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber,isLogin:true});
         })
         .catch((e)=>{
+
             alert('Something went wrong, try again');
         });
     }
