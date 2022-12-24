@@ -98,7 +98,7 @@ const RequestForm = ({ navigation }) => {
                 options={options}
                 style={[styles.input]}
                 defaultIndex={index}
-                defaultValue={'Choose A Service'}
+                defaultValue={'Choose a Service'}
                 textStyle={{ color: 'white', marginVertical: 10, fontSize: 16, fontFamily: 'Montserrat-Medium', marginStart: 10 }}
                 dropdownStyle={styles.dropdownStyle}
                 isFullWidth={true}
