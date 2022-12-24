@@ -16,6 +16,7 @@ import img9 from '../assests/community9.png';
 import img10 from '../assests/community10.png';
 import img11 from '../assests/community11.png';
 import img12 from '../assests/community12.png';
+import img13 from '../assests/community13.png'
 import CommunityBox from './CommunityBox';
 import CommunityList from './CommunityList';
 import ArrowImage from '../assests/icons/communityCardIcon.png'
@@ -32,7 +33,7 @@ let data=[
     },
     {
         'title':'Bible College',
-        'image':[img12],
+        'image':[img13, img12],
         'description':'Learn the Holy Bible',
         'about':`Dominion International Bible College is an initiative of The King’s Temple Church. \n\nBible college is a great way to learn more about the word of God and its teachings.\n\nThrough intensive study and discussion, students at Bible college can develop a deeper understanding of this ancient text and its impact on our lives.\n\nIn addition to offering academic training in biblical studies, We also provide practical training through internships, missions, and other opportunities. This combination of theoretical and practical instruction gives graduates a well-rounded foundation to serve God.\n\nIf you are interested in learning more about the Word of God, Consider enrolling in a Bible college today.`
     },
