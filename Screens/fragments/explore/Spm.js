@@ -74,6 +74,7 @@ const Offerings =({navigation,route})=>{
                         }}
                         titleStyle= {{
                             letterSpacing: 2,
+                            fontFamily: "Montserrat-Medium"
                         }}
                         title={isJoin==null?"JOIN SPM":isJoin}
                         onPress={() => {

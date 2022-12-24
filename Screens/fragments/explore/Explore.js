@@ -132,7 +132,7 @@ const Explore = ({ navigation }) => {
                     alignItems: 'center'
                 }}>
                     <Image source={require('../../assests/golden_separator.png')}
-                        style={{ height: RFValue(3), marginBottom: RFValue(10), }} />
+                        style={{marginBottom: RFValue(10), }} />
                 </SafeAreaView>
 
                 {

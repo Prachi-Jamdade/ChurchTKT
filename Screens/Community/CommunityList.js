@@ -13,6 +13,7 @@ import gobalStyle from '../styles/index';
 
 import ArrowImage from '../assests/icons/communityCardIcon.png';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const CommunityList = ({navigation,data,setIndex}) => {
 
@@ -61,9 +62,10 @@ const CommunityCard = ({navigation,image,title,description,about,index,setIndex}
                     {/* <Text  style={styles.cardBoxDescriptionText}>{description}</Text> */}
                         <Icon
                             type={Icons.AntDesign}
-                            size={24}
+                            size={RFValue(25)}
                             name="rightcircleo"
                             color= 'white'
+                            style={{marginBottom: RFValue(5)}}
                         />
                     </SafeAreaView>
                 </SafeAreaView>

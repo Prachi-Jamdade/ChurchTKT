@@ -148,7 +148,7 @@ const JoinSPM = ({ navigation }) => {
                 </SafeAreaView>
 
                 <TouchableHighlight
-                    style={[gobalStyle.btn_abs,{position:'relative',marginTop:20}]}
+                    style={[gobalStyle.btn_abs,{position:'relative',marginTop:RFValue(60)}]}
                     onPress={() => { submit(); }}
                     >
                     <Text style={[gobalStyle.submitText]}>JOIN</Text>
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         fontSize: RFValue(17),
         color: 'white',
         margin: RFValue(20),
-        marginTop: 10,
+        marginTop: RFValue(2),
         marginBottom: RFValue(5),
     },
     lightText: {
@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
         fontSize: RFValue(14),
         margin: RFValue(20),
         marginBottom: RFValue(10),
+        marginTop: RFValue(4),
         color: '#989898',
     },
     normalText: {

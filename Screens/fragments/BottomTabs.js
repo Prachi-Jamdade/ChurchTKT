@@ -18,6 +18,7 @@ import Home from '../home';
 import Explore from '../fragments/explore/Explore';
 import Community from '../Community';
 import Profile from './profile/Profile';
+import { RFValue } from 'react-native-responsive-fontsize';
 const TabArr = [
     { route: 'Home', label: 'Home', type: Icons.Octicons, name:"home", component: Home },
     { route: 'Explore', label: 'Explore', type: Icons.Feather, name:"globe", component: Explore },
@@ -130,14 +131,14 @@ const styles = StyleSheet.create({
       backgroundColor:'rgba(255, 200, 30, 0.1)',
     },
     bar:{
-      height: 75,
+      height: RFValue(65),
       position: 'absolute',
       bottom: 0,
       right: 0,
       left: 0,
-      borderTopLeftRadius: 5,
-      borderTopRightRadius: 5,
-      paddingTop:12,
+      borderTopLeftRadius: RFValue(10),
+      borderTopRightRadius: RFValue(10),
+      paddingTop:RFValue(12),
       width,
       backgroundColor: 'black',
       borderTopColor:'#FFBE18',

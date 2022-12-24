@@ -16,15 +16,6 @@ const Socials = () => {
             alignItems:'center',
             justifyContent:'center'
         }}>
-            <Ionicons name='logo-linkedin' size={26} color="#FFBE18" 
-            style={{
-                padding: RFValue(8), 
-                margin: RFValue(5),
-                backgroundColor:'rgba(255, 190, 24, 0.05)',
-                borderRadius:15,
-            }} 
-            // onPress={() => Linking.openURL('')}
-            />
             <Ionicons name='logo-facebook' size={26} color="#FFBE18" 
              style={{
                 padding: RFValue(8), 

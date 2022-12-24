@@ -61,6 +61,7 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
                             size={24}
                             name="arrow-back-ios"
                             color='white'
+                            style={{marginStart: RFValue(3), marginBottom: RFValue(4)}}
                         />
                     </SafeAreaView>
                     <SafeAreaView>
