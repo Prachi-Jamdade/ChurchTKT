@@ -21,6 +21,8 @@
     "@react-navigation/native-stack": "^6.2.5",
     "axios": "^1.2.0",
     "i": "^0.3.7",
+    "lottie-ios": "^3.2.3",
+    "lottie-react-native": "^5.1.4",
     "npm": "^8.19.3",
     "radio-buttons-react-native": "^1.0.4",
     "react": "18.1.0",

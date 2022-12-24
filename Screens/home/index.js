@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React,{useState,useEffect,useContext} from 'react';
+import React,{useState,useEffect,useContext,useRef} from 'react';
 import {
     Text,
     View,
@@ -13,41 +13,50 @@ import {
 } from 'react-native';
 import Icon,{Icons} from '../fragments/Icons';
 import homeHand from '../assests/icons/homeHand.png';
+import LottieView from 'lottie-react-native';
 import homeImage from '../assests/homeImage.png';
 import { AppContext } from '../../context';
 import gobalStyle from '../styles/index';
 import YoutubePlayer from 'react-native-youtube-iframe';
+import Video from 'react-native-video';
 import { RFValue } from 'react-native-responsive-fontsize';
-// const TopEvents=[
-//     {
-//         image:homeImage,
-//         date:'29th Sept, 2023',
-//         title:'WORSHIP NIGHT'
-//     },
-//     {
-//         image:homeImage,
-//         date:'29th Sept, 2023',
-//         title:'WORSHIP NIGHT'
-//     },
-//     {
-//         image:homeImage,
-//         date:'29th Sept, 2023',
-//         title:'WORSHIP NIGHT'
-//     },
-// ]
+
+
+
+const {width} = Dimensions.get('window');
+const boxWidth=width*0.92;
+const height = width * 100 / 40;
+
 
 const Home = ({navigation}) => {
 
     const [active,setActive]=useState(0);
+    const lottieRef = useRef(null);
+    const [lodding,setLodding]=useState(true);
+    // const lodding=true;
     const {homeEvents,getHomeEvent,videoLink,user}=useContext(AppContext);
 
     useEffect(() => {
         if(homeEvents.length===0){
-            getHomeEvent();
+            getHomeEvent().finally(()=>{
+                setLodding(false);
+            })
+        }else {
+            setLodding(false);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
+    useEffect(() => {
+        if (lottieRef.current) {
+          setTimeout(() => {
+            lottieRef.current?.reset();
+            lottieRef.current?.play();
+          }, 100);
+        }
+    }, [lottieRef]);
+
+ 
     
     const change = ({nativeEvent}) => {
         const slide = nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width;
@@ -57,7 +66,9 @@ const Home = ({navigation}) => {
     }
 
     return (
-            <SafeAreaView style= {gobalStyle.main}>
+        <>
+        
+             <SafeAreaView style= {gobalStyle.main}>
                 <SafeAreaView style = {gobalStyle.header}>
                     <SafeAreaView>
                     <Image
@@ -71,6 +82,30 @@ const Home = ({navigation}) => {
                     <Text style= {styles.headerDark}>{user?.firstName}!</Text>
                     </SafeAreaView>
                 </SafeAreaView>
+
+                {
+            lodding 
+               ?
+               <SafeAreaView style= {[styles.box]}>
+                
+               <View style={{
+                    width:width,
+                    height:height/1.7,
+                    display:'flex',
+                    alignItems:'center',
+                    justifyContent: 'center',
+                    transform: [{ scale: 2 }]
+                    }}>
+                <LottieView
+                    ref={lottieRef}
+                    autoplay
+                    loop
+                    source={require('../assests/loading_tkt_church_app.json')}
+                    />
+                </View>
+
+               </SafeAreaView>
+              :
                 
                 <SafeAreaView style= {[styles.box]}>
               
@@ -126,8 +161,10 @@ const Home = ({navigation}) => {
 
                 </SafeAreaView>
                 
+            }
             </SafeAreaView>
-        )
+        </>
+    )
 }
 
 
@@ -204,10 +241,6 @@ const HomeCard = ({navigation,title,description,location,startDate,startTime}) =
 }
 
 
-
-const {width} = Dimensions.get('window');
-const boxWidth=width*0.92;
-const height = width * 100 / 40;
 
 const styles = StyleSheet.create({
     main : {flex: 1, backgroundColor:'#0F1013'},

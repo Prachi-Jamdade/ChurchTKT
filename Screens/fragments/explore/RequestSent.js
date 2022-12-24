@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useState,useRef,useEffect } from 'react';
 import { View,Image,TouchableOpacity,Text,StyleSheet,Dimensions, SafeAreaView } from 'react-native';
-
+import LottieView from 'lottie-react-native';
 const RequestSent = ({navigation,setShow}) => {
+    const lottieRef = useRef(null);
+
+
+    useEffect(() => {
+        if (lottieRef.current) {
+          setTimeout(() => {
+                lottieRef.current?.play();
+          }, 100);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lottieRef]);
+
     return (
         <SafeAreaView style={styles.container}>
             <SafeAreaView style={styles.containerItem}>
-                <Image
-                    source={require('../../assests/icons/RequestSent.png')}
-                    style={{ width: 120, height: 120 }}
+                <View style={{
+                    width: 200,
+                    height: 200 ,
+                    display:'flex',
+                    alignItems:'center',
+                    justifyContent: 'center',
+                    }}>
+                <LottieView
+                    ref={lottieRef}
+                    loop={false}
+                    autoPlay={false}
+                    source={require('../../assests/done_tkt-church.json')}
                     />
+                </View>
 
                 <Text style={styles.header}>Request Sent</Text>
 
@@ -55,11 +77,11 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-end',
+        bottom:0,
         
     },
     containerItem:{
         backgroundColor:'#0F0F0F',
-        paddingVertical:20,
         flexDirection: 'column',
         alignItems: 'center',
         width,
@@ -68,7 +90,7 @@ const styles = StyleSheet.create({
         fontSize:23,
         fontWeight:'bold',
         color:'white',
-        marginTop: 20,
+        marginTop: -20,
         marginBottom: 5,
         fontFamily: 'Montserrat-Medium'
     },

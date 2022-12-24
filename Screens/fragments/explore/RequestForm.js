@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState } from 'react';
+import React, { useState,useRef,useEffect } from 'react';
 import {
     Dropdown,
 }
@@ -50,8 +50,8 @@ const RequestForm = ({ navigation }) => {
     ];
 
     const [index, setIndex] = useState(0);
-    const [show, setShow] = useState(false);
-    console.log(index);
+    const [show, setShow] = useState(true);
+   
 
     const submit=(data,setData,intitial)=>{
         // console.log(data)
@@ -67,6 +67,9 @@ const RequestForm = ({ navigation }) => {
             alert('Some thing went Wrong, Try again');
         })
     }
+
+ 
+
 
 
 
@@ -88,14 +91,14 @@ const RequestForm = ({ navigation }) => {
 
 
         <SafeAreaView style={{ flexDirection: 'column', alignItems: 'center',position:'relative'  }}>
-            <Text style={{ color: 'white', marginVertical: 10, alignSelf: 'flex-start', fontSize: 16, fontFamily: 'Montserrat-Medium' }}>Choose the Service</Text>
+            {/* <Text style={{ color: 'white', marginVertical: 10, alignSelf: 'flex-start', fontSize: 16, fontFamily: 'Montserrat-Medium' }}>Choose the Service</Text> */}
 
             <Icon type={Icons.MaterialIcons} name="keyboard-arrow-down" size={26} style={styles.arrow}></Icon>
             <ModalDropdown
                 options={options}
                 style={[styles.input]}
                 defaultIndex={index}
-                defaultValue={'Choose the Service'}
+                defaultValue={'Choose A Service'}
                 textStyle={{ color: 'white', marginVertical: 10, fontSize: 16, fontFamily: 'Montserrat-Medium', marginStart: 10 }}
                 dropdownStyle={styles.dropdownStyle}
                 isFullWidth={true}
