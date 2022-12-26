@@ -24,6 +24,7 @@ import gobalStyle from '../../styles/index';
 import {sendFom} from '../../api/requestForms';
 import {checkObj} from '../../utils/obj'
 import {AppContext} from '../../../context';
+import LoginAlert from '../../custom/LoginAlert';
 import { useContext } from 'react';
 
 
@@ -31,7 +32,14 @@ import { useContext } from 'react';
 const { width } = Dimensions.get('window');
 const RequestForm = ({ navigation }) => {
 
-    const {setAlert} = useContext(AppContext);
+    const {setAlert, isUserLogin} = useContext(AppContext);
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if(!isUserLogin) {
+            setShowAlert(true);
+        }
+    }, []);
 
     const options = [
         'Request Funeral Services',
@@ -93,6 +101,10 @@ const RequestForm = ({ navigation }) => {
                 <Text style={gobalStyle.nav_header}>Request Forms</Text>
             </SafeAreaView>
         </TouchableOpacity>
+
+        {
+            showAlert && <LoginAlert navigation={navigation} setShow={setShowAlert} prevScreen='Explore' />
+        }
 
 
         <SafeAreaView style={{ flexDirection: 'column', alignItems: 'center',position:'relative'  }}>

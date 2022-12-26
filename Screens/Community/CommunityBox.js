@@ -17,7 +17,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { useEffect } from 'react';
 import { useBackHandler } from '@react-native-community/hooks'
 
-const CommunityBox = ({ navigation, image, title, description, setIndex, about }) => {
+const CommunityBox = ({ navigation, image, title, description, setIndex, about, SendWhatsApp }) => {
 
     const [active, setActive] = useState(0)
 
@@ -34,12 +34,12 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
 
     // useEffect(() => {
     //     const backHandler = BackHandler.addEventListener("hardwareBackPress", backBtnHandler);
-    
+
     //     return () => {
     //       backHandler.removeEventListener("hardwareBackPress", backBtnHandler);
     //     };
     //   }, [backBtnHandler]);
-    
+
     return (
         <SafeAreaView style={gobalStyle.main}>
             <TouchableOpacity
@@ -61,7 +61,7 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
                             size={24}
                             name="arrow-back-ios"
                             color='white'
-                            style={{marginStart: RFValue(3), marginBottom: RFValue(4)}}
+                            style={{ marginStart: RFValue(3), marginBottom: RFValue(4) }}
                         />
                     </SafeAreaView>
                     <SafeAreaView>
@@ -118,7 +118,8 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about }
                     /> */}
                         <TouchableHighlight
                             style={[styles.submit, { backgroundColor: '#FFBE18', marginTop: RFValue(20), marginStart: RFValue(10), marginEnd: RFValue(10) }]}
-                            underlayColor='#fff'>
+                            underlayColor='#fff'
+                            onPress={SendWhatsApp}>
                             <Text style={[gobalStyle.submitText]}>JOIN US</Text>
                         </TouchableHighlight>
                     </View>

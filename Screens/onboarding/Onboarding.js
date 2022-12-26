@@ -53,6 +53,10 @@ class Onboarding extends React.Component{
       props.navigation.navigate('Registration');
     }
 
+    BottomNavigate = (props) => {
+      props.navigation.navigate('BottomTabs');
+    }
+
     render(){
         return (
             <SafeAreaView style={styles.main}>
@@ -102,9 +106,9 @@ class Onboarding extends React.Component{
               </SafeAreaView>
               <TouchableHighlight
                 style={[gobalStyle.btn2,{ padding:RFValue(0),marginTop:RFValue(0)}]}
-                onPress={() => {this.Login(this.props);}}
+                onPress={() => {this.BottomNavigate(this.props);}}
                 underlayColor="#fff">
-                  <Text style={gobalStyle.submitText}>Login</Text>
+                  <Text style={gobalStyle.submitText}>Continue</Text>
               </TouchableHighlight>
               </SafeAreaView>
           </SafeAreaView>

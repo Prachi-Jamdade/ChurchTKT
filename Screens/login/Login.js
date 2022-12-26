@@ -76,6 +76,7 @@ class Login extends React.Component{
                         keyboardType = 'number-pad'
                         placeholderTextColor = "#989898"
                         autoCapitalize = "none"
+                        maxLength = {10}
                         onChangeText = {this.handleNumber}/>
                 </SafeAreaView>
 

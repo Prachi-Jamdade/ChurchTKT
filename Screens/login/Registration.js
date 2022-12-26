@@ -30,8 +30,8 @@ class Registration extends React.Component {
     }
 
     handleFirstName = (text) => {
-        this.setState({firstName: text});
-        if (text && this.state.phoneNumber.length===10 && this.state.lastName){
+        this.setState({firstName: text.replace(/[^0-9]/g, '')});
+        if (text && this.state.phoneNumber.length===10 && this.state.lastName.replace(/[^0-9]/g, '')){
             this.accepted = true;
         }
         else {
@@ -40,8 +40,8 @@ class Registration extends React.Component {
     }
 
     handleLastName = (text) => {
-        this.setState({lastName: text});
-        if (text && this.state.phoneNumber.length===10 && this.state.firstName){
+        this.setState({lastName: text.replace(/[^0-9]/g, '')});
+        if (text && this.state.phoneNumber.length===10 && this.state.firstName.replace(/[^0-9]/g, '')){
             this.accepted = true;
         }
         else {
@@ -110,6 +110,7 @@ class Registration extends React.Component {
                         keyboardType = 'number-pad'
                         placeholderTextColor = "#989898"
                         autoCapitalize = "none"
+                        maxLength = {5}
                         onChangeText = {this.handleNumber}/>
                 </SafeAreaView>
 

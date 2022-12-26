@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import gobalStyle from '../../styles/index';
-import { Linking } from 'react-native';
+import { Linking, Platform } from 'react-native';
 import {AppContext} from '../../../context';
+import { useContext } from 'react';
 
 
 import {
@@ -67,7 +68,7 @@ const ExpandableComponent = ({ item, onClick }) => {
 
                             <Text style={styles.text}>
 
-                               {item.val}
+                                {item.val}
 
                             </Text>
 
@@ -82,8 +83,6 @@ const ExpandableComponent = ({ item, onClick }) => {
 }
 
 const OpenWhatsApp = () => {
-    const {setAlert}=useContext(AppContext);
-
     let url = "whatsapp://send?text=" +
           "" +
           "&phone=91" +
@@ -93,12 +92,13 @@ const OpenWhatsApp = () => {
             console.log("WhatsApp Opened successfully " + data);  //<---Success
           })
           .catch(() => {
-            setAlert("error", "Make sure WhatsApp installed on your device");
-            // alert("Make sure WhatsApp installed on your device");  //<---Error
+            // setAlert("error", "Make sure WhatsApp installed on your device");
+            alert("Make sure WhatsApp installed on your device");  //<---Error
           });
 }
 
 const Help = ({ navigation }) => {
+    const {setAlert} = useContext(AppContext); 
 
     const [multiSelect, setMultiSelect] = useState(false);
     const [listDataSource, setListDataSource] = useState(CONTENT);
