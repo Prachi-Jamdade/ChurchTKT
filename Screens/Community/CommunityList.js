@@ -12,7 +12,8 @@ import Icon,{Icons} from '../fragments/Icons'
 import gobalStyle from '../styles/index';
 
 import ArrowImage from '../assests/icons/communityCardIcon.png';
-
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const CommunityList = ({navigation,data,setIndex}) => {
 
@@ -40,9 +41,16 @@ const CommunityList = ({navigation,data,setIndex}) => {
 
 const CommunityCard = ({navigation,image,title,description,about,index,setIndex}) => {
 
+    const options = {
+        ignoreAndroidSystemSettings: true
+    };
+    
     return(
 
-        <TouchableHighlight onPress={()=>setIndex(index)}>
+        <TouchableHighlight onPress={()=>{
+            ReactNativeHapticFeedback.trigger("notificationSuccess", options);
+            setIndex(index)
+        }}>
             <SafeAreaView style={styles.cardBox} 
                 >
                 <Image
@@ -52,12 +60,13 @@ const CommunityCard = ({navigation,image,title,description,about,index,setIndex}
                     {/* <Text style= {styles.cardTextBoxheader}>{title}</Text> */}
                     <SafeAreaView style={styles.cardTextBoxDescription}>
                     {/* <Text  style={styles.cardBoxDescriptionText}>{description}</Text> */}
-                         <Icon
+                        <Icon
                             type={Icons.AntDesign}
-                            size={24}
+                            size={RFValue(25)}
                             name="rightcircleo"
                             color= 'white'
-                         />
+                            style={{marginBottom: RFValue(5)}}
+                        />
                     </SafeAreaView>
                 </SafeAreaView>
             </SafeAreaView>

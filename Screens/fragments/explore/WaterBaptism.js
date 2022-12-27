@@ -5,7 +5,7 @@ import {styles} from './RequestForm';
 import {sendFom} from '../../api/requestForms'
 
 
-const WaterBaptism = ({setShow}) => {
+const WaterBaptism = ({setShow,submit}) => {
 
     const intitial={
         formType:'water_baptism',
@@ -20,18 +20,6 @@ const WaterBaptism = ({setShow}) => {
     const setValue=(name,value)=>{
         setData({...data,[name]:value})
     }
-
-    const submit=()=>{
-        // console.log(data)
-        sendFom(data).then((res)=>{
-            console.log(res);
-            setData(intitial)
-            setShow(true);
-        }).catch((e)=>{
-            alert('Something went wrong, try again');
-        })
-    }
-
 
 
     return(
@@ -77,7 +65,7 @@ const WaterBaptism = ({setShow}) => {
         <SafeAreaView style={{flexDirection: 'column',alignItems:'center'}}>
                 <TouchableOpacity style={styles.chatSupportBtn}
                 // provide navigate path
-                onPress={submit}
+                onPress={()=>submit(data,setData,intitial)}
                 underlayColor="#fff"
                 >
                     <Text style={styles.loginText}>Continue</Text>

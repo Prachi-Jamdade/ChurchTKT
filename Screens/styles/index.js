@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: RFValue(20),
         paddingVertical: RFValue(12),
         backgroundColor: '#FFBE18',
-        borderRadius: 10,
+        borderRadius: RFValue(8),
         borderWidth: 1,
         width:(width * 0.92),
         marginHorizontal: RFValue(16),

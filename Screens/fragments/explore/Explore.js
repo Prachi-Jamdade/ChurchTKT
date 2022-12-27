@@ -14,11 +14,15 @@ import {
 import { RFValue } from 'react-native-responsive-fontsize';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import gobalStyle from '../../styles/index';
-
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 
 
 const Explore = ({ navigation }) => {
+
+    const options = {
+        ignoreAndroidSystemSettings: true
+    };
 
     const cardContent = [{
         text: 'Tithes and offerings',
@@ -89,7 +93,10 @@ const Explore = ({ navigation }) => {
                 }}
             >
 
-                <TouchableHighlight onPress={() => navigation.navigate('Spm')}>
+                <TouchableHighlight onPress={() => {
+                    ReactNativeHapticFeedback.trigger("notificationSuccess", options);
+                    navigation.navigate('Spm')
+                }}>
                     <SafeAreaView style={{
                         display: 'flex',
                         flexDirection: 'row',
@@ -125,13 +132,16 @@ const Explore = ({ navigation }) => {
                     alignItems: 'center'
                 }}>
                     <Image source={require('../../assests/golden_separator.png')}
-                        style={{ height: RFValue(3), marginBottom: RFValue(10), }} />
+                        style={{marginBottom: RFValue(10), }} />
                 </SafeAreaView>
 
                 {
                     cardContent.map((content, index) => {
                         return (
-                            <TouchableHighlight onPress={() => navigation.navigate(content.navigate)}>
+                            <TouchableHighlight onPress={() => {
+                                ReactNativeHapticFeedback.trigger("notificationSuccess", options);
+                                navigation.navigate(content.navigate)}
+                            }>
 
                                 <SafeAreaView style={{
                                     display: 'flex',

@@ -5,8 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getAllHomeEvent} from './Screens/api/home';
 import {getLiveEvent} from './Screens/api/explore';
 import {getAllDaiyMana} from './Screens/api/home';
-
-
+import { Text } from 'react-native-animatable';
+import DisplayView from './Screens/custom/DialogView'
 function AppContextProvider({children}) {
 	const [ user, setUser ] = useState(null);
 	const [ homeEvents, setHomeEvents ] = useState([]);
@@ -15,8 +15,10 @@ function AppContextProvider({children}) {
         {
         "videoId":"vqzqb6Jz29A",
         }
-]);
+    ]);
 	const [ isUserLogin, setUserLogin ] = useState(false);
+
+    const [dialog, setDialogDescription] = useState(null);
 
     function clear(navigation){
         AsyncStorage.clear().then(()=>{
@@ -27,6 +29,13 @@ function AppContextProvider({children}) {
         }).catch((e)=>{
             // console.log(e);
         })
+    }
+
+    function setAlert(status, description) {
+        setDialogDescription({status: status, description: description});
+        setTimeout(() => {
+            setDialogDescription(null);
+        }, 5000);
     }
 
     async function getHomeEvent(){
@@ -56,6 +65,7 @@ function AppContextProvider({children}) {
             clear,
             getHomeEvent,
             setProfileUrl,
+            setAlert,
             user,
             homeEvents,
             isUserLogin,
@@ -64,6 +74,9 @@ function AppContextProvider({children}) {
             }
             }>
             {children}
+            {
+                dialog && <DisplayView {...dialog} />
+            }
         </AppContext.Provider>
 	);
 }

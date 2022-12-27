@@ -12,6 +12,7 @@ import com.facebook.soloader.SoLoader;
 import com.churchtkt.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import com.mkuczera.RNReactNativeHapticFeedbackPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -70,7 +71,7 @@ public class MainApplication extends Application implements ReactApplication {
     if (BuildConfig.DEBUG) {
       try {
         /*
-         We use reflection here to pick up the class that initializes Flipper,
+        We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
         Class<?> aClass = Class.forName("com.churchtkt.ReactNativeFlipper");

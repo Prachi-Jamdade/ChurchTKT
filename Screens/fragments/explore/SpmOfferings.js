@@ -16,10 +16,12 @@ import {AppContext} from '../../../context';
 import {generatePaymentSPM,completePaymentSPM} from '../../api/explore';
 import RazorpayCheckout from 'react-native-razorpay';
 import RequestSent from './RequestSent';
+import { RFValue } from 'react-native-responsive-fontsize';
+
 
 const SPMOfferings = ({navigation})=>{
 
-    const {user} = useContext(AppContext);
+    const {user, setAlert} = useContext(AppContext);
     const [amount,setAmount] = useState(0);
 
 
@@ -27,6 +29,11 @@ const SPMOfferings = ({navigation})=>{
         try {
 
         let _amount = parseInt(amount);
+
+        if(_amount==0){
+            return setAlert("error", "Enter the amount first")
+            // return alert('Enter the amount');
+        }
         _amount=_amount*100;
         const {firstName,phoneNumber,email} = user;
         const getOrderDetails = await generatePaymentSPM({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
@@ -54,15 +61,18 @@ const SPMOfferings = ({navigation})=>{
             // const {razorpay_payment_id,razorpay_order_id,razorpay_signature}=data;
             const _completePayment = await completePaymentSPM(data);
             setAmount(0);
-            alert('Payment done successfully');
+            setAlert("success", "Payment done successfully")
+            // alert('Payment done successfully');
           }).catch((error) => {
             // handle failure
             console.log(error);
-            alert('Something went wrong, try again');
+            setAlert("error", "Something went wrong, try again")
+            // alert('Something went wrong, try again');
           });
         } catch (e){
             console.log(e);
-            alert('Something went wrong, try again');
+            setAlert("error", "Something went wrong, try again")
+            // alert('Something went wrong, try again');
         }
         };
 
