@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "869744226810",
+    "project_id": "tkt-church-fbebc",
+    "storage_bucket": "tkt-church-fbebc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869744226810:android:9f298d736ebbf90a913443",
+        "android_client_info": {
+          "package_name": "com.tktchurch.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869744226810-e2kgol60q6lib50pn8s3h50fhiasfquq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tktchurch.android",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "869744226810-sc3jghbcds7di8iecf0b83ogp86ueafo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxWIYaVMhjjvAsf7gieD-fPvIbtaFz12E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869744226810-sc3jghbcds7di8iecf0b83ogp86ueafo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "869744226810-54icl0oebjjc8vdqjfckl2sr0attrv95.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tktchurch.iOS"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -59,6 +59,7 @@ const Home = ({ navigation }) => {
  
     
     const change = ({nativeEvent}) => {
+    console.log(nativeEvent,'event debug')
         const slide = nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width;
         if (slide !== active) {
             setActive(slide);

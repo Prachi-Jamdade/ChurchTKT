@@ -4,7 +4,7 @@ import {
     Dropdown,
 }
     from 'react-native-material-dropdown';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 
 import { styles as Input } from '../profile/AccountDetails';
 import Icon,{ Icons } from '../Icons';
@@ -86,7 +86,14 @@ const RequestForm = ({ navigation }) => {
 
 
 
-    return (<SafeAreaView style={{ backgroundColor: '#0F0F0F', flex: 1, flexDirection: 'column', alignItems: 'center', paddingBottom: 30 }}>
+    return (
+    <KeyboardAvoidingView
+    keyboardShouldPersistTaps='never'
+    behavior= {Platform.OS=='ios'?"padding":'height'}
+    style={{flex:1}}
+    >
+
+    <SafeAreaView style={{ backgroundColor: '#0F0F0F', flex: 1, flexDirection: 'column', alignItems: 'center', paddingBottom: 30 }}>
 
         <TouchableOpacity
             // provide navigate path
@@ -193,6 +200,8 @@ const RequestForm = ({ navigation }) => {
 
         </SafeAreaView>
     </SafeAreaView>
+    </KeyboardAvoidingView>
+
     );
 };
 

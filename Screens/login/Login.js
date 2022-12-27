@@ -9,7 +9,9 @@ import {
     TouchableHighlight,
     ImageBackground,
     Button,
-    SafeAreaView
+    SafeAreaView,
+    KeyboardAvoidingView,
+    Platform
 } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
@@ -66,6 +68,12 @@ class Login extends React.Component{
 
     render(){
         return (
+            <KeyboardAvoidingView
+            keyboardShouldPersistTaps='never'
+            behavior= {Platform.OS=='ios'?"padding":'height'}
+      style={{flex:1}}
+            >
+
             <SafeAreaView style= {gobalStyle.main}>
                 <Text style = {gobalStyle.header}>Welcome Back!</Text>
                 <Text style = {styles.dehigligtedText}>Enter your mobile no to Login</Text>
@@ -94,6 +102,8 @@ class Login extends React.Component{
                     <Text style={[gobalStyle.submitText]}>Continue</Text>
               </TouchableHighlight>
             </SafeAreaView>
+            </KeyboardAvoidingView>
+
         );
     }
 
