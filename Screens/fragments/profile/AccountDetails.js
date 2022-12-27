@@ -1,5 +1,5 @@
 import React,{useState,useContext,useEffect} from 'react';
-import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput, SafeAreaView, KeyboardAvoidingView } from 'react-native';
+import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput, SafeAreaView, KeyboardAvoidingView, TouchableOpacity, Platform, Modal,Dimensions } from 'react-native';
 import Icon,{Icons} from '../Icons';
 import {AppContext} from '../../../context';
 import {launchImageLibrary} from 'react-native-image-picker';
@@ -8,19 +8,21 @@ import RNFS from 'react-native-fs';
 import {styles as btnS} from '../explore/RequestForm';
 import {updateUserData,getProfileDetails} from '../../api/authication'
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
 const AccountDetails = ({navigation})=> {
+    const {clear}=useContext(AppContext);
     const [data,setData] = useState( {
         name: '',
         phoneNo: '',
     });
+    const [show,setShow] = useState(false)
     const [isEditOn,setEditOn] = useState(false);
 
     const {user,profileUrl,setProfileUrl,setUser, setAlert}=useContext(AppContext);
 
     useEffect(()=>{
-        setData({name:user.firstName,phoneNo:user.phoneNumber})
+        setData({name:user&&user.firstName,phoneNo:user&&user.phoneNumber})
     },[user])
 
 
@@ -191,13 +193,33 @@ const AccountDetails = ({navigation})=> {
             </SafeAreaView>
         </ScrollView>
     </SafeAreaView>
+
     </KeyboardAvoidingView>
 
     );
 
 };
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+    chatSupportBtn: {
+        marginHorizontal: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        backgroundColor: 'transparent',
+        borderRadius: 4,
+        borderWidth: 0.5,
+        borderColor: '#fff',
+        width:width/3
+    },
+    loginText: {
+        color:'white',
+        textAlign: 'center',
+        fontSize: 14,
+        fontFamily: 'Montserrat-Medium',
+        textTransform: 'uppercase',
+        letterSpacing: 1
+    },
     input: {
         alignItems: 'center',
         justifyContent: 'center',

@@ -5,9 +5,8 @@ import {
     StyleSheet,
     TouchableHighlight,
     TouchableOpacity,
-    SafeAreaView,
-    KeyboardAvoidingView
-} from 'react-native';
+    SafeAreaView, Platform, KeyboardAvoidingView,
+} from "react-native";
 import { Button, Image } from 'react-native-elements';
 import { TextInput } from 'react-native-gesture-handler';
 import { Screen } from 'react-native-screens';
@@ -17,7 +16,6 @@ import {AppContext} from '../../../context';
 import {generatePaymentSPM,completePaymentSPM} from '../../api/explore';
 import RazorpayCheckout from 'react-native-razorpay';
 import RequestSent from './RequestSent';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 
 const SPMOfferings = ({navigation})=>{
@@ -39,7 +37,7 @@ const SPMOfferings = ({navigation})=>{
         const {firstName,phoneNumber,email} = user;
         const getOrderDetails = await generatePaymentSPM({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
 
-        const {razorpayKey,orderId} = getOrderDetails;
+            const {razorpayKey,orderId} = getOrderDetails;
 
         const options = {
             description: 'Tkt Church',
@@ -75,55 +73,54 @@ const SPMOfferings = ({navigation})=>{
             setAlert("error", "Something went wrong, try again")
             // alert('Something went wrong, try again');
         }
-        };
+    };
 
-        return (
-            <KeyboardAvoidingView
-            keyboardShouldPersistTaps='never'
-            behavior= {Platform.OS=='ios'?"padding":'height'}
-            >
+    return (
+      <KeyboardAvoidingView
+        keyboardShouldPersistTaps='never'
+        behavior= {Platform.OS=='ios'?"padding":'height'}
+        style={{flex:1}}
+      >
+      <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
-            <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
-
-            <TouchableOpacity
+          <TouchableOpacity
             style={gobalStyle.nav}
-                // provide navigate path
-                    onPress={() => navigation.navigate('Spm')}
-                >
+            // provide navigate path
+            onPress={() => navigation.navigate('Spm')}
+          >
 
-                <Image source={ImageBackUp} style={gobalStyle.nav_image} />
-                <Text style={gobalStyle.nav_header}>SPM</Text>
-                </TouchableOpacity>
+              <Image source={ImageBackUp} style={gobalStyle.nav_image} />
+              <Text style={gobalStyle.nav_header}>SPM</Text>
+          </TouchableOpacity>
 
-            <SafeAreaView style={styles.card}>
-                <SafeAreaView style={{flex: 1}}>
+          <SafeAreaView style={styles.card}>
+              <SafeAreaView style={{flex: 1}}>
 
-                <Text style={{fontWeight: 'bold', color: 'white', fontSize: RFValue(16)}}>Enter the amount</Text>
-                <TextInput style={styles.input}
-                    underlineColorAndroid = "transparent"
-                    placeholder = "Amount (in INR)"
-                    placeHolderTextColor = "#989898"
-                    keyboardType = "number-pad"
-                    placeholderTextColor = "white"
-                    autoCapitalize = "none"
-                    value={amount}
-                    onChangeText={(text)=>{setAmount(text);}}
-                    />
-                </SafeAreaView>
+                  <Text style={{fontWeight: 'bold', color: 'white', fontSize: RFValue(16)}}>Enter the amount</Text>
+                  <TextInput style={styles.input}
+                             underlineColorAndroid = "transparent"
+                             placeholder = "Amount (in INR)"
+                             placeHolderTextColor = "#989898"
+                             keyboardType = "number-pad"
+                             placeholderTextColor = "white"
+                             autoCapitalize = "none"
+                             value={amount}
+                             onChangeText={(text)=>{setAmount(text);}}
+                  />
+              </SafeAreaView>
 
-                <TouchableHighlight
-                    style={gobalStyle.btn_abs}
-                    onPress={() => {getOrder();}}
-                   >
-                    <Text style={[gobalStyle.submitText]}>PAY</Text>
-                </TouchableHighlight>
+              <TouchableHighlight
+                style={gobalStyle.btn_abs}
+                onPress={() => {getOrder();}}
+              >
+                  <Text style={[gobalStyle.submitText]}>PAY</Text>
+              </TouchableHighlight>
 
 
-            </SafeAreaView>
-            </SafeAreaView>
-            </KeyboardAvoidingView>
-
+          </SafeAreaView>
+      </SafeAreaView>
+      </KeyboardAvoidingView>
     );
 };
 

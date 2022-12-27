@@ -9,8 +9,8 @@ import {
     TouchableHighlight,
     ImageBackground,
     Button,
-    SafeAreaView
-} from 'react-native';
+    SafeAreaView, Platform, KeyboardAvoidingView,
+} from "react-native";
 import { useForm, Controller } from 'react-hook-form';
 import CustomInput from '../custom/CustomInput';
 import {sendOtpToNumber} from '../api/authication';
@@ -82,6 +82,11 @@ class Registration extends React.Component {
 
     render(){
         return(
+          <KeyboardAvoidingView
+            keyboardShouldPersistTaps='never'
+            behavior= {Platform.OS=='ios'?"padding":'height'}
+            style={{flex:1}}
+          >
             <SafeAreaView style= {gobalStyle.main}>
                 <Text style= {gobalStyle.header}>We would love to have you!</Text>
                 <Text style= {styles.dehigligtedText}>We need Some details to get you onboard!</Text>
@@ -133,6 +138,7 @@ class Registration extends React.Component {
                     <Text style={[gobalStyle.submitText]}>Continue</Text>
               </TouchableHighlight>
             </SafeAreaView>
+          </KeyboardAvoidingView>
         );
     }
 
