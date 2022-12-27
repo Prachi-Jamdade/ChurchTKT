@@ -24,6 +24,7 @@ class Profile extends React.Component {
     state = {
         clicked: false,
         show: false,
+        showAlert: false,
     }
     static contextType = AppContext;
 
@@ -36,15 +37,24 @@ class Profile extends React.Component {
         // console.log(this.state)
     }
 
+    setShowAlert(showAlert) {
+        this.setState({ showAlert: showAlert });
+    }
+
     constructor(props) {
         super(props);
     }
 
     componentDidMount(){
-        const {user,setUser,profileUrl, setProfileUrl}=this.context;
-        getProfileDetails(user.userId).then((data)=>{
-            setProfileUrl(data.profileUrl)
-        }).catch((e)=>console.log(e))
+        const {user,setUser,profileUrl, setProfileUrl, isUserLogin}=this.context;
+        if(user) {
+            getProfileDetails(user.userId).then((data)=>{
+                setProfileUrl(data.profileUrl)
+            }).catch((e)=>console.log(e))
+        }
+        if(!isUserLogin) {
+            this.setShowAlert(true);
+        }
     }
 
     render() {
@@ -70,6 +80,8 @@ class Profile extends React.Component {
                         require('../../assests/UserPic.png')}
                         style={{ width: RFValue(90), height: RFValue(90), borderRadius: 90 / 2, marginTop: RFValue(15) }}
                     />
+
+                    
                 }
 
                     <Text style={{ color: "white", padding: RFValue(20), fontSize: RFValue(16), fontFamily: 'Montserrat-SemiBold' }}>{this.context?.user?.firstName + " " + this.context?.user?.lastName}</Text>
