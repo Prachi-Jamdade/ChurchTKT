@@ -19,32 +19,48 @@ import {getSPMFrom} from '../../api/requestForms';
 
 import {AppContext} from '../../../context';
 import { RFValue } from 'react-native-responsive-fontsize';
+import LoginAlert from '../../custom/LoginAlert';
 
 
 const Offerings =({navigation,route})=>{
 
     const [isJoin,setIsJoin]=useState(null);
-    const {user}=useContext(AppContext);
+    const {user, isUserLogin}=useContext(AppContext);
+
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if(!isUserLogin) {
+            setShowAlert(true);
+        }
+    }, []);
 
     useEffect(()=>{
-        getSPMFrom(user.userId).then((e)=>{
-            // console.log(e);
-            setIsJoin(null);
-            if(e.status==200){
-                setIsJoin(true);
-                setIsJoin("JOINED");
-            }else{
+        if(user) {
+            getSPMFrom(user.userId).then((e)=>{
+                // console.log(e);
+                setIsJoin(null);
+                if(e.status==200){
+                    setIsJoin(true);
+                    setIsJoin("JOINED");
+                }else{
+                    setIsJoin("JOIN SPM");
+                }
+            }).catch((e)=>{
+                console.log(e);
                 setIsJoin("JOIN SPM");
-            }
-        }).catch((e)=>{
-            console.log(e);
-            setIsJoin("JOIN SPM");
-        })
-    },[user.userId,route])
+            })
+        }
+    },[user ? user.userId : "",route])
 
 
         return (
             <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
+
+{
+            showAlert && <LoginAlert navigation={navigation} setShow={setShowAlert} prevScreen='Explore' />
+        }
+
 
 
             <TouchableOpacity

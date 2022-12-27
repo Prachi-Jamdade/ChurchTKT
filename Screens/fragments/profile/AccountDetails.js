@@ -1,5 +1,5 @@
 import React,{useState,useContext,useEffect} from 'react';
-import { View,Text, Image, StyleSheet,TouchableHighlight,TextInput, SafeAreaView, KeyboardAvoidingView, TouchableOpacity, Platform, Modal,Dimensions } from 'react-native';
+import { ScrollView, View,Text, Image, StyleSheet,TouchableHighlight,TextInput, SafeAreaView, KeyboardAvoidingView, TouchableOpacity, Platform, Modal,Dimensions } from 'react-native';
 import Icon,{Icons} from '../Icons';
 import {AppContext} from '../../../context';
 import {launchImageLibrary} from 'react-native-image-picker';

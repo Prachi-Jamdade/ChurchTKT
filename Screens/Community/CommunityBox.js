@@ -16,8 +16,10 @@ import gobalStyle from '../styles/index';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useEffect } from 'react';
 import { useBackHandler } from '@react-native-community/hooks'
+import { Linking } from 'react-native';
 
-const CommunityBox = ({ navigation, image, title, description, setIndex, about, SendWhatsApp }) => {
+
+const CommunityBox = ({ navigation, image, title, description, setIndex, about, SendWhatsApp, msg, phoneNumber }) => {
 
     const [active, setActive] = useState(0)
 
@@ -25,6 +27,21 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about, 
         const slide = nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width;
         if (slide !== active) {
             setActive(slide);
+        }
+    }
+
+    function SendWhatsApp (msg, phoneWithCountryCode){
+
+        let mobile = Platform.OS == 'ios' ? phoneWithCountryCode : '+' + phoneWithCountryCode;
+        if (phoneWithCountryCode) {
+            if (msg) {
+                let url = 'whatsapp://send?text=' + msg + '&phone=' + mobile;
+                Linking.openURL(url).then((data) => {
+                    console.log('WhatsApp Opened');
+                }).catch(() => {
+                    alert('Make sure WhatsApp installed on your device');
+                });
+            }
         }
     }
 
@@ -121,7 +138,14 @@ const CommunityBox = ({ navigation, image, title, description, setIndex, about, 
                         <TouchableHighlight
                             style={[styles.submit, { backgroundColor: '#FFBE18', marginTop: RFValue(20), marginStart: RFValue(10), marginEnd: RFValue(10) }]}
                             underlayColor='#fff'
-                            onPress={SendWhatsApp}>
+                            onPress={() => {
+                                if(phoneNumber) {
+                                    SendWhatsApp(msg, phoneNumber)
+                                }
+                                else {
+                                    Linking.openURL('https://kingstemple.in/echurch-3/')
+                                }
+                            }}>
                             <Text style={[gobalStyle.submitText]}>JOIN US</Text>
                         </TouchableHighlight>
                     </View>

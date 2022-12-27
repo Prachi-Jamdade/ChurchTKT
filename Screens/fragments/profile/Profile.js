@@ -18,9 +18,10 @@ import LogoutAlert from './LogoutAlert';
 import {getProfileDetails} from '../../api/authication';
 import { ScrollView } from 'react-navigation';
 import { RFValue } from 'react-native-responsive-fontsize';
-
+import LoginAlert from '../../custom/LoginAlert';
 class Profile extends React.Component {
-
+    
+    
     state = {
         clicked: false,
         show: false,
@@ -45,6 +46,7 @@ class Profile extends React.Component {
         super(props);
     }
 
+
     componentDidMount(){
         const {user,setUser,profileUrl, setProfileUrl, isUserLogin}=this.context;
         if(user) {
@@ -60,10 +62,13 @@ class Profile extends React.Component {
     render() {
         return (
             <SafeAreaView style={{ alignItems: 'center', backgroundColor: '#0F0F0F', height: '100%' }}>
-
                 <Text style={[gobalStyle.header, { alignSelf: 'flex-start', marginBottom: RFValue(20) }]}>
                     Profile
                 </Text>
+
+                {
+            this.state.showAlert && <LoginAlert navigation={this.props.navigation} setShow={(show) => { this.setShowAlert(show)}} prevScreen='Explore' />
+        }
 
                 <SafeAreaView style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
                             

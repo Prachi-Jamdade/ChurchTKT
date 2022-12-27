@@ -15,10 +15,22 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import gobalStyle from '../../styles/index';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import LoginAlert from '../../custom/LoginAlert';
+import { useEffect, useState, useContext } from 'react';
+import {AppContext} from '../../../context';
 
 
 
 const Explore = ({ navigation }) => {
+
+    const {setAlert, isUserLogin} = useContext(AppContext);
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if(!isUserLogin) {
+            setShowAlert(true);
+        }
+    }, []);
 
     const options = {
         ignoreAndroidSystemSettings: true
@@ -71,6 +83,9 @@ const Explore = ({ navigation }) => {
             gap: 5,
             flex: 1
         }}>
+        {
+            showAlert && <LoginAlert navigation={navigation} setShow={setShowAlert} prevScreen='Explore' />
+        }
             <Text style={[gobalStyle.header, { marginBottom: RFValue(15) }]}>
                 Explore
             </Text>

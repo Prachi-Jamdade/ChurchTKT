@@ -16,7 +16,6 @@ import Home from '../home';
 import Explore from '../fragments/explore/Explore';
 import Community from '../Community';
 import Profile from './profile/Profile';
-import { RFValue } from 'react-native-responsive-fontsize';
 const TabArr = [
     { route: 'Home', label: 'Home', type: Icons.Octicons, name:"home", component: Home },
     { route: 'Explore', label: 'Explore', type: Icons.Feather, name:"globe", component: Explore },
