@@ -89,7 +89,10 @@ class Profile extends React.Component {
                     
                 }
 
-                    <Text style={{ color: "white", padding: RFValue(20), fontSize: RFValue(16), fontFamily: 'Montserrat-SemiBold' }}>{this.context?.user?.firstName + " " + this.context?.user?.lastName}</Text>
+                    <Text style={{ color: "white", padding: RFValue(20), fontSize: RFValue(16), fontFamily: 'Montserrat-SemiBold' }}>
+                        {/* {this.context?.user?.firstName?this.context.user.firstName:"" + " " + this.context?.user?.lastName} */}
+                        {this.context?this.context.user?.firstName:''+"  "+this.context?this.context.user?.lastName:''}
+                        </Text>
 
                     <TouchableHighlight onPress={() => {
                         this.props.navigation.navigate("AccountDetails");
