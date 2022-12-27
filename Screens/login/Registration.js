@@ -16,9 +16,12 @@ import CustomInput from '../custom/CustomInput';
 import {sendOtpToNumber} from '../api/authication';
 import gobalStyle from '../styles/index';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { AppContext } from '../../context';
 
 
 class Registration extends React.Component {
+
+    static contextType = AppContext;
 
     state = {
         phoneNumber: '',
@@ -27,16 +30,28 @@ class Registration extends React.Component {
     }
 
     handleFirstName = (text) => {
-        this.setState({firstName: text});
+        this.setState({firstName: text.replace(/[^0-9]/g, '')});
+        if (text && this.state.phoneNumber.length===10 && this.state.lastName.replace(/[^0-9]/g, '')){
+            this.accepted = true;
+        }
+        else {
+            this.accepted = false;
+        }
     }
 
     handleLastName = (text) => {
-        this.setState({lastName: text});
+        this.setState({lastName: text.replace(/[^0-9]/g, '')});
+        if (text && this.state.phoneNumber.length===10 && this.state.firstName.replace(/[^0-9]/g, '')){
+            this.accepted = true;
+        }
+        else {
+            this.accepted = false;
+        }
     }
 
     handleNumber = (text) => {
         this.setState({phoneNumber : text});
-        if (text.length === 10){
+        if (text.length === 10 && this.state.firstName && this.state.lastName){
             this.accepted = true;
         }
         else {
@@ -48,7 +63,8 @@ class Registration extends React.Component {
         sendOtpToNumber(this.state.phoneNumber,false)
         .then((data)=>{
             if (!data.isValid){
-                return alert('Looks like you have already an account,please login');
+                return this.context.setAlert("error", "Looks like you already have an account, please login");
+                // return alert('Looks like you have already an account,please login');
             }
             props.navigation.navigate('VerifyOtp',
             {
@@ -59,7 +75,8 @@ class Registration extends React.Component {
             });
         })
         .catch((e)=>{
-            alert('Something went wrong');
+            return this.context.setAlert("error", "Something went wrong");
+            // alert('Something went wrong');
         });
     }
 
@@ -93,6 +110,7 @@ class Registration extends React.Component {
                         keyboardType = 'number-pad'
                         placeholderTextColor = "#989898"
                         autoCapitalize = "none"
+                        maxLength = {10}
                         onChangeText = {this.handleNumber}/>
                 </SafeAreaView>
 

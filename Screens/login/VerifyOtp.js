@@ -18,6 +18,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { ActivityIndicator } from 'react-native';
 
 class VerifyOtp extends React.Component {
+    static contextType = AppContext;
 
     state = {
         otp: '',
@@ -54,14 +55,15 @@ class VerifyOtp extends React.Component {
                     });
                 })
                 .catch((e) => {
-                    alert('In vaild Otp');
+                    this.context.setAlert("error", "OTP is not valid.")
+                    // alert('In vaild Otp');
                 });
         } else {
             const { firstName, lastName } = this.props.route.params;
             sigUpOtpVerification(phoneNumber, firstName, lastName, this.otp)
                 .then((data) => {
                     if (!data.isValid) {
-                        return alert('In vaild Otp');
+                        return this.context.setAlert("error", "OTP is not valid.")
                     }
                     AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
                         this.context.setUser(data);
@@ -70,7 +72,7 @@ class VerifyOtp extends React.Component {
                     });
                 })
                 .catch((e) => {
-                    alert('In vaild Otp');
+                    this.context.setAlert("error", "OTP is not valid.")
                 });
 
         }
@@ -88,27 +90,32 @@ class VerifyOtp extends React.Component {
             sendOtpToNumber(phoneNumber,false)
                 .then((data)=>{
                     if (!data.isValid){
-                        return alert('Looks like you have already an account,please login');
+                        return this.context.setAlert("error", "Looks like you already have an account, please login")
+                        // return alert('Looks like you have already an account,please login');
                     }
-                    alert('Send The New Otp');
+                    this.context.setAlert("success", "New OTP is sent")
+                    // alert('Send The New Otp');
                     this.setState({ timer:60*5 })
 
                 })
                 .catch((e)=>{
-                    alert('Something went wrong, try again');
+                    this.context.setAlert("error", "Something went wrong, try again")
+                    // alert('Something went wrong, try again');
                 });
         } else {
             sendOtpToNumber(phoneNumber,true)
                 .then((data)=>{
                     // console.log(data);
                     if (!data.isValid){
-                        return alert('User does not exit');
+                        return this.context.setAlert("error", "User does not exit")
+                        // return alert('User does not exit');
                     }
                     this.setState({ timer:60*5 })
-                    alert('Send The New Otp');
+                    this.context.setAlert("success", "New OTP is sent")
+                    // alert('Send The New Otp');
                 })
                 .catch((e)=>{
-                    alert('Something went wrong, try again');
+                    this.context.setAlert("error", "Something went wrong, try again")
                 });
 
         }

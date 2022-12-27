@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     Dimensions,
     TouchableHighlight,
-    SafeAreaView
+    SafeAreaView,
+    ScrollView
 } from 'react-native';
 import { Button, Image } from 'react-native-elements';
 import ImageBackUp from '../../assests/icons/back.png';
@@ -55,7 +56,13 @@ const Offerings =({navigation,route})=>{
                 <Text style={gobalStyle.nav_header}>SPM</Text>
             </TouchableOpacity>
 
-            <SafeAreaView style={styles.card}>
+            <ScrollView 
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                style={styles.card}
+                contentContainerStyle={{  alignItems: 'center' }}
+                >
+
                 <SafeAreaView style={[{flexDirection: 'column'},styles.fullW]}>
                         <ImageElement source={ImageFreame2} />
                         <Button buttonStyle={{
@@ -67,6 +74,7 @@ const Offerings =({navigation,route})=>{
                         }}
                         titleStyle= {{
                             letterSpacing: 2,
+                            fontFamily: "Montserrat-Medium"
                         }}
                         title={isJoin==null?"JOIN SPM":isJoin}
                         onPress={() => {
@@ -81,8 +89,7 @@ const Offerings =({navigation,route})=>{
                 <Text style= {styles.DescriptionText}>
                 So, if you are considering partner with us, know that your support is greatly appreciated and will make a real difference in the lives of others. By giving generously and faithfully, you can help to advance the work of the church and bring more people into a relationship with Christ.
                 </Text>
-
-                    <TouchableHighlight
+                <TouchableHighlight
                         onPress={() => navigation.navigate('SpmOffErings')}
                     >
                 <SafeAreaView style={[{flexDirection: 'column',backgroundColor: '#4FF491',marginTop:RFValue(10),borderRadius: RFValue(12)},styles.fullW]}>
@@ -109,7 +116,7 @@ const Offerings =({navigation,route})=>{
                             title="Give" />
                 </SafeAreaView>
                 </TouchableHighlight>
-            </SafeAreaView>
+            </ScrollView>
             </SafeAreaView>
         );
 }
@@ -144,7 +151,6 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: RFValue(20),
         paddingTop: RFValue(2),
         flexDirection:'column',
-        alignItems: 'center',
     },
     fullW:{
         width: (width * 0.9),
