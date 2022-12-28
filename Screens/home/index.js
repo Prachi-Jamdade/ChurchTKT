@@ -196,7 +196,7 @@ const HomeCard = ({ navigation, title, description, location, startDate, startTi
 
                 <Text style={styles.cardTitle}>{title}</Text>
                 <Text style={styles.cardDescription}>{_description}</Text>
-                <SafeAreaView style={[styles.rowToggle, { marginHorizontal: 5 }]}>
+                {/* <SafeAreaView style={[styles.rowToggle, { marginHorizontal: 5 }]}>
                     <Switch
                         trackColor={{ false: "#2e2d2b", true: "#FFBE18" }}
                         thumbColor={isEnabled ? "white" : "#FFBE18"}
@@ -206,7 +206,7 @@ const HomeCard = ({ navigation, title, description, location, startDate, startTi
                         style={{ height: RFValue(20), color: 'white' }}
                     />
                     <Text style={styles.cardText}>Set Reminder</Text>
-                </SafeAreaView>
+                </SafeAreaView> */}
             </SafeAreaView>
             <SafeAreaView style={[styles.row, styles.cardIcons]}>
                 <SafeAreaView style={styles.row}>
