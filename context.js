@@ -48,7 +48,6 @@ function AppContextProvider({children}) {
         let video1=await getLiveEvent();
         const list=await getAllDaiyMana();
         let newVideo=list.map((item)=>{return {videoId:find(item.sourceUrl)}});
-        console.log(video1);
         if(video1?.sourceUrl){
             newVideo=[{videoId:find(video1?.sourceUrl)},...newVideo]
         }
