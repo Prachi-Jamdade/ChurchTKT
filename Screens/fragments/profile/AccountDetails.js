@@ -193,8 +193,8 @@ const AccountDetails = ({navigation})=> {
                         }
                     </TouchableHighlight>
                     {
-                    // Platform.OS==='ios'
-                    true?
+                    Platform.OS==='ios'
+                   ?
 
                 <TouchableOpacity onPress={()=>setShow(true)} style={{alignSelf:'flex-end',marginTop:100}}>
                 {/* <Text style={{color:"white",fontSize:13,}}>
