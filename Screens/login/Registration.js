@@ -30,7 +30,7 @@ class Registration extends React.Component {
     }
 
     handleFirstName = (text) => {
-        this.setState({firstName: text.replace(/[^0-9]/g, '')});
+        this.setState({firstName: text});
         if (text && this.state.phoneNumber.length===10 && this.state.lastName.replace(/[^0-9]/g, '')){
             this.accepted = true;
         }
@@ -40,7 +40,7 @@ class Registration extends React.Component {
     }
 
     handleLastName = (text) => {
-        this.setState({lastName: text.replace(/[^0-9]/g, '')});
+        this.setState({lastName: text});
         if (text && this.state.phoneNumber.length===10 && this.state.firstName.replace(/[^0-9]/g, '')){
             this.accepted = true;
         }
