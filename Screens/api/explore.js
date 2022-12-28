@@ -1,4 +1,4 @@
-import {getAPIWithToken} from './axios';
+import {API, getAPIWithToken} from './axios';
 
 
 async function generatePayment({amount,name,phoneNumber,email}) {
@@ -97,8 +97,7 @@ async function todayWord() {
 	return res.data;
 }
 async function getLiveEvent() {
-	const APIWithToken=await getAPIWithToken();
-	const res = await APIWithToken.get(
+	const res = await API.get(
 		'/broadcasting/live',
 	);
 	return res.data;
