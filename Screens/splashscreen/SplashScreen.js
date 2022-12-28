@@ -7,15 +7,21 @@ const SplashScreen =({navigation})=>{
     
     useEffect(()=>{
         setTimeout(() => {
-            // AsyncStorage.getItem('user').then((value)=>{
-            //     // console.log(value);
-            //     if(value===null) {    
-            //     navigation.navigate('Onboarding');
-            //     return;
-            //     }
-            //     navigation.navigate('BottomTabs');
-            // })
-            navigation.navigate('Onboarding');
+            AsyncStorage.getItem('user').then((value)=>{
+                // console.log(value);
+                if(value===null || value == 'null') {    
+                AsyncStorage.getItem('guestLogin').then((value)=>{
+                        // console.log(value);
+                        if(value===null || value == 'null') {    
+                        navigation.navigate('Onboarding');
+                        return;
+                        }
+                        navigation.navigate('BottomTabs');
+                })
+                return;
+                }
+                navigation.navigate('BottomTabs');
+            })
         },5000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])

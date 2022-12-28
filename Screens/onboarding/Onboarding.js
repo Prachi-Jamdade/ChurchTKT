@@ -16,7 +16,7 @@ import img2 from '../assests/onboardScreen2.png';
 import img3 from '../assests/onboardScreen3.png';
 import gobalStyle from '../styles/index';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
@@ -54,7 +54,11 @@ class Onboarding extends React.Component{
     }
 
     BottomNavigate = (props) => {
-      props.navigation.navigate('BottomTabs');
+      console.log('call')
+      AsyncStorage.setItem('guestLogin', JSON.stringify(true)).then(() => {
+        console.log('call in setItem')
+        props.navigation.navigate('BottomTabs');
+      }).catch((e)=>console.log(e)).finally(()=>console.log("navigate"))
     }
 
     render(){

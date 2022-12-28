@@ -7,7 +7,7 @@ import { View,Image,TouchableOpacity,Text,StyleSheet,Dimensions } from 'react-na
 import {AppContext} from '../../context'
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const LoginAlert = ({navigation,setShow,prevScreen}) => {
+const LoginAlert = ({navigation,setShow,prevScreen,isDisable }) => {
     const {clear}=useContext(AppContext);
     return (
         <SafeAreaView style={styles.container}>
@@ -19,7 +19,9 @@ const LoginAlert = ({navigation,setShow,prevScreen}) => {
                     <TouchableOpacity style={styles.chatSupportBtn}
                         // provide naviate path
                         onPress={() => {
-                            setShow(false)
+                            if(!isDisable){
+                                setShow(false)
+                            }
                             navigation.navigate(prevScreen);
                         }}
                         underlayColor='#fff'
@@ -29,8 +31,10 @@ const LoginAlert = ({navigation,setShow,prevScreen}) => {
                     <TouchableOpacity style={[styles.chatSupportBtn,{backgroundColor:'#FF1818',borderColor:'transparent'}]}
                     // provide naviate path
                     onPress={() => {
+                        if(!isDisable){
+                            setShow(false)
+                        }
                         navigation.navigate('Login');
-                        setShow(false);
                     }}
                         underlayColor='#fff'
                         >

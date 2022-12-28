@@ -29,8 +29,10 @@ const Explore = ({ navigation }) => {
     useEffect(() => {
         if(!isUserLogin) {
             setShowAlert(true);
+        }else{
+            setShowAlert(false);
         }
-    }, []);
+    }, [isUserLogin]);
 
     const options = {
         ignoreAndroidSystemSettings: true
@@ -84,7 +86,7 @@ const Explore = ({ navigation }) => {
             flex: 1
         }}>
         {
-            showAlert && <LoginAlert navigation={navigation} setShow={setShowAlert} prevScreen='Explore' />
+            showAlert && <LoginAlert navigation={navigation}  isDisable={true}  setShow={setShowAlert} prevScreen='Home' />
         }
             <Text style={[gobalStyle.header, { marginBottom: RFValue(15) }]}>
                 Explore

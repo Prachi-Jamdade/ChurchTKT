@@ -78,6 +78,9 @@ const AccountDetails = ({navigation})=> {
                 });
             })
             .catch((e)=>console.log(e))
+            .finally(()=>{
+                setEditOn(false)
+            })
         })
          
       };
@@ -194,8 +197,8 @@ const AccountDetails = ({navigation})=> {
                     true?
 
                 <TouchableOpacity onPress={()=>setShow(true)} style={{alignSelf:'flex-end',marginTop:100}}>
-                <Text style={{color:"white",fontSize:13,}}>
-                Delete account</Text>
+                {/* <Text style={{color:"white",fontSize:13,}}>
+                Delete account</Text> */}
                 </TouchableOpacity>: null
                 }
                                 <Modal visible={show}  transparent style={{alignSelf:'center',alignContent:"flex-end"}}>

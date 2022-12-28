@@ -1,17 +1,15 @@
-import {getAPIWithToken} from './axios';
+import {getAPIWithToken,API} from './axios';
 
 
 async function getAllHomeEvent() {
-	const APIWithToken=await getAPIWithToken();
-	const res = await APIWithToken.get(
+	const res = await API.get(
 		'/events/all',
 	);
 	return res.data;
 }
 
 async function getAllDaiyMana() {
-	const APIWithToken=await getAPIWithToken();
-	const res = await APIWithToken.get(
+	const res = await API.get(
 		'/daily_manna/all',
 	);
 	return res.data;

@@ -6,7 +6,10 @@ import {getAllHomeEvent} from './Screens/api/home';
 import {getLiveEvent} from './Screens/api/explore';
 import {getAllDaiyMana} from './Screens/api/home';
 import { Text } from 'react-native-animatable';
+import RNRestart from 'react-native-restart'; 
 import DisplayView from './Screens/custom/DialogView'
+
+
 function AppContextProvider({children}) {
 	const [ user, setUser ] = useState(null);
 	const [ homeEvents, setHomeEvents ] = useState([]);
@@ -20,15 +23,16 @@ function AppContextProvider({children}) {
 
     const [dialog, setDialogDescription] = useState(null);
 
-    function clear(navigation){
-        AsyncStorage.clear().then(()=>{
-            // console.log('clear...');
+    async function clear(navigation){
+        try{
+            await AsyncStorage.clear();
             setUser(null);
             setUserLogin(false);
-            navigation.navigate('Onboarding',{isLogout:true});
-        }).catch((e)=>{
-            // console.log(e);
-        })
+            // navigation.navigate('Onboarding',{isLogout:true});
+            RNRestart.Restart();
+        }catch(e){
+            console.log(e);
+        }
     }
 
     function setAlert(status, description) {

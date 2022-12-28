@@ -34,7 +34,7 @@ const Offerings = ({navigation})=>{
         const {firstName,phoneNumber,email} = user;
         const getOrderDetails = await generatePayment({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
 
-            const {razorpayKey,orderId} = getOrderDetails;
+        const {razorpayKey,orderId} = getOrderDetails;
 
         const options = {
             description: 'Tkt Church',
@@ -61,11 +61,12 @@ const Offerings = ({navigation})=>{
             // alert('Payment done successfully');
           }).catch((error) => {
             // handle failure
-            // console.log(error);
+            console.log(error,12);
             setAlert("error", "Something went wrong, try again");
             // alert('Something went wrong, try again');
           });
         } catch (e){
+            console.log(e,212)
             setAlert("error", "Something went wrong, try again");
             // alert('Something went wrong, try again');
         }
