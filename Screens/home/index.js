@@ -73,11 +73,20 @@ const Home = ({ navigation }) => {
                         source={homeHand}
                         style={styles.image} />
                     <SafeAreaView>
-                    <Text style={styles.headerLight}>Hello,</Text>
+                    {
+                        user?.firstName 
+                        ?
+                        <Text style={styles.headerLight}>Hello,</Text>
+                        :
+                        <Text style={styles.headerLight}>Hello</Text>
+                    }
                     </SafeAreaView>
-                    <SafeAreaView>
-                        <Text style={styles.headerDark}>{user?.firstName}!</Text>
-                    </SafeAreaView>
+                    {
+                        user?.firstName &&
+                        <SafeAreaView>
+                            <Text style={styles.headerDark}>{user?.firstName}!</Text>
+                        </SafeAreaView>
+                    }
                 </SafeAreaView>
 
                 {
@@ -167,11 +176,11 @@ const Home = ({ navigation }) => {
 const HomeCard = ({ navigation, title, description, location, startDate, startTime }) => {
 
     let _description = description.slice(description.indexOf("<p>") + 3, description.lastIndexOf("</p>"))
-    let date = new Date(startDate);
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
-    ];
-    let _startDate = `${date.getMonth()}th ${monthNames[date.getMonth()]}`
+    "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
+];
+    let date = new Date(startDate);
+    let _startDate = `${date.getDate()<10?`0${date.getDate()}`:date.getDate()}th ${monthNames[date.getMonth()]}`
 
     const [isEnabled, setIsEnabled] = useState(false);
 

@@ -52,12 +52,13 @@ async function updateUserData(data) {
 	// 	data
 	// );
 	const value = await AsyncStorage.getItem('user')
-	console.log(value)
-	const {token} = JSON.parse(value);
-	console.log(token);
+	let objToken=JSON.parse(value);
+	let {token} = objToken;
+	let authToken =token;
+
 	const requestOptions = {
 		method: 'PUT',
-		headers: { 'Content-Type': 'application/json', 'Authorization':`Bearer ${token}` },
+		headers: { 'Content-Type': 'application/json', 'Authorization':`Bearer ${authToken}` },
 		body: JSON.stringify(data)
 	};
 	

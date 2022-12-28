@@ -26,7 +26,7 @@ const LogoutAlert = ({navigation,setShow}) => {
                     <TouchableOpacity style={[styles.chatSupportBtn,{backgroundColor:'#FF1818',borderColor:'transparent'}]}
                     // provide naviate path
                     onPress={() => {
-                        clear(navigation);
+                        clear(navigation)
                         setShow(false);
                     }}
                         underlayColor='#fff'

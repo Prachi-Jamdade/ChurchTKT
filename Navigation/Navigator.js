@@ -33,8 +33,7 @@ const {setUser,setUserLogin,isUserLogin}=useContext(AppContext);
 
   const getData = async () => {
     const value = await AsyncStorage.getItem('user')
-    // console.log(value);
-    if(value===null) {
+    if(value==null || value=="null") {
       setUserLogin(false);
       navigation.navigate('Login');
       return;

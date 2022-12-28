@@ -8,7 +8,6 @@ const FuneralService = ({setShow,submit}) => {
     const intitial = {
         formType:'funeral',
 	    name:'',
-		fatherName:'',
 		motherName:'',
 		address:'',
 		eventDate:'',

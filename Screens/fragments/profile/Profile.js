@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState,useContext} from 'react';
 import {
     View,
     Text,
@@ -16,50 +16,41 @@ import gobalStyle from '../../styles/index';
 import { Icons } from '../Icons';
 import LogoutAlert from './LogoutAlert';
 import {getProfileDetails} from '../../api/authication';
-import { ScrollView } from 'react-navigation';
 import { RFValue } from 'react-native-responsive-fontsize';
 import LoginAlert from '../../custom/LoginAlert';
-class Profile extends React.Component {
-    
-    
-    state = {
-        clicked: false,
-        show: false,
-        showAlert: false,
-    }
-    static contextType = AppContext;
 
-    navigate = (navigateTo) => {
-        this.props.navigation.navigate(navigateTo);
-    }
+const Profile =({ navigation })=>{
+    const {setAlert, isUserLogin,user,setUser,profileUrl, setProfileUrl} = useContext(AppContext);
+    const [showAlert, setShowAlertV] = useState(false);
+    const [show, setShowV] = useState(false);
+    const [clicked, setClicked] = useState(false);
 
-    setShow(show) {
-        this.setState({ show: show });
-        // console.log(this.state)
-    }
-
-    setShowAlert(showAlert) {
-        this.setState({ showAlert: showAlert });
-    }
-
-    constructor(props) {
-        super(props);
-    }
-
-
-    componentDidMount(){
-        const {user,setUser,profileUrl, setProfileUrl, isUserLogin}=this.context;
+    useEffect(() => {
         if(user) {
             getProfileDetails(user.userId).then((data)=>{
                 setProfileUrl(data.profileUrl)
             }).catch((e)=>console.log(e))
         }
         if(!isUserLogin) {
-            this.setShowAlert(true);
+            setShowAlert(true);
+        }else{
+            setShowAlert(false);
         }
+    }, [user, isUserLogin, setProfileUrl]);
+
+    const navigate = (navigateTo) => {
+        navigation.navigate(navigateTo);
     }
 
-    render() {
+    function setShow(show) {
+        setShowV(show);
+        // console.log(this.state)
+    }
+
+    function setShowAlert(showAlert) {
+        setShowAlertV(showAlert);
+    }
+
         return (
             <SafeAreaView style={{ alignItems: 'center', backgroundColor: '#0F0F0F', height: '100%' }}>
                 <Text style={[gobalStyle.header, { alignSelf: 'flex-start', marginBottom: RFValue(20) }]}>
@@ -67,16 +58,16 @@ class Profile extends React.Component {
                 </Text>
 
                 {
-            this.state.showAlert && <LoginAlert navigation={this.props.navigation} setShow={(show) => { this.setShowAlert(show)}} prevScreen='Explore' />
+            showAlert && <LoginAlert navigation={navigation} isDisable={true} setShow={(show) => { setShowAlert(show)}} prevScreen='Home' />
         }
 
                 <SafeAreaView style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
                             
                 {
-                    this.context.profileUrl
+                    profileUrl
                     ?
                     <Image
-                    source={{uri: this.context.profileUrl}}
+                    source={{uri: profileUrl}}
                         style={{ width: RFValue(90), height: RFValue(90), borderRadius: 90 / 2, marginTop: RFValue(15) }}
                     />
                     :
@@ -91,11 +82,11 @@ class Profile extends React.Component {
 
                     <Text style={{ color: "white", padding: RFValue(20), fontSize: RFValue(16), fontFamily: 'Montserrat-SemiBold' }}>
                         {/* {this.context?.user?.firstName?this.context.user.firstName:"" + " " + this.context?.user?.lastName} */}
-                        {this.context?this.context.user?.firstName:''+"  "+this.context?this.context.user?.lastName:''}
+                        {user?user?.firstName:''+"  "+user?user?.lastName:''}
                         </Text>
 
                     <TouchableHighlight onPress={() => {
-                        this.props.navigation.navigate("AccountDetails");
+                        navigation.navigate("AccountDetails");
                     }}>
                         <ProfileComponent
                             imgSource={{ type: Icons.AntDesign, name: "user" }}
@@ -104,7 +95,7 @@ class Profile extends React.Component {
                     </TouchableHighlight>
 
                     <TouchableHighlight onPress={() => {
-                        this.props.navigation.navigate("Help");
+                        navigation.navigate("Help");
                     }}>
                         <ProfileComponent imgSource={{ type: Icons.AntDesign, name: "adduser" }} componentName="Help" />
                     </TouchableHighlight>
@@ -114,7 +105,7 @@ class Profile extends React.Component {
                     </TouchableHighlight>
 
                     <TouchableHighlight onPress={() => {
-                        this.setShow(true);
+                        setShow(true);
                     }}>
                         <ProfileComponent imgSource={{ type: Icons.Ionicons, name: "log-in-outline", isRed: true }} componentName="Logout" />
                     </TouchableHighlight>
@@ -122,7 +113,7 @@ class Profile extends React.Component {
                     <Socials />
 
                     {
-                        this.state.show && <LogoutAlert navigation={this.props.navigation} setShow={(show) => { this.setShow(show) }}></LogoutAlert>
+                        show && <LogoutAlert navigation={navigation} setShow={(show) => { setShow(show) }}></LogoutAlert>
                     }
                 </SafeAreaView>
 
@@ -130,7 +121,6 @@ class Profile extends React.Component {
             </SafeAreaView>
 
         )
-    }
 }
 
 export default Profile;

@@ -65,7 +65,7 @@ const RequestForm = ({ navigation }) => {
    
 
     const submit=(data,setData,intitial)=>{
-        // console.log(data)
+        console.log(data)
         const isOK=checkObj(data);
         if(!isOK){
             return setAlert("error", "All fields are mandatory'");
@@ -76,6 +76,7 @@ const RequestForm = ({ navigation }) => {
             setData(intitial)
             setShow(true);
         }).catch((e)=>{
+            console.log(e)
             return setAlert("error", "Something went wrong, try again");
             // alert('Something went wrong, Try again');
         })
