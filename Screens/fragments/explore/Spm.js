@@ -25,6 +25,7 @@ import LoginAlert from '../../custom/LoginAlert';
 const Offerings =({navigation,route})=>{
 
     const [isJoin,setIsJoin]=useState(null);
+    const [data,setData]=useState({});
     const {user, isUserLogin}=useContext(AppContext);
 
     const [showAlert, setShowAlert] = useState(false);
@@ -41,11 +42,11 @@ const Offerings =({navigation,route})=>{
                 // console.log(e);
                 setIsJoin(null);
                 if(e.status==200){
-                    setIsJoin(true);
                     setIsJoin("JOINED");
                 }else{
                     setIsJoin("JOIN SPM");
                 }
+                setData(e.data)
             }).catch((e)=>{
                 console.log(e);
                 setIsJoin("JOIN SPM");
@@ -94,8 +95,8 @@ const Offerings =({navigation,route})=>{
                         }}
                         title={isJoin==null?"JOIN SPM":isJoin}
                         onPress={() => {
-                            if(isJoin==null || isJoin=="JOINED") return;
-                            navigation.navigate('JoinSPM')
+                            if(isJoin==null) return;
+                            navigation.navigate('JoinSPM',{data:data})
                         }
                         } />
                 </SafeAreaView>

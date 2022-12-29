@@ -81,7 +81,7 @@ const RequestForm = ({ navigation }) => {
         }
         setLoding(true);
         sendFom(data).then((res)=>{
-            console.log(res);
+            // console.log(res);
             setData(intitial)
             setShow(true);
         }).catch((e)=>{

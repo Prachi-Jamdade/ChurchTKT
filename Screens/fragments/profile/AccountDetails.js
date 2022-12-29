@@ -51,7 +51,7 @@ const AccountDetails = ({navigation})=> {
           if(response.assets&&response.assets.length==1){
               RNFS.readFile(response.assets[0].uri, 'base64')
               .then(res =>{
-                  console.log("we have file")
+                //   console.log("we have file")
                   setLoading(true)
                   updateUserData({...user,profileUrl:`data:${response.assets[0].type};base64`+","+res}).then(
                     (e)=>{
@@ -82,7 +82,7 @@ const AccountDetails = ({navigation})=> {
      
         updateUserData({...user,profileUrl,firstName:data.name,phoneNumber:data.phoneNo})
         .then((e)=>{
-            console.log("update")
+            // console.log("update")
             getProfileDetails(user.userId)
             .then((data)=>{
                 data.profileUrl=null;

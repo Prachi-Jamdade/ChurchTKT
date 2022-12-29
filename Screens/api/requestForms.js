@@ -11,7 +11,7 @@ async function sendFom(data){
 }
 
 async function sendSPMFrom(data){
-	console.log(data);
+	// console.log(data);
 	const APIWithToken=await getAPIWithToken();
 	const res = await APIWithToken.post(
 		'/spmform/create',

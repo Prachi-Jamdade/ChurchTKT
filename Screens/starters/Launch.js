@@ -8,7 +8,7 @@ const Launch = ({navigation,route}) => {
 
     const {isUserLogin}=useContext(AppContext);
     const  isLogin = route?.params?.isLogin;
-    console.log(isUserLogin,isLogin)
+    // console.log(isUserLogin,isLogin)
     const isLoginUser= isUserLogin || isLogin;
 
 

@@ -12,9 +12,11 @@ import {checkObj} from '../../utils/obj'
 import BtnAnimation from '../Btn';
 
 
-const JoinSPM = ({ navigation }) => {
+const JoinSPM = ({ navigation,route }) => {
     const { user, setAlert } = useContext(AppContext);
     const [loading,setLodding]=useState(false);
+    const isDiabled = route.params?.data?false:true;
+   
 
     const [data, setData] = useState({
         userName: '',
@@ -23,6 +25,19 @@ const JoinSPM = ({ navigation }) => {
         gender: '',
         amount: 0,
     });
+
+    useEffect(()=>{
+        if(!route.params?.data) return;
+        const {amount,fatherName,gender,userName} = route.params.data;
+        setData({
+            userName: userName,
+            fatherName: fatherName,
+            userId: user.userId,
+            gender: gender,
+            amount: amount,
+    })
+    },[route])
+
 
 
     const genderData = [
@@ -69,7 +84,7 @@ const JoinSPM = ({ navigation }) => {
             <TouchableOpacity
                 style={gobalStyle.nav}
                 // provide navigate path
-                onPress={() => navigation.navigate('Explore')}
+                onPress={() => navigation.navigate('Spm')}
             >
                 <Image source={ImageBackUp} style={gobalStyle.nav_image} />
                 <Text style={gobalStyle.nav_header}>Join SPM</Text>
@@ -84,12 +99,35 @@ const JoinSPM = ({ navigation }) => {
                 <SafeAreaView>
 
                 <Text style={styles.boldText}>
-                    We need some details
+                         {
+
+                            !isDiabled  
+                            ?
+                            "Details"
+                            :
+                            "We need some details"
+                         }
                 </Text>
 
                 <Text style={styles.lightText}>
-                    Please provide us some of your information to be a part of SPM
+                {
+
+                    !isDiabled  
+                    ?
+                    "Your information"
+                    :
+                    " Please provide us some of your information to be a part of SPM"
+                }
+          
                 </Text>
+
+                {
+                    !isDiabled  
+                    &&
+                    <Text style={[styles.normalText]}>
+                    Name
+                    </Text>
+                }
                
 
                     <TextInput style={styles.input}
@@ -99,15 +137,25 @@ const JoinSPM = ({ navigation }) => {
                         autoCapitalize="none"
                         name="userName"
                         value={data.userName}
+                        editable={isDiabled}
                         onChangeText={(e) => change("userName", e)}
                     />
 
+
+                {
+                    !isDiabled  
+                    &&
+                    <Text style={[styles.normalText]}>
+                    Father Name
+                    </Text>
+                }
                     <TextInput style={styles.input}
                         underlineColorAndroid="transparent"
                         placeholder="Father's Name"
                         placeholderTextColor="#808080"
                         autoCapitalize="none"
                         name="fatherName"
+                        editable={isDiabled}
                         value={data.fatherName}
                         onChangeText={(e) => change("fatherName", e)}
                     />
@@ -126,7 +174,22 @@ const JoinSPM = ({ navigation }) => {
                     Gender
                 </Text>
 
+                {
+                    !isDiabled 
 
+                    ?
+
+                    <Text style={
+                        
+                        [
+                            styles.normalText
+                            ,{fontFamily: 'Montserrat-Medium', fontSize: RFValue(16), color: 'white',marginBottom:40}
+                        
+                        ]}>
+                        {data.gender}
+                    </Text>
+
+                    :
                     <RadioButtonRN
                     data={genderData}
                     selectedBtn={(e) => change("gender",e.label)}
@@ -136,22 +199,56 @@ const JoinSPM = ({ navigation }) => {
                     boxStyle={{backgroundColor: '#1E1E1E', borderColor: '#1E1E1E'}}
                     textStyle={{fontFamily: 'Montserrat-Medium', fontSize: RFValue(16), color: 'white'}}
                     />
+                }
+
+
 
                     {/* <Text style={{fontFamily: 'Montserrat-Medium', fontSize: 16, margin:10, color: 'white'}}>Gender</Text> */}
-                    <Text style={[styles.lightText, { marginTop: RFValue(10) }]}>Enter the amount you want to commit: </Text>
+                    <Text style={[styles.lightText, { marginTop: RFValue(10) }]}>
 
-                    <TextInput style={styles.input}
-                        underlineColorAndroid="transparent"
-                        placeholder="Amount (in INR)"
-                        placeHolderTextColor="#989898"
-                        keyboardType="number-pad"
-                        placeholderTextColor="white"
-                        autoCapitalize="none"
-                        name="amount"
-                        onChangeText={(e) => change("amount", parseInt(e))}
-                    />
+                        {
+
+                            !isDiabled  
+                            ?
+                            "The amount you want to commit: "
+                            :
+                            "Enter the amount you want to commit: "
+                        }                        
+                        
+                        </Text>
+
+                    {
+                          !isDiabled  
+                          ?
+
+                            <TextInput style={styles.input}
+                            underlineColorAndroid="transparent"
+                            placeholder="Your Name"
+                            placeholderTextColor="#808080"
+                            autoCapitalize="none"
+                            name="userName"
+                            value={""+data.amount}
+                            editable={isDiabled}
+                            onChangeText={(e) => change("userName", e)}
+                            />
+                          :
+                            <TextInput style={styles.input}
+                                underlineColorAndroid="transparent"
+                                placeholder="Amount (in INR)"
+                                placeHolderTextColor="#989898"
+                                keyboardType="number-pad"
+                                placeholderTextColor="white"
+                                autoCapitalize="none"
+                                name="amount"
+                                value={data.amount}
+                                editable={isDiabled}
+                                onChangeText={(e) => change("amount", parseInt(e))}
+                            />
+                    }
                 </SafeAreaView>
 
+                {
+                    !route.params?.data &&
                 <TouchableHighlight
                     style={[gobalStyle.btn_abs,{position:'relative',marginTop:RFValue(60)}]}
                     onPress={() => { submit(); }}
@@ -164,6 +261,7 @@ const JoinSPM = ({ navigation }) => {
                         <Text style={[gobalStyle.submitText]}>JOIN</Text>
                     }
                 </TouchableHighlight>
+                }
             </ScrollView>
         </SafeAreaView>
     )

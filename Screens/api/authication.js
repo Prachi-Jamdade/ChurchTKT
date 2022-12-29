@@ -65,7 +65,7 @@ async function updateUserData(data) {
 	};
 	
 	const res_data=await fetch(baseUrl+'/account/user/update', requestOptions).then((res)=>{
-		console.log(res);
+		// console.log(res);
 	})
 	return res_data;
 }
