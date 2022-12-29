@@ -160,7 +160,7 @@ const RequestForm = ({ navigation }) => {
                                     paddingHorizontal: 5,
                                     backgroundColor: '#0F0F0F',
                                     borderWidth: 1,
-                                    borderRadius: 3
+                                    borderColor: '#343739',
                                 }
                             ]}
                         >
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
         width: (width * 0.92),
     },
     dropdownStyle: {
-        height: 370,
+        height: 360,
         backgroundColor: '#000',
     }
 });
