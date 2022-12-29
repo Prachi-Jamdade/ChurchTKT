@@ -3,9 +3,10 @@ import {View,TouchableOpacity,Text,ScrollView, SafeAreaView} from 'react-native'
 import RequestFormDetail from './RequestFormDetail';
 import {styles} from './RequestForm';
 import {sendFom} from '../../api/requestForms'
+import BtnAnimation from '../Btn';
 
 
-const HouseDedication = ({setShow,submit}) => {
+const HouseDedication = ({setShow,submit,loading}) => {
 
     const intitial={
         formType:'house_dedication',
@@ -77,7 +78,13 @@ const HouseDedication = ({setShow,submit}) => {
                 onPress={()=>submit(data,setData,intitial)}
                 underlayColor="#fff"
                 >
+                {
+                    loading
+                    ?
+                    <BtnAnimation></BtnAnimation>
+                    :
                     <Text style={styles.loginText}>Continue</Text>
+                }
                 </TouchableOpacity>
             </SafeAreaView>
         </>

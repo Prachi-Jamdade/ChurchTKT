@@ -17,15 +17,18 @@ import {generatePaymentSPM,completePaymentSPM} from '../../api/explore';
 import RazorpayCheckout from 'react-native-razorpay';
 import RequestSent from './RequestSent';
 import { RFValue } from 'react-native-responsive-fontsize';
+import BtnAnimation from '../Btn';
 
 
 const SPMOfferings = ({navigation})=>{
 
     const {user, setAlert} = useContext(AppContext);
+    const [loading,setLodding]=useState(false);
     const [amount,setAmount] = useState(0);
 
 
     const getOrder = async()=>{
+        if(loading) return;
         try {
 
         let _amount = parseInt(amount);
@@ -36,6 +39,7 @@ const SPMOfferings = ({navigation})=>{
         }
         _amount=_amount*100;
         const {firstName,phoneNumber,email} = user;
+        setLodding(true);
         const getOrderDetails = await generatePaymentSPM({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
 
             const {razorpayKey,orderId} = getOrderDetails;
@@ -56,23 +60,23 @@ const SPMOfferings = ({navigation})=>{
             theme: {color: '#FFFFFF'},
           };
 
-          RazorpayCheckout.open(options).then(async (data) => {
-            // // handle success
-            // const {razorpay_payment_id,razorpay_order_id,razorpay_signature}=data;
+          RazorpayCheckout.open(options)
+          .then(async (data) => {
             const _completePayment = await completePaymentSPM(data);
             setAmount(0);
             setAlert("success", "Payment done successfully")
-            // alert('Payment done successfully');
           }).catch((error) => {
             // handle failure
             console.log(error);
             setAlert("error", "Something went wrong, try again")
-            // alert('Something went wrong, try again');
-          });
+          }).finally(()=>{
+            setLodding(false);
+          })
         } catch (e){
             console.log(e);
             setAlert("error", "Something went wrong, try again")
             // alert('Something went wrong, try again');
+            setLodding(false)
         }
     };
 
@@ -115,7 +119,13 @@ const SPMOfferings = ({navigation})=>{
                 style={gobalStyle.btn_abs}
                 onPress={() => {getOrder();}}
               >
-                  <Text style={[gobalStyle.submitText]}>PAY</Text>
+                 {
+                    loading
+                    ?
+                    <BtnAnimation></BtnAnimation>
+                    :
+                    <Text style={[gobalStyle.submitText]}>PAY</Text>
+                }
               </TouchableHighlight>
 
 

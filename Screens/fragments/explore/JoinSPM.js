@@ -9,10 +9,12 @@ import { sendSPMFrom } from '../../api/requestForms'
 import RadioButtonRN from 'radio-buttons-react-native';
 import { RFValue } from "react-native-responsive-fontsize";
 import {checkObj} from '../../utils/obj'
+import BtnAnimation from '../Btn';
 
 
 const JoinSPM = ({ navigation }) => {
     const { user, setAlert } = useContext(AppContext);
+    const [loading,setLodding]=useState(false);
 
     const [data, setData] = useState({
         userName: '',
@@ -36,13 +38,14 @@ const JoinSPM = ({ navigation }) => {
         setData({ ...data, [name]: value });
     };
     const submit = () => {
+        if(loading) return;
         const isOK=checkObj(data);
         if(!isOK){
             return setAlert("error", "All fields are mandatory'");
             // return alert('All fields are mandatory');
         }
+        setLodding(true);
         sendSPMFrom({ ...data }).then(() => {
-            return setAlert("error", "Join the SPM");
             // alert("Join the spm")
             setData({
                 userName: '',
@@ -52,10 +55,12 @@ const JoinSPM = ({ navigation }) => {
                 amounts: 0
             })
             navigation.navigate("Spm",{isJoin:true})
+            return setAlert("success", "Join the SPM");
         }).catch((e) => {
             return setAlert("error", "Something went wrong");
-            // alert("Something went wrong")
-        })
+        }).finally(()=>{
+            setLodding(false);
+        });
     };
 
 
@@ -151,7 +156,13 @@ const JoinSPM = ({ navigation }) => {
                     style={[gobalStyle.btn_abs,{position:'relative',marginTop:RFValue(60)}]}
                     onPress={() => { submit(); }}
                     >
-                    <Text style={[gobalStyle.submitText]}>JOIN</Text>
+                    {
+                        loading
+                        ?
+                        <BtnAnimation></BtnAnimation>
+                        :
+                        <Text style={[gobalStyle.submitText]}>JOIN</Text>
+                    }
                 </TouchableHighlight>
             </ScrollView>
         </SafeAreaView>
@@ -182,6 +193,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#1E1E1E',
         flexDirection: 'column',
         borderRadius: RFValue(20),
+        borderBottomLeftRadius:0,
+        borderBottomRightRadius:0,
         marginTop: RFValue(5),
         paddingTop: RFValue(10),
         flex:3,

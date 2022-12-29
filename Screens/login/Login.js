@@ -19,10 +19,10 @@ import {sendOtpToNumber} from '../api/authication'
 import gobalStyle from '../styles/index'
 import { RFValue } from 'react-native-responsive-fontsize';
 import { AppContext } from '../../context';
-
+import BtnAnimation from '../fragments/Btn';
 const {width} = Dimensions.get('window');
 const height = width * 100 / 70;
-const PHONE_REGEX = /^[0-9]{10}$/
+const PHONE_REGEX = /^[0-9]{10}$/;
 
 
 // const Login = ({navigation}) => {
@@ -32,7 +32,8 @@ class Login extends React.Component{
 
     state = {
         phoneNumber : '',
-        accepted : 'false',
+        accepted : 'true',
+        loading: false
     }
 
     static contextType = AppContext;
@@ -52,6 +53,9 @@ class Login extends React.Component{
     }
 
     sendOtp = (props) =>{
+        if(this.state.loading) return;
+
+        this.setState({loading : true});
         sendOtpToNumber(this.state.phoneNumber,true)
         .then((data)=>{
             // console.log(data);
@@ -61,9 +65,10 @@ class Login extends React.Component{
             props.navigation.navigate('VerifyOtp',{phoneNumber : this.state.phoneNumber,isLogin:true});
         })
         .catch((e)=>{
-
-            alert('Something went wrong, try again');
-        });
+            this.context.setAlert("error",'Something went wrong, try again');
+        }).finally(()=>{
+            this.setState({loading : false});
+        })
     }
 
     render(){
@@ -99,7 +104,13 @@ class Login extends React.Component{
                     disabled = {!this.accepted}
                     onPress={() => {this.sendOtp(this.props)}}
                     underlayColor='#fff'>
-                    <Text style={[gobalStyle.submitText]}>Continue</Text>
+                        {
+                            this.state.loading
+                            ?
+                            <BtnAnimation></BtnAnimation>
+                            :
+                            <Text style={[gobalStyle.submitText]}>Continue</Text> 
+                        }
               </TouchableHighlight>
             </SafeAreaView>
             </KeyboardAvoidingView>

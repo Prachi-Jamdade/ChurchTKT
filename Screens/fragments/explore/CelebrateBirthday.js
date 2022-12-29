@@ -3,8 +3,11 @@ import {View,TouchableOpacity,Text,ScrollView, SafeAreaView} from 'react-native'
 import RequestFormDetail from './RequestFormDetail';
 import {styles} from './RequestForm';
 import {sendFom} from '../../api/requestForms'
+import BtnAnimation from '../Btn';
 
-const CelebrateBirthday = ({setShow,submit}) => {
+
+
+const CelebrateBirthday = ({setShow,submit,loading}) => {
 
     const intitial={
         formType:'birthday',
@@ -96,7 +99,13 @@ const CelebrateBirthday = ({setShow,submit}) => {
                 onPress={()=>submit(data,setData,intitial)}
                 underlayColor="#fff"
                 >
-                    <Text style={styles.loginText}>Continue</Text>
+                    {
+                        loading
+                        ?
+                        <BtnAnimation></BtnAnimation>
+                        :
+                        <Text style={styles.loginText}>Continue</Text>
+                    }
                 </TouchableOpacity>
             </SafeAreaView>
             </>

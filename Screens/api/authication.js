@@ -56,14 +56,17 @@ async function updateUserData(data) {
 	let {token} = objToken;
 	let authToken =token;
 
+	JSON.stringify(data);
+
 	const requestOptions = {
 		method: 'PUT',
 		headers: { 'Content-Type': 'application/json', 'Authorization':`Bearer ${authToken}` },
 		body: JSON.stringify(data)
 	};
 	
-	const res_data=await fetch(baseUrl+'/account/user/update', requestOptions).then(response => response.json())
-	console.log(res_data);
+	const res_data=await fetch(baseUrl+'/account/user/update', requestOptions).then((res)=>{
+		console.log(res);
+	})
 	return res_data;
 }
 

@@ -155,10 +155,14 @@ const Explore = ({ navigation }) => {
                 {
                     cardContent.map((content, index) => {
                         return (
-                            <TouchableHighlight onPress={() => {
+                            <TouchableHighlight 
+                            onPress={() => {
                                 ReactNativeHapticFeedback.trigger("notificationSuccess", options);
                                 navigation.navigate(content.navigate)}
-                            }>
+                            }
+                            
+                            key={content.text}
+                            >
 
                                 <View style={{
                                     display: 'flex',

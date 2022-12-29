@@ -2,8 +2,10 @@ import React,{useState} from 'react';
 import {View,TouchableOpacity,Text,ScrollView, SafeAreaView} from 'react-native';
 import RequestFormDetail from './RequestFormDetail';
 import {styles} from './RequestForm';
+import BtnAnimation from '../Btn';
 
-const FuneralService = ({setShow,submit}) => {
+
+const FuneralService = ({setShow,submit,loading}) => {
 
     const intitial = {
         formType:'funeral',
@@ -110,7 +112,13 @@ const FuneralService = ({setShow,submit}) => {
                 onPress={()=>submit(data,setData,intitial)}
                 underlayColor="#fff"
                 >
+                {
+                    loading
+                    ?
+                    <BtnAnimation></BtnAnimation>
+                    :
                     <Text style={styles.loginText}>Continue</Text>
+                }
                 </TouchableOpacity>
         </SafeAreaView>
         </>

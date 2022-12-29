@@ -10,6 +10,12 @@ import {updateUserData,getProfileDetails} from '../../api/authication'
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
+import BtnAnimation from '../Btn';
+
+
+
+
+
 const AccountDetails = ({navigation})=> {
     const {clear}=useContext(AppContext);
     const [data,setData] = useState( {
@@ -18,6 +24,7 @@ const AccountDetails = ({navigation})=> {
     });
     const [show,setShow] = useState(false)
     const [isEditOn,setEditOn] = useState(false);
+    const [loading,setLoading]=useState(false);
 
     const {user,profileUrl,setProfileUrl,setUser, setAlert}=useContext(AppContext);
 
@@ -39,15 +46,22 @@ const AccountDetails = ({navigation})=> {
         const options = {
           noData: true,
         };
+        if(loading) return;
         launchImageLibrary(options, (response) => {
           if(response.assets&&response.assets.length==1){
               RNFS.readFile(response.assets[0].uri, 'base64')
               .then(res =>{
+                  console.log("we have file")
+                  setLoading(true)
                   updateUserData({...user,profileUrl:`data:${response.assets[0].type};base64`+","+res}).then(
                     (e)=>{
                         setProfileUrl(`data:${response.assets[0].type};base64`+","+res);
+                  }).catch((e)=>{
+                    console.log(e);
                   })
-            });
+            }).finally(()=>{
+                setLoading(false)
+            })
             }
         
           if (response.uri) {
@@ -58,12 +72,13 @@ const AccountDetails = ({navigation})=> {
 
     const handleSubmite = () => {
 
-        console.log(data)
+        if(loading) return;
 
         if(!data.name || !data.phoneNo || data.phoneNo.length!=10){
             return setAlert("error", "Enter the valid phone number and name");
             // return alert("Enter the vaild phone no and name");
         }
+        setLoading(true)
      
         updateUserData({...user,profileUrl,firstName:data.name,phoneNumber:data.phoneNo})
         .then((e)=>{
@@ -75,12 +90,14 @@ const AccountDetails = ({navigation})=> {
                 AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
                     setUser(data);
                     setEditOn(false);
+                    setLoading(false)
+                    return setAlert("success", "Data updated successfully");
                 });
             })
-            .catch((e)=>console.log(e))
-            .finally(()=>{
-                setEditOn(false)
-            })
+        }).catch((e)=>{
+            setEditOn(false)
+            setLoading(false)
+            setAlert("error",'Something went wrong, try again')
         })
          
       };
@@ -117,7 +134,7 @@ const AccountDetails = ({navigation})=> {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         >
-            <SafeAreaView style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
+            <SafeAreaView style={{ backgroundColor: '#1E1E1E',paddingBottom:20 ,borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
                 <SafeAreaView style={{alignItems:'center', justifyContent:'center', padding:30}}>
 
                 {
@@ -134,10 +151,10 @@ const AccountDetails = ({navigation})=> {
                     />
                 }
 
-                <TouchableHighlight onPress={handleChoosePhoto}>
+                {/* <TouchableHighlight onPress={handleChoosePhoto}>
 
                 <Text style={{color: '#F79D16', padding:RFValue(10), fontSize:RFValue(16), fontFamily: 'Montserrat-Regular'}}>Change Profile Picture</Text>
-                </TouchableHighlight>      
+                </TouchableHighlight>       */}
 
                 </SafeAreaView>
 
@@ -185,12 +202,17 @@ const AccountDetails = ({navigation})=> {
                     underlayColor="#fff"
                     >
                         {
-                            isEditOn
-                            ?
-                            <Text style={btnS.loginText}>Save</Text>
-                            :
-                            <Text style={btnS.loginText}>Edit</Text>
-                        }
+                        loading
+                        ?
+                        <BtnAnimation></BtnAnimation>
+                        :
+                        isEditOn
+                        ?
+                        <Text style={btnS.loginText}>Save</Text>
+                        :
+                        <Text style={btnS.loginText}>Edit</Text>
+                        
+                    }
                     </TouchableHighlight>
                     {
                     Platform.OS==='ios'

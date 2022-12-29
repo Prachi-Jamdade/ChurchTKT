@@ -17,6 +17,7 @@ import {sendOtpToNumber} from '../api/authication';
 import gobalStyle from '../styles/index';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { AppContext } from '../../context';
+import BtnAnimation from '../fragments/Btn';
 
 
 class Registration extends React.Component {
@@ -27,6 +28,7 @@ class Registration extends React.Component {
         phoneNumber: '',
         firstName: '',
         lastName: '',
+        loading: false
     }
 
     handleFirstName = (text) => {
@@ -60,6 +62,9 @@ class Registration extends React.Component {
     }
 
     sendOtp = (props) =>{
+        if(this.state.loading) return;
+
+        this.setState({loading : true});
         sendOtpToNumber(this.state.phoneNumber,false)
         .then((data)=>{
             if (!data.isValid){
@@ -77,7 +82,9 @@ class Registration extends React.Component {
         .catch((e)=>{
             return this.context.setAlert("error", "Something went wrong");
             // alert('Something went wrong');
-        });
+        }).finally(()=>{
+            this.setState({loading : false});
+        })
     }
 
     render(){
@@ -135,7 +142,13 @@ class Registration extends React.Component {
                     disabled = {!this.accepted}
                     onPress={() => {this.sendOtp(this.props)}}
                     underlayColor='#fff'>
-                    <Text style={[gobalStyle.submitText]}>Continue</Text>
+                    {
+                        this.state.loading
+                        ?
+                        <BtnAnimation></BtnAnimation>
+                        :
+                        <Text style={[gobalStyle.submitText]}>Continue</Text> 
+                    }
               </TouchableHighlight>
             </SafeAreaView>
           </KeyboardAvoidingView>

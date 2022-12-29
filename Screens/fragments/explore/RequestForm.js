@@ -26,6 +26,8 @@ import {checkObj} from '../../utils/obj'
 import {AppContext} from '../../../context';
 import LoginAlert from '../../custom/LoginAlert';
 import { useContext } from 'react';
+import BtnAnimation from '../Btn';
+
 
 
 
@@ -34,6 +36,7 @@ const RequestForm = ({ navigation }) => {
 
     const {setAlert, isUserLogin} = useContext(AppContext);
     const [showAlert, setShowAlert] = useState(false);
+    const [loading, setLoding] = useState(false);
 
     useEffect(() => {
         if(!isUserLogin) {
@@ -65,12 +68,18 @@ const RequestForm = ({ navigation }) => {
    
 
     const submit=(data,setData,intitial)=>{
-        console.log(data)
+        if(loading) return;
         const isOK=checkObj(data);
         if(!isOK){
-            return setAlert("error", "All fields are mandatory'");
+            return setAlert("error", "All fields are mandatory");
             // return alert('All fields are mandatory');
         }
+        if(data?.phoneNumber){
+            if(data.phoneNumber.length!==10){
+                return setAlert("error", "Enter valid phone number");
+            }
+        }
+        setLoding(true);
         sendFom(data).then((res)=>{
             console.log(res);
             setData(intitial)
@@ -79,6 +88,8 @@ const RequestForm = ({ navigation }) => {
             console.log(e)
             return setAlert("error", "Something went wrong, try again");
             // alert('Something went wrong, Try again');
+        }).finally(()=>{
+            setLoding(false);
         })
     }
 
@@ -193,7 +204,7 @@ const RequestForm = ({ navigation }) => {
         <SafeAreaView style={{flex:2, marginTop: (100/5), paddingVertical: 8, alignItems: 'center', flexDirection: 'column', backgroundColor: '#161616', borderRadius: 20}}>
             <Text style={[{ color: 'white', marginStart: 15, marginTop: 1, padding: 2, fontSize: 16, fontFamily: 'Montserrat-Medium' }, styles.texts]}>We need some details</Text>
 
-            <GetForm index={index} setShow={setShow}  submit={submit} />
+            <GetForm index={index} setShow={setShow}  submit={submit} loading={loading} />
             {
                 show &&
                 <RequestSent setShow={setShow}/>
@@ -207,33 +218,33 @@ const RequestForm = ({ navigation }) => {
 };
 
 
-const GetForm = ({ index, setShow,submit }) => {
+const GetForm = ({ index, setShow,submit,loading }) => {
 
 
     if (index === 0) {
-        return <FuneralService setShow={setShow} submit={submit} />;
+        return <FuneralService setShow={setShow} submit={submit} loading={loading} />;
     }
 
     if (index === 1) {
-        return <CelebrateBirthday setShow={setShow} submit={submit}  />;
+        return <CelebrateBirthday setShow={setShow} submit={submit} loading={loading} />;
     }
 
 
     if (index === 2) {
-        return <ChildDedication setShow={setShow} submit={submit}  />;
+        return <ChildDedication setShow={setShow} submit={submit} loading={loading}  />;
     }
 
     if (index === 3) {
-        return <HouseDedication setShow={setShow} submit={submit}  />;
+        return <HouseDedication setShow={setShow} submit={submit} loading={loading} />;
     }
     if (index === 4) {
-        return <WaterBaptism setShow={setShow} submit={submit}  />;
+        return <WaterBaptism setShow={setShow} submit={submit} loading={loading}/>;
     }
     if (index === 5) {
-        return <ThanksGiving setShow={setShow} submit={submit}  />;
+        return <ThanksGiving setShow={setShow} submit={submit}  loading={loading} />;
     }
     if (index === 6) {
-        return <MemorialServices setShow={setShow} submit={submit}  />;
+        return <MemorialServices setShow={setShow} submit={submit}  loading={loading}/>;
     }
 };
 
@@ -253,7 +264,7 @@ const styles = StyleSheet.create({
         width: (width * 0.92),
     },
     loginText: {
-        fontSize: 17,
+        fontSize: 18.5,
         fontFamily: 'Montserrat-Medium',
         textAlign: 'center',
         color: 'white',

@@ -16,6 +16,9 @@ import {sendOtpToNumber} from '../api/authication';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { RFValue } from 'react-native-responsive-fontsize';
 import { ActivityIndicator } from 'react-native';
+import BtnAnimation from '../fragments/Btn';
+
+
 
 class VerifyOtp extends React.Component {
     static contextType = AppContext;
@@ -26,6 +29,7 @@ class VerifyOtp extends React.Component {
         route: {},
         timer:60*5,
         timerRef:null,
+        loading: false
     }
     static contextType = AppContext;
 
@@ -38,9 +42,12 @@ class VerifyOtp extends React.Component {
     }
 
     verify = () => {
+        if(this.state.loading) return;
         if (!this.state.accepted) { return false; }
+
         const { phoneNumber } = this.props.route.params;
         const { isLogin } = this.props.route.params;
+        this.setState({loading : true});
 
         if (isLogin) {
             loginOtpVerification(phoneNumber, this.otp)
@@ -57,7 +64,9 @@ class VerifyOtp extends React.Component {
                 .catch((e) => {
                     this.context.setAlert("error", "OTP is not valid.")
                     // alert('In vaild Otp');
-                });
+                }).finally(()=>{
+                    this.setState({loading : false});
+                })
         } else {
             const { firstName, lastName } = this.props.route.params;
             sigUpOtpVerification(phoneNumber, firstName, lastName, this.otp)
@@ -73,7 +82,9 @@ class VerifyOtp extends React.Component {
                 })
                 .catch((e) => {
                     this.context.setAlert("error", "OTP is not valid.")
-                });
+                }).finally(()=>{
+                    this.setState({loading : false});
+                })
 
         }
         // alert(this.otp);
@@ -81,9 +92,12 @@ class VerifyOtp extends React.Component {
 
     resendOtp = () => {
 
+        if(this.state.loading) return;
         if (!this.state.accepted) { return false; }
+
         const { phoneNumber } = this.props.route.params;
         const { isLogin } = this.props.route.params;
+        this.setState({loading : true});
 
 
         if (!isLogin) {
@@ -101,7 +115,9 @@ class VerifyOtp extends React.Component {
                 .catch((e)=>{
                     this.context.setAlert("error", "Something went wrong, try again")
                     // alert('Something went wrong, try again');
-                });
+                }).finally(()=>{
+                    this.setState({loading : false});
+                })
         } else {
             sendOtpToNumber(phoneNumber,true)
                 .then((data)=>{
@@ -116,7 +132,9 @@ class VerifyOtp extends React.Component {
                 })
                 .catch((e)=>{
                     this.context.setAlert("error", "Something went wrong, try again")
-                });
+                }).finally(()=>{
+                    this.setState({loading : false});
+                })
 
         }
         // alert(this.otp);
@@ -177,7 +195,7 @@ class VerifyOtp extends React.Component {
                     <TouchableHighlight
                     onPress={() => { this.resendOtp() }}
                     >
-                        <Text style={styles.redText}>Resend</Text>
+                    <Text style={styles.redText}>Resend</Text>
                     </TouchableHighlight>
                     </SafeAreaView>
                 </SafeAreaView>
@@ -186,7 +204,13 @@ class VerifyOtp extends React.Component {
                     disabled={!this.state.accepted}
                     onPress={() => { this.verify() }}
                     underlayColor='#fff'>
-                    <Text style={[gobalStyle.submitText]}>Verify</Text>
+                         {
+                        this.state.loading
+                        ?
+                        <BtnAnimation></BtnAnimation>
+                        :
+                        <Text style={[gobalStyle.submitText]}>Verify</Text>
+                        }
                 </TouchableHighlight>
             </SafeAreaView>
             </KeyboardAvoidingView>
