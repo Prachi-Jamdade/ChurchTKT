@@ -14,6 +14,7 @@ import Home from '../Screens/home'
 import { AppContext } from '../context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AccountDetails from '../Screens/fragments/profile/AccountDetails';
+import PrivacyPolicy from '../Screens/fragments/profile/PrivacyPolicy';
 import Help from '../Screens/fragments/profile/Help';
 import LogoutAlert from '../Screens/fragments/profile/LogoutAlert';
 import RequestForm from '../Screens/fragments/explore/RequestForm';
@@ -96,6 +97,11 @@ const {setUser,setUserLogin,isUserLogin}=useContext(AppContext);
             component={AccountDetails}
             options={{ headerShown: false }}
           />
+          {/* <Stack.Screen
+            name='PrivacyPolicy'
+            component={PrivacyPolicy}
+            options={{ headerShown: false }}
+          /> */}
           <Stack.Screen
             name='Help'
             component={Help}

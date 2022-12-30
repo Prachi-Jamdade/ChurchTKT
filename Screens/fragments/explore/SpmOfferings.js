@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import {
     View,
     Text,
@@ -18,13 +18,25 @@ import RazorpayCheckout from 'react-native-razorpay';
 import RequestSent from './RequestSent';
 import { RFValue } from 'react-native-responsive-fontsize';
 import BtnAnimation from '../Btn';
+import LoginAlert from '../../custom/LoginAlert';
+
 
 
 const SPMOfferings = ({navigation})=>{
 
-    const {user, setAlert} = useContext(AppContext);
+    const {user, setAlert,isUserLogin} = useContext(AppContext);
     const [loading,setLodding]=useState(false);
     const [amount,setAmount] = useState(0);
+
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if(!isUserLogin) {
+            setShowAlert(true);
+        }else{
+            setShowAlert(false);
+        }
+    }, [isUserLogin]);
 
 
     const getOrder = async()=>{
@@ -86,6 +98,10 @@ const SPMOfferings = ({navigation})=>{
         behavior= {Platform.OS=='ios'?"padding":'height'}
         style={{flex:1}}
       >
+        {
+            showAlert && <LoginAlert navigation={navigation}  isDisable={true}  setShow={setShowAlert} prevScreen='Spm' />
+        } 
+
       <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
 

@@ -11,6 +11,7 @@ import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message';
 import BtnAnimation from '../Btn';
+import LoginAlert from '../../custom/LoginAlert';
 
 
 
@@ -18,6 +19,8 @@ import BtnAnimation from '../Btn';
 
 const AccountDetails = ({navigation})=> {
     const {clear}=useContext(AppContext);
+    const {user,profileUrl,setProfileUrl,setUser, setAlert,isUserLogin}=useContext(AppContext);
+
     const [data,setData] = useState( {
         name: '',
         phoneNo: '',
@@ -26,7 +29,16 @@ const AccountDetails = ({navigation})=> {
     const [isEditOn,setEditOn] = useState(false);
     const [loading,setLoading]=useState(false);
 
-    const {user,profileUrl,setProfileUrl,setUser, setAlert}=useContext(AppContext);
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if(!isUserLogin) {
+            setShowAlert(true);
+        }else{
+            setShowAlert(false);
+        }
+    }, [isUserLogin]);
+
 
     useEffect(()=>{
         setData({name:user&&user.firstName,phoneNo:user&&user.phoneNumber})
@@ -109,6 +121,9 @@ const AccountDetails = ({navigation})=> {
         behavior= {Platform.OS=='ios'?"padding":'height'}
         style={{flex:1}}
         >
+            {
+                showAlert && <LoginAlert navigation={navigation} isDisable={true} setShow={(show) => { setShowAlert(show)}} prevScreen='Profile' />
+            } 
 
     <SafeAreaView style={gobalStyle.main}>
 

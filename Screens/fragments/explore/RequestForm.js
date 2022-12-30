@@ -41,6 +41,8 @@ const RequestForm = ({ navigation }) => {
     useEffect(() => {
         if(!isUserLogin) {
             setShowAlert(true);
+        }else{
+            setShowAlert(false);
         }
     }, []);
 
@@ -93,7 +95,6 @@ const RequestForm = ({ navigation }) => {
         })
     }
 
- 
 
 
 
@@ -122,7 +123,7 @@ const RequestForm = ({ navigation }) => {
         </TouchableOpacity>
 
         {
-            showAlert && <LoginAlert navigation={navigation} setShow={setShowAlert} prevScreen='Explore' />
+            showAlert && <LoginAlert navigation={navigation} setShow={setShowAlert} isDisable={true} prevScreen='Explore' />
         }
 
 

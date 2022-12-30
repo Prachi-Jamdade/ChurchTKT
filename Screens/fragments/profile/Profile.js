@@ -17,11 +17,11 @@ import { Icons } from '../Icons';
 import LogoutAlert from './LogoutAlert';
 import {getProfileDetails} from '../../api/authication';
 import { RFValue } from 'react-native-responsive-fontsize';
-import LoginAlert from '../../custom/LoginAlert';
+import { Linking } from 'react-native';
 
 const Profile =({ navigation })=>{
     const {setAlert, isUserLogin,user,setUser,profileUrl, setProfileUrl} = useContext(AppContext);
-    const [showAlert, setShowAlertV] = useState(false);
+    // const [showAlert, setShowAlertV] = useState(false);
     const [show, setShowV] = useState(false);
     const [clicked, setClicked] = useState(false);
 
@@ -31,11 +31,11 @@ const Profile =({ navigation })=>{
                 setProfileUrl(data.profileUrl)
             }).catch((e)=>console.log(e))
         }
-        if(!isUserLogin) {
-            setShowAlert(true);
-        }else{
-            setShowAlert(false);
-        }
+        // if(!isUserLogin) {
+        //     setShowAlert(true);
+        // }else{
+        //     setShowAlert(false);
+        // }
     }, [user, isUserLogin, setProfileUrl]);
 
     const navigate = (navigateTo) => {
@@ -47,9 +47,9 @@ const Profile =({ navigation })=>{
         // console.log(this.state)
     }
 
-    function setShowAlert(showAlert) {
-        setShowAlertV(showAlert);
-    }
+    // function setShowAlert(showAlert) {
+    //     setShowAlertV(showAlert);
+    // }
 
         return (
             <SafeAreaView style={{ alignItems: 'center', backgroundColor: '#0F0F0F', height: '100%' }}>
@@ -57,9 +57,9 @@ const Profile =({ navigation })=>{
                     Profile
                 </Text>
 
-                {
-            showAlert && <LoginAlert navigation={navigation} isDisable={true} setShow={(show) => { setShowAlert(show)}} prevScreen='Home' />
-        }
+                {/* {
+                showAlert && <LoginAlert navigation={navigation} isDisable={true} setShow={(show) => { setShowAlert(show)}} prevScreen='Home' />
+                } */}
 
                 <SafeAreaView style={{ backgroundColor: '#1E1E1E', borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
                             
@@ -100,7 +100,9 @@ const Profile =({ navigation })=>{
                         <ProfileComponent imgSource={{ type: Icons.AntDesign, name: "adduser" }} componentName="Help" />
                     </TouchableHighlight>
 
-                    <TouchableHighlight>
+                    <TouchableHighlight  onPress={() => {
+                        Linking.openURL('https://kingstemple.in/privacy-policy/');
+                    }}>
                         <ProfileComponent imgSource={{ type: Icons.Feather, name: "shield" }} componentName="Privacy Policy" />
                     </TouchableHighlight>
 

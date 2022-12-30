@@ -10,29 +10,39 @@ import RadioButtonRN from 'radio-buttons-react-native';
 import { RFValue } from "react-native-responsive-fontsize";
 import {checkObj} from '../../utils/obj'
 import BtnAnimation from '../Btn';
-
+import LoginAlert from '../../custom/LoginAlert';
 
 const JoinSPM = ({ navigation,route }) => {
-    const { user, setAlert } = useContext(AppContext);
+    const { user, setAlert,isUserLogin } = useContext(AppContext);
     const [loading,setLodding]=useState(false);
     const isDiabled = route.params?.data?false:true;
+
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if(!isUserLogin) {
+            setShowAlert(true);
+        }else{
+            setShowAlert(false);
+        }
+    }, [isUserLogin]);
    
 
     const [data, setData] = useState({
         userName: '',
         fatherName: '',
-        userId: user.userId,
+        userId: user?.userId,
         gender: '',
         amount: 0,
     });
 
     useEffect(()=>{
-        if(!route.params?.data) return;
+        if(!route.params?.data || !isUserLogin) return;
         const {amount,fatherName,gender,userName} = route.params.data;
         setData({
             userName: userName,
             fatherName: fatherName,
-            userId: user.userId,
+            userId: user?.userId,
             gender: gender,
             amount: amount,
     })
@@ -89,6 +99,9 @@ const JoinSPM = ({ navigation,route }) => {
                 <Image source={ImageBackUp} style={gobalStyle.nav_image} />
                 <Text style={gobalStyle.nav_header}>Join SPM</Text>
             </TouchableOpacity>
+            {
+            showAlert && <LoginAlert navigation={navigation}  isDisable={true}  setShow={setShowAlert} prevScreen='Spm' />
+            } 
 
             <ScrollView
              style={[styles.box]}

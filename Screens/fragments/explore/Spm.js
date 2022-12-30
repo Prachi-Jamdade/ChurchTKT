@@ -28,13 +28,13 @@ const Offerings =({navigation,route})=>{
     const [data,setData]=useState({});
     const {user, isUserLogin}=useContext(AppContext);
 
-    const [showAlert, setShowAlert] = useState(false);
+    // const [showAlert, setShowAlert] = useState(false);
 
-    useEffect(() => {
-        if(!isUserLogin) {
-            setShowAlert(true);
-        }
-    }, []);
+    // useEffect(() => {
+    //     if(!isUserLogin) {
+    //         setShowAlert(true);
+    //     }
+    // }, []);
 
     useEffect(()=>{
         if(user) {
@@ -51,6 +51,8 @@ const Offerings =({navigation,route})=>{
                 console.log(e);
                 setIsJoin("JOIN SPM");
             })
+        }else{
+            setIsJoin("JOIN SPM");
         }
     },[user ? user.userId : "",route])
 
@@ -58,9 +60,9 @@ const Offerings =({navigation,route})=>{
         return (
             <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
-{
+{/* {
             showAlert && <LoginAlert navigation={navigation} setShow={setShowAlert} prevScreen='Explore' />
-        }
+        } */}
 
 
 
