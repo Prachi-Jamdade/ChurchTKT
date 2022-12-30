@@ -103,7 +103,6 @@ const Explore = ({ navigation }) => {
                     height: '100%',
                     display: 'flex',
                     gap: 5,
-                    marginBottom: RFValue(60),
                     borderRadius: RFValue(20),
                     padding: RFValue(20),
                     flex: 1

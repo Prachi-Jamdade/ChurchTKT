@@ -176,11 +176,11 @@ const styles = StyleSheet.create({
         transitionDuration:10
     },
     list: { 
-        backgroundColor:'#0F0F0F',
+        backgroundColor: '#1E1E1E',
         borderRadius: 24,
         marginBottom: RFValue(110),
         paddingBottom:RFValue(20),
-        width:boxWidth,
+        width:boxWidth*1.1,
         flex:1,
         flexDirection:'column',
         justifyContent: 'center',
