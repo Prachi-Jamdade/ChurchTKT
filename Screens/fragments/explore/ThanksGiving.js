@@ -3,8 +3,10 @@ import {View,TouchableOpacity,Text,ScrollView, SafeAreaView} from 'react-native'
 import RequestFormDetail from './RequestFormDetail';
 import {styles} from './RequestForm';
 import {sendFom} from '../../api/requestForms'
+import BtnAnimation from '../Btn';
 
-const ThanksGiving = ({setShow,submit}) => {
+
+const ThanksGiving = ({setShow,submit,loading}) => {
 
     const intitial={
         formType:'thanksgiving',
@@ -78,7 +80,13 @@ const ThanksGiving = ({setShow,submit}) => {
                 onPress={()=>submit(data,setData,intitial)}
                 underlayColor="#fff"
                 >
+                {
+                    loading
+                    ?
+                    <BtnAnimation></BtnAnimation>
+                    :
                     <Text style={styles.loginText}>Continue</Text>
+                }
                 </TouchableOpacity>
             </SafeAreaView>
             </>

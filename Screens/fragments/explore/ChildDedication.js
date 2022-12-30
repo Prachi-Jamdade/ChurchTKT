@@ -3,8 +3,10 @@ import {View,TouchableOpacity,Text,ScrollView, SafeAreaView} from 'react-native'
 import RequestFormDetail from './RequestFormDetail';
 import {styles} from './RequestForm';
 import {sendFom} from '../../api/requestForms'
+import BtnAnimation from '../Btn';
 
-const ChildDedication = ({setShow,submit}) => {
+
+const ChildDedication = ({setShow,submit,loading}) => {
 
     const intitial = {
         formType:'child_dedication',
@@ -98,7 +100,13 @@ const ChildDedication = ({setShow,submit}) => {
                 onPress={()=>submit(data,setData,intitial)}
                 underlayColor="#fff"
                 >
-                    <Text style={styles.loginText}>Continue</Text>
+                   {
+                        loading
+                        ?
+                        <BtnAnimation></BtnAnimation>
+                        :
+                        <Text style={styles.loginText}>Continue</Text>
+                    }
                 </TouchableOpacity>
             </SafeAreaView>
         </>

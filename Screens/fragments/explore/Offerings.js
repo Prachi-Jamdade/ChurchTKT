@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import {
     View,
     Text,
@@ -17,14 +17,29 @@ import {generatePayment,completePayment} from '../../api/explore';
 import RazorpayCheckout from 'react-native-razorpay';
 import RequestSent from './RequestSent';
 import { RFValue } from 'react-native-responsive-fontsize';
+import BtnAnimation from '../Btn';
+import LoginAlert from '../../custom/LoginAlert';
+
 
 const Offerings = ({navigation})=>{
 
-    const {user, setAlert} = useContext(AppContext);
+    const {user, setAlert,isUserLogin} = useContext(AppContext);
+    const [loading,setLodding]=useState(false);
     const [amount,setAmount] = useState(0);
+
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if(!isUserLogin) {
+            setShowAlert(true);
+        }else{
+            setShowAlert(false);
+        }
+    }, [isUserLogin]);
 
 
     const getOrder = async()=>{
+        if(loading) return;
         try {
 
         const _amount = parseInt(amount)*100;
@@ -32,6 +47,7 @@ const Offerings = ({navigation})=>{
             return setAlert("error", "Enter the amount first");
         }
         const {firstName,phoneNumber,email} = user;
+        setLodding(true)
         const getOrderDetails = await generatePayment({amount:_amount,name:firstName,phoneNumber:phoneNumber,email:email});
 
         const {razorpayKey,orderId} = getOrderDetails;
@@ -64,10 +80,13 @@ const Offerings = ({navigation})=>{
             console.log(error,12);
             setAlert("error", "Something went wrong, try again");
             // alert('Something went wrong, try again');
-          });
+          }).finally(()=>{
+            setLodding(false);
+          })
         } catch (e){
             console.log(e,212)
             setAlert("error", "Something went wrong, try again");
+            setLodding(false);
             // alert('Something went wrong, try again');
         }
     };
@@ -78,6 +97,9 @@ const Offerings = ({navigation})=>{
         behavior= {Platform.OS=='ios'?"padding":'height'}
         style={{flex:1}}
       >
+        {
+            showAlert && <LoginAlert navigation={navigation}  isDisable={true}  setShow={setShowAlert} prevScreen='Explore' />
+        } 
       <SafeAreaView style={{height: '100%', width: '100%', backgroundColor: '#000'}}>
 
 
@@ -112,7 +134,13 @@ const Offerings = ({navigation})=>{
                 style={gobalStyle.btn_abs}
                 onPress={() => {getOrder();}}
               >
+                {
+                    loading
+                    ?
+                    <BtnAnimation></BtnAnimation>
+                    :
                   <Text style={[gobalStyle.submitText]}>GIVE</Text>
+                }
               </TouchableHighlight>
 
 

@@ -3,10 +3,11 @@ import {View,TouchableOpacity,Text,ScrollView, SafeAreaView} from 'react-native'
 import RequestFormDetail from './RequestFormDetail';
 import {styles} from './RequestForm';
 import {sendFom} from '../../api/requestForms'
+import BtnAnimation from '../Btn';
 
 
 
-const MemorialServices = ({setShow,submit}) => {
+const MemorialServices = ({setShow,submit,loading}) => {
     const intitial={
         formType:'memorial',
 	    name:'',
@@ -86,7 +87,13 @@ const MemorialServices = ({setShow,submit}) => {
                 onPress={()=>submit(data,setData,intitial)}
                 underlayColor="#fff"
                 >
+                {
+                    loading
+                    ?
+                    <BtnAnimation></BtnAnimation>
+                    :
                     <Text style={styles.loginText}>Continue</Text>
+                }
                 </TouchableOpacity>
             </SafeAreaView>
             </>

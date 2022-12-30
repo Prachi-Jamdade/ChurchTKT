@@ -19,9 +19,9 @@ const LoginAlert = ({navigation,setShow,prevScreen,isDisable }) => {
                     <TouchableOpacity style={styles.chatSupportBtn}
                         // provide naviate path
                         onPress={() => {
-                            if(!isDisable){
-                                setShow(false)
-                            }
+                            // if(!isDisable){
+                            //     setShow(false)
+                            // }
                             navigation.navigate(prevScreen);
                         }}
                         underlayColor='#fff'
@@ -31,9 +31,9 @@ const LoginAlert = ({navigation,setShow,prevScreen,isDisable }) => {
                     <TouchableOpacity style={[styles.chatSupportBtn,{backgroundColor:'#FF1818',borderColor:'transparent'}]}
                     // provide naviate path
                     onPress={() => {
-                        if(!isDisable){
-                            setShow(false)
-                        }
+                        // if(!isDisable){
+                        //     setShow(false)
+                        // }
                         navigation.navigate('Login');
                     }}
                         underlayColor='#fff'

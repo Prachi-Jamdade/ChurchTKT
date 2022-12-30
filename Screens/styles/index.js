@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     btn_abs : {
         position: 'absolute',
-        bottom:0,
+        bottom:10,
         left: 0,
         right:0,
         marginTop: RFValue(10),
