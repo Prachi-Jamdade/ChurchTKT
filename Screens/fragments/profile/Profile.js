@@ -106,11 +106,15 @@ const Profile =({ navigation })=>{
                         <ProfileComponent imgSource={{ type: Icons.Feather, name: "shield" }} componentName="Privacy Policy" />
                     </TouchableHighlight>
 
-                    <TouchableHighlight onPress={() => {
-                        setShow(true);
-                    }}>
-                        <ProfileComponent imgSource={{ type: Icons.Ionicons, name: "log-in-outline", isRed: true }} componentName="Logout" />
-                    </TouchableHighlight>
+                    {
+                        isUserLogin &&
+                        <TouchableHighlight onPress={() => {
+                            setShow(true);
+                        }}>
+                            <ProfileComponent imgSource={{ type: Icons.Ionicons, name: "log-in-outline", isRed: true }} componentName="Logout" />
+                        </TouchableHighlight>
+                    }
+
 
                     <Socials />
 

@@ -98,7 +98,12 @@ const Offerings =({navigation,route})=>{
                         title={isJoin==null?"JOIN SPM":isJoin}
                         onPress={() => {
                             if(isJoin==null) return;
-                            navigation.navigate('JoinSPM',{data:data})
+                            if(isJoin=='JOIN SPM'){
+                                navigation.navigate('JoinSPM')
+                            }else{
+
+                                navigation.navigate('JoinSPM',{data:data})
+                            }
                         }
                         } />
                 </SafeAreaView>
