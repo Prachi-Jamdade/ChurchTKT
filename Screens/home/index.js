@@ -37,6 +37,9 @@ const Home = ({ navigation }) => {
     const {homeEvents,getHomeEvent,videoLink,user}=useContext(AppContext);
 
     useEffect(() => {
+        navigation.addListener('beforeRemove', (e) => {
+            e.preventDefault();
+          })
         if(homeEvents.length===0){
             getHomeEvent().finally(()=>{
                 setLodding(false);
@@ -346,6 +349,7 @@ const styles = StyleSheet.create({
         width: boxWidth,
         borderRadius: RFValue(20),
         marginVertical: RFValue(10),
+        marginBottom: RFValue(2),
         paddingTop: RFValue(20),
         paddingLeft: RFValue(12),
         paddingRight: RFValue(12),
