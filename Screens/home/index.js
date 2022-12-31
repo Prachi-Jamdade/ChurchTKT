@@ -84,7 +84,7 @@ const Home = ({ navigation }) => {
                     {
                         user?.firstName &&
                         <SafeAreaView>
-                            <Text style={styles.headerDark}>{user?.firstName}!</Text>
+                            <Text style={styles.headerDark}>{user?.firstName.trim()}!</Text>
                         </SafeAreaView>
                     }
                 </SafeAreaView>
@@ -259,8 +259,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: RFValue(20),
         flex: 1,
-        marginTop: RFValue(15),
-        paddingTop: RFValue(10),
+        marginTop: RFValue(5),
+        paddingTop: RFValue(5),
     },
     cardText: {
         color: 'white',
@@ -346,9 +346,9 @@ const styles = StyleSheet.create({
         width: boxWidth,
         borderRadius: RFValue(20),
         marginVertical: RFValue(10),
-        paddingTop: RFValue(25),
-        paddingLeft: RFValue(20),
-        paddingRight: RFValue(20),
+        paddingTop: RFValue(20),
+        paddingLeft: RFValue(12),
+        paddingRight: RFValue(12),
         backgroundColor: 'black',
     },
     homeTopCardText: {
@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
     pagination: {
         flexDirection: 'row',
         alignSelf: 'center',
-        marginBottom: RFValue(15),
+        marginBottom: RFValue(2),
     },
     pagingText: {
         fontSize: RFValue((width / 30)),

@@ -149,7 +149,7 @@ const AccountDetails = ({navigation})=> {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         >
-            <SafeAreaView style={{ backgroundColor: '#1E1E1E',paddingBottom:20 ,borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: '100%' }} >
+            <SafeAreaView style={{ backgroundColor: '#1E1E1E',paddingBottom:20 ,borderRadius: 20, flexDirection: 'column', alignItems: 'center', width:'100%', height: Dimensions.get("window").height }} >
                 <SafeAreaView style={{alignItems:'center', justifyContent:'center', padding:30}}>
 
                 {
@@ -157,12 +157,12 @@ const AccountDetails = ({navigation})=> {
                     ?
                     <Image
                     source={{uri: profileUrl}}
-                    style={{width: RFValue(120), height: RFValue(120), borderRadius:RFValue(120/2)}}
+                    style={{width: RFValue(130), height: RFValue(130), borderRadius:RFValue(130/2)}}
                     />
                     :
                     <Image
                     source={require('../../assests/UserPic.png')}
-                    style={{width: RFValue(120), height: RFValue(120), borderRadius:RFValue(120/2)}}
+                    style={{width: RFValue(130), height: RFValue(130), borderRadius:RFValue(130/2)}}
                     />
                 }
 
