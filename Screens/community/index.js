@@ -62,8 +62,8 @@ let data = [
     about: `Girl Tribe, an initiative of The king’s Temple Church is a community of Brave, Strong, and Fierce Women that are committed to living a fearless and passionate life.\n\nThere's just something special about a group of girls getting together. Maybe it's the fact that women are natural nurturers and caretakers, or maybe it's because we just know how to have a good time. Whatever the reason, there's no denying the power of the girl tribe.\n\nWhen you're part of a close-knit group of girls, you can count on them for anything – whether you need a shoulder to cry on or someone to help you celebrate your successes. They're always there for you, no matter what.\n\nAnd that's what makes the girl tribe special. Sure, you can rely on your family and friends for support, but there's something different about the bond between girls.\n\nWe believe in the power of discovering destiny and creating a world and lifestyle outside the norm.
         No filters are needed! You can be assured that you will always have a family you can count on.\n\nSo find your tribe TODAY!`,
     message:
-      'Hello, I would like to join Leadership Academy. Can you please walk me through the process?',
-    phoneNumber: '917569191615',
+      'Hello, I would like to join Girl Tribe. Can you please walk me through the process?',
+    phoneNumber: '917569652539',
   },
 ];
 

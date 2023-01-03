@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, SafeAreaView, TouchableHighlight} from 'react-native';
 import {Linking} from 'react-native';
 import {Image} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -75,11 +75,11 @@ const Events = ({navigation}) => {
         />
         <Text style={styles.separatingText}>Follow our Podcast on</Text>
 
-        <SafeAreaView
+        <TouchableOpacity
           style={{
             flex: 1,
             flexDirection: 'row',
-            paddingTop: RFValue(12),
+            paddingTop: RFValue(6),
             paddingHorizontal: RFValue(12),
           }}>
           {Icons.map(value => (
@@ -89,12 +89,12 @@ const Events = ({navigation}) => {
                 height: RFValue(40),
                 width: RFValue(40),
                 borderRadius: RFValue(999),
-                marginRight: RFValue(12),
+                marginRight: RFValue(15),
               }}
               onPress={() => Linking.openURL(value.navigate)}
             />
           ))}
-        </SafeAreaView>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
