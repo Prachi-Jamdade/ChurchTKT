@@ -16,206 +16,210 @@ import {sendOtpToNumber} from '../api/authication';
 import {RFValue} from 'react-native-responsive-fontsize';
 import BtnAnimation from '../fragments/Btn';
 
-const VerifyOtp = ({navigation, route}) => {
-  const [accepted, setAccepted] = useState(false);
-  const [otp, setOtp] = useState('');
-  const [timer, setTimer] = useState(60 * 5);
-  const [timerRef, setTimerRef] = useState(null);
-  const [loading, setLoading] = useState(false);
+class VerifyOtp extends React.Component {
+  static contextType = AppContext;
 
-  const {setAlert, setUser, setUserLogin} = useContext(AppContext);
+  state = {
+    otp: '',
+    accepted: 'false',
+    route: {},
+    timer: 60 * 5,
+    timerRef: null,
+    loading: false,
+  };
+  static contextType = AppContext;
 
-  useEffect(() => {
+  constructor(props) {
+    super(props);
     const timerRef = setInterval(() => {
-      if (timer == 0) return;
-      setTimer(timer - 1);
+      if (this.state.timer == 0) return;
+      this.setState({timer: this.state.timer - 1});
     }, 1000);
-    return () => {
-      clearInterval(timerRef);
-    };
-  }, []);
+  }
 
-  const verify = () => {
-    if (loading) return;
-    if (!accepted) {
+  verify = () => {
+    if (this.state.loading) return;
+    if (!this.state.accepted) {
       return false;
     }
 
-    const {phoneNumber} = route.params;
-    const {isLogin} = route.params;
-    setLoading(true);
+    const {phoneNumber} = this.props.route.params;
+    const {isLogin} = this.props.route.params;
+    this.setState({loading: true});
 
     if (isLogin) {
-      loginOtpVerification(phoneNumber, otp)
+      loginOtpVerification(phoneNumber, this.otp)
         .then(data => {
           if (!data.isValid) {
             return console.log('In vaild Otp');
           }
           AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
-            setUser(data);
-            setUserLogin(true);
-            navigation.navigate('BottomTabs', {isLogin: true});
+            this.context.setUser(data);
+            this.context.setUserLogin(true);
+            this.props.navigation.navigate('BottomTabs', {isLogin: true});
           });
         })
         .catch(e => {
-          setAlert('error', 'OTP is not valid.');
+          this.context.setAlert('error', 'OTP is not valid.');
           // alert('In vaild Otp');
         })
         .finally(() => {
-          setLoading(false);
+          this.setState({loading: false});
         });
     } else {
-      const {firstName, lastName} = route.params;
-      sigUpOtpVerification(phoneNumber, firstName, lastName, otp)
+      const {firstName, lastName} = this.props.route.params;
+      sigUpOtpVerification(phoneNumber, firstName, lastName, this.otp)
         .then(data => {
           if (!data.isValid) {
-            return setAlert('error', 'OTP is not valid.');
+            return this.context.setAlert('error', 'OTP is not valid.');
           }
           AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
-            setUser(data);
-            setUserLogin(true);
-            navigation.navigate('BottomTabs', {isLogin: true});
+            this.context.setUser(data);
+            this.context.setUserLogin(true);
+            this.props.navigation.navigate('BottomTabs', {isLogin: true});
           });
         })
         .catch(e => {
-          setAlert('error', 'OTP is not valid.');
+          this.context.setAlert('error', 'OTP is not valid.');
         })
         .finally(() => {
-          setLoading(false);
+          this.setState({loading: false});
         });
     }
     // alert(this.otp);
   };
 
-  const resendOtp = () => {
-    if (loading) return;
-    if (!accepted) {
+  resendOtp = () => {
+    if (this.state.loading) return;
+    if (!this.state.accepted) {
       return false;
     }
 
-    const {phoneNumber} = route.params;
-    const {isLogin} = route.params;
-    setLoading(true);
+    const {phoneNumber} = this.props.route.params;
+    const {isLogin} = this.props.route.params;
+    this.setState({loading: true});
 
     if (!isLogin) {
       sendOtpToNumber(phoneNumber, false)
         .then(data => {
           if (!data.isValid) {
-            return setAlert(
+            return this.context.setAlert(
               'error',
               'Looks like you already have an account, please login',
             );
             // return alert('Looks like you have already an account,please login');
           }
-          setAlert('success', 'New OTP is sent');
+          this.context.setAlert('success', 'New OTP is sent');
           // alert('Send The New Otp');
-          setTimer(60 * 5);
+          this.setState({timer: 60 * 5});
         })
         .catch(e => {
-          setAlert('error', 'Something went wrong, try again');
+          this.context.setAlert('error', 'Something went wrong, try again');
           // alert('Something went wrong, try again');
         })
         .finally(() => {
-          setLoading(false);
+          this.setState({loading: false});
         });
     } else {
       sendOtpToNumber(phoneNumber, true)
         .then(data => {
           // console.log(data);
           if (!data.isValid) {
-            return setAlert('error', 'User does not exit');
+            return this.context.setAlert('error', 'User does not exit');
             // return alert('User does not exit');
           }
-          setTimer(60 * 5);
-          setAlert('success', 'New OTP is sent');
+          this.setState({timer: 60 * 5});
+          this.context.setAlert('success', 'New OTP is sent');
           // alert('Send The New Otp');
         })
         .catch(e => {
-          setAlert('error', 'Something went wrong, try again');
+          this.context.setAlert('error', 'Something went wrong, try again');
         })
         .finally(() => {
-          setLoading(false);
+          this.setState({loading: false});
         });
     }
     // alert(this.otp);
   };
 
-  const handleOTP = text => {
+  handleOTP = text => {
     if (text.length === 4) {
-      setOtp(text);
-      setAccepted(true);
+      this.otp = text;
+      this.setState({accepted: true});
     } else {
-      setAccepted(false);
+      this.setState({accepted: false});
     }
   };
 
-  const getMinutes = () => {
-    return `0${Math.floor(timer / 60)}`;
+  getMinutes = () => {
+    return `0${Math.floor(this.state.timer / 60)}`;
   };
 
-  const getSeconds = () => {
-    let ans = timer - Math.floor(timer / 60) * 60;
+  getSeconds = () => {
+    let ans = this.state.timer - Math.floor(this.state.timer / 60) * 60;
     return ans < 10 ? `0${ans}` : ans;
   };
 
-  const getTime = () => {
-    return `${getMinutes()}:${getSeconds()}`;
+  getTime = () => {
+    return `${this.getMinutes()}:${this.getSeconds()}`;
   };
 
-  let phoneNumber = '+91' + route.params.phoneNumber.toString();
-  return (
-    <KeyboardAvoidingView
-      keyboardShouldPersistTaps="never"
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-      style={{flex: 1}}>
-      <SafeAreaView style={gobalStyle.main}>
-        <Text style={gobalStyle.header}>Just a second!</Text>
-        <Text style={styles.dehigligtedText}>
-          We have sent an OTP to {phoneNumber}
-        </Text>
-        <OTPTextView
-          borderColor="#FFBE18"
-          handleTextChange={e => handleOTP(e)}
-          containerStyle={styles.textInputContainer}
-          textInputStyle={styles.roundedTextInput}
-          inputCount={4}
-          color="white"
-          inputCellLength={1}
-        />
-        <SafeAreaView style={{flexDirection: 'row'}}>
-          <SafeAreaView style={{width: '80%', flexDirection: 'row'}}>
-            <Text style={styles.dehigligtedText}>Expries in : </Text>
-            <Text style={styles.timmer}>{getTime()}</Text>
+  render() {
+    let phoneNumber = '+91' + this.props.route.params.phoneNumber.toString();
+    return (
+      <KeyboardAvoidingView
+        keyboardShouldPersistTaps="never"
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={{flex: 1}}>
+        <SafeAreaView style={gobalStyle.main}>
+          <Text style={gobalStyle.header}>Just a second!</Text>
+          <Text style={styles.dehigligtedText}>
+            We have sent an OTP to {phoneNumber}
+          </Text>
+          <OTPTextView
+            borderColor="#FFBE18"
+            handleTextChange={e => this.handleOTP(e)}
+            containerStyle={styles.textInputContainer}
+            textInputStyle={styles.roundedTextInput}
+            inputCount={4}
+            color="white"
+            inputCellLength={1}
+          />
+          <SafeAreaView style={{flexDirection: 'row'}}>
+            <SafeAreaView style={{width: '80%', flexDirection: 'row'}}>
+              <Text style={styles.dehigligtedText}>Expries in : </Text>
+              <Text style={styles.timmer}>{this.getTime()}</Text>
+            </SafeAreaView>
+            <SafeAreaView style={{width: '30%', alignSelf: 'flex-end'}}>
+              <TouchableHighlight
+                onPress={() => {
+                  this.resendOtp();
+                }}>
+                <Text style={styles.redText}>Resend</Text>
+              </TouchableHighlight>
+            </SafeAreaView>
           </SafeAreaView>
-          <SafeAreaView style={{width: '30%', alignSelf: 'flex-end'}}>
-            <TouchableHighlight
-              onPress={() => {
-                resendOtp();
-              }}>
-              <Text style={styles.redText}>Resend</Text>
-            </TouchableHighlight>
-          </SafeAreaView>
+          <TouchableHighlight
+            style={[
+              gobalStyle.btn_abs,
+              {backgroundColor: this.state.accepted ? '#FFBE18' : 'grey'},
+            ]}
+            disabled={!this.state.accepted}
+            onPress={() => {
+              this.verify();
+            }}
+            underlayColor="#fff">
+            {this.state.loading ? (
+              <BtnAnimation></BtnAnimation>
+            ) : (
+              <Text style={[gobalStyle.submitText]}>Verify</Text>
+            )}
+          </TouchableHighlight>
         </SafeAreaView>
-        <TouchableHighlight
-          style={[
-            gobalStyle.btn_abs,
-            {backgroundColor: accepted ? '#FFBE18' : 'grey'},
-          ]}
-          disabled={!accepted}
-          onPress={() => {
-            verify();
-          }}
-          underlayColor="#fff">
-          {loading ? (
-            <BtnAnimation></BtnAnimation>
-          ) : (
-            <Text style={[gobalStyle.submitText]}>Verify</Text>
-          )}
-        </TouchableHighlight>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
-  );
-};
+      </KeyboardAvoidingView>
+    );
+  }
+}
 
 export default VerifyOtp;
 const styles = StyleSheet.create({
