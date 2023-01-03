@@ -1,21 +1,13 @@
-import React, {useRef, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  TouchableHighlight,
-  Dimensions,
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, Dimensions} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon, {Icons} from './Icons';
 import {RFValue} from 'react-native-responsive-fontsize';
-
 import Home from '../home';
-import Explore from '../fragments/explore/Explore';
-import Community from '../Community';
-import Profile from './profile/Profile';
+import Explore from '../explore';
+import Community from '../community';
+import Profile from '../profile';
+
 const TabArr = [
   {
     route: 'Home',

@@ -1,20 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {
-  View,
-  Image,
   StyleSheet,
   Dimensions,
   Text,
   TextInput,
   TouchableHighlight,
-  ImageBackground,
-  Button,
   SafeAreaView,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
-import CustomInput from '../custom/CustomInput';
 import {sendOtpToNumber} from '../api/authication';
 import gobalStyle from '../styles/index';
 import {RFValue} from 'react-native-responsive-fontsize';
@@ -24,111 +18,98 @@ const {width} = Dimensions.get('window');
 const height = (width * 100) / 70;
 const PHONE_REGEX = /^[0-9]{10}$/;
 
-// const Login = ({navigation}) => {
-class Login extends React.Component {
-  //    const [accepted , setAccepted] = useState(false);
+const Login = ({navigation}) => {
+  const [accepted, setAccepted] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  state = {
-    phoneNumber: '',
-    accepted: 'true',
-    loading: false,
-  };
+  const {setAlert} = useContext(AppContext);
 
-  static contextType = AppContext;
-
-  constructor(props) {
-    super(props);
-  }
-
-  handleNumber = text => {
-    this.setState({phoneNumber: text});
+  const handleNumber = text => {
+    setPhoneNumber(text);
     if (text.length === 10) {
-      this.accepted = true;
+      setAccepted(true);
     } else {
-      this.accepted = false;
+      setAccepted(false);
     }
   };
 
-  sendOtp = props => {
-    if (this.state.loading) return;
+  const sendOtp = () => {
+    if (loading) return;
 
-    this.setState({loading: true});
-    sendOtpToNumber(this.state.phoneNumber, true)
+    setLoading(true);
+    sendOtpToNumber(phoneNumber, true)
       .then(data => {
         // console.log(data);
         if (!data.isValid) {
-          return this.context.setAlert('error', 'User does not exist');
+          return setAlert('error', 'User does not exist');
         }
-        props.navigation.navigate('VerifyOtp', {
-          phoneNumber: this.state.phoneNumber,
+        navigation.navigate('VerifyOtp', {
+          phoneNumber: phoneNumber,
           isLogin: true,
         });
       })
       .catch(e => {
-        this.context.setAlert('error', 'Something went wrong, try again');
+        setAlert('error', 'Something went wrong, try again');
       })
       .finally(() => {
-        this.setState({loading: false});
+        setLoading(false);
       });
   };
 
-  render() {
-    return (
-      <KeyboardAvoidingView
-        keyboardShouldPersistTaps="never"
-        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}>
-        <SafeAreaView style={gobalStyle.main}>
-          <Text style={gobalStyle.header}>Welcome Back!</Text>
-          <Text style={styles.dehigligtedText}>
-            Enter your mobile no to Login
-          </Text>
-          <SafeAreaView>
-            <TextInput
-              style={styles.input}
-              underlineColorAndroid="transparent"
-              placeholder="Mobile No"
-              keyboardType="number-pad"
-              placeholderTextColor="#989898"
-              autoCapitalize="none"
-              maxLength={10}
-              onChangeText={this.handleNumber}
-            />
-          </SafeAreaView>
-
-          <SafeAreaView style={styles.helper}>
-            <Text style={styles.dehigligtedText}>
-              Don't have an account yet?
-            </Text>
-            <Text
-              style={styles.signUp}
-              onPress={() => {
-                this.props.navigation.navigate('Registration');
-              }}>
-              Sign Up
-            </Text>
-          </SafeAreaView>
-          <TouchableHighlight
-            style={[
-              gobalStyle.btn_abs,
-              {backgroundColor: this.accepted ? '#FFBE18' : 'grey'},
-            ]}
-            disabled={!this.accepted}
-            onPress={() => {
-              this.sendOtp(this.props);
-            }}
-            underlayColor="#fff">
-            {this.state.loading ? (
-              <BtnAnimation></BtnAnimation>
-            ) : (
-              <Text style={[gobalStyle.submitText]}>Continue</Text>
-            )}
-          </TouchableHighlight>
+  return (
+    <KeyboardAvoidingView
+      keyboardShouldPersistTaps="never"
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+      style={{flex: 1}}>
+      <SafeAreaView style={gobalStyle.main}>
+        <Text style={gobalStyle.header}>Welcome Back!</Text>
+        <Text style={styles.dehigligtedText}>
+          Enter your mobile no to Login
+        </Text>
+        <SafeAreaView>
+          <TextInput
+            style={styles.input}
+            underlineColorAndroid="transparent"
+            placeholder="Mobile No"
+            keyboardType="number-pad"
+            placeholderTextColor="#989898"
+            autoCapitalize="none"
+            maxLength={10}
+            onChangeText={handleNumber}
+          />
         </SafeAreaView>
-      </KeyboardAvoidingView>
-    );
-  }
-}
+
+        <SafeAreaView style={styles.helper}>
+          <Text style={styles.dehigligtedText}>Don't have an account yet?</Text>
+          <Text
+            style={styles.signUp}
+            onPress={() => {
+              navigation.navigate('Registration');
+            }}>
+            Sign Up
+          </Text>
+        </SafeAreaView>
+        <TouchableHighlight
+          style={[
+            gobalStyle.btn_abs,
+            {backgroundColor: accepted ? '#FFBE18' : 'grey'},
+          ]}
+          disabled={!accepted}
+          onPress={() => {
+            sendOtp();
+          }}
+          underlayColor="#fff">
+          {loading ? (
+            <BtnAnimation></BtnAnimation>
+          ) : (
+            <Text style={[gobalStyle.submitText]}>Continue</Text>
+          )}
+        </TouchableHighlight>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
+  );
+};
 
 const styles = StyleSheet.create({
   dehigligtedText: {
