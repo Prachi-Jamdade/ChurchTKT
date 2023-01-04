@@ -51,11 +51,11 @@ const CommunityBox = ({
       }
     }
   }
-  useEffect(() => {
-    navigation.addListener('beforeRemove', e => {
-      e.preventDefault();
-    });
-  }, []);
+  // useEffect(() => {
+  //   navigation.addListener('beforeRemove', e => {
+  //     navigation.navigate('Community');
+  //   });
+  // }, []);
 
   // const backBtnHandler = () => {
   //     navigation.navigate('Community');

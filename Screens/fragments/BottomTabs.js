@@ -86,6 +86,7 @@ class BottomTabs extends React.Component {
     return (
       <Tab.Navigator
         initialRouteName="Home"
+        backBehavior="none"
         screenOptions={{
           headerShown: false,
           tabBarStyle: styles.bar,

@@ -22,14 +22,6 @@ const Explore = ({navigation}) => {
   const {setAlert, isUserLogin} = useContext(AppContext);
   const [showAlert, setShowAlert] = useState(false);
 
-  // useEffect(() => {
-  //     if(!isUserLogin) {
-  //         setShowAlert(true);
-  //     }else{
-  //         setShowAlert(false);
-  //     }
-  // }, [isUserLogin]);
-
   const options = {
     ignoreAndroidSystemSettings: true,
   };

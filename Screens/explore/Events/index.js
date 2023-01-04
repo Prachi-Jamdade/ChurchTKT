@@ -1,5 +1,11 @@
 import React from 'react';
-import {Text, StyleSheet, TouchableOpacity, SafeAreaView, TouchableHighlight} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+  TouchableHighlight,
+} from 'react-native';
 import {Linking} from 'react-native';
 import {Image} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -86,8 +92,8 @@ const Events = ({navigation}) => {
             <Image
               source={value.src}
               style={{
-                height: RFValue(40),
-                width: RFValue(40),
+                height: RFValue(30),
+                width: RFValue(30),
                 borderRadius: RFValue(999),
                 marginRight: RFValue(15),
               }}
@@ -115,10 +121,9 @@ function ImageElement({source, stretch = true, title, content}) {
         source={source}
         style={{
           flex: 1,
-          width: RFValue(90),
-          height: RFValue(90),
+          width: RFValue(80),
+          height: RFValue(95),
           resizeMode: 'contain',
-          borderRadius: 5,
           padding: RFValue(1),
         }}
       />

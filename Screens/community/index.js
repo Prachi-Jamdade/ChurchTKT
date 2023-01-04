@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
   main: {flex: 1, backgroundColor: '#0F1013'},
   BigBox: {
     flex: 1,
-    backgroundColor: '#0F1013',
     marginTop: height / 5,
     borderRadius: 24,
     paddingVertical: RFValue(10),
@@ -116,6 +115,7 @@ const styles = StyleSheet.create({
     width,
     flexDirection: 'column',
     alignItems: 'center',
+    marginTop: RFValue(15),
   },
   header: {
     color: 'white',
@@ -174,10 +174,13 @@ const styles = StyleSheet.create({
   list: {
     backgroundColor: '#1E1E1E',
     borderRadius: 24,
-    marginBottom: RFValue(110),
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+    marginBottom: RFValue(100),
     paddingBottom: RFValue(20),
+    paddingTop: RFValue(10),
     width: boxWidth * 1.1,
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
