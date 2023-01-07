@@ -1,25 +1,29 @@
 import React, {useContext} from 'react';
-import {TouchableOpacity, Text, StyleSheet, Dimensions} from 'react-native';
+
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
+
 import {AppContext} from '../../context';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-const LoginAlert = ({navigation, setShow, prevScreen, isDisable}) => {
+const LogoutAlert = ({navigation, setShow}) => {
   const {clear} = useContext(AppContext);
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.containerItem}>
-        <Text style={styles.header}>You need to login first</Text>
+        <Text style={styles.header}>Do you really want to logout?</Text>
 
         <SafeAreaView style={{flexDirection: 'row'}}>
           <TouchableOpacity
             style={styles.chatSupportBtn}
             // provide naviate path
-            onPress={() => {
-              // if(!isDisable){
-              //     setShow(false)
-              // }
-              navigation.navigate(prevScreen);
-            }}
+            onPress={() => setShow(false)}
             underlayColor="#fff">
             <Text style={styles.loginText}>Cancel</Text>
           </TouchableOpacity>
@@ -30,13 +34,11 @@ const LoginAlert = ({navigation, setShow, prevScreen, isDisable}) => {
             ]}
             // provide naviate path
             onPress={() => {
-              // if(!isDisable){
-              //     setShow(false)
-              // }
-              navigation.navigate('Login');
+              clear(navigation);
+              setShow(false);
             }}
             underlayColor="#fff">
-            <Text style={styles.loginText}>Login</Text>
+            <Text style={styles.loginText}>Logout</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </SafeAreaView>
@@ -100,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginAlert;
+export default LogoutAlert;
