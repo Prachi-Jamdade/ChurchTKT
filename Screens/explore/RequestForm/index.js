@@ -26,6 +26,7 @@ import {checkObj} from '../../utils/obj';
 import {AppContext} from '../../../context';
 import LoginAlert from '../../custom/LoginAlert';
 import {useContext} from 'react';
+import OrganizeWedding from './OrganizeWeddings';
 
 const {width} = Dimensions.get('window');
 const RequestForm = ({navigation}) => {
@@ -49,19 +50,21 @@ const RequestForm = ({navigation}) => {
     'Water Baptism',
     'Thanks Giving',
     'Child Dedications',
+    'Organize Weddings',
     'Memorial Services',
     'House Dedications',
     'Celebrate Birthday',
     'Request Funeral Services',
   ];
   const optionIcons = [
-    {type: Icons.Octicons, name: 'home'},
-    {type: Icons.FontAwesome5, name: 'birthday-cake'},
-    {type: Icons.MaterialCommunityIcons, name: 'human-male-child'},
-    {type: Icons.FontAwesome5, name: 'home'},
     {type: Icons.MaterialCommunityIcons, name: 'water-plus'},
     {type: Icons.AntDesign, name: 'heart'},
+    {type: Icons.MaterialCommunityIcons, name: 'human-male-child'},
+    {type: Icons.FontAwesome5, name: 'ring'},
     {type: Icons.MaterialCommunityIcons, name: 'candle'},
+    {type: Icons.Octicons, name: 'home'},
+    {type: Icons.FontAwesome5, name: 'birthday-cake'},
+    {type: Icons.Entypo, name: 'awareness-ribbon'},
   ];
 
   const [index, setIndex] = useState(0);
@@ -265,23 +268,29 @@ const GetForm = ({index, setShow, submit, loading}) => {
     );
   }
 
-  if (index === 3) {
+  if(index === 3) {
+    return(
+      <OrganizeWedding setShow={setShow} submit={submit} loading={loading} />
+    )
+  }
+
+  if (index === 4) {
     return (
       <MemorialServices setShow={setShow} submit={submit} loading={loading} />
     );
   }
 
-  if (index === 4) {
+  if (index === 5) {
     return (
       <HouseDedication setShow={setShow} submit={submit} loading={loading} />
     );
   }
-  if (index === 5) {
+  if (index === 6) {
     return (
       <CelebrateBirthday setShow={setShow} submit={submit} loading={loading} />
     );
   }
-  if (index === 6) {
+  if (index === 7) {
     return (
       <FuneralService setShow={setShow} submit={submit} loading={loading} />
     );

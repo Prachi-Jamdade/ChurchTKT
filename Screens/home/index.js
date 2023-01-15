@@ -7,6 +7,7 @@ import {
   Image,
   TouchableHighlight,
   StyleSheet,
+  Platform,
   Switch,
   Dimensions,
   SafeAreaView,
@@ -199,8 +200,22 @@ const HomeCard = ({
   return (
     <SafeAreaView style={styles.cardBox}>
       <SafeAreaView
-        style={{padding: RFValue(12), paddingVertical: RFValue(12)}}>
+        style={{
+          ...Platform.select({
+            ios: {
+              padding: RFValue(17), paddingVertical: RFValue(12)
+            },
+            android: {
+              padding: RFValue(15), paddingVertical: RFValue(12)
+            },
+            default: {
+              padding: RFValue(15), paddingVertical: RFValue(12)
+            }
+          }),
+          
+        }}>
         <Text style={styles.cardTitle}>{title}</Text>
+        
         <Text style={styles.cardDescription}>{_description}</Text>
         {/* <SafeAreaView style={[styles.rowToggle, { marginHorizontal: 5 }]}>
                     <Switch
