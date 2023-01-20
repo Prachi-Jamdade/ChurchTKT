@@ -15,6 +15,7 @@ import gobalStyle from '../styles/index';
 import {sendOtpToNumber} from '../api/authication';
 import {RFValue} from 'react-native-responsive-fontsize';
 import BtnAnimation from '../fragments/Btn';
+import analytics from '@react-native-firebase/analytics';
 
 class VerifyOtp extends React.Component {
   static contextType = AppContext;
@@ -37,6 +38,21 @@ class VerifyOtp extends React.Component {
     }, 1000);
   }
 
+  userLoginEvent = async () => {
+    console.log('Login Event Triggered');
+    await analytics().logEvent('user_login', {
+      event: 'user-login',
+    });
+  };
+
+  userSignupEvent = async () => {
+    console.log('Signup Event Triggered');
+    await analytics().logEvent('user_signup', {
+      event: 'user_signup',
+    });
+  };
+
+
   verify = () => {
     if (this.state.loading) return;
     if (!this.state.accepted) {
@@ -47,6 +63,7 @@ class VerifyOtp extends React.Component {
     const {isLogin} = this.props.route.params;
     this.setState({loading: true});
 
+
     if (isLogin) {
       loginOtpVerification(phoneNumber, this.otp)
         .then(data => {
@@ -56,6 +73,7 @@ class VerifyOtp extends React.Component {
           AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
             this.context.setUser(data);
             this.context.setUserLogin(true);
+            this.userLoginEvent()
             this.props.navigation.navigate('BottomTabs', {isLogin: true});
           });
         })
@@ -76,6 +94,7 @@ class VerifyOtp extends React.Component {
           AsyncStorage.setItem('user', JSON.stringify(data)).then(() => {
             this.context.setUser(data);
             this.context.setUserLogin(true);
+      this.userSignupEvent()
             this.props.navigation.navigate('BottomTabs', {isLogin: true});
           });
         })
@@ -88,6 +107,8 @@ class VerifyOtp extends React.Component {
     }
     // alert(this.otp);
   };
+
+
 
   resendOtp = () => {
     if (this.state.loading) return;

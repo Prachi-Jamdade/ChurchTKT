@@ -21,6 +21,7 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import {checkObj} from '../../utils/obj';
 import BtnAnimation from '../../fragments/Btn';
 import LoginAlert from '../../custom/LoginAlert';
+import analytics from '@react-native-firebase/analytics';
 
 const JoinSPM = ({navigation, route}) => {
   const {user, setAlert, isUserLogin} = useContext(AppContext);
@@ -57,6 +58,12 @@ const JoinSPM = ({navigation, route}) => {
     });
   }, [route]);
 
+  const spmJoinEvent = async () => {
+    console.log('SPM Join Triggered');
+    await analytics().logEvent('spm_join', {
+      event: 'spm_join',
+    });
+  };
   const genderData = [
     {
       label: 'Male',
@@ -88,6 +95,7 @@ const JoinSPM = ({navigation, route}) => {
           amounts: 0,
         });
         navigation.navigate('Spm', {isJoin: true});
+        spmJoinEvent()
         return setAlert('success', 'Join the SPM');
       })
       .catch(e => {

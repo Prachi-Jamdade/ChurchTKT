@@ -19,6 +19,7 @@ import RazorpayCheckout from 'react-native-razorpay';
 import {RFValue} from 'react-native-responsive-fontsize';
 import BtnAnimation from '../../fragments/Btn';
 import LoginAlert from '../../custom/LoginAlert';
+import analytics from '@react-native-firebase/analytics';
 
 const Offerings = ({navigation}) => {
   const {user, setAlert, isUserLogin} = useContext(AppContext);
@@ -34,6 +35,13 @@ const Offerings = ({navigation}) => {
       setShowAlert(false);
     }
   }, [isUserLogin]);
+
+  const offeringsEvent = async () => {
+    console.log('Offerings Event Triggered');
+    await analytics().logEvent('give_offering', {
+      event: 'give_offering',
+    });
+  };
 
   const getOrder = async () => {
     if (loading) return;
@@ -77,6 +85,7 @@ const Offerings = ({navigation}) => {
           const _completePayment = await completePayment(data);
           setAmount(0);
           setAlert('success', 'Payment done successfully');
+          offeringsEvent()
           // alert('Payment done successfully');
         })
         .catch(error => {
