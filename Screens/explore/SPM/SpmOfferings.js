@@ -18,6 +18,7 @@ import RazorpayCheckout from 'react-native-razorpay';
 import {RFValue} from 'react-native-responsive-fontsize';
 import BtnAnimation from '../../fragments/Btn';
 import LoginAlert from '../../custom/LoginAlert';
+import analytics from '@react-native-firebase/analytics';
 
 const SPMOfferings = ({navigation}) => {
   const {user, setAlert, isUserLogin} = useContext(AppContext);
@@ -34,6 +35,13 @@ const SPMOfferings = ({navigation}) => {
     }
   }, [isUserLogin]);
 
+  const spmGiveEvent = async () => {
+    console.log('SPM Give Event Triggered');
+    await analytics().logEvent('spm_giving', {
+      event: 'spm_giving',
+    });
+  };
+  
   const getOrder = async () => {
     if (loading) return;
     try {
@@ -77,6 +85,7 @@ const SPMOfferings = ({navigation}) => {
           const _completePayment = await completePaymentSPM(data);
           setAmount(0);
           setAlert('success', 'Payment done successfully');
+          spmGiveEvent()
         })
         .catch(error => {
           // handle failure
