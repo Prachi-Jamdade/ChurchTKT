@@ -206,10 +206,10 @@ const AccountDetails = ({navigation}) => {
                 />
               )}
 
-              {/* <TouchableHighlight onPress={handleChoosePhoto}>
+              <TouchableHighlight onPress={handleChoosePhoto}>
 
                 <Text style={{color: '#F79D16', padding:RFValue(10), fontSize:RFValue(16), fontFamily: 'Montserrat-Regular'}}>Change Profile Picture</Text>
-                </TouchableHighlight>       */}
+                </TouchableHighlight>      
             </SafeAreaView>
 
             <SafeAreaView
